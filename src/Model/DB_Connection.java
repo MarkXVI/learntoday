@@ -23,7 +23,7 @@ public class DB_Connection {
             while(resultSet.next()){
                 String usernameData = resultSet.getString(1);
                 String passwordData = resultSet.getString(2);
-                if (usernameData.equals(username) || passwordData.equals(password)){
+                if (usernameData.equals(username) && passwordData.equals(password)){
                     return true;
                     }
                 }
