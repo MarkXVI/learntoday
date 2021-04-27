@@ -14,5 +14,6 @@
     -fx-background-radius: 10;
 }
 .rectangle{
-    -fx-background-radius: 30;
+    -fx-arc-height: 50;
+    -fx-arc-width: 50;
 }

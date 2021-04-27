@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
             prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1">
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="645.0" layoutX="185.0" layoutY="199.0"
-              stroke="BLACK" strokeType="INSIDE" width="826.0" AnchorPane.bottomAnchor="35.0"
-              AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="40.0"/>
-   <Text fill="WHITE" layoutX="315.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Main Menu"
-         textAlignment="CENTER" wrappingWidth="275.13671875">
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="657.0" layoutX="28.0" layoutY="36.0" stroke="WHITE" strokeLineCap="ROUND" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="848.0">
+      <effect>
+         <Shadow color="#00000078" />
+      </effect>
+   </Rectangle>
+   <Rectangle arcHeight="50.0" arcWidth="50.0" fill="DODGERBLUE" height="645.0" layoutX="185.0" layoutY="199.0" strokeLineCap="ROUND" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="826.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="40.0">
+      <stroke>
+         <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+            <stops>
+               <Stop color="#1397fc" />
+               <Stop color="#0995ff" offset="1.0" />
+            </stops>
+         </RadialGradient>
+      </stroke></Rectangle>
+   <Text fill="WHITE" layoutX="315.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Main Menu" textAlignment="CENTER" wrappingWidth="275.13671875">
       <font>
-         <Font name="System Bold" size="36.0"/>
+         <Font name="System Bold" size="36.0" />
       </font>
    </Text>
 </AnchorPane>
