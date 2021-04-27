@@ -49,9 +49,9 @@ public class LoginController {
     public Stage handleNextScene(ActionEvent event, String username, String password) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));
         Stage stage = new Stage(StageStyle.DECORATED);
-        stage.setScene(new Scene(loader.load()));
-
-        MenuController controller = loader.getController();
+        Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add("View/Style.css");
+        stage.setScene(scene);
         stage.show();
         return stage;
     }
