@@ -7,16 +7,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="450.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
-      <TextField fx:id="userInput" layoutX="206.0" layoutY="156.0" prefHeight="25.0" prefWidth="235.0" promptText="Enter username" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="159.0" AnchorPane.topAnchor="156.0" />
-      <Text layoutX="147.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
-      <Text layoutX="150.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-      <Text layoutX="260.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Learn2day" textAlignment="CENTER" wrappingWidth="127.87890625" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="212.12109375" AnchorPane.topAnchor="85.1015625">
+<AnchorPane cacheShape="false" centerShape="false" prefHeight="720.0" prefWidth="900.0" scaleShape="false" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+      <TextField fx:id="userInput" layoutX="346.0" layoutY="336.0" prefHeight="25.0" prefWidth="235.0" promptText="Enter username" />
+      <Text layoutX="287.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
+      <Text layoutX="290.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+      <Text layoutX="400.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Learn2day" textAlignment="CENTER" wrappingWidth="127.87890625">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <Button fx:id="loginButton" layoutX="361.0" layoutY="249.0" mnemonicParsing="false" onAction="#onLoginClick" prefHeight="25.0" prefWidth="76.0" text="Login" AnchorPane.bottomAnchor="176.0" AnchorPane.leftAnchor="361.0" AnchorPane.rightAnchor="159.0" />
-      <Button fx:id="registerButton" layoutX="206.0" layoutY="249.0" mnemonicParsing="false" onAction="#onRegisterClick" text="Register" AnchorPane.bottomAnchor="176.0" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="334.0" />
-      <PasswordField fx:id="passwordInput" layoutX="206.0" layoutY="210.0" prefHeight="25.0" prefWidth="235.0" promptText="Enter password" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="159.0" AnchorPane.topAnchor="210.0" />
+      <Button fx:id="loginButton" layoutX="528.0" layoutY="429.0" mnemonicParsing="false" onAction="#onLoginClick" text="Login" />
+      <Button fx:id="registerButton" layoutX="346.0" layoutY="429.0" mnemonicParsing="false" onAction="#onRegisterClick" text="Register" />
+      <PasswordField fx:id="passwordInput" layoutX="346.0" layoutY="390.0" prefHeight="25.0" prefWidth="235.0" promptText="Enter password" />
 </AnchorPane>

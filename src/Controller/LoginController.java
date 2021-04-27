@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class LoginController {
 
-    DB_Connection database = new DB_Connection();
+    DB_Connection database;
     @FXML
     Button registerButton;
     @FXML
