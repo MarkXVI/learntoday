@@ -36,6 +36,7 @@ public class LoginController {
         }else{
             passwordInput.clear();
             passwordInput.promptTextProperty().setValue("Wrong Password!");
+            passwordInput.setStyle("-fx-prompt-text-fill: Red");
         }
     }
 

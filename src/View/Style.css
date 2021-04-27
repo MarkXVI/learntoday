@@ -1,0 +1,14 @@
+.root{
+}
+.button{
+    -fx-background-color: linear-gradient(dodgerblue, dodgerblue);
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+.label{
+    -fx-text-fill: #e2dbdb;
+}
+.text-field{
+    -fx-background-radius: 10;
+}
