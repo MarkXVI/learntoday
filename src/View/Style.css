@@ -13,7 +13,3 @@
 .text-field{
     -fx-background-radius: 10;
 }
-.rectangle{
-    -fx-arc-height: 50;
-    -fx-arc-width: 50;
-}
