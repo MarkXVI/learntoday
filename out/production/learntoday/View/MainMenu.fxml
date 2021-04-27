@@ -1,32 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
-            prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1">
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="657.0" layoutX="28.0" layoutY="36.0" stroke="WHITE" strokeLineCap="ROUND" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="848.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
+   <Rectangle arcHeight="50.0" arcWidth="50.0" height="645.0" layoutX="52.0" layoutY="54.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="826.0">
       <effect>
-         <Shadow color="#00000078" />
+         <Shadow height="75.11" radius="35.3875" width="68.44">
+            <color>
+               <Color opacity="0.647826075553894" />
+            </color>
+         </Shadow>
       </effect>
    </Rectangle>
-   <Rectangle arcHeight="50.0" arcWidth="50.0" fill="DODGERBLUE" height="645.0" layoutX="185.0" layoutY="199.0" strokeLineCap="ROUND" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="826.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="40.0">
-      <stroke>
-         <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+   <Rectangle arcHeight="50.0" arcWidth="50.0" height="645.0" layoutX="37.0" layoutY="38.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="826.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="38.0">
+      <fill>
+         <LinearGradient endY="0.9857142857142859" startX="1.0" startY="0.033333333333333326">
             <stops>
-               <Stop color="#1397fc" />
-               <Stop color="#0995ff" offset="1.0" />
+               <Stop>
+                  <color>
+                     <Color red="0.11764705926179886" green="0.5647059082984924" blue="1.0" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.2980392277240753" green="0.6705882549285889" blue="1.0" />
+                  </color>
+               </Stop>
             </stops>
-         </RadialGradient>
-      </stroke></Rectangle>
-   <Text fill="WHITE" layoutX="315.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Main Menu" textAlignment="CENTER" wrappingWidth="275.13671875">
+         </LinearGradient>
+      </fill></Rectangle>
+   <Text fill="WHITE" layoutX="312.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Main Menu" textAlignment="CENTER" wrappingWidth="275.13671875">
       <font>
          <Font name="System Bold" size="36.0" />
       </font>
    </Text>
+   <Button fx:id="logoutButton" layoutX="672.0" layoutY="88.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="25.0" prefWidth="115.0" text="Sign out" />
 </AnchorPane>

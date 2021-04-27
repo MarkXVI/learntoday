@@ -9,38 +9,39 @@ public class DB_Connection {
     ResultSet resultSet;
 
     public DB_Connection(){
-        try{
-            connection = DriverManager.getConnection(url);
-        }catch(SQLException exception){
-            System.out.println(exception.fillInStackTrace());
-        }
     }
 
     public boolean check_login(String username, String password){
         try{
+            connection = DriverManager.getConnection(url);
             statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM user");
             while(resultSet.next()){
                 String usernameData = resultSet.getString(1);
                 String passwordData = resultSet.getString(2);
                 if (usernameData.equals(username) && passwordData.equals(password)){
+                    disconnect();
                     return true;
-                    }
+                }
                 }
             }catch(SQLException ex){
-            System.out.println(ex.fillInStackTrace());
+            System.out.println("There was a problem checking the users.");
         }
+        disconnect();
         return false;
     }
 
     public void register_user(String username, String password){
         try{
+            connection = DriverManager.getConnection(url);
             statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO user VALUES ('" + username + "', '" + password + "')");
+            disconnect();
 
         }catch(SQLException ex){
-            System.out.println(ex.fillInStackTrace());
+            System.out.println("There was a problem registering user.");
         }
+        disconnect();
     }
 
     public void disconnect(){
