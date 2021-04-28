@@ -16,14 +16,12 @@ public class MenuController {
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginScreen.fxml"));
-        Stage stage = new Stage(StageStyle.DECORATED);
+        Stage stage = (Stage) logoutButton.getScene().getWindow();
         Scene scene = new Scene(loader.load());
         scene.getStylesheets().add("View/Style.css");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
-
-        Stage stage1 = (Stage) logoutButton.getScene().getWindow();
-        stage1.close();
     }
 
 }

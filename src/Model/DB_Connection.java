@@ -16,10 +16,10 @@ public class DB_Connection {
             connection = DriverManager.getConnection(url);
             statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM user");
-            while(resultSet.next()){
-                String usernameData = resultSet.getString(1);
-                String passwordData = resultSet.getString(2);
-                if (usernameData.equals(username) && passwordData.equals(password)){
+            while(resultSet.next()){ // Goes through the result of the above statement
+                String usernameData = resultSet.getString(1); // Takes the username value
+                String passwordData = resultSet.getString(2); // Takes the password value
+                if (usernameData.equals(username) && passwordData.equals(password)){ // Checks if both username and password are true
                     disconnect();
                     return true;
                 }
@@ -31,11 +31,11 @@ public class DB_Connection {
         return false;
     }
 
-    public void register_user(String username, String password){
+    public void register_user(String FirstName, String LastName,String username, String password){
         try{
             connection = DriverManager.getConnection(url);
             statement = connection.createStatement();
-            statement.executeUpdate("INSERT INTO user VALUES ('" + username + "', '" + password + "')");
+            statement.executeUpdate("INSERT INTO user VALUES ('" + username + "', '" + password + "', '" + FirstName + "', '" + LastName + "')"); // Puts the values into the user table in the database.
             disconnect();
 
         }catch(SQLException ex){
@@ -44,7 +44,7 @@ public class DB_Connection {
         disconnect();
     }
 
-    public void disconnect(){
+    public void disconnect(){ // Disconnects from the database
         try{
             if(connection!=null){
                 connection.close();

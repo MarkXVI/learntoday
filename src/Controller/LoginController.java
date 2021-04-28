@@ -30,9 +30,13 @@ public class LoginController {
         String password = passwordInput.getText();
         boolean check = database.check_login(username, password);
         if (check){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));
             Stage stage = (Stage) loginButton.getScene().getWindow();
-            handleNextScene(actionEvent, username, password);
-            stage.close();
+            Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add("View/Style.css");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
         }else{
             passwordInput.clear();
             passwordInput.promptTextProperty().setValue("Wrong Password!");
@@ -40,20 +44,14 @@ public class LoginController {
         }
     }
 
-    public void onRegisterClick(ActionEvent actionEvent) {
-        String username = userInput.getText();
-        String password = passwordInput.getText();
-        database.register_user(username, password);
-    }
-
-    public Stage handleNextScene(ActionEvent event, String username, String password) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));
-        Stage stage = new Stage(StageStyle.DECORATED);
+    public void onRegisterClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/RegisterScreen.fxml"));
+        Stage stage = (Stage) registerButton.getScene().getWindow();
         Scene scene = new Scene(loader.load());
         scene.getStylesheets().add("View/Style.css");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
-        return stage;
     }
 
 }
