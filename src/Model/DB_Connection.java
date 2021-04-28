@@ -3,7 +3,7 @@ package Model;
 import java.sql.*;
 
 public class DB_Connection {
-    private String url = "jdbc:mysql://127.0.0.1:3306/learn2day?user=root&password=root";
+    private String url = "jdbc:mysql://35.228.58.113:3306/learn2day?user=root&password=root";
     Connection connection;
     Statement statement;
     ResultSet resultSet;

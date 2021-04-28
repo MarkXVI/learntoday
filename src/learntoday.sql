@@ -24,11 +24,11 @@ DROP TABLE IF EXISTS `alternative`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `alternative` (
   `choice` varchar(45) NOT NULL,
-  `questionID` varchar(10) DEFAULT NULL,
   `correct` tinyint(1) DEFAULT NULL,
+  `question_questionID` varchar(10) NOT NULL,
   PRIMARY KEY (`choice`),
-  KEY `questionID` (`questionID`),
-  CONSTRAINT `alternative_ibfk_1` FOREIGN KEY (`questionID`) REFERENCES `question` (`questionID`)
+  KEY `fk_alternative_question1_idx` (`question_questionID`),
+  CONSTRAINT `fk_alternative_question1` FOREIGN KEY (`question_questionID`) REFERENCES `question` (`questionID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -53,6 +53,7 @@ CREATE TABLE `question` (
   `answer` varchar(45) NOT NULL,
   `quiz_name` varchar(45) NOT NULL,
   `questionID` varchar(10) NOT NULL,
+  `Multichoice` tinyint DEFAULT NULL,
   PRIMARY KEY (`questionID`),
   KEY `fk_question_quiz1_idx` (`quiz_name`),
   CONSTRAINT `fk_question_quiz1` FOREIGN KEY (`quiz_name`) REFERENCES `quiz` (`name`)
@@ -126,6 +127,8 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `username` varchar(45) NOT NULL,
   `password` varchar(45) DEFAULT NULL,
+  `Firstname` varchar(45) DEFAULT NULL,
+  `Lastname` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -136,7 +139,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('Hpmanen','himehime');
+INSERT INTO `user` VALUES ('Alesbabnik','lolxd123','Kristian','Åkerblom'),('Hpmanen','himehime','Hampus','Nilsson'),('Lolxd','xdddddd','Hpmanen','Hampus');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,4 +180,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-26 21:03:36
+-- Dump completed on 2021-04-28 21:08:57

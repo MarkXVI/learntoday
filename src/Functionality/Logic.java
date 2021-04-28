@@ -1,7 +1,5 @@
 package Functionality;
 
-import java.util.ArrayList;
-
 public class Logic {
 
     public boolean check_ValidRegister(String FirstName, String LastName, String Username, String Password){
