@@ -1,6 +1,8 @@
 package Model;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DB_Connection {
     private static Connection connection;
@@ -36,17 +38,34 @@ public class DB_Connection {
         return false;
     }
 
-    public static void register_user(String FirstName, String LastName, String username, String password){
+    public static void register_user(String FirstName, String LastName, String username, String password, int Teacher){
         try{
             getDBConnection();
             statement = connection.createStatement();
-            statement.executeUpdate("INSERT INTO user VALUES ('" + username + "', '" + password + "', '" + FirstName + "', '" + LastName + "')"); // Puts the values into the user table in the database.
+            statement.executeUpdate("INSERT INTO user VALUES ('" + username + "', '" + password + "', '" + FirstName + "', '" + LastName + "', '" + Teacher + "')"); // Puts the values into the user table in the database.
             disconnect();
 
         }catch(SQLException ex){
-            System.out.println("There was a problem registering user.");
+            System.out.println(ex);
         }
         disconnect();
+    }
+
+    public List<Object> get_userinfo(String username){
+        List<Object> user = new ArrayList<>();
+        try{
+            getDBConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM user WHERE username ='" + username + "'");
+            resultSet.next();
+            user.add(resultSet.getString(1));
+            user.add(resultSet.getString(3));
+            user.add(resultSet.getString(4));
+            user.add(resultSet.getInt(5));
+        }catch(SQLException ex){
+            System.out.println(ex);
+        }
+        return user;
     }
 
     public static void disconnect(){ // Disconnects from the database

@@ -46,11 +46,15 @@ public class RegisterController {
         String LastName = LastNameInput.getText();
         String Username = UsernameInput.getText();
         String Password = PasswordInput.getText();
-        String AccountType = accountType.getText();
-        boolean check = Logic.check_ValidRegister(FirstName, LastName, Username, Password, AccountType);
+        int AccountType;
+        if (accountType.getText().equals("Teacher")){
+            AccountType = 1;
+        }else{
+            AccountType = 0;
+        }
+        boolean check = Logic.check_ValidRegister(FirstName, LastName, Username, Password, accountType.getText());
         if (check){
-            DB_Connection.register_user(FirstName, LastName, Username, Password);
-            Logic.Create_User(FirstName, LastName, Username, AccountType);
+            DB_Connection.register_user(FirstName, LastName, Username, Password, AccountType);
             onGoBackClick(actionEvent);
         }else{
             System.out.println("You must enter something in every field!");
