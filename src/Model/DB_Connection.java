@@ -3,12 +3,27 @@ package Model;
 import java.sql.*;
 
 public class DB_Connection {
-    private String url = "jdbc:mysql://35.228.58.113:3306/learn2day?user=root&password=root";
-    Connection connection;
+    private static Connection connection;
+    private static String url = "jdbc:mysql://35.228.58.113:3306/learn2day?user=root&password=root";
     Statement statement;
     ResultSet resultSet;
 
     public DB_Connection(){
+    }
+
+    public static Connection getDBConnection() throws SQLException {
+        connection = DriverManager.getConnection(url);
+        return connection;
+    }
+
+    public static void closeConnection(Connection connection) {
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean check_login(String username, String password){
@@ -23,8 +38,8 @@ public class DB_Connection {
                     disconnect();
                     return true;
                 }
-                }
-            }catch(SQLException ex){
+            }
+        }catch(SQLException ex){
             System.out.println("There was a problem checking the users.");
         }
         disconnect();
@@ -59,4 +74,6 @@ public class DB_Connection {
             System.out.println("failed to disconnect!");
         }
     }
+
+
 }
