@@ -3,7 +3,6 @@
 }
 .button{
     -fx-background-color: #ffffff;
-    -fx-text-fill: #000000;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
 }
