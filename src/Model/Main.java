@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.MenuController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -10,8 +11,10 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
+    ConnectionStorage connection;
     @Override
     public void start(Stage primaryStage) throws Exception{
+        connection = ConnectionStorage.getInstance();
         Parent root = FXMLLoader.load(getClass().getResource("../View/LoginScreen.fxml"));
         primaryStage.setTitle("Learn2day");
         Scene scene = new Scene(root, 900, 720);
@@ -26,6 +29,7 @@ public class Main extends Application {
 
     @Override
     public void stop(){
+        connection.close_Connection();
     }
 
     public static void main(String[] args) {

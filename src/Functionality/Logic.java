@@ -15,8 +15,4 @@ public class Logic {
         }
         return true;
     }
-
-    public static void Create_User(String firstname, String lastname, String username, int accountType){
-        UserStorage.getInstance(firstname, lastname, username, accountType);
-    }
 }

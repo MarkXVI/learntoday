@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class RegisterController {
     @FXML
@@ -31,6 +32,9 @@ public class RegisterController {
     MenuButton accountType;
 
     DB_Connection database = new DB_Connection();
+
+    public RegisterController() throws SQLException {
+    }
 
     public void onGoBackClick(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginScreen.fxml"));

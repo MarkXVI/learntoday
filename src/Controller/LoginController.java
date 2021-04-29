@@ -1,22 +1,24 @@
 package Controller;
 
-import Functionality.Logic;
+import Functionality.User;
+import Model.ConnectionStorage;
 import Model.DB_Connection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public class LoginController {
 
-    DB_Connection database = new DB_Connection();
+    DB_Connection database = ConnectionStorage.getInstance().getConnection();
     @FXML
     Button registerButton;
     @FXML
@@ -26,20 +28,30 @@ public class LoginController {
     @FXML
     TextField passwordInput;
 
+    User user;
+
+    public LoginController() throws SQLException {
+    }
+
     public void onLoginClick(ActionEvent actionEvent) throws IOException{
         String username = userInput.getText();
         String password = passwordInput.getText();
         boolean check = database.check_login(username, password);
         if (check){
-            List<Object> User = database.get_userinfo(username);
+            List<Object> User = database.get_userinfo(username); // Gets a list of objects from Database which contains user information.
             String Username = User.get(0).toString();
             String FirstName = User.get(1).toString();
             String LastName = User.get(2).toString();
             int AccountType = (int) User.get(3);
-            Logic.Create_User(FirstName, LastName, Username, AccountType);
+            user = new User(FirstName, LastName, Username, AccountType);
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));
+            Parent root = loader.load();
+            MenuController controller = loader.getController();
+            controller.receiveData(user.getFirstname(), user.getLastname());
+
             Stage stage = (Stage) loginButton.getScene().getWindow();
-            Scene scene = new Scene(loader.load());
+            Scene scene = new Scene(root);
             scene.getStylesheets().add("View/Style.css");
             stage.setScene(scene);
             stage.setResizable(false);
@@ -60,5 +72,4 @@ public class LoginController {
         stage.setResizable(false);
         stage.show();
     }
-
 }
