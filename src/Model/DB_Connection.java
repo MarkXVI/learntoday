@@ -18,7 +18,7 @@ public class DB_Connection {
 
     public boolean check_login(String username, String password){
         try{
-            connection = DriverManager.getConnection(url);
+            getDBConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM user");
             while(resultSet.next()){ // Goes through the result of the above statement
@@ -38,7 +38,7 @@ public class DB_Connection {
 
     public static void register_user(String FirstName, String LastName, String username, String password){
         try{
-            connection = DriverManager.getConnection(url);
+            getDBConnection();
             statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO user VALUES ('" + username + "', '" + password + "', '" + FirstName + "', '" + LastName + "')"); // Puts the values into the user table in the database.
             disconnect();
