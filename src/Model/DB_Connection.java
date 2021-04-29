@@ -5,8 +5,8 @@ import java.sql.*;
 public class DB_Connection {
     private static Connection connection;
     private static String url = "jdbc:mysql://35.228.58.113:3306/learn2day?user=root&password=root";
-    Statement statement;
-    ResultSet resultSet;
+    private static Statement statement;
+    private static ResultSet resultSet;
 
     public DB_Connection(){
     }
@@ -14,16 +14,6 @@ public class DB_Connection {
     public static Connection getDBConnection() throws SQLException {
         connection = DriverManager.getConnection(url);
         return connection;
-    }
-
-    public static void closeConnection(Connection connection) {
-        try {
-            if (connection != null) {
-                connection.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public boolean check_login(String username, String password){
@@ -46,7 +36,7 @@ public class DB_Connection {
         return false;
     }
 
-    public void register_user(String FirstName, String LastName,String username, String password){
+    public static void register_user(String FirstName, String LastName, String username, String password){
         try{
             connection = DriverManager.getConnection(url);
             statement = connection.createStatement();
@@ -59,7 +49,7 @@ public class DB_Connection {
         disconnect();
     }
 
-    public void disconnect(){ // Disconnects from the database
+    public static void disconnect(){ // Disconnects from the database
         try{
             if(connection!=null){
                 connection.close();
