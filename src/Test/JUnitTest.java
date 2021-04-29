@@ -1,5 +1,6 @@
 package Test;
 
+import Functionality.Logic;
 import Model.DB_Connection;
 import org.junit.After;
 import org.junit.Assert;
@@ -18,8 +19,18 @@ public class JUnitTest {
         connection = DB_Connection.getDBConnection();
     }
 
+    @Test
+    public void checkUserCredentials() {
+        Assert.assertFalse(Logic.check_ValidRegister("", "", "", ""));
+        Assert.assertFalse(Logic.check_ValidRegister("test", "test", "test", ""));
+        Assert.assertFalse(Logic.check_ValidRegister("test", "test", "", "test"));
+        Assert.assertFalse(Logic.check_ValidRegister("test", "", "test", "test"));
+        Assert.assertFalse(Logic.check_ValidRegister("", "test", "test", "test"));
+        Assert.assertTrue(Logic.check_ValidRegister("test", "test", "test", "test"));
+    }
+
     @After
     public void after() {
-        DB_Connection.closeConnection(connection);
+        DB_Connection.disconnect();
     }
 }
