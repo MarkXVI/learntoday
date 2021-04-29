@@ -79,10 +79,10 @@
          <Font name="System Bold" size="14.0" />
       </font>
    </Label>
-   <MenuButton layoutX="407.0" layoutY="415.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Choose Account Type">
+   <MenuButton fx:id="accountType" layoutX="407.0" layoutY="415.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Choose Account Type">
      <items>
-       <MenuItem mnemonicParsing="false" text="Student" />
-       <MenuItem mnemonicParsing="false" text="Teacher" />
+       <MenuItem mnemonicParsing="false" onAction="#onTypeChoice" text="Student" />
+       <MenuItem mnemonicParsing="false" onAction="#onTypeChoice" text="Teacher" />
      </items>
    </MenuButton>
 </AnchorPane>

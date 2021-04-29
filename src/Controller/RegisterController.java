@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -25,6 +27,8 @@ public class RegisterController {
     TextField UsernameInput;
     @FXML
     TextField PasswordInput;
+    @FXML
+    MenuButton accountType;
 
     DB_Connection database = new DB_Connection();
 
@@ -42,13 +46,20 @@ public class RegisterController {
         String LastName = LastNameInput.getText();
         String Username = UsernameInput.getText();
         String Password = PasswordInput.getText();
-        Logic logic = new Logic();
-        boolean check = logic.check_ValidRegister(FirstName, LastName, Username, Password);
+        String AccountType = accountType.getText();
+        boolean check = Logic.check_ValidRegister(FirstName, LastName, Username, Password, AccountType);
         if (check){
-            database.register_user(FirstName, LastName, Username, Password);
+            DB_Connection.register_user(FirstName, LastName, Username, Password);
+            Logic.Create_User(FirstName, LastName, Username, AccountType);
             onGoBackClick(actionEvent);
         }else{
             System.out.println("You must enter something in every field!");
         }
     }
+
+    public void onTypeChoice(ActionEvent actionEvent){
+        MenuItem menuItem = (MenuItem) actionEvent.getSource();
+        accountType.setText(menuItem.getText());
+    }
+
 }

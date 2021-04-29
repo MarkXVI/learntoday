@@ -4,9 +4,9 @@ public class User {
     private String username;
     private String firstname;
     private String lastname;
-    private boolean teacher;
+    private String teacher;
 
-    public User(String firstname, String lastname, String username, boolean teacher){
+    public User(String firstname, String lastname, String username, String teacher){
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
