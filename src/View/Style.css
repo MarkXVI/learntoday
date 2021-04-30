@@ -9,3 +9,14 @@
 .text-field{
     -fx-background-radius: 10;
 }
+.list-view{
+    -fx-border-color: #ffffff;
+    -fx-focus-color: #ffffff;
+    -fx-faint-focus-color: #ffffff
+ }
+.list-cell{
+    -fx-background-color: #ffffff;
+}
+.list-view:focused .list-cell:filled:focused:selected{
+    -fx-background-color: dodgerblue;
+}

@@ -4,7 +4,7 @@ public class User {
     private String username;
     private String firstname;
     private String lastname;
-    private int teacher;
+    private int teacher; // Teacher is a TinyInt in SQL which is a 1 or a 0. Corresponding to true or false.
 
     public User(){}
 

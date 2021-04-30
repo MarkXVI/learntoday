@@ -51,7 +51,7 @@ public class DB_Connection {
         try{
             preparedStatement = connection.prepareStatement("SELECT * FROM user WHERE username = ?");
             preparedStatement.setString(1, username);
-            resultSet = preparedStatement.executeQuery("SELECT * FROM user WHERE username ='" + username + "'");
+            resultSet = preparedStatement.executeQuery();
             resultSet.next();
             user.add(resultSet.getString(1));
             user.add(resultSet.getString(3));
@@ -61,6 +61,17 @@ public class DB_Connection {
             System.out.println(ex);
         }
         return user;
+    }
+
+    public static ArrayList<Object> get_Subjects(String topic) throws SQLException {
+        ArrayList<Object> Subjects = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT * FROM quiz WHERE topic_name = ?");
+        preparedStatement.setString(1, topic);
+        resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            Subjects.add(resultSet.getString(1));
+        }
+        return Subjects;
     }
 
     public static void disconnect(){ // Disconnects from the database

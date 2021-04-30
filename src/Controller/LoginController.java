@@ -51,9 +51,8 @@ public class LoginController {
             userStorage.currentUser().setUsername(Username);
             userStorage.currentUser().setTeacher(AccountType);
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml")); // ↓↓↓↓ Switches scene to Main Menu Screen.
             Parent root = loader.load();
-            MenuController controller = loader.getController();
 
             Stage stage = (Stage) loginButton.getScene().getWindow();
             Scene scene = new Scene(root);
