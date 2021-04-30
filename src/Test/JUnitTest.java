@@ -21,12 +21,13 @@ public class JUnitTest {
 
     @Test
     public void checkUserCredentials() {
-        Assert.assertFalse(Logic.check_ValidRegister("", "", "", ""));
-        Assert.assertFalse(Logic.check_ValidRegister("test", "test", "test", ""));
-        Assert.assertFalse(Logic.check_ValidRegister("test", "test", "", "test"));
-        Assert.assertFalse(Logic.check_ValidRegister("test", "", "test", "test"));
-        Assert.assertFalse(Logic.check_ValidRegister("", "test", "test", "test"));
-        Assert.assertTrue(Logic.check_ValidRegister("test", "test", "test", "test"));
+        Assert.assertFalse(Logic.check_ValidRegister("", "", "", "", "Choose Account Type"));
+        Assert.assertFalse(Logic.check_ValidRegister("test", "test", "test", "", "Student"));
+        Assert.assertFalse(Logic.check_ValidRegister("test", "test", "", "test", "Teacher"));
+        Assert.assertFalse(Logic.check_ValidRegister("test", "", "test", "test", "Student"));
+        Assert.assertFalse(Logic.check_ValidRegister("", "test", "test", "test", "Student"));
+        Assert.assertFalse(Logic.check_ValidRegister("test", "test", "test", "test", "Choose Account Type"));
+        Assert.assertTrue(Logic.check_ValidRegister("test", "test", "test", "test", "Student"));
     }
 
     @After

@@ -2,10 +2,15 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
@@ -13,75 +18,108 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
-            prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Controller.RegisterController">
-   <Rectangle arcHeight="50.0" arcWidth="50.0" height="379.0" layoutX="153.0" layoutY="182.0" stroke="WHITE"
-              strokeType="INSIDE" strokeWidth="4.0" width="594.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RegisterController">
+   <Rectangle arcHeight="50.0" arcWidth="50.0" height="379.0" layoutX="174.0" layoutY="191.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="576.0">
       <effect>
-         <Shadow height="75.11" radius="35.3875" width="68.44">
+         <Shadow height="69.28" radius="33.93" width="68.44">
             <color>
-               <Color opacity="0.647826075553894"/>
+               <Color opacity="0.30000001192092896" />
             </color>
          </Shadow>
       </effect>
    </Rectangle>
-   <Rectangle arcHeight="50.0" arcWidth="50.0" height="386.0" layoutX="153.0" layoutY="159.0" stroke="WHITE"
-              strokeType="INSIDE" strokeWidth="4.0" width="576.0">
+   <Rectangle arcHeight="50.0" arcWidth="50.0" height="386.0" layoutX="162.0" layoutY="179.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="576.0">
       <fill>
          <LinearGradient endY="0.9857142857142859" startX="1.0" startY="0.033333333333333326">
             <stops>
                <Stop>
                   <color>
-                     <Color blue="1.0" green="0.5647059082984924" red="0.11764705926179886"/>
+                     <Color red="0.11764705926179886" green="0.5647059082984924" blue="1.0" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color blue="1.0" green="0.6705882549285889" red="0.2980392277240753"/>
+                     <Color red="0.2980392277240753" green="0.6705882549285889" blue="1.0" />
                   </color>
                </Stop>
             </stops>
          </LinearGradient>
       </fill>
    </Rectangle>
-   <Text fill="WHITE" layoutX="312.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register"
-         textAlignment="CENTER" wrappingWidth="275.13671875">
+   <Button fx:id="GoBackButton" layoutX="605.0" layoutY="520.0" mnemonicParsing="false" onAction="#onGoBackClick" prefHeight="25.0" prefWidth="115.0" text="Go Back" />
+   <Button fx:id="registerButton" layoutX="405.0" layoutY="481.0" mnemonicParsing="false" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="115.0" text="Register" />
+   <GridPane layoutX="327.0" layoutY="259.0" prefHeight="202.0" prefWidth="247.0">
+      <columnConstraints>
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="0.0" prefWidth="78.0"/>
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="380.0" minWidth="10.0" prefWidth="169.0"/>
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+      </rowConstraints>
+      <Label text="First Name" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0"/>
+         </font>
+      </Label>
+      <Label text="Last Name" textAlignment="RIGHT" textFill="WHITE" GridPane.rowIndex="1">
+         <font>
+            <Font name="System Bold" size="14.0"/>
+         </font>
+      </Label>
+      <Label text="Username" textAlignment="RIGHT" textFill="WHITE" GridPane.rowIndex="2">
+         <font>
+            <Font name="System Bold" size="14.0"/>
+         </font>
+      </Label>
+      <Label text="Password" textAlignment="RIGHT" textFill="WHITE" GridPane.rowIndex="3">
+         <font>
+            <Font name="System Bold" size="14.0"/>
+         </font>
+      </Label>
+      <Label text="Type" textAlignment="RIGHT" textFill="WHITE" GridPane.rowIndex="4">
+         <font>
+            <Font name="System Bold" size="14.0"/>
+         </font>
+      </Label>
+      <MenuButton fx:id="accountType" mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0"
+                  text="Choose Account Type" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#onTypeChoice" text="Student"/>
+            <MenuItem mnemonicParsing="false" onAction="#onTypeChoice" text="Teacher"/>
+         </items>
+      </MenuButton>
+      <PasswordField fx:id="PasswordInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="291.0"
+                     promptText="Enter Password" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+      <TextField fx:id="UsernameInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="183.0"
+                 promptText="Enter Username" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+      <TextField fx:id="LastNameInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="194.0"
+                 promptText="Enter Last Name" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+      <TextField fx:id="FirstNameInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="223.0"
+                 promptText="Enter First Name" GridPane.columnIndex="1"/>
+   </GridPane>
+   <Text layoutX="370.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register" textAlignment="CENTER" wrappingWidth="184.87890625">
       <font>
-         <Font name="System Bold" size="36.0"/>
+         <Font name="Comic Sans MS Bold" size="24.0" />
       </font>
+      <fill>
+         <LinearGradient endY="0.00952380952380949" startX="1.0" startY="0.9761904761904762">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color red="1.0" green="1.0" blue="1.0" opacity="0.769565224647522" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
    </Text>
-   <Button fx:id="GoBackButton" layoutX="573.0" layoutY="486.0" mnemonicParsing="false" onAction="#onGoBackClick"
-           prefHeight="25.0" prefWidth="115.0" text="Go Back"/>
-   <TextField fx:id="FirstNameInput" layoutX="401.0" layoutY="297.0" onAction="#onRegisterClick"
-              promptText="Enter First Name"/>
-   <Label layoutX="321.0" layoutY="299.0" text="First Name" textAlignment="RIGHT" textFill="WHITE">
-      <font>
-         <Font name="System Bold" size="14.0"/>
-      </font>
-   </Label>
-   <TextField fx:id="LastNameInput" layoutX="401.0" layoutY="333.0" onAction="#onRegisterClick"
-              promptText="Enter Last Name"/>
-   <Label layoutX="322.0" layoutY="336.0" text="Last Name" textAlignment="RIGHT" textFill="WHITE">
-      <font>
-         <Font name="System Bold" size="14.0"/>
-      </font>
-   </Label>
-   <TextField fx:id="UsernameInput" layoutX="401.0" layoutY="371.0" onAction="#onRegisterClick"
-              promptText="Enter Username"/>
-   <Label layoutX="324.0" layoutY="374.0" text="Username" textAlignment="RIGHT" textFill="WHITE">
-      <font>
-         <Font name="System Bold" size="14.0"/>
-      </font>
-   </Label>
-   <Label layoutX="326.0" layoutY="409.0" text="Password" textAlignment="RIGHT" textFill="WHITE">
-      <font>
-         <Font name="System Bold" size="14.0"/>
-      </font>
-   </Label>
-   <PasswordField fx:id="PasswordInput" layoutX="401.0" layoutY="407.0" onAction="#onRegisterClick"
-                  promptText="Enter Password"/>
-   <Button fx:id="registerButton" layoutX="420.0" layoutY="461.0" mnemonicParsing="false" onAction="#onRegisterClick"
-           text="Register"/>
 </AnchorPane>
