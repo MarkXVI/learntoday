@@ -74,6 +74,16 @@ public class DB_Connection {
         return Subjects;
     }
 
+    public static ArrayList<Object> get_Topics() throws SQLException{
+        ArrayList<Object> Topics = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT * FROM topic");
+        resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            Topics.add(resultSet.getString(1));
+        }
+        return Topics;
+    }
+
     public static void disconnect(){ // Disconnects from the database
         try{
             if(connection!=null){

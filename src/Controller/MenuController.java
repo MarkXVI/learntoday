@@ -32,6 +32,7 @@ public class MenuController implements Initializable {
 
     UserStorage userStorage = UserStorage.getInstance();
     User user = userStorage.currentUser();
+    ArrayList<Object> topics;
 
     public MenuController() throws SQLException {
     }
@@ -41,18 +42,34 @@ public class MenuController implements Initializable {
         String FirstName = user.getFirstname();
         String LastName = user.getLastname();
         SignedInText.setText("Signed in as: " + FirstName + " " + LastName);
-        TopicList.getItems().add("History");
-        TopicList.getItems().add("Item 2");
-        TopicList.getItems().add("Item 3");
+        try {
+            topics = database.get_Topics();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        add_Topics();
+
     }
 
+    public void add_Topics(){
+        for(Object topic: topics){
+            TopicList.getItems().add(topic.toString());
+        }
+    }
     public void onMouseClick(MouseEvent click) throws SQLException {
         if (click.getClickCount() == 2){
             String currentItemSelected = TopicList.getSelectionModel().getSelectedItem().toString();
-            TopicList.getItems().clear();
-            ArrayList<Object> subjects = database.get_Subjects(currentItemSelected);
-            for(Object subject: subjects){
-                TopicList.getItems().add(subject.toString());
+            if(topics.contains(currentItemSelected)){
+                ArrayList<Object> subjects = database.get_Subjects(currentItemSelected);
+                TopicList.getItems().clear();
+                for(Object subject: subjects){
+                    TopicList.getItems().add(subject.toString());
+                }
+                TopicList.getItems().add("Go Back");
+            }
+            if (currentItemSelected.equals("Go Back")){
+                TopicList.getItems().clear();
+                add_Topics();
             }
 
         }
