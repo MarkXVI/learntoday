@@ -15,12 +15,12 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
+<AnchorPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
    <Rectangle arcHeight="50.0" arcWidth="50.0" height="645.0" layoutX="52.0" layoutY="54.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="826.0">
       <effect>
-         <Shadow height="71.78" radius="34.555" width="68.44">
+         <Shadow height="70.11" radius="34.1375" width="68.44">
             <color>
-               <Color opacity="0.373913049697876" />
+               <Color opacity="0.30000001192092896" />
             </color>
          </Shadow>
       </effect>
@@ -31,23 +31,18 @@
             <stops>
                <Stop>
                   <color>
-                     <Color blue="1.0" green="0.5647059082984924" red="0.11764705926179886" />
+                     <Color red="0.11764705926179886" green="0.5647059082984924" blue="1.0" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color blue="1.0" green="0.6705882549285889" red="0.2980392277240753" />
+                     <Color red="0.2980392277240753" green="0.6705882549285889" blue="1.0" />
                   </color>
                </Stop>
             </stops>
          </LinearGradient>
       </fill></Rectangle>
    <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="520.0" layoutX="458.0" layoutY="138.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="390.0" />
-   <Text fill="WHITE" layoutX="52.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Main Menu" textAlignment="CENTER" wrappingWidth="135.0">
-      <font>
-         <Font name="System Bold" size="20.0" />
-      </font>
-   </Text>
    <Text fx:id="SignedInText" fill="WHITE" layoutX="620.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="signed in as:" textAlignment="CENTER" wrappingWidth="67.0">
       <font>
          <Font name="System Bold" size="10.0" />
@@ -96,4 +91,25 @@
       </Button>
    </HBox>
    <ListView fx:id="TopicList" editable="true" layoutX="56.0" layoutY="144.0" onMouseClicked="#onMouseClick" prefHeight="234.0" prefWidth="382.0" />
+   <Text layoutX="52.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Main menu" textAlignment="CENTER" wrappingWidth="136.0">
+      <font>
+         <Font name="Comic Sans MS Bold" size="24.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.00952380952380949" startX="1.0" startY="0.9761904761904762">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color red="1.0" green="1.0" blue="1.0" opacity="0.769565224647522" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
 </AnchorPane>

@@ -12,12 +12,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane cacheShape="false" centerShape="false" prefHeight="720.0" prefWidth="900.0" scaleShape="false" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+<AnchorPane cacheShape="false" centerShape="false" prefHeight="720.0" prefWidth="900.0" scaleShape="false" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="DODGERBLUE" height="300.0" layoutX="214.0" layoutY="243.0" stroke="TRANSPARENT" strokeType="INSIDE" width="500.0">
       <effect>
-         <Shadow height="84.02" radius="42.065" width="86.24">
+         <Shadow height="85.13" radius="42.3425" width="86.24">
             <color>
-               <Color opacity="0.4739130139350891" />
+               <Color opacity="0.30000001192092896" />
             </color>
          </Shadow>
       </effect>
@@ -28,12 +28,12 @@
             <stops>
                <Stop>
                   <color>
-                     <Color blue="1.0" green="0.5647059082984924" red="0.11764705926179886" />
+                     <Color red="0.11764705926179886" green="0.5647059082984924" blue="1.0" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color blue="1.0" green="0.6716049313545227" red="0.29629629850387573" />
+                     <Color red="0.29629629850387573" green="0.6716049313545227" blue="1.0" />
                   </color>
                </Stop>
             </stops>
@@ -51,12 +51,12 @@
             <stops>
                <Stop>
                   <color>
-                     <Color blue="1.0" green="1.0" opacity="0.769565224647522" red="1.0" />
+                     <Color red="1.0" green="1.0" blue="1.0" opacity="0.769565224647522" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color blue="1.0" green="1.0" red="1.0" />
+                     <Color red="1.0" green="1.0" blue="1.0" />
                   </color>
                </Stop>
             </stops>
