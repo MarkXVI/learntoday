@@ -6,12 +6,7 @@ public class User {
     private String lastname;
     private int teacher;
 
-    public User(String firstname, String lastname, String username, int teacher){
-        this.username = username;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.teacher = teacher;
-    }
+    public User(){}
 
     public String getUsername() {
         return username;
@@ -35,5 +30,13 @@ public class User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public int getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(int teacher) {
+        this.teacher = teacher;
     }
 }

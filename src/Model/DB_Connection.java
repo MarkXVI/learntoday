@@ -9,6 +9,7 @@ public class DB_Connection {
     private static String url = "jdbc:mysql://35.228.58.113:3306/learn2day?user=root&password=root";
     private static Statement statement;
     private static ResultSet resultSet;
+    private static PreparedStatement preparedStatement;
 
     public DB_Connection() throws SQLException {
         connection = DriverManager.getConnection(url);
@@ -48,8 +49,9 @@ public class DB_Connection {
     public List<Object> get_userinfo(String username){
         List<Object> user = new ArrayList<>();
         try{
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM user WHERE username ='" + username + "'");
+            preparedStatement = connection.prepareStatement("SELECT * FROM user WHERE username = ?");
+            preparedStatement.setString(1, username);
+            resultSet = preparedStatement.executeQuery("SELECT * FROM user WHERE username ='" + username + "'");
             resultSet.next();
             user.add(resultSet.getString(1));
             user.add(resultSet.getString(3));

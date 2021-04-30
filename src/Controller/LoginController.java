@@ -3,6 +3,7 @@ package Controller;
 import Functionality.User;
 import Model.ConnectionStorage;
 import Model.DB_Connection;
+import Model.UserStorage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,16 +40,20 @@ public class LoginController {
         boolean check = database.check_login(username, password);
         if (check){
             List<Object> User = database.get_userinfo(username); // Gets a list of objects from Database which contains user information.
-            String Username = User.get(0).toString();
+
+            String Username = User.get(0).toString(); // ↓↓↓↓ This part is required to share the User between controllers/scenes.
             String FirstName = User.get(1).toString();
             String LastName = User.get(2).toString();
             int AccountType = (int) User.get(3);
-            user = new User(FirstName, LastName, Username, AccountType);
+            UserStorage userStorage = UserStorage.getInstance();
+            userStorage.currentUser().setFirstname(FirstName);
+            userStorage.currentUser().setLastname(LastName);
+            userStorage.currentUser().setUsername(Username);
+            userStorage.currentUser().setTeacher(AccountType);
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));
             Parent root = loader.load();
             MenuController controller = loader.getController();
-            controller.receiveData(user.getFirstname(), user.getLastname());
 
             Stage stage = (Stage) loginButton.getScene().getWindow();
             Scene scene = new Scene(root);

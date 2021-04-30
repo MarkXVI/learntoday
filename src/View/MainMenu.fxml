@@ -47,7 +47,7 @@
          <Font name="System Bold" size="20.0" />
       </font>
    </Text>
-   <Text fx:id="SignedInText" fill="WHITE" layoutX="597.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="signed in as:" textAlignment="CENTER" wrappingWidth="67.0">
+   <Text fx:id="SignedInText" fill="WHITE" layoutX="620.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="signed in as:" textAlignment="CENTER" wrappingWidth="67.0">
       <font>
          <Font name="System Bold" size="10.0" />
       </font>

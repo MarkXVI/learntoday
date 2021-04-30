@@ -2,6 +2,7 @@ package Controller;
 
 import Model.ConnectionStorage;
 import Model.DB_Connection;
+import Model.UserStorage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,14 +24,15 @@ public class MenuController implements Initializable {
     Text SignedInText;
     DB_Connection database = ConnectionStorage.getInstance().getConnection();
 
+    UserStorage userStorage = UserStorage.getInstance();
+
     public MenuController() throws SQLException {
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-    }
-
-    public void receiveData(String FirstName, String LastName){
+        String FirstName = userStorage.currentUser().getFirstname();
+        String LastName = userStorage.currentUser().getLastname();
         SignedInText.setText("Signed in as: " + FirstName + " " + LastName);
     }
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
