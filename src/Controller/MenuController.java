@@ -29,10 +29,13 @@ public class MenuController implements Initializable {
     DB_Connection database = ConnectionStorage.getInstance().getConnection();
     @FXML
     ListView TopicList;
+    @FXML
+    Button readButton;
 
     UserStorage userStorage = UserStorage.getInstance();
     User user = userStorage.currentUser();
     ArrayList<Object> topics;
+    ArrayList<Object> subjects;
 
     public MenuController() throws SQLException {
     }
@@ -43,7 +46,7 @@ public class MenuController implements Initializable {
         String LastName = user.getLastname();
         SignedInText.setText("Signed in as: " + FirstName + " " + LastName);
         try {
-            topics = database.get_Topics();
+            topics = DB_Connection.get_Topics();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -60,7 +63,7 @@ public class MenuController implements Initializable {
         if (click.getClickCount() == 2){
             String currentItemSelected = TopicList.getSelectionModel().getSelectedItem().toString();
             if(topics.contains(currentItemSelected)){
-                ArrayList<Object> subjects = database.get_Subjects(currentItemSelected);
+                subjects = DB_Connection.get_Subjects(currentItemSelected);
                 TopicList.getItems().clear();
                 for(Object subject: subjects){
                     TopicList.getItems().add(subject.toString());
@@ -73,6 +76,24 @@ public class MenuController implements Initializable {
             }
 
         }
+    }
+
+    public void onReadClick(ActionEvent actionEvent) throws IOException, SQLException {
+        String selectedItem = TopicList.getSelectionModel().getSelectedItem().toString();
+        if (subjects.contains(selectedItem)){
+            String text = database.get_Text(selectedItem);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ReadScreen.fxml")); // ↓↓↓↓ Switches scene to Read screen.
+            Stage stage = (Stage) readButton.getScene().getWindow();
+            Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add("View/Style.css");
+            ReadController readController = loader.getController();
+            readController.set_Text(text, selectedItem);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+        }
+
     }
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
