@@ -63,7 +63,7 @@ public class DB_Connection {
         return user;
     }
 
-    public static ArrayList<Object> get_Subjects(String topic) throws SQLException {
+    public ArrayList<Object> get_Subjects(String topic) throws SQLException {
         ArrayList<Object> Subjects = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM quiz WHERE topic_name = ?");
         preparedStatement.setString(1, topic);
@@ -74,7 +74,7 @@ public class DB_Connection {
         return Subjects;
     }
 
-    public static ArrayList<Object> get_Topics() throws SQLException{
+    public ArrayList<Object> get_Topics() throws SQLException{
         ArrayList<Object> Topics = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM topic");
         resultSet = preparedStatement.executeQuery();
@@ -93,18 +93,17 @@ public class DB_Connection {
         return text;
     }
 
-    public ArrayList<String> get_Question(String questionID) throws SQLException {
-        ArrayList<String> questions = new ArrayList<>();
+    public String get_Question(String questionID) throws SQLException {
         preparedStatement = connection.prepareStatement("SELECT question FROM question WHERE questionID = ?");
         preparedStatement.setString(1, questionID);
         resultSet = preparedStatement.executeQuery();
-        while(resultSet.next()){
-            questions.add(resultSet.getString(1));
-        }
-        return questions;
+        resultSet.next();
+       String question = resultSet.getString(1);
+
+        return question;
     }
 
-    public ArrayList<String> get_QuestionIDs(String topic) throws SQLException {
+    public static ArrayList<String> get_QuestionIDs(String topic) throws SQLException {
         ArrayList<String> questionIDs = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT questionID FROM question WHERE quiz_name = ?");
         preparedStatement.setString(1, topic);
@@ -119,6 +118,7 @@ public class DB_Connection {
         ArrayList<String> alternatives = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT choice FROM alternative WHERE question_questionID = ?");
         preparedStatement.setString(1, questionID);
+        resultSet = preparedStatement.executeQuery();
         while(resultSet.next()){
             alternatives.add(resultSet.getString(1));
         }

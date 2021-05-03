@@ -84,7 +84,7 @@
             <Font name="Comic Sans MS" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="quizButton" mnemonicParsing="false" onAction="#onQuizClick" prefHeight="40.0" prefWidth="136.0" text="START QUIZ" textFill="#8d8d8d">
+      <Button fx:id="quizButton" mnemonicParsing="false" onAction="#onQuizClick" prefHeight="40.0" prefWidth="147.0" text="START QUIZ" textFill="#8d8d8d">
          <font>
             <Font name="Comic Sans MS" size="17.0" />
          </font>

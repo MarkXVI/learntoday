@@ -3,6 +3,7 @@ package Controller;
 import Functionality.User;
 import Model.ConnectionStorage;
 import Model.DB_Connection;
+import Model.QuizStorage;
 import Model.UserStorage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -79,14 +80,14 @@ public class MenuController implements Initializable {
         }
     }
 
-    public void onQuizClick(ActionEvent actionEvent) throws IOException{
+    public void onQuizClick(ActionEvent actionEvent) throws IOException, SQLException {
         String selectedTopic = TopicList.getSelectionModel().getSelectedItem().toString();
         if (subjects.contains(selectedTopic)) {
+            QuizStorage.getInstance().add_questions(selectedTopic);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizLayout.fxml"));
             Stage stage = (Stage) quizButton.getScene().getWindow();
             Scene scene = new Scene(loader.load());
             scene.getStylesheets().add("View/Style.css");
-
             QuizController quizController = loader.getController();
             quizController.set_Title(selectedTopic);
 
