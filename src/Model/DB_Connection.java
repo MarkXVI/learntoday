@@ -84,6 +84,15 @@ public class DB_Connection {
         return Topics;
     }
 
+    public String get_Text(String selectedItem) throws SQLException {
+        preparedStatement = connection.prepareStatement("SELECT text FROM quiz WHERE name = ?");
+        preparedStatement.setString(1, selectedItem);
+        resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        String text = resultSet.getString(1);
+        return text;
+    }
+
     public static void disconnect(){ // Disconnects from the database
         try{
             if(connection!=null){
@@ -99,6 +108,7 @@ public class DB_Connection {
             System.out.println("failed to disconnect!");
         }
     }
+
 
 
 }
