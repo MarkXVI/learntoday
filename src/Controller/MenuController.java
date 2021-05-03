@@ -53,7 +53,6 @@ public class MenuController implements Initializable {
             exception.printStackTrace();
         }
         add_Topics();
-
     }
 
     public void add_Topics(){
@@ -61,6 +60,7 @@ public class MenuController implements Initializable {
             TopicList.getItems().add(topic.toString());
         }
     }
+
     public void onMouseClick(MouseEvent click) throws SQLException {
         if (click.getClickCount() == 2){
             String currentItemSelected = TopicList.getSelectionModel().getSelectedItem().toString();
@@ -76,17 +76,23 @@ public class MenuController implements Initializable {
                 TopicList.getItems().clear();
                 add_Topics();
             }
-
         }
     }
 
     public void onQuizClick(ActionEvent actionEvent) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizLayout.fxml"));
-        Stage stage = (Stage) quizButton.getScene().getWindow();
-        Scene scene = new Scene(loader.load());
-        scene.getStylesheets().add("View/Style.css");
-        stage.setScene(scene);
-        stage.show();
+        String selectedTopic = TopicList.getSelectionModel().getSelectedItem().toString();
+        if (subjects.contains(selectedTopic)) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizLayout.fxml"));
+            Stage stage = (Stage) quizButton.getScene().getWindow();
+            Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add("View/Style.css");
+
+            QuizController quizController = loader.getController();
+            quizController.set_Title(selectedTopic);
+
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     public void onReadClick(ActionEvent actionEvent) throws IOException, SQLException {
@@ -96,9 +102,11 @@ public class MenuController implements Initializable {
             Stage stage = (Stage) readButton.getScene().getWindow();
             Scene scene = new Scene(loader.load());
             scene.getStylesheets().add("View/Style.css");
+
             ReadController readController = loader.getController();
             String text = database.get_Text(selectedItem);
             readController.set_Text(text, selectedItem);
+
             stage.setScene(scene);
             stage.show();
         }
@@ -113,6 +121,4 @@ public class MenuController implements Initializable {
         stage.setResizable(false);
         stage.show();
     }
-
-
 }
