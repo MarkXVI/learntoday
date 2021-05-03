@@ -23,6 +23,6 @@ public class ConnectionStorage {
     }
 
     public void close_Connection(){
-        connection.disconnect();
+        DB_Connection.disconnect();
     }
 }

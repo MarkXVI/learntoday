@@ -5,6 +5,9 @@
     -fx-background-color: #ffffff;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
+    -fx-border-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 .text-field{
     -fx-background-radius: 10;

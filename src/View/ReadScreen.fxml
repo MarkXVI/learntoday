@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
+            prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1">
+    <Rectangle arcHeight="50.0" arcWidth="50.0" height="702.0" layoutX="22.0" layoutY="16.0" stroke="WHITE"
+               strokeType="INSIDE" strokeWidth="4.0" width="870.0">
+        <effect>
+          <Shadow height="70.11" radius="34.1375" width="68.44">
+              <color>
+                  <Color opacity="0.30000001192092896"/>
+              </color>
+          </Shadow>
+        </effect>
+    </Rectangle>
+    <Rectangle arcHeight="50.0" arcWidth="50.0" height="695.0" layoutX="14.0" layoutY="14.0" stroke="WHITE"
+               strokeType="INSIDE" strokeWidth="4.0" width="870.0">
+        <fill>
+          <LinearGradient endY="0.9857142857142859" startX="1.0" startY="0.033333333333333326">
+              <stops>
+                  <Stop>
+                      <color>
+                          <Color blue="1.0" green="0.5647059082984924" red="0.11764705926179886"/>
+                      </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                      <color>
+                          <Color blue="1.0" green="0.6705882549285889" red="0.2980392277240753"/>
+                      </color>
+                  </Stop>
+              </stops>
+          </LinearGradient>
+        </fill>
+    </Rectangle>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="579.0" layoutX="40.0" layoutY="73.0" stroke="WHITE"
+               strokeType="INSIDE" style="-fx-arc-height: 25; -fx-arc-width: 25;" width="819.0"/>
+    <Button layoutX="62.0" layoutY="667.0" mnemonicParsing="false" style="-fx-background-color: white;"
+            text="Text to speech"/>
+    <TextArea editable="false" layoutX="51.0" layoutY="86.0" prefHeight="555.0" prefWidth="792.0"
+              text="World War II or the Second World War, often abbreviated as WWII or WW2, &#10;was a global war that lasted from 1939 to 1945. &#10;It involved the vast majority of the world's countries&#10;—including all the great powers—forming two opposing military alliances: &#10;the Allies and the Axis powers. In a state of total war,&#10;directly involving more than 100 million personnel from more than 30 countries, &#10;the major participants threw their entire economic, industrial, and&#10;scientific capabilities behind the war effort, &#10;blurring the distinction between civilian and military resources.&#10; Aircraft played a major role in the conflict, &#10;including the strategic bombing of population centres, and, &#10;with the development of nuclear weapons, the only two uses of such in war. &#10;World War II was the deadliest conflict in human history, &#10;resulting in 70 to 85 million fatalities, with more civilians than military personnel killed. &#10;Tens of millions of people died due to genocides (including the Holocaust), &#10;starvation, massacres, and disease. In the wake of the war,&#10;Germany and Japan were occupied, and war crimes tribunals were conducted &#10;against German and Japanese leaders.&#10;&#10;World War II is generally considered to have begun on 1 September 1939, &#10;when Nazi Germany, under Adolf Hitler, invaded Poland. &#10;The United Kingdom and France subsequently declared war on the 3rd.&#10; Under the Molotov–Ribbentrop Pact of August 1939, Germany &#10;and the Soviet Union had partitioned Poland&#10;and marked out their &quot;spheres of influence&quot; across Finland, &#10;Romania and the Baltic states. From late 1939 to early 1941, &#10;in a series of campaigns and treaties, &#10;Germany conquered or controlled much of continental Europe,&#10;and formed the Axis alliance with Italy and Japan (along with&#10;other countries later on). Following the onset of campaigns in North Africa and &#10;East Africa, and the fall of France in mid-1940, &#10;the war continued primarily between the European Axis powers and&#10;the British Empire, with war in the Balkans, the aerial Battle of Britain, &#10;the Blitz of the UK, and the Battle of the Atlantic. On 22 June 1941, &#10;Germany led the European Axis powers in an invasion of the Soviet Union,&#10; opening the Eastern Front, the largest land theatre of war in history and&#10; trapping the Axis powers, crucially the German Wehrmacht, in a war of attrition.&#10;&#10;Japan, which aimed to dominate Asia and the Pacific, was at war with the &#10;Republic of China by 1937. In December 1941, &#10;Japan attacked American and British territories&#10; with near-simultaneous offensives against Southeast Asia and&#10; the Central Pacific, including an attack on the US fleet at Pearl Harbor&#10; which forced the US to declare war against Japan; the European Axis &#10;powers declared war on the US in solidarity. Japan soon captured much &#10;of the western Pacific, but its advances were halted in 1942 after losing &#10;the critical Battle of Midway; later, Germany and Italy were defeated in &#10;North Africa and at Stalingrad in the Soviet Union. &#10;Key setbacks in 1943—including a series of German defeats on the Eastern Front, &#10;the Allied invasions of Sicily and the Italian mainland,&#10;and Allied offensives in the Pacific—cost the Axis powers their initiative and&#10;forced it into strategic retreat on all fronts. In 1944, the Western Allies invaded &#10;German-occupied France, while the Soviet Union regained its territorial losses and &#10;turned towards Germany and its allies. During 1944 and 1945, Japan suffered &#10;reversals in mainland Asia, while the Allies crippled the Japanese Navy and &#10;captured key western Pacific islands.">
+        <font>
+          <Font size="14.0"/>
+        </font>
+    </TextArea>
+    <Text fill="WHITE" layoutX="397.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{Topic}">
+        <font>
+          <Font name="System Bold" size="36.0"/>
+        </font>
+    </Text>
+</AnchorPane>
