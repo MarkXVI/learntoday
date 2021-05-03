@@ -17,12 +17,11 @@ public class JUnitTest {
 
     @Before
     public void before() throws SQLException {
-        DB_Connection db_connection = new DB_Connection();
-        connection = db_connection.getDBConnection();
+        connection = new DB_Connection().getDBConnection();
     }
 
     @Test
-    public void checkUserCredentials() {
+    public void check_ValidRegister() {
         Logic logic = new Logic();
         Assert.assertFalse(logic.check_ValidRegister("", "", "", "", "Choose Account Type"));
         Assert.assertFalse(logic.check_ValidRegister("test", "test", "test", "", "Student"));
@@ -42,9 +41,13 @@ public class JUnitTest {
         Assert.assertEquals(user.getTeacher(), 0);
     }
 
+    @Test
+    public void check_login() throws SQLException {
+        Assert.assertTrue(new DB_Connection().check_login("", ""));
+    }
+
     @After
     public void after() throws SQLException {
-        DB_Connection db_connection = new DB_Connection();
-        db_connection.disconnect();
+        new DB_Connection().disconnect();
     }
 }

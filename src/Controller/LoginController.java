@@ -34,7 +34,7 @@ public class LoginController {
     public LoginController() throws SQLException {
     }
 
-    public void onLoginClick(ActionEvent actionEvent) throws IOException{
+    public void onLoginClick(ActionEvent actionEvent) throws IOException {
         String username = userInput.getText();
         String password = passwordInput.getText();
         boolean check = database.check_login(username, password);
@@ -60,7 +60,7 @@ public class LoginController {
             stage.setScene(scene);
             stage.setResizable(false);
             stage.show();
-        }else{
+        } else {
             passwordInput.clear();
             passwordInput.promptTextProperty().setValue("Wrong Password!");
             passwordInput.setStyle("-fx-prompt-text-fill: Red");

@@ -51,23 +51,23 @@ public class MenuController implements Initializable {
 
     }
 
-    public void add_Topics(){
-        for(Object topic: topics){
+    public void add_Topics() {
+        for (Object topic: topics) {
             TopicList.getItems().add(topic.toString());
         }
     }
     public void onMouseClick(MouseEvent click) throws SQLException {
         if (click.getClickCount() == 2){
             String currentItemSelected = TopicList.getSelectionModel().getSelectedItem().toString();
-            if(topics.contains(currentItemSelected)){
+            if (topics.contains(currentItemSelected)) {
                 ArrayList<Object> subjects = database.get_Subjects(currentItemSelected);
                 TopicList.getItems().clear();
-                for(Object subject: subjects){
+                for (Object subject: subjects) {
                     TopicList.getItems().add(subject.toString());
                 }
                 TopicList.getItems().add("Go Back");
             }
-            if (currentItemSelected.equals("Go Back")){
+            if (currentItemSelected.equals("Go Back")) {
                 TopicList.getItems().clear();
                 add_Topics();
             }

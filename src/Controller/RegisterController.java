@@ -51,23 +51,23 @@ public class RegisterController {
         String Username = UsernameInput.getText();
         String Password = PasswordInput.getText();
         int AccountType;
-        if (accountType.getText().equals("Teacher")){
+        if (accountType.getText().equals("Teacher")) {
             AccountType = 1;
-        }else{
+        } else {
             AccountType = 0;
         }
         Logic logic = new Logic();
         DB_Connection db_connection = new DB_Connection();
         boolean check = logic.check_ValidRegister(FirstName, LastName, Username, Password, accountType.getText());
-        if (check){
+        if (check) {
             db_connection.register_user(FirstName, LastName, Username, Password, AccountType);
             onGoBackClick(actionEvent);
-        }else{
+        } else {
             System.out.println("You must enter something in every field!");
         }
     }
 
-    public void onTypeChoice(ActionEvent actionEvent){
+    public void onTypeChoice(ActionEvent actionEvent) {
         MenuItem menuItem = (MenuItem) actionEvent.getSource();
         accountType.setText(menuItem.getText());
     }
