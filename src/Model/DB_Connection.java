@@ -15,7 +15,7 @@ public class DB_Connection {
         connection = DriverManager.getConnection(url);
     }
 
-    public static Connection getDBConnection() throws SQLException {
+    public Connection getDBConnection() {
         return connection;
     }
 
@@ -36,7 +36,7 @@ public class DB_Connection {
         return false;
     }
 
-    public static void register_user(String FirstName, String LastName, String username, String password, int Teacher){
+    public void register_user(String FirstName, String LastName, String username, String password, int Teacher){
         try{
             statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO user VALUES ('" + username + "', '" + password + "', '" + FirstName + "', '" + LastName + "', '" + Teacher + "')"); // Puts the values into the user table in the database.
@@ -63,7 +63,7 @@ public class DB_Connection {
         return user;
     }
 
-    public static ArrayList<Object> get_Subjects(String topic) throws SQLException {
+    public ArrayList<Object> get_Subjects(String topic) throws SQLException {
         ArrayList<Object> Subjects = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM quiz WHERE topic_name = ?");
         preparedStatement.setString(1, topic);
@@ -74,7 +74,7 @@ public class DB_Connection {
         return Subjects;
     }
 
-    public static ArrayList<Object> get_Topics() throws SQLException{
+    public ArrayList<Object> get_Topics() throws SQLException{
         ArrayList<Object> Topics = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM topic");
         resultSet = preparedStatement.executeQuery();
@@ -84,7 +84,7 @@ public class DB_Connection {
         return Topics;
     }
 
-    public static void disconnect(){ // Disconnects from the database
+    public void disconnect(){ // Disconnects from the database
         try{
             if(connection!=null){
                 connection.close();

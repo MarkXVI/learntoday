@@ -45,7 +45,7 @@ public class RegisterController {
         stage.show();
     }
 
-    public void onRegisterClick(ActionEvent actionEvent) throws IOException {
+    public void onRegisterClick(ActionEvent actionEvent) throws IOException, SQLException {
         String FirstName = FirstNameInput.getText();
         String LastName = LastNameInput.getText();
         String Username = UsernameInput.getText();
@@ -56,9 +56,11 @@ public class RegisterController {
         }else{
             AccountType = 0;
         }
-        boolean check = Logic.check_ValidRegister(FirstName, LastName, Username, Password, accountType.getText());
+        Logic logic = new Logic();
+        DB_Connection db_connection = new DB_Connection();
+        boolean check = logic.check_ValidRegister(FirstName, LastName, Username, Password, accountType.getText());
         if (check){
-            DB_Connection.register_user(FirstName, LastName, Username, Password, AccountType);
+            db_connection.register_user(FirstName, LastName, Username, Password, AccountType);
             onGoBackClick(actionEvent);
         }else{
             System.out.println("You must enter something in every field!");
