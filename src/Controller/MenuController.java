@@ -29,6 +29,10 @@ public class MenuController implements Initializable {
     DB_Connection database = ConnectionStorage.getInstance().getConnection();
     @FXML
     ListView TopicList;
+    @FXML
+    Button quizButton;
+    @FXML
+    Button readButton;
 
     UserStorage userStorage = UserStorage.getInstance();
     User user = userStorage.currentUser();
@@ -47,11 +51,29 @@ public class MenuController implements Initializable {
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-        add_Topics();
+        addTopics();
 
     }
 
-    public void add_Topics(){
+    public void onQuizClick(ActionEvent actionEvent) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizLayout.fxml"));
+        Stage stage = (Stage) quizButton.getScene().getWindow();
+        Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add("View/Style.css");
+        stage.setScene(scene);
+        stage.show();
+        }
+
+    public void onReadClick(ActionEvent actionEvent) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ReadScreen.fxml"));
+        Stage stage = (Stage) readButton.getScene().getWindow();
+        Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add("View/Style.css");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void addTopics(){
         for(Object topic: topics){
             TopicList.getItems().add(topic.toString());
         }
@@ -69,7 +91,7 @@ public class MenuController implements Initializable {
             }
             if (currentItemSelected.equals("Go Back")){
                 TopicList.getItems().clear();
-                add_Topics();
+                addTopics();
             }
 
         }
@@ -84,6 +106,4 @@ public class MenuController implements Initializable {
         stage.setResizable(false);
         stage.show();
     }
-
-
 }

@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
    <Rectangle arcHeight="50.0" arcWidth="50.0" height="645.0" layoutX="52.0" layoutY="54.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="826.0">
       <effect>
          <Shadow height="70.11" radius="34.1375" width="68.44">
@@ -79,12 +79,12 @@
       </TextFlow>
    </VBox>
    <HBox alignment="CENTER" layoutX="308.0" layoutY="48.0" prefHeight="47.0" prefWidth="284.0" spacing="10.0">
-      <Button fx:id="read" mnemonicParsing="false" prefHeight="40.0" prefWidth="135.0" text="READ" textFill="#8d8d8d">
+      <Button fx:id="readButton" mnemonicParsing="false" onAction="#onReadClick" prefHeight="40.0" prefWidth="135.0" text="READ" textFill="#8d8d8d">
          <font>
             <Font name="Comic Sans MS" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="start" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" text="START QUIZ" textFill="#8d8d8d">
+      <Button fx:id="quizButton" mnemonicParsing="false" onAction="#onQuizClick" prefHeight="40.0" prefWidth="136.0" text="START QUIZ" textFill="#8d8d8d">
          <font>
             <Font name="Comic Sans MS" size="17.0" />
          </font>
