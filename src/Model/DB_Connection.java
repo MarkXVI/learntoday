@@ -84,13 +84,45 @@ public class DB_Connection {
         return Topics;
     }
 
-    public String get_Text(String selectedItem) throws SQLException {
+    public String get_Text(String topic) throws SQLException {
         preparedStatement = connection.prepareStatement("SELECT text FROM quiz WHERE name = ?");
-        preparedStatement.setString(1, selectedItem);
+        preparedStatement.setString(1, topic);
         resultSet = preparedStatement.executeQuery();
         resultSet.next();
         String text = resultSet.getString(1);
         return text;
+    }
+
+    public ArrayList<String> get_Question(String questionID) throws SQLException {
+        ArrayList<String> questions = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT question FROM question WHERE questionID = ?");
+        preparedStatement.setString(1, questionID);
+        resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            questions.add(resultSet.getString(1));
+        }
+        return questions;
+    }
+
+    public ArrayList<String> get_QuestionIDs(String topic) throws SQLException {
+        ArrayList<String> questionIDs = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT questionID FROM question WHERE quiz_name = ?");
+        preparedStatement.setString(1, topic);
+        resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            questionIDs.add(resultSet.getString(1));
+        }
+        return questionIDs;
+    }
+
+    public ArrayList<String> get_Alternatives(String questionID) throws SQLException {
+        ArrayList<String> alternatives = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT choice FROM alternative WHERE question_questionID = ?");
+        preparedStatement.setString(1, questionID);
+        while(resultSet.next()){
+            alternatives.add(resultSet.getString(1));
+        }
+        return alternatives;
     }
 
     public static void disconnect(){ // Disconnects from the database
