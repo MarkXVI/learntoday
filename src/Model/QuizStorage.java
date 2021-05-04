@@ -7,18 +7,17 @@ public class QuizStorage {
     private final static QuizStorage quizStorage = new QuizStorage();
     private ArrayList<String> questionIDs = new ArrayList<>();
 
-    public QuizStorage(){
-    }
+    public QuizStorage(){}
 
-    public static QuizStorage getInstance(){
+    public static QuizStorage getInstance() {
         return quizStorage;
     }
 
     public void add_questions(String topic) throws SQLException {
-        questionIDs = DB_Connection.get_QuestionIDs(topic);
+        questionIDs = new DBConnection().getQuestionIDs(topic);
     }
 
-    public ArrayList<String> get_questionIDs(){
+    public ArrayList<String> get_questionIDs() {
         return questionIDs;
     }
 }

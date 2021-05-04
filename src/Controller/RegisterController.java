@@ -2,7 +2,7 @@ package Controller;
 
 import Functionality.Logic;
 import Model.ConnectionStorage;
-import Model.DB_Connection;
+import Model.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,11 +32,9 @@ public class RegisterController {
     @FXML
     MenuButton accountType;
 
-    DB_Connection database = ConnectionStorage.getInstance().getConnection();
+    DBConnection database = ConnectionStorage.getInstance().getConnection();
 
-
-    public RegisterController() throws SQLException {
-    }
+    public RegisterController() throws SQLException {}
 
     public void onGoBackClick(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginScreen.fxml"));
@@ -59,10 +57,10 @@ public class RegisterController {
             AccountType = 0;
         }
         Logic logic = new Logic();
-        DB_Connection db_connection = new DB_Connection();
-        boolean check = logic.check_ValidRegister(FirstName, LastName, Username, Password, accountType.getText());
+        DBConnection db_connection = new DBConnection();
+        boolean check = logic.checkValidRegister(FirstName, LastName, Username, Password, accountType.getText());
         if (check) {
-            db_connection.register_user(FirstName, LastName, Username, Password, AccountType);
+            db_connection.registerUser(FirstName, LastName, Username, Password, AccountType);
             onGoBackClick(actionEvent);
         } else {
             System.out.println("You must enter something in every field!");
