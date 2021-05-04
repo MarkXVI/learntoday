@@ -7,8 +7,7 @@ import java.util.Locale;
 
 public class TextToSpeech {
 
-    public static void main(String[] args)
-    {
+    public static void speech(String text){
 
         try {
             // Set property as Kevin Dictionary
@@ -35,7 +34,7 @@ public class TextToSpeech {
             // Speaks the given text
             // until the queue is empty.
             synthesizer.speakPlainText(
-                    "May the Fourth be with you!", null);
+                    text, null);
             synthesizer.waitEngineState(
                     Synthesizer.QUEUE_EMPTY);
 

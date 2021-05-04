@@ -6,7 +6,7 @@ import java.util.List;
 
 public class DB_Connection {
     private static Connection connection;
-    private static String url = "jdbc:mysql://35.228.58.113:3306/learn2day?user=root&password=root";
+    private static String url = "jdbc:mysql://35.228.58.113:3306/learn2day?user=learn2dayApplication&password=ApplicationPassword";
     private static Statement statement;
     private static ResultSet resultSet;
     private static PreparedStatement preparedStatement;
