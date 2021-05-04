@@ -81,37 +81,44 @@ public class MenuController implements Initializable {
     }
 
     public void onQuizClick(ActionEvent actionEvent) throws IOException, SQLException {
-        String selectedTopic = TopicList.getSelectionModel().getSelectedItem().toString();
-        if (subjects.contains(selectedTopic)) {
-            QuizStorage.getInstance().add_questions(selectedTopic);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizLayout.fxml"));
-            Stage stage = (Stage) quizButton.getScene().getWindow();
-            Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add("View/Style.css");
-            QuizController quizController = loader.getController();
-            quizController.set_Title(selectedTopic);
+        try{
+            String selectedTopic = TopicList.getSelectionModel().getSelectedItem().toString();
+            if (subjects.contains(selectedTopic)) {
+                QuizStorage.getInstance().add_questions(selectedTopic);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizLayout.fxml"));
+                Stage stage = (Stage) quizButton.getScene().getWindow();
+                Scene scene = new Scene(loader.load());
+                scene.getStylesheets().add("View/Style.css");
+                QuizController quizController = loader.getController();
+                quizController.set_Title(selectedTopic);
 
-            stage.setScene(scene);
-            stage.show();
+                stage.setScene(scene);
+                stage.show();
+            }
+        }catch(NullPointerException ex){
         }
     }
 
     public void onReadClick(ActionEvent actionEvent) throws IOException, SQLException {
-        String selectedItem = TopicList.getSelectionModel().getSelectedItem().toString();
-        if (subjects.contains(selectedItem)){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ReadScreen.fxml"));
-            Stage stage = (Stage) readButton.getScene().getWindow();
-            Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add("View/Style.css");
+        try {
+            String selectedItem = TopicList.getSelectionModel().getSelectedItem().toString();
+            if (subjects.contains(selectedItem)) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ReadScreen.fxml"));
+                Stage stage = (Stage) readButton.getScene().getWindow();
+                Scene scene = new Scene(loader.load());
+                scene.getStylesheets().add("View/Style.css");
 
-            ReadController readController = loader.getController();
-            String text = database.get_Text(selectedItem);
-            readController.set_Text(text, selectedItem);
+                ReadController readController = loader.getController();
+                String text = database.get_Text(selectedItem);
+                readController.set_Text(text, selectedItem);
 
-            stage.setScene(scene);
-            stage.show();
+                stage.setScene(scene);
+                stage.show();
+            }
+        }catch(NullPointerException ex){
+
         }
-    }
+        }
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginScreen.fxml")); // ↓↓↓↓ Switches scene to login screen.
