@@ -12,8 +12,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -35,7 +38,11 @@ public class MenuController implements Initializable {
     @FXML
     Button readButton;
     @FXML
-    Button editButton;
+    MenuBar editBar;
+    @FXML
+    MenuItem editItem;
+    @FXML
+    TextFlow teacherInfo;
 
     UserStorage userStorage = UserStorage.getInstance();
     User user = userStorage.currentUser();
@@ -47,7 +54,7 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        checkUserPriv();
+        checkUserType();
 
         String FirstName = user.getFirstname();
         String LastName = user.getLastname();
@@ -60,11 +67,13 @@ public class MenuController implements Initializable {
         addTopics();
     }
 
-    public void checkUserPriv() {
+    public void checkUserType() {
         if (user.getTeacher() == 1) {
-            editButton.setVisible(true);
+            editBar.setVisible(true);
+            teacherInfo.setVisible(true);
         } else {
-            editButton.setVisible(false);
+            editBar.setVisible(false);
+            teacherInfo.setVisible(false);
         }
     }
 
@@ -139,19 +148,22 @@ public class MenuController implements Initializable {
     }
 
     public void onEditClick(ActionEvent actionEvent) throws IOException, SQLException {
-        String selectedItem = TopicList.getSelectionModel().getSelectedItem().toString();
-        if (subjects.contains(selectedItem)) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/WriteScreen.fxml")); // ↓↓↓↓ Switches scene to login screen.
-            Stage stage = (Stage) logoutButton.getScene().getWindow();
-            Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add("View/Style.css");
+        try {
+            String selectedItem = TopicList.getSelectionModel().getSelectedItem().toString();
+            if (subjects.contains(selectedItem)) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/WriteScreen.fxml"));
+                Stage stage = (Stage) logoutButton.getScene().getWindow();
+                Scene scene = new Scene(loader.load());
+                scene.getStylesheets().add("View/Style.css");
 
-            WriteController writeController = loader.getController();
-            String text = database.getText(selectedItem);
-            writeController.setText(text, selectedItem);
+                WriteController writeController = loader.getController();
+                String text = database.getText(selectedItem);
+                writeController.setText(text, selectedItem);
 
-            stage.setScene(scene);
-            stage.show();
+                stage.setScene(scene);
+                stage.show();
+            }
+        } catch (NullPointerException npe) {
         }
     }
 }

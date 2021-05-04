@@ -19,5 +19,9 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="org.mockito:mockito-core:3.2.4" level="project" />
+    <orderEntry type="library" name="junit-4.13.21" level="project" />
+    <orderEntry type="library" name="lib2" level="project" />
+    <orderEntry type="library" name="lib3" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.231" level="project" />
   </component>
 </module>

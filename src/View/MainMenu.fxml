@@ -2,6 +2,9 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -76,6 +79,17 @@
                <Font size="14.0" />
             </font>
          </Text>
+         <TextFlow fx:id="teacherInfo" accessibleText="dsdsd" prefHeight="171.0" prefWidth="354.0">
+            <children>
+               <Separator prefHeight="5.0" prefWidth="354.0" />
+               <Text fill="#da5858" strokeType="OUTSIDE" strokeWidth="0.0" text="&#10;Teacher features:&#10;&#10;Menu Bar:" wrappingWidth="318.052734375">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Text>
+               <Text fill="#da5858" strokeType="OUTSIDE" strokeWidth="0.0" text="&#10;&#10;Edit &gt; Edit Selected Topic&#10;Must have selected a topic in &quot;Topics&quot; in order to edit the existing text.&#10;&#10;Help &gt; About&#10;Does nothing." wrappingWidth="318.052734375" />
+            </children>
+         </TextFlow>
       </TextFlow>
    </VBox>
    <HBox alignment="CENTER" layoutX="308.0" layoutY="48.0" prefHeight="47.0" prefWidth="284.0" spacing="10.0">
@@ -112,5 +126,18 @@
          </LinearGradient>
       </fill>
    </Text>
-   <Button fx:id="editButton" layoutX="4.0" layoutY="694.0" mnemonicParsing="false" onAction="#onEditClick" prefHeight="23.0" prefWidth="67.0" text="Edit text" />
+   <MenuBar fx:id="editBar" layoutY="2.0">
+     <menus>
+       <Menu mnemonicParsing="false" text="Edit">
+         <items>
+           <MenuItem fx:id="editItem" mnemonicParsing="false" onAction="#onEditClick" text="Edit Selected Topic" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Help">
+         <items>
+           <MenuItem mnemonicParsing="false" text="About" />
+         </items>
+       </Menu>
+     </menus>
+   </MenuBar>
 </AnchorPane>
