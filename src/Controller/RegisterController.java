@@ -1,6 +1,7 @@
 package Controller;
 
 import Functionality.Logic;
+import Model.ConnectionStorage;
 import Model.DB_Connection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,7 +32,8 @@ public class RegisterController {
     @FXML
     MenuButton accountType;
 
-    DB_Connection database = new DB_Connection();
+    DB_Connection database = ConnectionStorage.getInstance().getConnection();
+
 
     public RegisterController() throws SQLException {
     }

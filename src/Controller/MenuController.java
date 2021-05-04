@@ -3,6 +3,7 @@ package Controller;
 import Functionality.User;
 import Model.ConnectionStorage;
 import Model.DB_Connection;
+import Model.QuizStorage;
 import Model.UserStorage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,10 +30,15 @@ public class MenuController implements Initializable {
     DB_Connection database = ConnectionStorage.getInstance().getConnection();
     @FXML
     ListView TopicList;
+    @FXML
+    Button quizButton;
+    @FXML
+    Button readButton;
 
     UserStorage userStorage = UserStorage.getInstance();
     User user = userStorage.currentUser();
     ArrayList<Object> topics;
+    ArrayList<Object> subjects;
 
     public MenuController() throws SQLException {
     }
@@ -48,30 +54,62 @@ public class MenuController implements Initializable {
             exception.printStackTrace();
         }
         add_Topics();
-
     }
 
-    public void add_Topics() {
-        for (Object topic: topics) {
+    public void add_Topics(){
+        for(Object topic: topics){
             TopicList.getItems().add(topic.toString());
         }
     }
+
     public void onMouseClick(MouseEvent click) throws SQLException {
         if (click.getClickCount() == 2){
             String currentItemSelected = TopicList.getSelectionModel().getSelectedItem().toString();
-            if (topics.contains(currentItemSelected)) {
-                ArrayList<Object> subjects = database.get_Subjects(currentItemSelected);
+            if(topics.contains(currentItemSelected)){
+                subjects = database.get_Subjects(currentItemSelected);
                 TopicList.getItems().clear();
-                for (Object subject: subjects) {
+                for(Object subject: subjects){
                     TopicList.getItems().add(subject.toString());
                 }
                 TopicList.getItems().add("Go Back");
             }
-            if (currentItemSelected.equals("Go Back")) {
+            if (currentItemSelected.equals("Go Back")){
                 TopicList.getItems().clear();
                 add_Topics();
             }
+        }
+    }
 
+    public void onQuizClick(ActionEvent actionEvent) throws IOException, SQLException {
+        String selectedTopic = TopicList.getSelectionModel().getSelectedItem().toString();
+        if (subjects.contains(selectedTopic)) {
+            QuizStorage.getInstance().add_questions(selectedTopic);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizLayout.fxml"));
+            Stage stage = (Stage) quizButton.getScene().getWindow();
+            Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add("View/Style.css");
+            QuizController quizController = loader.getController();
+            quizController.set_Title(selectedTopic);
+
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+
+    public void onReadClick(ActionEvent actionEvent) throws IOException, SQLException {
+        String selectedItem = TopicList.getSelectionModel().getSelectedItem().toString();
+        if (subjects.contains(selectedItem)){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ReadScreen.fxml"));
+            Stage stage = (Stage) readButton.getScene().getWindow();
+            Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add("View/Style.css");
+
+            ReadController readController = loader.getController();
+            String text = database.get_Text(selectedItem);
+            readController.set_Text(text, selectedItem);
+
+            stage.setScene(scene);
+            stage.show();
         }
     }
 
@@ -84,6 +122,4 @@ public class MenuController implements Initializable {
         stage.setResizable(false);
         stage.show();
     }
-
-
 }
