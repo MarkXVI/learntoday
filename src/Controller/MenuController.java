@@ -84,6 +84,7 @@ public class MenuController implements Initializable {
     }
 
     public void onMouseClick(MouseEvent click) throws SQLException {
+        try{
         if (click.getClickCount() == 2){
             String currentItemSelected = TopicList.getSelectionModel().getSelectedItem().toString();
             if(topics.contains(currentItemSelected)){
@@ -99,6 +100,7 @@ public class MenuController implements Initializable {
                 addTopics();
             }
         }
+        }catch(NullPointerException ex){}
     }
 
     public void onQuizClick(ActionEvent actionEvent) throws IOException, SQLException {
