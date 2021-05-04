@@ -15,7 +15,7 @@ public class DBConnection {
         connection = DriverManager.getConnection(url);
     }
 
-    public Connection getDBConnection() throws SQLException {
+    public Connection getDBConnection() {
         return connection;
     }
 
@@ -41,9 +41,16 @@ public class DBConnection {
             statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO user VALUES ('" + username + "', '" + password + "', '" + FirstName + "', '" + LastName + "', '" + Teacher + "')"); // Puts the values into the user table in the database.
 
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
+        } catch (SQLException ex) {}
+    }
+
+    public void submitText(String topicName, String Text) {
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE quiz SET text = ? WHERE name = ?");
+            preparedStatement.setString(1, Text);
+            preparedStatement.setString(2, topicName);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {}
     }
 
     public ArrayList<Object> getUserinfo(String username) {
@@ -57,9 +64,7 @@ public class DBConnection {
             user.add(resultSet.getString(3));
             user.add(resultSet.getString(4));
             user.add(resultSet.getInt(5));
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
+        } catch (SQLException ex) {}
         return user;
     }
 
@@ -89,8 +94,7 @@ public class DBConnection {
         preparedStatement.setString(1, topic);
         resultSet = preparedStatement.executeQuery();
         resultSet.next();
-        String text = resultSet.getString(1);
-        return text;
+        return resultSet.getString(1);
     }
 
     public String getQuestion(String questionID) throws SQLException {
@@ -130,11 +134,7 @@ public class DBConnection {
         preparedStatement.setString(1, answer);
         resultSet = preparedStatement.executeQuery();
         resultSet.next();
-        if(resultSet.getInt(1) == 1){
-            return true;
-        }else{
-            return false;
-        }
+        return resultSet.getInt(1) == 1;
     }
 
     public void disconnect(){ // Disconnects from the database

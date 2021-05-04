@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.ConnectionStorage;
+import Model.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,17 +14,23 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ReadController implements Initializable {
+public class WriteController implements Initializable {
     @FXML
-    Button ttsButton;
+    Button submitButton;
     @FXML
     Button homeButton;
     @FXML
     private TextArea infoText;
     @FXML
-    private Text topicText;
+    private Text topicNameText;
+
+    DBConnection database = ConnectionStorage.getInstance().getConnection();
+
+    public WriteController() throws SQLException {
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -30,7 +38,7 @@ public class ReadController implements Initializable {
 
     public void setText(String text, String topic) {
         infoText.setText(text);
-        topicText.setText(topic);
+        topicNameText.setText(topic);
     }
 
     public void onHomeClick(ActionEvent actionEvent) throws IOException {
@@ -40,5 +48,11 @@ public class ReadController implements Initializable {
         scene.getStylesheets().add("View/Style.css");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void onSubmitClick(ActionEvent actionEvent) {
+        String topicName = topicNameText.getText();
+        String text = infoText.getText();
+        database.submitText(topicName, text);
     }
 }
