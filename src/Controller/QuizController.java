@@ -3,16 +3,12 @@ package Controller;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.QuizStorage;
-import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.skin.ButtonSkin;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 

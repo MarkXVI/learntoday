@@ -34,6 +34,8 @@ public class MenuController implements Initializable {
     Button quizButton;
     @FXML
     Button readButton;
+    @FXML
+    Button editButton;
 
     UserStorage userStorage = UserStorage.getInstance();
     User user = userStorage.currentUser();
@@ -125,5 +127,23 @@ public class MenuController implements Initializable {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+    }
+
+    public void onEditClick(ActionEvent actionEvent) throws IOException, SQLException {
+        String selectedItem = TopicList.getSelectionModel().getSelectedItem().toString();
+        if (subjects.contains(selectedItem)) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/WriteScreen.fxml")); // ↓↓↓↓ Switches scene to login screen.
+            Stage stage = (Stage) logoutButton.getScene().getWindow();
+            Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add("View/Style.css");
+
+            WriteController writeController = loader.getController();
+            String text = database.getText(selectedItem);
+            writeController.setText(text, selectedItem);
+
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }
     }
 }
