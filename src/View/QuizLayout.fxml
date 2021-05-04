@@ -111,5 +111,10 @@
          <Font size="14.0" />
       </font>
    </Text>
-   <Button fx:id="nextButton" layoutX="381.0" layoutY="630.0" mnemonicParsing="false" onAction="#nextQuestion" text="Go to next Question" />
+   <Button fx:id="nextButton" disable="true" layoutX="381.0" layoutY="630.0" mnemonicParsing="false" onAction="#nextQuestion" text="Go to next Question" visible="false" />
+   <Text fx:id="questionNumber" layoutX="225.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1/10" wrappingWidth="42.13671875">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Text>
 </AnchorPane>
