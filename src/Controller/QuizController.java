@@ -1,7 +1,7 @@
 package Controller;
 
 import Model.ConnectionStorage;
-import Model.DB_Connection;
+import Model.DBConnection;
 import Model.QuizStorage;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 
 public class QuizController implements Initializable {
 
-    DB_Connection database = ConnectionStorage.getInstance().getConnection();
+    DBConnection database = ConnectionStorage.getInstance().getConnection();
     @FXML
     Button homeButton;
     @FXML
@@ -58,8 +58,8 @@ public class QuizController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             int randomInt = rand.nextInt(questionIDs.size());
-            question = database.get_Question(questionIDs.get(randomInt));
-            alternatives = database.get_Alternatives(questionIDs.get(randomInt));
+            question = database.getQuestion(questionIDs.get(randomInt));
+            alternatives = database.getAlternatives(questionIDs.get(randomInt));
             Collections.shuffle(alternatives);
             alternative1.setText(alternatives.get(0));
             alternative2.setText(alternatives.get(1));

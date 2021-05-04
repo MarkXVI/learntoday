@@ -41,7 +41,7 @@
         </fill>
     </Rectangle>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="579.0" layoutX="40.0" layoutY="73.0" stroke="WHITE" strokeType="INSIDE" style="-fx-arc-height: 25; -fx-arc-width: 25;" width="819.0" />
-    <Button fx:id="ttsButton" layoutX="51.0" layoutY="667.0" mnemonicParsing="false" onAction="#textToSpeech" style="-fx-background-color: white;" text="Text to speech" />
+    <Button fx:id="ttsButton" layoutX="51.0" layoutY="667.0" mnemonicParsing="false" style="-fx-background-color: white;" text="Text to speech" />
     <TextArea fx:id="infoText" editable="false" layoutX="51.0" layoutY="86.0" pickOnBounds="false" prefHeight="555.0" prefWidth="792.0">
         <font>
           <Font size="18.0" />
