@@ -47,6 +47,8 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        checkUserPriv();
+
         String FirstName = user.getFirstname();
         String LastName = user.getLastname();
         SignedInText.setText("Signed in as: " + FirstName + " " + LastName);
@@ -55,10 +57,18 @@ public class MenuController implements Initializable {
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-        add_Topics();
+        addTopics();
     }
 
-    public void add_Topics(){
+    public void checkUserPriv() {
+        if (user.getTeacher() == 1) {
+            editButton.setVisible(true);
+        } else {
+            editButton.setVisible(false);
+        }
+    }
+
+    public void addTopics(){
         for(Object topic: topics){
             TopicList.getItems().add(topic.toString());
         }
@@ -77,7 +87,7 @@ public class MenuController implements Initializable {
             }
             if (currentItemSelected.equals("Go Back")){
                 TopicList.getItems().clear();
-                add_Topics();
+                addTopics();
             }
         }
     }
@@ -125,7 +135,6 @@ public class MenuController implements Initializable {
         Scene scene = new Scene(loader.load());
         scene.getStylesheets().add("View/Style.css");
         stage.setScene(scene);
-        stage.setResizable(false);
         stage.show();
     }
 
@@ -142,7 +151,6 @@ public class MenuController implements Initializable {
             writeController.setText(text, selectedItem);
 
             stage.setScene(scene);
-            stage.setResizable(false);
             stage.show();
         }
     }
