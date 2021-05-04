@@ -2,7 +2,7 @@ package Controller;
 
 import Functionality.User;
 import Model.ConnectionStorage;
-import Model.DB_Connection;
+import Model.DBConnection;
 import Model.QuizStorage;
 import Model.UserStorage;
 import javafx.event.ActionEvent;
@@ -27,7 +27,7 @@ public class MenuController implements Initializable {
     Button logoutButton;
     @FXML
     Text SignedInText;
-    DB_Connection database = ConnectionStorage.getInstance().getConnection();
+    DBConnection database = ConnectionStorage.getInstance().getConnection();
     @FXML
     ListView TopicList;
     @FXML
@@ -49,7 +49,7 @@ public class MenuController implements Initializable {
         String LastName = user.getLastname();
         SignedInText.setText("Signed in as: " + FirstName + " " + LastName);
         try {
-            topics = database.get_Topics();
+            topics = database.getTopics();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -66,7 +66,7 @@ public class MenuController implements Initializable {
         if (click.getClickCount() == 2){
             String currentItemSelected = TopicList.getSelectionModel().getSelectedItem().toString();
             if(topics.contains(currentItemSelected)){
-                subjects = database.get_Subjects(currentItemSelected);
+                subjects = database.getSubjects(currentItemSelected);
                 TopicList.getItems().clear();
                 for(Object subject: subjects){
                     TopicList.getItems().add(subject.toString());
@@ -108,8 +108,8 @@ public class MenuController implements Initializable {
                 scene.getStylesheets().add("View/Style.css");
 
                 ReadController readController = loader.getController();
-                String text = database.get_Text(selectedItem);
-                readController.set_Text(text, selectedItem);
+                String text = database.getText(selectedItem);
+                readController.setText(text, selectedItem);
 
                 stage.setScene(scene);
                 stage.show();
