@@ -12,17 +12,17 @@ public class ConnectionStorage {
     }
 
     public static ConnectionStorage getInstance() throws SQLException {
-        if(storage == null){
+        if(storage == null) {
             storage = new ConnectionStorage();
         }
         return storage;
     }
 
-    public DB_Connection getConnection(){
+    public DB_Connection getConnection() {
         return connection;
     }
 
-    public void close_Connection(){
+    public void close_Connection() {
         connection.disconnect();
     }
 }

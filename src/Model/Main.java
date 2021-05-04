@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     ConnectionStorage connection;
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         connection = ConnectionStorage.getInstance();
         Parent root = FXMLLoader.load(getClass().getResource("../View/LoginScreen.fxml"));
         primaryStage.setTitle("Learn2day");
@@ -28,7 +28,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void stop(){
+    public void stop() {
         connection.close_Connection();
     }
 

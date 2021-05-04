@@ -15,7 +15,7 @@ public class DB_Connection {
         connection = DriverManager.getConnection(url);
     }
 
-    public static Connection getDBConnection() throws SQLException {
+    public Connection getDBConnection() throws SQLException {
         return connection;
     }
 
@@ -125,7 +125,7 @@ public class DB_Connection {
         return alternatives;
     }
 
-    public static void disconnect(){ // Disconnects from the database
+    public void disconnect(){ // Disconnects from the database
         try{
             if(connection!=null){
                 connection.close();
