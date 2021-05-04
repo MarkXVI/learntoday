@@ -1,5 +1,6 @@
 package Controller;
 
+import Functionality.TextToSpeech;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,5 +41,9 @@ public class ReadController implements Initializable {
         scene.getStylesheets().add("View/Style.css");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void textToSpeech(ActionEvent actionEvent) throws IOException{
+        TextToSpeech.speech(infoText.getText());
     }
 }
