@@ -29,7 +29,7 @@ public class ReadController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
-    public void set_Text(String text, String topic){
+    public void setText(String text, String topic) {
         infoText.setText(text);
         topicText.setText(topic);
     }

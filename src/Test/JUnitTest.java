@@ -1,35 +1,38 @@
 package Test;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 import Functionality.Logic;
 import Functionality.User;
 import Model.ConnectionStorage;
-import Model.DB_Connection;
+import Model.DBConnection;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class JUnitTest {
 
     @Before
     public void before() throws SQLException {
-        Connection connection = new DB_Connection().getDBConnection();
+        Connection connection = new DBConnection().getDBConnection();
     }
 
     @Test
-    public void check_ValidRegister() {
+    public void testCheckValidRegister() {
         Logic logic = new Logic();
-        assertFalse(logic.check_ValidRegister("", "", "", "", "Choose Account Type"));
-        assertFalse(logic.check_ValidRegister("test", "test", "test", "", "Student"));
-        assertFalse(logic.check_ValidRegister("test", "test", "", "test", "Teacher"));
-        assertFalse(logic.check_ValidRegister("test", "", "test", "test", "Student"));
-        assertFalse(logic.check_ValidRegister("", "test", "test", "test", "Student"));
-        assertFalse(logic.check_ValidRegister("test", "test", "test", "test", "Choose Account Type"));
-        assertTrue(logic.check_ValidRegister("test", "test", "test", "test", "Student"));
+        assertFalse(logic.checkValidRegister("", "", "", "", "Choose Account Type"));
+        assertFalse(logic.checkValidRegister("test", "test", "test", "", "Student"));
+        assertFalse(logic.checkValidRegister("test", "test", "", "test", "Teacher"));
+        assertFalse(logic.checkValidRegister("test", "", "test", "test", "Student"));
+        assertFalse(logic.checkValidRegister("", "test", "test", "test", "Student"));
+        assertFalse(logic.checkValidRegister("test", "test", "test", "test", "Choose Account Type"));
+        assertTrue(logic.checkValidRegister("test", "test", "test", "test", "Student"));
     }
 
     @Test
@@ -42,8 +45,43 @@ public class JUnitTest {
     }
 
     @Test
-    public void check_login() throws SQLException {
-        assertTrue(new DB_Connection().check_login("", ""));
+    public void testGetUserInfo() throws SQLException {
+        ArrayList<Object> user;
+        user = new DBConnection().getUserinfo("test");
+        assertNotNull(user);
+        assertEquals(user.size(), 4);
+    }
+
+    @Test
+    public void testGetSubjects() throws SQLException {
+        ArrayList<Object> subjects;
+        subjects = new DBConnection().getSubjects("test");
+        assertNotNull(subjects);
+        assertEquals(subjects.size(), 0);
+    }
+
+    @Test
+    public void testGetTopics() throws SQLException {
+        ArrayList<Object> topics;
+        topics = new DBConnection().getUserinfo("test");
+        assertNotNull(topics);
+        assertEquals(topics.size(), 4);
+    }
+
+    @Test
+    public void testGetQuestionIDs() throws SQLException {
+        ArrayList<String> questionIDs;
+        questionIDs = new DBConnection().getQuestionIDs("test");
+        assertNotNull(questionIDs);
+        assertEquals(questionIDs.size(), 0);
+    }
+
+    @Test
+    public void testGetAlternatives() throws SQLException {
+        ArrayList<String> alternatives;
+        alternatives = new DBConnection().getAlternatives("test");
+        assertNotNull(alternatives);
+        assertEquals(alternatives.size(), 0);
     }
 
     @After

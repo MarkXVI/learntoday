@@ -6,7 +6,7 @@ import javafx.event.EventHandler;
 
 public class Logic {
 
-    public boolean check_ValidRegister(String FirstName, String LastName, String Username, String Password, String AccountType) {
+    public boolean checkValidRegister(String FirstName, String LastName, String Username, String Password, String AccountType) {
         String[] user = {FirstName, LastName, Username, Password};
 
         if (AccountType.equals("Choose Account Type")) { // Checks if the user choose an Account Type.

@@ -1,6 +1,5 @@
 package Controller;
 
-import Functionality.Logic;
 import Model.ConnectionStorage;
 import Model.DB_Connection;
 import Model.QuizStorage;
@@ -48,7 +47,7 @@ public class QuizController implements Initializable {
 
     static int count = 0;
     ArrayList<String> alternatives = new ArrayList<>();
-    static ArrayList<String> questionIDs = QuizStorage.getInstance().get_questionIDs();
+    ArrayList<String> questionIDs = QuizStorage.getInstance().get_questionIDs();
     String question;
     Random rand = new Random();
 
@@ -74,22 +73,23 @@ public class QuizController implements Initializable {
     }
 
     public void onAlternativeClick(ActionEvent event) throws SQLException {
-        ArrayList<Button> altButtons = new ArrayList<>(){
+        ArrayList<Button> altButtons = new ArrayList<>() {
             {
                 add(alternative1);
                 add(alternative2);
                 add(alternative3);
                 add(alternative4);
-            }};
+            }
+        };
         Button clicked = (Button) event.getTarget();
-        if(database.checkAnswer(clicked.getText())){
+        if (database.checkAnswer(clicked.getText())) {
             clicked.setStyle("-fx-background-color: #50C878");
-            for(Button button: altButtons){
+            for (Button button : altButtons) {
                 button.setDisable(true);
             }
-        }else{
-            for(Button button: altButtons){
-                if (database.checkAnswer(button.getText())){
+        } else {
+            for (Button button : altButtons) {
+                if (database.checkAnswer(button.getText())) {
                     button.setStyle("-fx-background-color: #50C878");
                 }
                 button.setDisable(true);
@@ -107,7 +107,7 @@ public class QuizController implements Initializable {
         stage.show();
     }
 
-    public void nextQuestion(ActionEvent event){
+    public void nextQuestion(ActionEvent event) {
 
     }
 

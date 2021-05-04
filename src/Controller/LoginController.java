@@ -3,7 +3,7 @@ package Controller;
 import Functionality.Logic;
 import Functionality.User;
 import Model.ConnectionStorage;
-import Model.DB_Connection;
+import Model.DBConnection;
 import Model.UserStorage;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -23,7 +23,7 @@ import java.util.List;
 
 public class LoginController {
 
-    DB_Connection database = ConnectionStorage.getInstance().getConnection();
+    DBConnection database = ConnectionStorage.getInstance().getConnection();
     @FXML
     Button registerButton;
     @FXML
@@ -41,9 +41,9 @@ public class LoginController {
     public void onLoginClick(ActionEvent actionEvent) throws IOException {
         String username = userInput.getText();
         String password = passwordInput.getText();
-        boolean check = database.check_login(username, password);
-        if (check){
-            List<Object> User = database.get_userinfo(username); // Gets a list of objects from Database which contains user information.
+        boolean check = database.checkLogin(username, password);
+        if (check) {
+            List<Object> User = database.getUserinfo(username); // Gets a list of objects from Database which contains user information.
 
             String Username = User.get(0).toString(); // ↓↓↓↓ This part is required to share the User between controllers/scenes.
             String FirstName = User.get(1).toString();
