@@ -9,7 +9,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QuizController">
    <Rectangle arcHeight="50.0" arcWidth="50.0" height="645.0" layoutX="191.0" layoutY="46.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="536.0">
@@ -61,29 +60,27 @@
          </LinearGradient>
       </fill>
    </Text>
-   <TextFlow layoutX="214.0" layoutY="132.0" prefHeight="105.0" prefWidth="456.0" textAlignment="CENTER">
-      <Text fx:id="questionText" fill="#909090" strokeType="OUTSIDE" strokeWidth="0.0" text="Whats 1 + 1?&#10; :)">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
-   </TextFlow>
-   <Button fx:id="alternative3" layoutX="214.0" layoutY="474.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="217.0" text="n/a">
+   <Text fx:id="questionText" fill="#909090" layoutX="231.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Whats 1 + 1?&#10; :)" textAlignment="CENTER" wrappingWidth="421.0">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Text>
+   <Button fx:id="alternative3" layoutX="214.0" layoutY="474.0" mnemonicParsing="false" onAction="#onAlternativeClick" prefHeight="136.0" prefWidth="217.0" text="n/a">
       <font>
          <Font size="25.0" />
       </font>
    </Button>
-   <Button fx:id="alternative4" layoutX="453.0" layoutY="474.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="217.0" text="n/a">
+   <Button fx:id="alternative4" layoutX="453.0" layoutY="474.0" mnemonicParsing="false" onAction="#onAlternativeClick" prefHeight="136.0" prefWidth="217.0" text="n/a">
       <font>
          <Font size="25.0" />
       </font>
    </Button>
-   <Button fx:id="alternative1" layoutX="214.0" layoutY="301.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="217.0" text="n/a">
+   <Button fx:id="alternative1" layoutX="214.0" layoutY="301.0" mnemonicParsing="false" onAction="#onAlternativeClick" prefHeight="136.0" prefWidth="217.0" text="n/a">
       <font>
          <Font size="25.0" />
       </font>
    </Button>
-   <Button fx:id="alternative2" layoutX="453.0" layoutY="301.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="217.0" text="n/a">
+   <Button fx:id="alternative2" layoutX="453.0" layoutY="301.0" mnemonicParsing="false" onAction="#onAlternativeClick" prefHeight="136.0" prefWidth="217.0" text="n/a">
       <font>
          <Font size="25.0" />
       </font>
@@ -109,4 +106,10 @@
          </LinearGradient>
       </fill>
    </Text>
+   <Text fx:id="questionCount" layoutX="408.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question 1">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Text>
+   <Button fx:id="nextButton" layoutX="381.0" layoutY="630.0" mnemonicParsing="false" onAction="#nextQuestion" text="Go to next Question" />
 </AnchorPane>

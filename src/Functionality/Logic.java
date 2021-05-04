@@ -1,5 +1,9 @@
 package Functionality;
 
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
+
 public class Logic {
 
     public boolean check_ValidRegister(String FirstName, String LastName, String Username, String Password, String AccountType) {

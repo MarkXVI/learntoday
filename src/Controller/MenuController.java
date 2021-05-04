@@ -95,8 +95,7 @@ public class MenuController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             }
-        }catch(NullPointerException ex){
-        }
+        }catch(NullPointerException ex){}
     }
 
     public void onReadClick(ActionEvent actionEvent) throws IOException, SQLException {
@@ -115,9 +114,7 @@ public class MenuController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             }
-        }catch(NullPointerException ex){
-
-        }
+        }catch(NullPointerException ex){}
         }
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {

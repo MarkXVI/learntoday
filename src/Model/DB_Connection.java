@@ -125,6 +125,18 @@ public class DB_Connection {
         return alternatives;
     }
 
+    public boolean checkAnswer(String answer) throws SQLException {
+        preparedStatement = connection.prepareStatement("SELECT correct FROM alternative WHERE choice = ?");
+        preparedStatement.setString(1, answer);
+        resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        if(resultSet.getInt(1) == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public void disconnect(){ // Disconnects from the database
         try{
             if(connection!=null){
