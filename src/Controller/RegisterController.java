@@ -3,6 +3,7 @@ package Controller;
 import Functionality.Logic;
 import Model.ConnectionStorage;
 import Model.DBConnection;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -31,6 +34,8 @@ public class RegisterController {
     TextField PasswordInput;
     @FXML
     MenuButton accountType;
+    @FXML
+    Pane msgError;
 
     DBConnection database = ConnectionStorage.getInstance().getConnection();
 
@@ -57,13 +62,16 @@ public class RegisterController {
             AccountType = 0;
         }
         Logic logic = new Logic();
-        DBConnection db_connection = new DBConnection();
         boolean check = logic.checkValidRegister(FirstName, LastName, Username, Password, accountType.getText());
         if (check) {
-            db_connection.registerUser(FirstName, LastName, Username, Password, AccountType);
+            database.registerUser(FirstName, LastName, Username, Password, AccountType);
             onGoBackClick(actionEvent);
         } else {
-            System.out.println("You must enter something in every field!");
+            msgError.setVisible(true);
+            FadeTransition ft = new FadeTransition(Duration.seconds(6), msgError);
+            ft.setFromValue(1);
+            ft.setToValue(0);
+            ft.play();
         }
     }
 

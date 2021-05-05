@@ -6,6 +6,7 @@ import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.QuizStorage;
 import Model.UserStorage;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,9 +17,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,6 +47,10 @@ public class MenuController implements Initializable {
     MenuItem editItem;
     @FXML
     TextFlow teacherInfo;
+    @FXML
+    Text errorText;
+    @FXML
+    Pane msgError;
 
     UserStorage userStorage = UserStorage.getInstance();
     User user = userStorage.currentUser();
@@ -104,6 +111,15 @@ public class MenuController implements Initializable {
         }catch(NullPointerException ex){}
     }
 
+    public void errorChange(String text){
+        errorText.setText(text);
+        msgError.setVisible(true);
+        FadeTransition ft = new FadeTransition(Duration.seconds(6), msgError);
+        ft.setFromValue(1);
+        ft.setToValue(0);
+        ft.play();
+    }
+
     public void onQuizClick(ActionEvent actionEvent){
         try{
             String selectedTopic = TopicList.getSelectionModel().getSelectedItem().toString();
@@ -122,7 +138,7 @@ public class MenuController implements Initializable {
                 }
             }
         }catch(Exception ex){
-            ex.printStackTrace();
+            errorChange("There are currently no questions for this quiz!");
         }
     }
 
@@ -142,7 +158,9 @@ public class MenuController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             }
-        }catch(NullPointerException ex){}
+        }catch(NullPointerException ex){
+            errorChange("You must choose a topic to read about!");
+        }
         }
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
@@ -171,6 +189,7 @@ public class MenuController implements Initializable {
                 stage.show();
             }
         } catch (NullPointerException npe) {
+            errorChange("Something went wrong when trying to load edit scene!");
         }
     }
 
@@ -188,7 +207,7 @@ public class MenuController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
         } } catch (IOException e) {
-            e.printStackTrace();
+            errorChange("Something went wrong when trying to load edit scene!");
         }
     }
 }
