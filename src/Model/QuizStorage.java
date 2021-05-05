@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class QuizStorage {
     private final static QuizStorage quizStorage = new QuizStorage();
     private ArrayList<String> questionIDs = new ArrayList<>();
+    private ArrayList<String> table = new ArrayList<>(); // temp
 
     public QuizStorage(){}
 
@@ -23,5 +24,10 @@ public class QuizStorage {
 
     public ArrayList<String> get_questionIDs() {
         return questionIDs;
+    }
+
+    public ArrayList<String> getTable(String topic) throws SQLException { // temp
+        table = new DBConnection().getTable(topic);
+        return table;
     }
 }

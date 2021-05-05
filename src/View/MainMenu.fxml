@@ -131,6 +131,7 @@
        <Menu mnemonicParsing="false" text="Edit">
          <items>
            <MenuItem fx:id="editItem" mnemonicParsing="false" onAction="#onEditClick" text="Edit Selected Topic" />
+               <MenuItem fx:id="editItem1" mnemonicParsing="false" onAction="#onEditClick" text="Add Question" />
          </items>
        </Menu>
        <Menu mnemonicParsing="false" text="Help">

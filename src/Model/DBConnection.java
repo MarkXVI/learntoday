@@ -2,7 +2,6 @@ package Model;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class DBConnection {
     private Connection connection;
@@ -105,6 +104,17 @@ public class DBConnection {
         String question = resultSet.getString(1);
 
         return question;
+    }
+
+    public ArrayList<String> getTable(String topic) throws SQLException { // temp
+        ArrayList<String> questions = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT * FROM question WHERE quiz_name = ?");
+        preparedStatement.setString(1, topic);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            questions.add(resultSet.getString(1));
+        }
+        return questions;
     }
 
     public ArrayList<String> getQuestionIDs(String topic) throws SQLException {
