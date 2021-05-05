@@ -3,7 +3,6 @@ package Controller;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.QuizStorage;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,14 +13,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class WriteController implements Initializable {
@@ -46,6 +43,7 @@ public class WriteController implements Initializable {
     @FXML
     TableView tableQuestion;
 
+    ObservableList<Object> table = QuizStorage.getInstance().getTable();
 
     DBConnection database = ConnectionStorage.getInstance().getConnection();
 
@@ -54,7 +52,12 @@ public class WriteController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tableQuestion.setItems(QuizStorage.getInstance().getTable());
+        System.out.println(table);
+        tableQuestion.setItems(table);
+    }
+
+    public void addRow() {
+
     }
 
     public void setText(String text, String topic) {

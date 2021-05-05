@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QuizEditorController">
+   <Rectangle arcHeight="50.0" arcWidth="50.0" height="645.0" layoutX="191.0" layoutY="46.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="536.0">
+      <effect>
+         <Shadow height="70.11" radius="34.1375" width="68.44">
+            <color>
+               <Color opacity="0.30000001192092896" />
+            </color>
+         </Shadow>
+      </effect>
+   </Rectangle>
+   <Rectangle arcHeight="50.0" arcWidth="50.0" height="645.0" layoutX="174.0" layoutY="30.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="536.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="30.0">
+      <fill>
+         <LinearGradient endY="0.9857142857142859" startX="1.0" startY="0.033333333333333326">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color red="0.11764705926179886" green="0.5647059082984924" blue="1.0" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.2980392277240753" green="0.6705882549285889" blue="1.0" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill></Rectangle>
+   <Button fx:id="homeButton" layoutX="616.0" layoutY="46.0" mnemonicParsing="false" onAction="#onHomeClick" prefHeight="25.0" prefWidth="67.0" text="Home" />
+   <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="158.0" layoutX="214.0" layoutY="106.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="456.0" />
+   <Text layoutX="191.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quiz" textAlignment="CENTER" wrappingWidth="67.0">
+      <font>
+         <Font name="Comic Sans MS Bold" size="24.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.00952380952380949" startX="1.0" startY="0.9761904761904762">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color red="1.0" green="1.0" blue="1.0" opacity="0.769565224647522" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Button layoutX="214.0" layoutY="474.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="217.0">
+      <font>
+         <Font size="25.0" />
+      </font>
+   </Button>
+   <Button layoutX="453.0" layoutY="474.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="217.0">
+      <font>
+         <Font size="25.0" />
+      </font>
+   </Button>
+   <Button layoutX="214.0" layoutY="301.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="217.0">
+      <font>
+         <Font size="25.0" />
+      </font>
+   </Button>
+   <Button layoutX="453.0" layoutY="301.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="217.0">
+      <font>
+         <Font size="25.0" />
+      </font>
+   </Button>
+   <Text fx:id="topicTitle" layoutX="325.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="topic" textAlignment="CENTER" wrappingWidth="250.0" AnchorPane.leftAnchor="325.0" AnchorPane.rightAnchor="325.0">
+      <font>
+         <Font name="Comic Sans MS Bold" size="24.0" />
+      </font>
+      <fill>
+         <LinearGradient endY="0.00952380952380949" startX="1.0" startY="0.9761904761904762">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color red="1.0" green="1.0" blue="1.0" opacity="0.769565224647522" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </fill>
+   </Text>
+   <Button fx:id="nextButton" disable="true" layoutX="381.0" layoutY="630.0" mnemonicParsing="false" onAction="#nextQuestion" text="Go to next Question" visible="false" />
+   <TextField fx:id="inputAlt1" alignment="CENTER" layoutX="238.0" layoutY="322.0" prefHeight="102.0" prefWidth="169.0" promptText="Insert correct alternative here" />
+   <TextField fx:id="inputAlt2" alignment="CENTER" layoutX="477.0" layoutY="322.0" prefHeight="102.0" prefWidth="169.0" promptText="Insert alternative here" />
+   <TextField fx:id="inputAlt3" alignment="CENTER" layoutX="238.0" layoutY="492.0" prefHeight="102.0" prefWidth="169.0" promptText="Insert alternative here" />
+   <TextField fx:id="inputAlt4" alignment="CENTER" layoutX="477.0" layoutY="492.0" prefHeight="102.0" prefWidth="169.0" promptText="Insert alternative here" />
+   <TextField fx:id="inputQuestion" alignment="CENTER" layoutX="227.0" layoutY="117.0" prefHeight="136.0" prefWidth="430.0" promptText="Insert question here" />
+</AnchorPane>

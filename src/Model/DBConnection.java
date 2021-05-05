@@ -117,13 +117,16 @@ public class DBConnection {
         return question;
     }
 
-    public ObservableList<String> getTable(String topic) throws SQLException { // temp
-        ObservableList<String> questions = FXCollections.observableArrayList();
+    public ObservableList<Object> getTable(String topic) throws SQLException { // temp
+        ObservableList<Object> questions = FXCollections.observableArrayList();
         preparedStatement = connection.prepareStatement("SELECT * FROM question WHERE quiz_name = ?");
         preparedStatement.setString(1, topic);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             questions.add(resultSet.getString(1));
+            questions.add(resultSet.getString(2));
+            questions.add(resultSet.getInt(3));
+            questions.add(resultSet.getInt(4));
         }
         return questions;
     }
@@ -156,6 +159,24 @@ public class DBConnection {
         resultSet = preparedStatement.executeQuery();
         resultSet.next();
         return resultSet.getInt(1) == 1;
+    }
+
+    public void addQuiz(String question, String topic) {
+        try {
+            preparedStatement = connection.prepareStatement("INSERT INTO question VALUES (?,?)");
+            preparedStatement.setString(1, question);
+            preparedStatement.setString(2, topic);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException ex) {ex.printStackTrace();}
+    }
+
+    public void addAlt(String choice, String correct, String questionID) {
+        preparedStatement = connection.prepareStatement("INSERT INTO alternative VALUES (?,?,?)");
+        preparedStatement.setString(1, choice);
+        preparedStatement.setString(2, correct);
+        preparedStatement.setString(3, questionID);
+        preparedStatement.executeUpdate();
     }
 
     public void disconnect(){ // Disconnects from the database
