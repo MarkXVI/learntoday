@@ -67,22 +67,22 @@
    </Text>
    <Button fx:id="alternative3" layoutX="214.0" layoutY="474.0" mnemonicParsing="false" onAction="#onAlternativeClick" prefHeight="136.0" prefWidth="217.0" text="n/a">
       <font>
-         <Font size="25.0" />
+         <Font size="20.0" />
       </font>
    </Button>
    <Button fx:id="alternative4" layoutX="453.0" layoutY="474.0" mnemonicParsing="false" onAction="#onAlternativeClick" prefHeight="136.0" prefWidth="217.0" text="n/a">
       <font>
-         <Font size="25.0" />
+         <Font size="20.0" />
       </font>
    </Button>
    <Button fx:id="alternative1" layoutX="214.0" layoutY="301.0" mnemonicParsing="false" onAction="#onAlternativeClick" prefHeight="136.0" prefWidth="217.0" text="n/a">
       <font>
-         <Font size="25.0" />
+         <Font size="20.0" />
       </font>
    </Button>
    <Button fx:id="alternative2" layoutX="453.0" layoutY="301.0" mnemonicParsing="false" onAction="#onAlternativeClick" prefHeight="136.0" prefWidth="217.0" text="n/a">
       <font>
-         <Font size="25.0" />
+         <Font size="20.0" />
       </font>
    </Button>
    <Text fx:id="topicTitle" layoutX="325.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="topic" textAlignment="CENTER" wrappingWidth="250.0" AnchorPane.leftAnchor="325.0" AnchorPane.rightAnchor="325.0">

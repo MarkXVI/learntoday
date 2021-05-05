@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QuizEditorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QuizEditorController">
    <Rectangle arcHeight="50.0" arcWidth="50.0" height="645.0" layoutX="191.0" layoutY="46.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="536.0">
       <effect>
          <Shadow height="70.11" radius="34.1375" width="68.44">
@@ -27,12 +27,12 @@
             <stops>
                <Stop>
                   <color>
-                     <Color red="0.11764705926179886" green="0.5647059082984924" blue="1.0" />
+                     <Color blue="1.0" green="0.5647059082984924" red="0.11764705926179886" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color red="0.2980392277240753" green="0.6705882549285889" blue="1.0" />
+                     <Color blue="1.0" green="0.6705882549285889" red="0.2980392277240753" />
                   </color>
                </Stop>
             </stops>
@@ -49,12 +49,12 @@
             <stops>
                <Stop>
                   <color>
-                     <Color red="1.0" green="1.0" blue="1.0" opacity="0.769565224647522" />
+                     <Color blue="1.0" green="1.0" opacity="0.769565224647522" red="1.0" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color red="1.0" green="1.0" blue="1.0" />
+                     <Color blue="1.0" green="1.0" red="1.0" />
                   </color>
                </Stop>
             </stops>
@@ -90,22 +90,22 @@
             <stops>
                <Stop>
                   <color>
-                     <Color red="1.0" green="1.0" blue="1.0" opacity="0.769565224647522" />
+                     <Color blue="1.0" green="1.0" opacity="0.769565224647522" red="1.0" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color red="1.0" green="1.0" blue="1.0" />
+                     <Color blue="1.0" green="1.0" red="1.0" />
                   </color>
                </Stop>
             </stops>
          </LinearGradient>
       </fill>
    </Text>
-   <Button fx:id="nextButton" disable="true" layoutX="381.0" layoutY="630.0" mnemonicParsing="false" onAction="#nextQuestion" text="Go to next Question" visible="false" />
    <TextField fx:id="inputAlt1" alignment="CENTER" layoutX="238.0" layoutY="322.0" prefHeight="102.0" prefWidth="169.0" promptText="Insert correct alternative here" />
    <TextField fx:id="inputAlt2" alignment="CENTER" layoutX="477.0" layoutY="322.0" prefHeight="102.0" prefWidth="169.0" promptText="Insert alternative here" />
    <TextField fx:id="inputAlt3" alignment="CENTER" layoutX="238.0" layoutY="492.0" prefHeight="102.0" prefWidth="169.0" promptText="Insert alternative here" />
    <TextField fx:id="inputAlt4" alignment="CENTER" layoutX="477.0" layoutY="492.0" prefHeight="102.0" prefWidth="169.0" promptText="Insert alternative here" />
    <TextField fx:id="inputQuestion" alignment="CENTER" layoutX="227.0" layoutY="117.0" prefHeight="136.0" prefWidth="430.0" promptText="Insert question here" />
+   <Button fx:id="submitButton" layoutX="417.0" layoutY="630.0" mnemonicParsing="false" onAction="#submitQuiz" text="Submit" />
 </AnchorPane>

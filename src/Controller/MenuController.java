@@ -173,4 +173,22 @@ public class MenuController implements Initializable {
         } catch (NullPointerException npe) {
         }
     }
+
+    public void onEditQuestion(){
+        try{
+            String selectedItem = TopicList.getSelectionModel().getSelectedItem().toString();
+            if (subjects.contains(selectedItem)) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizEditor.fxml"));
+                Stage stage = (Stage) logoutButton.getScene().getWindow();
+                Scene scene = new Scene(loader.load());
+                scene.getStylesheets().add("View/Style.css");
+                QuizEditorController quizEditorController = loader.getController();
+                quizEditorController.setText(selectedItem);
+
+                stage.setScene(scene);
+                stage.show();
+        } } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

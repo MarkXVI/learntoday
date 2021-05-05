@@ -34,6 +34,10 @@ public class QuizEditorController implements Initializable {
     TextField inputAlt3;
     @FXML
     TextField inputAlt4;
+    @FXML
+    Text topicTitle;
+    @FXML
+    Button homeButton;
 
     public QuizEditorController() throws SQLException {
     }
@@ -42,14 +46,32 @@ public class QuizEditorController implements Initializable {
 
     }
 
-    public void submitQuiz() {
+    public void submitQuiz() throws SQLException {
         String question = inputQuestion.getText();
         String answer1 = inputAlt1.getText(); //correct answer
         String answer2 = inputAlt2.getText();
         String answer3 = inputAlt3.getText();
         String answer4 = inputAlt4.getText();
 
-        database.addQuiz(question, answer1);
+        database.addQuestion(question, topicTitle.getText());
+
+        database.addAlt(answer1, 1, question);
+        database.addAlt(answer2, 0, question);
+        database.addAlt(answer3, 0, question);
+        database.addAlt(answer4, 0, question);
+    }
+
+    public void onHomeClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));
+        Stage stage = (Stage) homeButton.getScene().getWindow();
+        Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add("View/Style.css");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void setText(String topic){
+        topicTitle.setText(topic);
     }
 
 }

@@ -1,5 +1,6 @@
 package Model;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -161,22 +162,32 @@ public class DBConnection {
         return resultSet.getInt(1) == 1;
     }
 
-    public void addQuiz(String question, String topic) {
+    public void addQuestion(String question, String topic) {
         try {
-            preparedStatement = connection.prepareStatement("INSERT INTO question VALUES (?,?)");
+            preparedStatement = connection.prepareStatement("INSERT INTO question (question, quiz_name) VALUES (?,?)");
             preparedStatement.setString(1, question);
             preparedStatement.setString(2, topic);
             preparedStatement.executeUpdate();
 
-        } catch (SQLException ex) {ex.printStackTrace();}
+        } catch (Exception ex) {}
     }
 
-    public void addAlt(String choice, String correct, String questionID) {
+    public void addAlt(String choice, int correct, String question) throws SQLException {
+        preparedStatement = connection.prepareStatement("SELECT questionID from question WHERE question = ?");
+        preparedStatement.setString(1, question);
+        resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        int questionID = resultSet.getInt(1);
+
+        try{
         preparedStatement = connection.prepareStatement("INSERT INTO alternative VALUES (?,?,?)");
         preparedStatement.setString(1, choice);
-        preparedStatement.setString(2, correct);
-        preparedStatement.setString(3, questionID);
+        preparedStatement.setInt(2, correct);
+        preparedStatement.setInt(3, questionID);
         preparedStatement.executeUpdate();
+        }catch(SQLIntegrityConstraintViolationException ex){
+
+        }
     }
 
     public void disconnect(){ // Disconnects from the database
