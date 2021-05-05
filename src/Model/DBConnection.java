@@ -76,16 +76,17 @@ public class DBConnection {
         preparedStatement.setString(1, topic);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            if (resultSet.getString(2) != null){
             subjects.add(resultSet.getString(1));
-        }
         }
         return subjects;
     }
 
-    public boolean checkQuestionAmount() throws SQLException {
+    public int checkQuestionAmount(String quiz_name) throws SQLException {
         preparedStatement = connection.prepareStatement("SELECT COUNT(question) FROM question WHERE quiz_name = ?");
-        return true;
+        preparedStatement.setString(1, quiz_name);
+        resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        return resultSet.getInt(1);
     }
 
     public ArrayList<Object> getTopics() throws SQLException {

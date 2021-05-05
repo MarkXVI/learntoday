@@ -1,8 +1,11 @@
 package Functionality;
 
+import Model.DBConnection;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
+
+import java.sql.SQLException;
 
 public class Logic {
 
@@ -18,5 +21,9 @@ public class Logic {
             }
         }
         return true;
+    }
+
+    public static boolean checkSufficientQuestions(String quiz_name) throws SQLException {
+        return new DBConnection().checkQuestionAmount(quiz_name) > 0;
     }
 }

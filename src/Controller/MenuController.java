@@ -1,5 +1,6 @@
 package Controller;
 
+import Functionality.Logic;
 import Functionality.User;
 import Model.ConnectionStorage;
 import Model.DBConnection;
@@ -18,7 +19,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-import net.bytebuddy.pool.TypePool;
 
 import java.io.IOException;
 import java.net.URL;
@@ -108,16 +108,18 @@ public class MenuController implements Initializable {
         try{
             String selectedTopic = TopicList.getSelectionModel().getSelectedItem().toString();
             if (subjects.contains(selectedTopic)) {
-                QuizStorage.getInstance().add_questions(selectedTopic);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizLayout.fxml"));
-                Stage stage = (Stage) quizButton.getScene().getWindow();
-                Scene scene = new Scene(loader.load());
-                scene.getStylesheets().add("View/Style.css");
-                QuizController quizController = loader.getController();
-                quizController.set_Title(selectedTopic);
+                if (Logic.checkSufficientQuestions(selectedTopic)){
+                    QuizStorage.getInstance().add_questions(selectedTopic);
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizLayout.fxml"));
+                    Stage stage = (Stage) quizButton.getScene().getWindow();
+                    Scene scene = new Scene(loader.load());
+                    scene.getStylesheets().add("View/Style.css");
+                    QuizController quizController = loader.getController();
+                    quizController.set_Title(selectedTopic);
 
-                stage.setScene(scene);
-                stage.show();
+                    stage.setScene(scene);
+                    stage.show();
+                }
             }
         }catch(Exception ex){
             ex.printStackTrace();
@@ -169,7 +171,6 @@ public class MenuController implements Initializable {
                 stage.show();
             }
         } catch (NullPointerException npe) {
-            npe.printStackTrace();
         }
     }
 }
