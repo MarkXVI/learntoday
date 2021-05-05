@@ -101,7 +101,7 @@ public class MenuController implements Initializable {
                 addTopics();
             }
         }
-        }catch(NullPointerException ex){ex.printStackTrace();}
+        }catch(NullPointerException ex){}
     }
 
     public void onQuizClick(ActionEvent actionEvent){
@@ -142,7 +142,7 @@ public class MenuController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             }
-        }catch(NullPointerException ex){ex.printStackTrace();}
+        }catch(NullPointerException ex){}
         }
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
