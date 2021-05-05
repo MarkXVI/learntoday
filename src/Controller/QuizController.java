@@ -69,7 +69,7 @@ public class QuizController implements Initializable {
             questionText.setText(question);
             questionNumber.setText((count + "/" + numberOfQuestions));
             questionIDs.remove(randomInt);
-        } catch (SQLException exception) {
+        } catch (Exception exception) {
             exception.printStackTrace();
         }
     }

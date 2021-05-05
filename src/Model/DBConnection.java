@@ -3,6 +3,9 @@ package Model;
 import java.sql.*;
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class DBConnection {
     private Connection connection;
     private String url = "jdbc:mysql://35.228.58.113:3306/learn2day?user=learn2dayApplication&password=ApplicationPassword";
@@ -40,7 +43,7 @@ public class DBConnection {
             statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO user VALUES ('" + username + "', '" + password + "', '" + FirstName + "', '" + LastName + "', '" + Teacher + "')"); // Puts the values into the user table in the database.
 
-        } catch (SQLException ex) {}
+        } catch (SQLException ex) {ex.printStackTrace();}
     }
 
     public void submitText(String topicName, String Text) {
@@ -49,7 +52,7 @@ public class DBConnection {
             preparedStatement.setString(1, Text);
             preparedStatement.setString(2, topicName);
             preparedStatement.executeUpdate();
-        } catch (SQLException ex) {}
+        } catch (SQLException ex) {ex.printStackTrace();}
     }
 
     public ArrayList<Object> getUserinfo(String username) {
@@ -63,7 +66,7 @@ public class DBConnection {
             user.add(resultSet.getString(3));
             user.add(resultSet.getString(4));
             user.add(resultSet.getInt(5));
-        } catch (SQLException ex) {}
+        } catch (SQLException ex) {ex.printStackTrace();}
         return user;
     }
 
@@ -73,9 +76,16 @@ public class DBConnection {
         preparedStatement.setString(1, topic);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
+            if (resultSet.getString(2) != null){
             subjects.add(resultSet.getString(1));
         }
+        }
         return subjects;
+    }
+
+    public boolean checkQuestionAmount() throws SQLException {
+        preparedStatement = connection.prepareStatement("SELECT COUNT(question) FROM question WHERE quiz_name = ?");
+        return true;
     }
 
     public ArrayList<Object> getTopics() throws SQLException {
@@ -106,8 +116,8 @@ public class DBConnection {
         return question;
     }
 
-    public ArrayList<String> getTable(String topic) throws SQLException { // temp
-        ArrayList<String> questions = new ArrayList<>();
+    public ObservableList<String> getTable(String topic) throws SQLException { // temp
+        ObservableList<String> questions = FXCollections.observableArrayList();
         preparedStatement = connection.prepareStatement("SELECT * FROM question WHERE quiz_name = ?");
         preparedStatement.setString(1, topic);
         resultSet = preparedStatement.executeQuery();

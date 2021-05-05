@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import net.bytebuddy.pool.TypePool;
 
 import java.io.IOException;
 import java.net.URL;
@@ -100,10 +101,10 @@ public class MenuController implements Initializable {
                 addTopics();
             }
         }
-        }catch(NullPointerException ex){}
+        }catch(NullPointerException ex){ex.printStackTrace();}
     }
 
-    public void onQuizClick(ActionEvent actionEvent) throws IOException, SQLException {
+    public void onQuizClick(ActionEvent actionEvent){
         try{
             String selectedTopic = TopicList.getSelectionModel().getSelectedItem().toString();
             if (subjects.contains(selectedTopic)) {
@@ -118,7 +119,9 @@ public class MenuController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             }
-        }catch(NullPointerException ex){}
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     public void onReadClick(ActionEvent actionEvent) throws IOException, SQLException {
@@ -137,7 +140,7 @@ public class MenuController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             }
-        }catch(NullPointerException ex){}
+        }catch(NullPointerException ex){ex.printStackTrace();}
         }
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
@@ -153,11 +156,11 @@ public class MenuController implements Initializable {
         try {
             String selectedItem = TopicList.getSelectionModel().getSelectedItem().toString();
             if (subjects.contains(selectedItem)) {
+                QuizStorage.getInstance().add_table(selectedItem);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/WriteScreen.fxml"));
                 Stage stage = (Stage) logoutButton.getScene().getWindow();
                 Scene scene = new Scene(loader.load());
                 scene.getStylesheets().add("View/Style.css");
-
                 WriteController writeController = loader.getController();
                 String text = database.getText(selectedItem);
                 writeController.setText(text, selectedItem);
@@ -166,6 +169,7 @@ public class MenuController implements Initializable {
                 stage.show();
             }
         } catch (NullPointerException npe) {
+            npe.printStackTrace();
         }
     }
 }

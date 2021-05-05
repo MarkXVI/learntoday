@@ -63,9 +63,9 @@ public class JUnitTest {
     @Test
     public void testGetTopics() throws SQLException {
         ArrayList<Object> topics;
-        topics = new DBConnection().getUserinfo("test");
+        topics = new DBConnection().getTopics();
         assertNotNull(topics);
-        assertEquals(topics.size(), 4);
+        assertEquals(topics.size(), 3);
     }
 
     @Test

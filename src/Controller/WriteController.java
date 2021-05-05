@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -44,8 +45,7 @@ public class WriteController implements Initializable {
     TableColumn colMultichoice;
     @FXML
     TableView tableQuestion;
-    ArrayList<String> tableList = QuizStorage.getInstance().getTable(topicNameText.getText());
-    ObservableList<String> questions = (ObservableList<String>) tableList;
+
 
     DBConnection database = ConnectionStorage.getInstance().getConnection();
 
@@ -54,15 +54,7 @@ public class WriteController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tableQuestion.setItems(questions);
-    }
-
-    public void setQuestionsTable() throws SQLException {
-        String topicName = topicNameText.getText();
-
-        questions = FXCollections.observableArrayList();
-        questions.addAll(QuizStorage.getInstance().getTable(topicName));
-        tableQuestion.setItems(questions);
+        tableQuestion.setItems(QuizStorage.getInstance().getTable());
     }
 
     public void setText(String text, String topic) {

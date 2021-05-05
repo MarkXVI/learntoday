@@ -1,12 +1,16 @@
 package Model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class QuizStorage {
     private final static QuizStorage quizStorage = new QuizStorage();
     private ArrayList<String> questionIDs = new ArrayList<>();
-    private ArrayList<String> table = new ArrayList<>(); // temp
+    private ObservableList<String> table = FXCollections.observableArrayList();
 
     public QuizStorage(){}
 
@@ -26,8 +30,11 @@ public class QuizStorage {
         return questionIDs;
     }
 
-    public ArrayList<String> getTable(String topic) throws SQLException { // temp
+    public void add_table(String topic) throws SQLException {
         table = new DBConnection().getTable(topic);
+    }
+
+    public ObservableList<String> getTable(){
         return table;
     }
 }
