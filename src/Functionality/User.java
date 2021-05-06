@@ -6,7 +6,12 @@ public class User {
     private String lastname;
     private int teacher; // Teacher is a TinyInt in SQL which is a 1 or a 0. Corresponding to true or false.
 
-    public User() {}
+    public User(String username, String firstName, String lastName, int teacher) {
+        this.username = username;
+        this.firstname = firstName;
+        this.lastname = lastName;
+        this.teacher = teacher;
+    }
 
     public String getUsername() {
         return username;
