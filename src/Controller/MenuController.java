@@ -2,10 +2,7 @@ package Controller;
 
 import Functionality.Logic;
 import Functionality.User;
-import Model.ConnectionStorage;
-import Model.DBConnection;
-import Model.QuizStorage;
-import Model.UserStorage;
+import Model.*;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -144,7 +141,9 @@ public class MenuController implements Initializable {
 
     public void onReadClick(ActionEvent actionEvent) throws IOException, SQLException {
         try {
-            String selectedItem = TopicList.getSelectionModel().getSelectedItem().toString();
+            TopicStorage.getInstance().setTopic(TopicList.getSelectionModel().getSelectedItem().toString());
+            String selectedItem = TopicStorage.getInstance().getTopic();
+
             if (topics.contains(selectedItem)) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ReadScreen.fxml"));
                 Stage stage = (Stage) readButton.getScene().getWindow();
