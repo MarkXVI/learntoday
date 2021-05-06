@@ -54,8 +54,8 @@ public class MenuController implements Initializable {
 
     UserStorage userStorage = UserStorage.getInstance();
     User user = userStorage.currentUser();
-    ArrayList<Object> topics;
     ArrayList<Object> subjects;
+    ArrayList<Object> topics;
 
     public MenuController() throws SQLException {
     }
@@ -68,11 +68,11 @@ public class MenuController implements Initializable {
         String LastName = user.getLastname();
         SignedInText.setText("Signed in as: " + FirstName + " " + LastName);
         try {
-            topics = database.getTopics();
+            subjects = database.getSubjects();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-        addTopics();
+        addSubjects();
     }
 
     public void checkUserType() {
@@ -85,9 +85,9 @@ public class MenuController implements Initializable {
         }
     }
 
-    public void addTopics(){
-        for(Object topic: topics){
-            TopicList.getItems().add(topic.toString());
+    public void addSubjects(){
+        for(Object subject: subjects){
+            TopicList.getItems().add(subject.toString());
         }
     }
 
@@ -95,17 +95,17 @@ public class MenuController implements Initializable {
         try{
         if (click.getClickCount() == 2){
             String currentItemSelected = TopicList.getSelectionModel().getSelectedItem().toString();
-            if(topics.contains(currentItemSelected)){
-                subjects = database.getSubjects(currentItemSelected);
+            if(subjects.contains(currentItemSelected)){
+                topics = database.getTopics(currentItemSelected);
                 TopicList.getItems().clear();
-                for(Object subject: subjects){
-                    TopicList.getItems().add(subject.toString());
+                for(Object topic: topics){
+                    TopicList.getItems().add(topic.toString());
                 }
                 TopicList.getItems().add("Go Back");
             }
             if (currentItemSelected.equals("Go Back")){
                 TopicList.getItems().clear();
-                addTopics();
+                addSubjects();
             }
         }
         }catch(NullPointerException ex){}
@@ -123,7 +123,7 @@ public class MenuController implements Initializable {
     public void onQuizClick(ActionEvent actionEvent){
         try{
             String selectedTopic = TopicList.getSelectionModel().getSelectedItem().toString();
-            if (subjects.contains(selectedTopic)) {
+            if (topics.contains(selectedTopic)) {
                 if (Logic.checkSufficientQuestions(selectedTopic)){
                     QuizStorage.getInstance().add_questions(selectedTopic);
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizLayout.fxml"));
@@ -145,7 +145,7 @@ public class MenuController implements Initializable {
     public void onReadClick(ActionEvent actionEvent) throws IOException, SQLException {
         try {
             String selectedItem = TopicList.getSelectionModel().getSelectedItem().toString();
-            if (subjects.contains(selectedItem)) {
+            if (topics.contains(selectedItem)) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ReadScreen.fxml"));
                 Stage stage = (Stage) readButton.getScene().getWindow();
                 Scene scene = new Scene(loader.load());
@@ -175,7 +175,7 @@ public class MenuController implements Initializable {
     public void onEditClick(ActionEvent actionEvent) throws IOException, SQLException {
         try {
             String selectedItem = TopicList.getSelectionModel().getSelectedItem().toString();
-            if (subjects.contains(selectedItem)) {
+            if (topics.contains(selectedItem)) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/WriteScreen.fxml"));
                 Stage stage = (Stage) logoutButton.getScene().getWindow();
                 Scene scene = new Scene(loader.load());
@@ -195,7 +195,7 @@ public class MenuController implements Initializable {
     public void onEditQuestion(){
         try{
             String selectedItem = TopicList.getSelectionModel().getSelectedItem().toString();
-            if (subjects.contains(selectedItem)) {
+            if (topics.contains(selectedItem)) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizEditor.fxml"));
                 Stage stage = (Stage) logoutButton.getScene().getWindow();
                 Scene scene = new Scene(loader.load());

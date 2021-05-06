@@ -67,7 +67,7 @@ public class DBConnection {
         return user;
     }
 
-    public ArrayList<Object> getSubjects(String topic) throws SQLException {
+    public ArrayList<Object> getTopics(String topic) throws SQLException {
         ArrayList<Object> subjects = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM quiz WHERE topic_name = ?");
         preparedStatement.setString(1, topic);
@@ -86,7 +86,7 @@ public class DBConnection {
         return resultSet.getInt(1);
     }
 
-    public ArrayList<Object> getTopics() throws SQLException {
+    public ArrayList<Object> getSubjects() throws SQLException {
         ArrayList<Object> topics = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM topic");
         resultSet = preparedStatement.executeQuery();

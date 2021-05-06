@@ -52,15 +52,15 @@ public class JUnitTest {
     }
 
     @Test
-    public void testGetSubjects() throws SQLException {
-        ArrayList<Object> subjects = new DBConnection().getSubjects("test");
+    public void testGetTopics() throws SQLException {
+        ArrayList<Object> subjects = new DBConnection().getTopics("test");
         assertNotNull(subjects);
         assertEquals(subjects.size(), 0);
     }
 
     @Test
-    public void testGetTopics() throws SQLException {
-        ArrayList<Object> topics = new DBConnection().getUserinfo("test");
+    public void testGetSubjects() throws SQLException {
+        ArrayList<Object> topics = new DBConnection().getSubjects();
         assertNotNull(topics);
         assertEquals(topics.size(), 4);
     }
