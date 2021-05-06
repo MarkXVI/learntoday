@@ -88,8 +88,10 @@ public class DBConnection {
         preparedStatement = connection.prepareStatement("SELECT text FROM quiz WHERE name = ?");
         preparedStatement.setString(1, topic);
         resultSet = preparedStatement.executeQuery();
-        resultSet.next();
-        String text = resultSet.getString(1);
+        String text = null;
+        while (resultSet.next()) {
+            text = resultSet.getString(1);
+        }
         return text;
     }
 
@@ -97,9 +99,10 @@ public class DBConnection {
         preparedStatement = connection.prepareStatement("SELECT question FROM question WHERE questionID = ?");
         preparedStatement.setString(1, questionID);
         resultSet = preparedStatement.executeQuery();
-        resultSet.next();
-        String question = resultSet.getString(1);
-
+        String question = null;
+        while (resultSet.next()) {
+            question = resultSet.getString(1);
+        }
         return question;
     }
 
@@ -137,10 +140,7 @@ public class DBConnection {
                 resultSet.close();
             }
         } catch (SQLException ex) {
-            System.out.println("failed to disconnect!");
+            System.out.println("Failed to disconnect!");
         }
     }
-
-
-
 }
