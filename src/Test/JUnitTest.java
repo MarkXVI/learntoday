@@ -46,42 +46,47 @@ public class JUnitTest {
 
     @Test
     public void testGetUserInfo() throws SQLException {
-        ArrayList<Object> user;
-        user = new DBConnection().getUserinfo("test");
+        ArrayList<Object> user = new DBConnection().getUserinfo("test");
         assertNotNull(user);
         assertEquals(user.size(), 4);
     }
 
     @Test
     public void testGetSubjects() throws SQLException {
-        ArrayList<Object> subjects;
-        subjects = new DBConnection().getSubjects("test");
+        ArrayList<Object> subjects = new DBConnection().getSubjects("test");
         assertNotNull(subjects);
         assertEquals(subjects.size(), 0);
     }
 
     @Test
     public void testGetTopics() throws SQLException {
-        ArrayList<Object> topics;
-        topics = new DBConnection().getTopics();
+        ArrayList<Object> topics = new DBConnection().getUserinfo("test");
         assertNotNull(topics);
-        assertEquals(topics.size(), 3);
+        assertEquals(topics.size(), 4);
     }
 
     @Test
     public void testGetQuestionIDs() throws SQLException {
-        ArrayList<String> questionIDs;
-        questionIDs = new DBConnection().getQuestionIDs("test");
+        ArrayList<String> questionIDs = new DBConnection().getQuestionIDs("test");
         assertNotNull(questionIDs);
         assertEquals(questionIDs.size(), 0);
     }
 
     @Test
     public void testGetAlternatives() throws SQLException {
-        ArrayList<String> alternatives;
-        alternatives = new DBConnection().getAlternatives("test");
+        ArrayList<String> alternatives = new DBConnection().getAlternatives("test");
         assertNotNull(alternatives);
         assertEquals(alternatives.size(), 0);
+    }
+
+    @Test
+    public void testGetText() throws SQLException {
+        assertNotNull(new DBConnection().getText("World War 2"));
+    }
+
+    @Test
+    public void testGetQuestion() throws SQLException {
+        assertNotNull(new DBConnection().getQuestion("1"));
     }
 
     @After
