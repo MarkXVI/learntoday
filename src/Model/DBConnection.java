@@ -1,11 +1,7 @@
 package Model;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.util.ArrayList;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class DBConnection {
     private Connection connection;
@@ -116,20 +112,6 @@ public class DBConnection {
         String question = resultSet.getString(1);
 
         return question;
-    }
-
-    public ObservableList<Object> getTable(String topic) throws SQLException { // temp
-        ObservableList<Object> questions = FXCollections.observableArrayList();
-        preparedStatement = connection.prepareStatement("SELECT * FROM question WHERE quiz_name = ?");
-        preparedStatement.setString(1, topic);
-        resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            questions.add(resultSet.getString(1));
-            questions.add(resultSet.getString(2));
-            questions.add(resultSet.getInt(3));
-            questions.add(resultSet.getInt(4));
-        }
-        return questions;
     }
 
     public ArrayList<String> getQuestionIDs(String topic) throws SQLException {

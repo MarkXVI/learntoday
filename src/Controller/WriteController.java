@@ -2,16 +2,12 @@ package Controller;
 
 import Model.ConnectionStorage;
 import Model.DBConnection;
-import Model.QuizStorage;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -27,23 +23,9 @@ public class WriteController implements Initializable {
     @FXML
     Button homeButton;
     @FXML
-    Button submitQuestionButton;
-    @FXML
     private TextArea infoText;
     @FXML
     Text topicNameText;
-    @FXML
-    TableColumn colQuestion;
-    @FXML
-    TableColumn colQuizName;
-    @FXML
-    TableColumn colQuestionID;
-    @FXML
-    TableColumn colMultichoice;
-    @FXML
-    TableView tableQuestion;
-
-    ObservableList<Object> table = QuizStorage.getInstance().getTable();
 
     DBConnection database = ConnectionStorage.getInstance().getConnection();
 
@@ -52,12 +34,6 @@ public class WriteController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(table);
-        tableQuestion.setItems(table);
-    }
-
-    public void addRow() {
-
     }
 
     public void setText(String text, String topic) {
@@ -75,12 +51,6 @@ public class WriteController implements Initializable {
     }
 
     public void onSubmitClick(ActionEvent actionEvent) {
-        String topicName = topicNameText.getText();
-        String text = infoText.getText();
-        database.submitText(topicName, text);
-    }
-
-    public void onSubmitQuestionClick(ActionEvent actionEvent) {
         String topicName = topicNameText.getText();
         String text = infoText.getText();
         database.submitText(topicName, text);
