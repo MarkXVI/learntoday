@@ -4,6 +4,7 @@ import Functionality.User;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.UserStorage;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +12,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -28,6 +31,8 @@ public class LoginController {
     TextField userInput;
     @FXML
     TextField passwordInput;
+    @FXML
+    Pane msgError;
 
     User user;
 
@@ -61,9 +66,12 @@ public class LoginController {
             stage.setResizable(false);
             stage.show();
         } else {
+            msgError.setVisible(true);
+            FadeTransition ft = new FadeTransition(Duration.seconds(6), msgError);
+            ft.setFromValue(1);
+            ft.setToValue(0);
+            ft.play();
             passwordInput.clear();
-            passwordInput.promptTextProperty().setValue("Wrong Password!");
-            passwordInput.setStyle("-fx-prompt-text-fill: Red");
         }
     }
 

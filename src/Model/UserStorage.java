@@ -11,7 +11,5 @@ public class UserStorage {
 
     private User user = new User();
 
-    public User currentUser() {
-        return user;
-    }
+    public User currentUser() {return user;}
 }

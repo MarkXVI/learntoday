@@ -45,3 +45,6 @@
     -fx-text-fill: gray;
     -fx-highlight-fill: #7ecfff;
 }
+.menu-bar {
+    -fx-background-color: #ffffff;
+}

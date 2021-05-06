@@ -2,10 +2,14 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -15,7 +19,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
    <Rectangle arcHeight="50.0" arcWidth="50.0" height="645.0" layoutX="52.0" layoutY="54.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="826.0">
       <effect>
          <Shadow height="70.11" radius="34.1375" width="68.44">
@@ -76,6 +80,17 @@
                <Font size="14.0" />
             </font>
          </Text>
+         <TextFlow fx:id="teacherInfo" accessibleText="dsdsd" prefHeight="171.0" prefWidth="354.0">
+            <children>
+               <Separator prefHeight="5.0" prefWidth="354.0" />
+               <Text fill="#da5858" strokeType="OUTSIDE" strokeWidth="0.0" text="&#10;Teacher features:&#10;&#10;Menu Bar:" wrappingWidth="318.052734375">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Text>
+               <Text fill="#da5858" strokeType="OUTSIDE" strokeWidth="0.0" text="&#10;&#10;Edit &gt; Edit Selected Topic&#10;Must have selected a topic in &quot;Topics&quot; in order to edit the existing text.&#10;&#10;Help &gt; About&#10;Does nothing." wrappingWidth="318.052734375" />
+            </children>
+         </TextFlow>
       </TextFlow>
    </VBox>
    <HBox alignment="CENTER" layoutX="308.0" layoutY="48.0" prefHeight="47.0" prefWidth="284.0" spacing="10.0">
@@ -112,4 +127,25 @@
          </LinearGradient>
       </fill>
    </Text>
+   <MenuBar fx:id="editBar" layoutY="2.0">
+     <menus>
+       <Menu mnemonicParsing="false" text="Edit">
+         <items>
+           <MenuItem fx:id="editItem" mnemonicParsing="false" onAction="#onEditClick" text="Edit Selected Topic" />
+               <MenuItem fx:id="editItem1" mnemonicParsing="false" onAction="#onEditQuestion" text="Add Question" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Help">
+         <items>
+           <MenuItem mnemonicParsing="false" text="About" />
+         </items>
+       </Menu>
+     </menus>
+   </MenuBar>
+   <Pane fx:id="msgError" focusTraversable="true" layoutX="529.0" layoutY="571.0" prefHeight="59.0" prefWidth="248.0" visible="false">
+      <children>
+         <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#ffaeae" height="53.0" layoutX="-19.0" layoutY="-6.0" stroke="#ffffff00" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0" strokeWidth="4.0" width="294.0" />
+         <Text fx:id="errorText" fill="#ff3232" layoutX="15.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="226.693359375" />
+      </children>
+   </Pane>
 </AnchorPane>

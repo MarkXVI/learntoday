@@ -17,7 +17,12 @@ public class QuizStorage {
         questionIDs = new DBConnection().getQuestionIDs(topic);
     }
 
+    public int count_questions(){
+        return questionIDs.size();
+    }
+
     public ArrayList<String> get_questionIDs() {
         return questionIDs;
     }
+
 }
