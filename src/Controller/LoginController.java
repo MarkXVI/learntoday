@@ -51,10 +51,7 @@ public class LoginController {
             String LastName = User.get(2).toString();
             int AccountType = (int) User.get(3);
             UserStorage userStorage = UserStorage.getInstance();
-            userStorage.currentUser().setFirstname(FirstName);
-            userStorage.currentUser().setLastname(LastName);
-            userStorage.currentUser().setUsername(Username);
-            userStorage.currentUser().setTeacher(AccountType);
+            userStorage.createUser(Username, FirstName, LastName, AccountType);
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml")); // ↓↓↓↓ Switches scene to Main Menu Screen.
             Parent root = loader.load();
