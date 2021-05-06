@@ -10,7 +10,7 @@ public class UserStorage {
         return instance;
     }
 
-    public static void createUser(String username, String firstName, String lastName, int teacher){
+    public void createUser(String username, String firstName, String lastName, int teacher){
         user = new User(username, firstName, lastName, teacher);
     }
 
