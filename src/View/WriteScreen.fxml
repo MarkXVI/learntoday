@@ -6,6 +6,7 @@
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
@@ -13,7 +14,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.layout.Pane?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.WriteController">
     <Rectangle arcHeight="50.0" arcWidth="50.0" height="702.0" layoutX="22.0" layoutY="16.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="870.0">
         <effect>
@@ -43,7 +43,7 @@
         </fill>
     </Rectangle>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="582.0" layoutX="38.0" layoutY="74.0" stroke="WHITE" strokeType="INSIDE" style="-fx-arc-height: 25; -fx-arc-width: 25;" width="819.0" />
-    <Button fx:id="submitButton" layoutX="51.0" layoutY="667.0" mnemonicParsing="false" onAction="#onSubmitClick" style="-fx-background-color: white;" text="Submit Text" />
+    <Button fx:id="submitButton" layoutX="51.0" layoutY="667.0" mnemonicParsing="false" onAction="#showPane" style="-fx-background-color: white;" text="Submit Text" />
     <TextArea fx:id="infoText" layoutX="51.0" layoutY="86.0" pickOnBounds="false" prefHeight="559.0" prefWidth="792.0" wrapText="true">
         <font>
           <Font size="18.0" />
@@ -68,55 +68,46 @@
       </children>
    </HBox>
     <Pane fx:id="confirmPane" layoutX="316.0" layoutY="262.0" prefHeight="200.0" prefWidth="270.0" visible="false">
-        <Rectangle arcHeight="50.0" arcWidth="50.0" height="151.0" layoutX="16.0" layoutY="14.0" stroke="WHITE"
-                   strokeType="INSIDE" strokeWidth="4.0" width="270.0">
+        <Rectangle arcHeight="50.0" arcWidth="50.0" height="151.0" layoutX="16.0" layoutY="14.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="270.0">
             <effect>
                 <Shadow height="70.11" radius="34.1375" width="68.44">
                     <color>
-                        <Color opacity="0.30000001192092896"/>
+                        <Color opacity="0.30000001192092896" />
                     </color>
                 </Shadow>
             </effect>
         </Rectangle>
-        <Rectangle arcHeight="50.0" arcWidth="50.0" height="151.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0"
-                   width="270.0">
+        <Rectangle arcHeight="50.0" arcWidth="50.0" height="151.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="270.0">
             <fill>
                 <LinearGradient endY="0.9857142857142859" startX="1.0" startY="0.033333333333333326">
                     <stops>
                         <Stop>
                             <color>
-                                <Color red="0.11764705926179886" green="0.5647059082984924" blue="1.0"/>
+                                <Color red="0.11764705926179886" green="0.5647059082984924" blue="1.0" />
                             </color>
                         </Stop>
                         <Stop offset="1.0">
                             <color>
-                                <Color red="0.2980392277240753" green="0.6705882549285889" blue="1.0"/>
+                                <Color red="0.2980392277240753" green="0.6705882549285889" blue="1.0" />
                             </color>
                         </Stop>
                     </stops>
                 </LinearGradient>
             </fill>
         </Rectangle>
-        <Text fill="WHITE" layoutX="43.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0"
-              text="Are you sure you want to submit this text?" textAlignment="CENTER" wrappingWidth="184.31640625">
+        <Text fill="WHITE" layoutX="43.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Are you sure you want to submit this text?" textAlignment="CENTER" wrappingWidth="184.31640625">
             <font>
-                <Font name="System Bold" size="20.0"/>
+                <Font name="System Bold" size="20.0" />
             </font>
         </Text>
-        <Button layoutX="16.0" layoutY="110.0" mnemonicParsing="false" onAction="#onSubmitClick"
-                prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: white;" text="Yes"/>
-        <Button layoutX="151.0" layoutY="110.0" mnemonicParsing="false" onAction="#hidePane"
-                prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: white;" text="No"/>
+        <Button layoutX="16.0" layoutY="110.0" mnemonicParsing="false" onAction="#onSubmitClick" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: white;" text="Yes" />
+        <Button layoutX="151.0" layoutY="110.0" mnemonicParsing="false" onAction="#hidePane" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: white;" text="No" />
     </Pane>
-    <Pane fx:id="msgError" focusTraversable="true" layoutX="323.0" layoutY="650.0" prefHeight="59.0" prefWidth="248.0"
-          visible="false">
-        <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#caffc4" height="39.0" layoutX="-4.0" stroke="#ffffff00"
-                   strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0"
-                   strokeWidth="4.0" width="260.0"/>
-        <Text fill="#3fe469" layoutX="36.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text submitted!"
-              textAlignment="CENTER" wrappingWidth="184.31640625">
+    <Pane fx:id="msgError" focusTraversable="true" layoutX="323.0" layoutY="650.0" prefHeight="59.0" prefWidth="248.0" visible="false">
+        <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#caffc4" height="39.0" layoutX="-4.0" stroke="#ffffff00" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0" strokeWidth="4.0" width="260.0" />
+        <Text fill="#3fe469" layoutX="36.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text submitted!" textAlignment="CENTER" wrappingWidth="184.31640625">
             <font>
-                <Font size="18.0"/>
+                <Font size="18.0" />
             </font>
         </Text>
     </Pane>
