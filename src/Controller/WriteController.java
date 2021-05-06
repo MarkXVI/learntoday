@@ -2,6 +2,7 @@ package Controller;
 
 import Model.ConnectionStorage;
 import Model.DBConnection;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,8 +10,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +29,10 @@ public class WriteController implements Initializable {
     private TextArea infoText;
     @FXML
     Text topicNameText;
+    @FXML
+    Pane confirmPane;
+    @FXML
+    Pane msgError;
 
     DBConnection database = ConnectionStorage.getInstance().getConnection();
 
@@ -54,5 +61,23 @@ public class WriteController implements Initializable {
         String topicName = topicNameText.getText();
         String text = infoText.getText();
         database.submitText(topicName, text);
+        submitNotification();
+        confirmPane.setVisible(false);
+    }
+
+    public void showPane(ActionEvent actionEvent) {
+        confirmPane.setVisible(true);
+    }
+
+    public void hidePane(ActionEvent actionEvent) {
+        confirmPane.setVisible(false);
+    }
+
+    public void submitNotification(){
+        msgError.setVisible(true);
+        FadeTransition ft = new FadeTransition(Duration.seconds(6), msgError);
+        ft.setFromValue(1);
+        ft.setToValue(0);
+        ft.play();
     }
 }

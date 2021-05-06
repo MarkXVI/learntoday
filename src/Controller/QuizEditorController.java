@@ -2,7 +2,7 @@ package Controller;
 
 import Model.ConnectionStorage;
 import Model.DBConnection;
-import Model.QuizStorage;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,15 +10,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 
@@ -27,7 +26,7 @@ public class QuizEditorController implements Initializable {
     @FXML
     TextField inputQuestion;
     @FXML
-    TextField inputAlt1; //correct answer
+    TextField inputAlt1;
     @FXML
     TextField inputAlt2;
     @FXML
@@ -38,6 +37,10 @@ public class QuizEditorController implements Initializable {
     Text topicTitle;
     @FXML
     Button homeButton;
+    @FXML
+    Pane confirmPane;
+    @FXML
+    Pane msgError;
 
     public QuizEditorController() throws SQLException {
     }
@@ -55,10 +58,13 @@ public class QuizEditorController implements Initializable {
 
         database.addQuestion(question, topicTitle.getText());
 
-        database.addAlt(answer1, 1, question);
+        database.addAlt(answer1, 1, question); //correct answer
         database.addAlt(answer2, 0, question);
         database.addAlt(answer3, 0, question);
         database.addAlt(answer4, 0, question);
+
+        confirmPane.setVisible(false);
+        submitNotification();
     }
 
     public void onHomeClick(ActionEvent actionEvent) throws IOException {
@@ -72,6 +78,22 @@ public class QuizEditorController implements Initializable {
 
     public void setText(String topic){
         topicTitle.setText(topic);
+    }
+
+    public void showPane(ActionEvent actionEvent) {
+        confirmPane.setVisible(true);
+    }
+
+    public void hidePane(ActionEvent actionEvent) {
+        confirmPane.setVisible(false);
+    }
+
+    public void submitNotification(){
+        msgError.setVisible(true);
+        FadeTransition ft = new FadeTransition(Duration.seconds(6), msgError);
+        ft.setFromValue(1);
+        ft.setToValue(0);
+        ft.play();
     }
 
 }
