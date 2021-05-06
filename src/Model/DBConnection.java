@@ -2,6 +2,7 @@ package Model;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DBConnection {
     private Connection connection;
@@ -14,7 +15,7 @@ public class DBConnection {
         connection = DriverManager.getConnection(url);
     }
 
-    public Connection getDBConnection() {
+    public Connection getDBConnection() throws SQLException {
         return connection;
     }
 
@@ -40,16 +41,9 @@ public class DBConnection {
             statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO user VALUES ('" + username + "', '" + password + "', '" + FirstName + "', '" + LastName + "', '" + Teacher + "')"); // Puts the values into the user table in the database.
 
-        } catch (SQLException ex) {ex.printStackTrace();}
-    }
-
-    public void submitText(String topicName, String Text) {
-        try {
-            preparedStatement = connection.prepareStatement("UPDATE quiz SET text = ? WHERE name = ?");
-            preparedStatement.setString(1, Text);
-            preparedStatement.setString(2, topicName);
-            preparedStatement.executeUpdate();
-        } catch (SQLException ex) {ex.printStackTrace();}
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
 
     public ArrayList<Object> getUserinfo(String username) {
@@ -63,7 +57,9 @@ public class DBConnection {
             user.add(resultSet.getString(3));
             user.add(resultSet.getString(4));
             user.add(resultSet.getInt(5));
-        } catch (SQLException ex) {ex.printStackTrace();}
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
         return user;
     }
 
@@ -76,14 +72,6 @@ public class DBConnection {
             subjects.add(resultSet.getString(1));
         }
         return subjects;
-    }
-
-    public int checkQuestionAmount(String quiz_name) throws SQLException {
-        preparedStatement = connection.prepareStatement("SELECT COUNT(question) FROM question WHERE quiz_name = ?");
-        preparedStatement.setString(1, quiz_name);
-        resultSet = preparedStatement.executeQuery();
-        resultSet.next();
-        return resultSet.getInt(1);
     }
 
     public ArrayList<Object> getTopics() throws SQLException {
@@ -100,17 +88,21 @@ public class DBConnection {
         preparedStatement = connection.prepareStatement("SELECT text FROM quiz WHERE name = ?");
         preparedStatement.setString(1, topic);
         resultSet = preparedStatement.executeQuery();
-        resultSet.next();
-        return resultSet.getString(1);
+        String text = null;
+        while (resultSet.next()) {
+            text = resultSet.getString(1);
+        }
+        return text;
     }
 
     public String getQuestion(String questionID) throws SQLException {
         preparedStatement = connection.prepareStatement("SELECT question FROM question WHERE questionID = ?");
         preparedStatement.setString(1, questionID);
         resultSet = preparedStatement.executeQuery();
-        resultSet.next();
-        String question = resultSet.getString(1);
-
+        String question = null;
+        while (resultSet.next()) {
+            question = resultSet.getString(1);
+        }
         return question;
     }
 
@@ -136,42 +128,6 @@ public class DBConnection {
         return alternatives;
     }
 
-    public boolean checkAnswer(String answer) throws SQLException {
-        preparedStatement = connection.prepareStatement("SELECT correct FROM alternative WHERE choice = ?");
-        preparedStatement.setString(1, answer);
-        resultSet = preparedStatement.executeQuery();
-        resultSet.next();
-        return resultSet.getInt(1) == 1;
-    }
-
-    public void addQuestion(String question, String topic) {
-        try {
-            preparedStatement = connection.prepareStatement("INSERT INTO question (question, quiz_name) VALUES (?,?)");
-            preparedStatement.setString(1, question);
-            preparedStatement.setString(2, topic);
-            preparedStatement.executeUpdate();
-
-        } catch (Exception ex) {}
-    }
-
-    public void addAlt(String choice, int correct, String question) throws SQLException {
-        preparedStatement = connection.prepareStatement("SELECT questionID from question WHERE question = ?");
-        preparedStatement.setString(1, question);
-        resultSet = preparedStatement.executeQuery();
-        resultSet.next();
-        int questionID = resultSet.getInt(1);
-
-        try{
-        preparedStatement = connection.prepareStatement("INSERT INTO alternative VALUES (?,?,?)");
-        preparedStatement.setString(1, choice);
-        preparedStatement.setInt(2, correct);
-        preparedStatement.setInt(3, questionID);
-        preparedStatement.executeUpdate();
-        }catch(SQLIntegrityConstraintViolationException ex){
-
-        }
-    }
-
     public void disconnect(){ // Disconnects from the database
         try {
             if (connection!=null) {
@@ -184,10 +140,7 @@ public class DBConnection {
                 resultSet.close();
             }
         } catch (SQLException ex) {
-            System.out.println("failed to disconnect!");
+            System.out.println("Failed to disconnect!");
         }
     }
-
-
-
 }
