@@ -81,12 +81,12 @@ public class JUnitTest {
 
     @Test
     public void testGetText() throws SQLException {
-        assertNotNull(new DBConnection().getText("test"));
+        assertNotNull(new DBConnection().getText("World War 2"));
     }
 
     @Test
     public void testGetQuestion() throws SQLException {
-        assertNotNull(new DBConnection().getQuestion("test"));
+        assertNotNull(new DBConnection().getQuestion("1"));
     }
 
     @After
