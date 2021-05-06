@@ -176,7 +176,6 @@ public class MenuController implements Initializable {
         try {
             String selectedItem = TopicList.getSelectionModel().getSelectedItem().toString();
             if (subjects.contains(selectedItem)) {
-                QuizStorage.getInstance().add_table(selectedItem);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/WriteScreen.fxml"));
                 Stage stage = (Stage) logoutButton.getScene().getWindow();
                 Scene scene = new Scene(loader.load());
