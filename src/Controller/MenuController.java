@@ -135,6 +135,7 @@ public class MenuController implements Initializable {
                 }
             }
         }catch(Exception ex){
+            ex.printStackTrace();
             errorChange("There are currently no questions for this quiz!");
         }
     }
