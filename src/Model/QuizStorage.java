@@ -4,17 +4,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class QuizStorage {
-    private final static QuizStorage quizStorage = new QuizStorage();
+    private static QuizStorage quizStorage = null;
     private ArrayList<String> questionIDs = new ArrayList<>();
+    DBConnection database = new ConnectionStorage().getConnection();
 
-    public QuizStorage(){}
+    public QuizStorage() throws SQLException {
+        quizStorage = new QuizStorage();
+    }
 
     public static QuizStorage getInstance() {
         return quizStorage;
     }
 
     public void add_questions(String topic) throws SQLException {
-        questionIDs = new DBConnection().getQuestionIDs(topic);
+        questionIDs = database.getQuestionIDs(topic);
     }
 
     public int count_questions(){
