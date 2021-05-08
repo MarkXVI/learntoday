@@ -4,12 +4,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class QuizStorage {
-    private static QuizStorage quizStorage = null;
+    private static QuizStorage quizStorage;
+
+    static {
+        try {
+            quizStorage = quizStorage = new QuizStorage();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
     private ArrayList<String> questionIDs = new ArrayList<>();
     DBConnection database = new ConnectionStorage().getConnection();
 
     public QuizStorage() throws SQLException {
-        quizStorage = new QuizStorage();
     }
 
     public static QuizStorage getInstance() {
