@@ -26,16 +26,16 @@ public class databaseTest {
 
     @Test
     public void testGetTopics() throws SQLException {
-        ArrayList<Object> subjects = connection.getTopics("test");
-        assertNotNull(subjects);
-        assertEquals(subjects.size(), 0);
+        ArrayList<Object> topics = connection.getTopics("test");
+        assertNotNull(topics);
+        assertEquals(topics.size(), 0);
     }
 
     @Test
     public void testGetSubjects() throws SQLException {
-        ArrayList<Object> topics = connection.getSubjects();
-        assertNotNull(topics);
-        assertEquals(topics.size(), 3);
+        ArrayList<Object> subjects = connection.getSubjects();
+        assertNotNull(subjects);
+        assertEquals(subjects.size(), 3);
     }
 
     @Test
@@ -63,7 +63,7 @@ public class databaseTest {
     }
 
     @After
-    public void after() throws SQLException {
+    public void after(){
         connection.disconnect();
     }
 }
