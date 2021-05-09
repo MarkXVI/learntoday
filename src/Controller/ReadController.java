@@ -2,7 +2,6 @@ package Controller;
 
 import Functionality.Logic;
 import Model.QuizStorage;
-import Model.TopicStorage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,7 +49,7 @@ public class ReadController implements Initializable {
 
     public void onQuizClick(ActionEvent actionEvent) throws IOException {
         try {
-            String selectedTopic = TopicStorage.getInstance().getTopic();
+            String selectedTopic = QuizStorage.getInstance().getTopic();
 
             if (Logic.checkSufficientQuestions(selectedTopic)){
                 QuizStorage.getInstance().add_questions(selectedTopic);

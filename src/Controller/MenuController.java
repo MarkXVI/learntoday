@@ -142,8 +142,8 @@ public class MenuController implements Initializable {
 
     public void onReadClick(ActionEvent actionEvent) throws IOException, SQLException {
         try {
-            TopicStorage.getInstance().setTopic(TopicList.getSelectionModel().getSelectedItem().toString());
-            String selectedItem = TopicStorage.getInstance().getTopic();
+            QuizStorage.getInstance().setTopic(TopicList.getSelectionModel().getSelectedItem().toString());
+            String selectedItem = QuizStorage.getInstance().getTopic();
 
             if (topics.contains(selectedItem)) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ReadScreen.fxml"));
