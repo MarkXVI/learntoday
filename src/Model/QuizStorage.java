@@ -16,6 +16,8 @@ public class QuizStorage {
     private ArrayList<String> questionIDs = new ArrayList<>();
     DBConnection database = new ConnectionStorage().getConnection();
     private String topic;
+    private int points = 0;
+    private int questions = 0;
 
     public QuizStorage() throws SQLException {
     }
@@ -26,6 +28,7 @@ public class QuizStorage {
 
     public void add_questions(String topic) throws SQLException {
         questionIDs = database.getQuestionIDs(topic);
+        questions = questionIDs.size();
     }
 
     public int count_questions(){
@@ -42,5 +45,21 @@ public class QuizStorage {
 
     public void setTopic(String topic) {
         this.topic = topic;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void addPoint() {
+        points++;
+    }
+
+    public void resetPoints() {
+        points = 0;
+    }
+
+    public int getQuestions() {
+        return questions;
     }
 }
