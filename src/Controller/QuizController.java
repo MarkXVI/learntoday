@@ -48,7 +48,7 @@ public class QuizController implements Initializable {
     static int count = 1;
     ArrayList<String> alternatives = new ArrayList<>();
     ArrayList<String> questionIDs = QuizStorage.getInstance().get_questionIDs();
-    static int numberOfQuestions = QuizStorage.getInstance().count_questions();
+    int numberOfQuestions = QuizStorage.getInstance().getQuestions();
     String question;
     Random rand = new Random();
 

@@ -8,7 +8,7 @@ public class QuizStorage {
 
     static {
         try {
-            quizStorage = quizStorage = new QuizStorage();
+            quizStorage = new QuizStorage();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
