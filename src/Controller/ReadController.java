@@ -1,6 +1,8 @@
 package Controller;
 
 import Functionality.Logic;
+import Model.ConnectionStorage;
+import Model.DBConnection;
 import Model.QuizStorage;
 import Model.TopicStorage;
 import javafx.event.ActionEvent;
@@ -19,6 +21,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ReadController implements Initializable {
+    DBConnection database = ConnectionStorage.getInstance().getConnection();
     @FXML
     Button ttsButton;
     @FXML
@@ -29,6 +32,9 @@ public class ReadController implements Initializable {
     private TextArea infoText;
     @FXML
     private Text topicText;
+
+    public ReadController() throws SQLException {
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -54,7 +60,11 @@ public class ReadController implements Initializable {
 
             if (Logic.checkSufficientQuestions(selectedTopic)){
                 QuizStorage.getInstance().add_questions(selectedTopic);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizLayout.fxml"));
+                String URL;
+                QuizStorage.getInstance().QuizShuffle();
+                if(database.getQuestionType(QuizStorage.getInstance().get_questionIDs().get(0)).equals("MC")) { URL = "../View/QuizMultipleChoice.fxml";} else {URL = "../View/QuizTrueOrFalse.fxml";}
+                System.out.println(URL);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(URL));
                 Stage stage = (Stage) quizButton.getScene().getWindow();
                 Scene scene = new Scene(loader.load());
                 scene.getStylesheets().add("View/Style.css");

@@ -114,6 +114,16 @@ public class DBConnection {
         return question;
     }
 
+    public String getQuestionType(String questionID) throws SQLException {
+        preparedStatement = connection.prepareStatement("SELECT question_type FROM question WHERE questionID = ?");
+        preparedStatement.setString(1, questionID);
+        resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        String question_type = resultSet.getString(1);
+
+        return question_type;
+    }
+
     public ArrayList<String> getQuestionIDs(String topic) throws SQLException {
         ArrayList<String> questionIDs = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT questionID FROM question WHERE quiz_name = ?");

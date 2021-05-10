@@ -2,6 +2,7 @@ package Model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class QuizStorage {
     private final static QuizStorage quizStorage = new QuizStorage();
@@ -22,6 +23,11 @@ public class QuizStorage {
     }
 
     public ArrayList<String> get_questionIDs() {
+        return questionIDs;
+    }
+
+    public ArrayList QuizShuffle() {
+        Collections.shuffle(questionIDs);
         return questionIDs;
     }
 

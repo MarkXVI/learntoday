@@ -17,7 +17,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 
@@ -29,9 +28,9 @@ public class QuizController implements Initializable {
     @FXML
     private Text topicTitle;
     @FXML
-    Button alternative1;
+    Button alternative1; //True
     @FXML
-    Button alternative2;
+    Button alternative2; //False
     @FXML
     Button alternative3;
     @FXML
@@ -49,26 +48,33 @@ public class QuizController implements Initializable {
     ArrayList<String> alternatives = new ArrayList<>();
     ArrayList<String> questionIDs = QuizStorage.getInstance().get_questionIDs();
     static int numberOfQuestions = QuizStorage.getInstance().count_questions();
+    ArrayList quizQue = questionIDs;
     String question;
-    Random rand = new Random();
+    String questionType;
+
 
     public QuizController() throws SQLException {
+
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            int randomInt = rand.nextInt(questionIDs.size());
-            question = database.getQuestion(questionIDs.get(randomInt));
-            alternatives = database.getAlternatives(questionIDs.get(randomInt));
-            Collections.shuffle(alternatives);
-            alternative1.setText(alternatives.get(0));
-            alternative2.setText(alternatives.get(1));
-            alternative3.setText(alternatives.get(2));
-            alternative4.setText(alternatives.get(3));
+            question = database.getQuestion(quizQue.get(count - 1).toString());
+            questionType = database.getQuestionType(quizQue.get(count - 1).toString());
+            if(questionType.equals("MC")) {
+                alternatives = database.getAlternatives(quizQue.get(count - 1).toString());
+                Collections.shuffle(alternatives);
+                alternative1.setText(alternatives.get(0));
+                alternative2.setText(alternatives.get(1));
+                alternative3.setText(alternatives.get(2));
+                alternative4.setText(alternatives.get(3));
+            }
             questionText.setText(question);
             questionNumber.setText((count + "/" + numberOfQuestions));
-            questionIDs.remove(randomInt);
+
+            System.out.println(count);
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -79,10 +85,12 @@ public class QuizController implements Initializable {
             {
                 add(alternative1);
                 add(alternative2);
-                add(alternative3);
-                add(alternative4);
             }
         };
+        if(database.getQuestionType(quizQue.get(count - 2).toString()).equals("MC")) {
+            altButtons.add(alternative3);
+            altButtons.add(alternative4);
+        }
         if (count > numberOfQuestions){
             nextButton.setText("Finish Quiz!");
         }
@@ -115,9 +123,11 @@ public class QuizController implements Initializable {
         stage.show();
     }
 
-    public void nextQuestion(ActionEvent event) throws IOException {
+    public void nextQuestion(ActionEvent event) throws IOException, SQLException {
         if(count <= numberOfQuestions){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizLayout.fxml"));
+            String URL;
+            if(database.getQuestionType(quizQue.get(count-1).toString()).equals("MC")) { URL = "../View/QuizMultipleChoice.fxml";} else {URL = "../View/QuizTrueOrFalse.fxml";}
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(URL));
             Stage stage = (Stage) nextButton.getScene().getWindow();
             Scene scene = new Scene(loader.load());
             scene.getStylesheets().add("View/Style.css");

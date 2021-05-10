@@ -123,7 +123,11 @@ public class MenuController implements Initializable {
             if (topics.contains(selectedTopic)) {
                 if (Logic.checkSufficientQuestions(selectedTopic)){
                     QuizStorage.getInstance().add_questions(selectedTopic);
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizLayout.fxml"));
+                    String URL;
+                    QuizStorage.getInstance().QuizShuffle();
+                    if(database.getQuestionType(QuizStorage.getInstance().get_questionIDs().get(0)).equals("MC")) { URL = "../View/QuizMultipleChoice.fxml";} else {URL = "../View/QuizTrueOrFalse.fxml";}
+                    System.out.println(URL);
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(URL));
                     Stage stage = (Stage) quizButton.getScene().getWindow();
                     Scene scene = new Scene(loader.load());
                     scene.getStylesheets().add("View/Style.css");
@@ -132,6 +136,7 @@ public class MenuController implements Initializable {
 
                     stage.setScene(scene);
                     stage.show();
+
                 }
             }
         }catch(Exception ex){
