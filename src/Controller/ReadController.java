@@ -68,7 +68,7 @@ public class ReadController implements Initializable {
                 Scene scene = new Scene(loader.load());
                 scene.getStylesheets().add("View/Style.css");
                 QuizController quizController = loader.getController();
-                quizController.set_Title(selectedTopic);
+                quizController.setTitle(selectedTopic);
 
                 stage.setScene(scene);
                 stage.show();

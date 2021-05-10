@@ -72,7 +72,6 @@ public class QuizController implements Initializable {
             questionText.setText(question);
             questionNumber.setText((count + "/" + numberOfQuestions));
 
-
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -85,7 +84,8 @@ public class QuizController implements Initializable {
                 add(alternative2);
             }
         };
-        if(database.getQuestionType(quizQue.get(count - 2).toString()).equals("MC")) {
+
+        if(database.getQuestionType(quizQue.get(count - 1).toString()).equals("MC")) {
             altButtons.add(alternative3);
             altButtons.add(alternative4);
         }
@@ -93,7 +93,7 @@ public class QuizController implements Initializable {
             nextButton.setText("Finish Quiz!");
         }
         Button clicked = (Button) event.getTarget();
-        if (database.checkAnswer(clicked.getText(), quizQue.get(count-2).toString())) {
+        if (database.checkAnswer(clicked.getText(), quizQue.get(count-1).toString())) {
             clicked.setStyle("-fx-background-color: #50C878");
             QuizStorage.getInstance().addPoint();
             for (Button button : altButtons) {
@@ -101,7 +101,7 @@ public class QuizController implements Initializable {
             }
         } else {
             for (Button button : altButtons) {
-                if (database.checkAnswer(button.getText(), quizQue.get(count-2).toString())) {
+                if (database.checkAnswer(button.getText(), quizQue.get(count-1).toString())) {
                     button.setStyle("-fx-background-color: #50C878");
                 }
                 button.setDisable(true);
@@ -124,6 +124,7 @@ public class QuizController implements Initializable {
     }
 
     public void nextQuestion(ActionEvent event) throws IOException, SQLException {
+        count ++;
         if(count <= numberOfQuestions){
             String URL;
             if(database.getQuestionType(quizQue.get(count-1).toString()).equals("MC")) { URL = "../View/QuizMultipleChoice.fxml";} else {URL = "../View/QuizTrueOrFalse.fxml";}
@@ -132,7 +133,7 @@ public class QuizController implements Initializable {
             Scene scene = new Scene(loader.load());
             scene.getStylesheets().add("View/Style.css");
             QuizController quizController = loader.getController();
-            quizController.set_Title(topicTitle.getText());
+            quizController.setTitle(topicTitle.getText());
 
             stage.setScene(scene);
             stage.show();
@@ -148,9 +149,8 @@ public class QuizController implements Initializable {
         }
     }
 
-    public void set_Title(String topic){
+    public void setTitle(String topic){
         topicTitle.setText(topic);
         questionCount.setText("Question " + (count));
-        count ++;
     }
 }

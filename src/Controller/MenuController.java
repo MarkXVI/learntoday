@@ -126,13 +126,12 @@ public class MenuController implements Initializable {
                     String URL;
                     QuizStorage.getInstance().QuizShuffle();
                     if(database.getQuestionType(QuizStorage.getInstance().get_questionIDs().get(0)).equals("MC")) { URL = "../View/QuizMultipleChoice.fxml";} else {URL = "../View/QuizTrueOrFalse.fxml";}
-                    System.out.println(URL);
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(URL));
                     Stage stage = (Stage) quizButton.getScene().getWindow();
                     Scene scene = new Scene(loader.load());
                     scene.getStylesheets().add("View/Style.css");
                     QuizController quizController = loader.getController();
-                    quizController.set_Title(selectedTopic);
+                    quizController.setTitle(selectedTopic);
 
                     stage.setScene(scene);
                     stage.show();
