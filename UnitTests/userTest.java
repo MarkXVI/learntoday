@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 
+import java.lang.reflect.Field;
+
 import static org.junit.Assert.assertEquals;
 
 public class userTest {
@@ -34,9 +36,11 @@ public class userTest {
     }
 
     @Test
-    public void testSetUsername(){
+    public void testSetUsername() throws NoSuchFieldException, IllegalAccessException {
         user.setUsername("SetUsernameTest");
-        assertEquals(user.getUsername(), "SetUsernameTest");
+        final Field field = user.getClass().getDeclaredField("username");
+        field.setAccessible(true);
+        assertEquals(field.get(user), "SetUsernameTest");
     }
 
     @Test

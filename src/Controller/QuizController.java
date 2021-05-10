@@ -54,9 +54,7 @@ public class QuizController implements Initializable {
 
 
     public QuizController() throws SQLException {
-
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -74,7 +72,7 @@ public class QuizController implements Initializable {
             questionText.setText(question);
             questionNumber.setText((count + "/" + numberOfQuestions));
 
-            System.out.println(count);
+
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -97,6 +95,7 @@ public class QuizController implements Initializable {
         Button clicked = (Button) event.getTarget();
         if (database.checkAnswer(clicked.getText())) {
             clicked.setStyle("-fx-background-color: #50C878");
+            QuizStorage.getInstance().addPoint();
             for (Button button : altButtons) {
                 button.setDisable(true);
             }
@@ -115,6 +114,7 @@ public class QuizController implements Initializable {
 
     public void onHomeClick(ActionEvent actionEvent) throws IOException {
         count = 1;
+        QuizStorage.getInstance().resetPoints();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));
         Stage stage = (Stage) homeButton.getScene().getWindow();
         Scene scene = new Scene(loader.load());
@@ -137,7 +137,14 @@ public class QuizController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }else{
-            onHomeClick(event);
+            count = 1;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizResults.fxml"));
+            Stage stage = (Stage) nextButton.getScene().getWindow();
+            Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add("View/Style.css");
+
+            stage.setScene(scene);
+            stage.show();
         }
     }
 

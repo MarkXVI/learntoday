@@ -5,17 +5,31 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class QuizStorage {
-    private final static QuizStorage quizStorage = new QuizStorage();
-    private ArrayList<String> questionIDs = new ArrayList<>();
+    private static QuizStorage quizStorage;
 
-    public QuizStorage(){}
+    static {
+        try {
+            quizStorage = new QuizStorage();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+    private ArrayList<String> questionIDs = new ArrayList<>();
+    DBConnection database = new ConnectionStorage().getConnection();
+    private String topic;
+    private int points = 0;
+    private int questions = 0;
+
+    public QuizStorage() throws SQLException {
+    }
 
     public static QuizStorage getInstance() {
         return quizStorage;
     }
 
     public void add_questions(String topic) throws SQLException {
-        questionIDs = new DBConnection().getQuestionIDs(topic);
+        questionIDs = database.getQuestionIDs(topic);
+        questions = questionIDs.size();
     }
 
     public int count_questions(){
@@ -31,4 +45,27 @@ public class QuizStorage {
         return questionIDs;
     }
 
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void addPoint() {
+        points++;
+    }
+
+    public void resetPoints() {
+        points = 0;
+    }
+
+    public int getQuestions() {
+        return questions;
+    }
 }
