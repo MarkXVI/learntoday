@@ -48,6 +48,8 @@ public class MenuController implements Initializable {
     Text errorText;
     @FXML
     Pane msgError;
+    @FXML
+    Pane paneAbout;
 
     UserStorage userStorage = UserStorage.getInstance();
     User user = userStorage.currentUser();
@@ -213,4 +215,14 @@ public class MenuController implements Initializable {
             errorChange("Something went wrong when trying to load edit scene!");
         }
     }
+
+
+    public void onAboutOpen(){
+        paneAbout.setVisible(true);
+    }
+
+    public void onAboutClose(){
+        paneAbout.setVisible(false);
+    }
+
 }
