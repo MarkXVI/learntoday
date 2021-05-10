@@ -146,9 +146,10 @@ public class DBConnection {
         return alternatives;
     }
 
-    public boolean checkAnswer(String answer) throws SQLException {
-        preparedStatement = connection.prepareStatement("SELECT correct FROM alternative WHERE choice = ?");
+    public boolean checkAnswer(String answer, String questionID) throws SQLException {
+        preparedStatement = connection.prepareStatement("SELECT correct FROM alternative WHERE choice = ? AND question_questionID = ?");
         preparedStatement.setString(1, answer);
+        preparedStatement.setString(2, questionID);
         resultSet = preparedStatement.executeQuery();
         resultSet.next();
         return resultSet.getInt(1) == 1;

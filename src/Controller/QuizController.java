@@ -93,7 +93,7 @@ public class QuizController implements Initializable {
             nextButton.setText("Finish Quiz!");
         }
         Button clicked = (Button) event.getTarget();
-        if (database.checkAnswer(clicked.getText())) {
+        if (database.checkAnswer(clicked.getText(), quizQue.get(count-2).toString())) {
             clicked.setStyle("-fx-background-color: #50C878");
             QuizStorage.getInstance().addPoint();
             for (Button button : altButtons) {
@@ -101,7 +101,7 @@ public class QuizController implements Initializable {
             }
         } else {
             for (Button button : altButtons) {
-                if (database.checkAnswer(button.getText())) {
+                if (database.checkAnswer(button.getText(), quizQue.get(count-2).toString())) {
                     button.setStyle("-fx-background-color: #50C878");
                 }
                 button.setDisable(true);
