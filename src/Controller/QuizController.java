@@ -108,6 +108,7 @@ public class QuizController implements Initializable {
 
     public void onHomeClick(ActionEvent actionEvent) throws IOException {
         count = 1;
+        QuizStorage.getInstance().resetPoints();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));
         Stage stage = (Stage) homeButton.getScene().getWindow();
         Scene scene = new Scene(loader.load());
