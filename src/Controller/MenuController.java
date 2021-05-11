@@ -1,13 +1,13 @@
 package Controller;
 
 import Functionality.Logic;
+import Functionality.SceneLoader;
 import Functionality.User;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.QuizStorage;
 import Model.UserStorage;
 import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -135,6 +135,8 @@ public class MenuController implements Initializable {
             String selectedTopic = TopicList.getSelectionModel().getSelectedItem();
             if (topics.contains(selectedTopic)) {
                 if (Logic.checkSufficientQuestions(selectedTopic)){
+                    QuizStorage.getInstance().add_questions(selectedTopic);
+                    QuizStorage.getInstance().QuizShuffle();
                     SceneLoader.getInstance().LoadQuizMCTF(selectedTopic, quizButton, 0);
                 }
             }

@@ -47,9 +47,8 @@ public class QuizController implements Initializable {
 
     static int count = 1;
     ArrayList<String> alternatives = new ArrayList<>();
-    ArrayList<String> questionIDs = QuizStorage.getInstance().get_questionIDs();
+    ArrayList<String> quizQue = QuizStorage.getInstance().get_questionIDs();
     int numberOfQuestions = QuizStorage.getInstance().getQuestions();
-    ArrayList quizQue = questionIDs;
     String question;
     String questionType;
 
@@ -60,10 +59,10 @@ public class QuizController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            question = database.getQuestion(quizQue.get(count - 1).toString());
-            questionType = database.getQuestionType(quizQue.get(count - 1).toString());
+            question = database.getQuestion(quizQue.get(count - 1));
+            questionType = database.getQuestionType(quizQue.get(count - 1));
             if(questionType.equals("MC")) {
-                alternatives = database.getAlternatives(quizQue.get(count - 1).toString());
+                alternatives = database.getAlternatives(quizQue.get(count - 1));
                 Collections.shuffle(alternatives);
                 alternative1.setText(alternatives.get(0));
                 alternative2.setText(alternatives.get(1));
@@ -78,6 +77,8 @@ public class QuizController implements Initializable {
     }
 
     public void onAlternativeClick(ActionEvent event) throws SQLException {
+        System.out.println(quizQue);
+        System.out.println(count);
         ArrayList<Button> altButtons = new ArrayList<>() {
             {
                 add(alternative1);
@@ -85,7 +86,7 @@ public class QuizController implements Initializable {
             }
         };
 
-        if(database.getQuestionType(quizQue.get(count - 1).toString()).equals("MC")) {
+        if(database.getQuestionType(quizQue.get(count - 1)).equals("MC")) {
             altButtons.add(alternative3);
             altButtons.add(alternative4);
         }
@@ -93,7 +94,7 @@ public class QuizController implements Initializable {
             nextButton.setText("Finish Quiz!");
         }
         Button clicked = (Button) event.getTarget();
-        if (database.checkAnswer(clicked.getText(), quizQue.get(count-1).toString())) {
+        if (database.checkAnswer(clicked.getText(), quizQue.get(count-1))) {
             clicked.setStyle("-fx-background-color: #50C878");
             QuizStorage.getInstance().addPoint();
             for (Button button : altButtons) {
@@ -101,7 +102,7 @@ public class QuizController implements Initializable {
             }
         } else {
             for (Button button : altButtons) {
-                if (database.checkAnswer(button.getText(), quizQue.get(count-1).toString())) {
+                if (database.checkAnswer(button.getText(), quizQue.get(count-1))) {
                     button.setStyle("-fx-background-color: #50C878");
                 }
                 button.setDisable(true);
@@ -112,12 +113,12 @@ public class QuizController implements Initializable {
         nextButton.setDisable(false);
     }
 
-    public void onHomeClick(ActionEvent actionEvent) throws IOException {
+    public void onHomeClick() throws IOException {
         count = 1;
         SceneLoader.getInstance().LoadMainMenu(homeButton);
     }
 
-    public void nextQuestion(ActionEvent event) throws IOException, SQLException {
+    public void nextQuestion() throws IOException, SQLException {
         count ++;
         if(count <= numberOfQuestions){
             SceneLoader.getInstance().LoadQuizMCTF(topicTitle.getText(), nextButton, count-1);

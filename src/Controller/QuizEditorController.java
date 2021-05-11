@@ -66,7 +66,7 @@ public class QuizEditorController implements Initializable {
         submitNotification();
     }
 
-    public void onHomeClick(ActionEvent actionEvent) throws IOException {
+    public void onHomeClick() throws IOException {
         SceneLoader.getInstance().LoadMainMenu(homeButton);
     }
 
@@ -74,11 +74,11 @@ public class QuizEditorController implements Initializable {
         topicTitle.setText(topic);
     }
 
-    public void showPane(ActionEvent actionEvent) {
+    public void showPane() {
         confirmPane.setVisible(true);
     }
 
-    public void hidePane(ActionEvent actionEvent) {
+    public void hidePane() {
         confirmPane.setVisible(false);
     }
 

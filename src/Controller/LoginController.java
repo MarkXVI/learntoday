@@ -36,7 +36,7 @@ public class LoginController {
     public LoginController() throws SQLException {
     }
 
-    public void onLoginClick(ActionEvent actionEvent) throws IOException {
+    public void onLoginClick() throws IOException {
         String username = userInput.getText();
         String password = passwordInput.getText();
         boolean check = database.checkLogin(username, password);
@@ -61,7 +61,7 @@ public class LoginController {
         }
     }
 
-    public void onRegisterClick(ActionEvent actionEvent) throws IOException {
+    public void onRegisterClick() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/RegisterScreen.fxml"));
         Stage stage = (Stage) registerButton.getScene().getWindow();
         Scene scene = new Scene(loader.load());

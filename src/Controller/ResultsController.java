@@ -2,7 +2,6 @@ package Controller;
 
 import Functionality.SceneLoader;
 import Model.QuizStorage;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -32,12 +31,12 @@ public class ResultsController implements Initializable {
         totalScore.setText(points + "/" + questions);
     }
 
-    public void onFinishClick(ActionEvent event) throws IOException {
+    public void onFinishClick() throws IOException {
         SceneLoader.getInstance().LoadMainMenu(finishButton);
 
     }
 
-    public void onUploadClick(ActionEvent event) {
+    public void onUploadClick() {
 
     }
 }
