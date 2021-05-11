@@ -4,7 +4,6 @@ import Functionality.Logic;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.QuizStorage;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -44,7 +43,7 @@ public class ReadController implements Initializable {
         topicText.setText(topic);
     }
 
-    public void onHomeClick(ActionEvent actionEvent) throws IOException {
+    public void onHomeClick() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));
         Stage stage = (Stage) homeButton.getScene().getWindow();
         Scene scene = new Scene(loader.load());
@@ -53,7 +52,7 @@ public class ReadController implements Initializable {
         stage.show();
     }
 
-    public void onQuizClick(ActionEvent actionEvent) throws IOException {
+    public void onQuizClick() throws IOException {
         try {
             String selectedTopic = QuizStorage.getInstance().getTopic();
 

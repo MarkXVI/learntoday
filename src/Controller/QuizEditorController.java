@@ -3,7 +3,6 @@ package Controller;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -67,7 +66,7 @@ public class QuizEditorController implements Initializable {
         submitNotification();
     }
 
-    public void onHomeClick(ActionEvent actionEvent) throws IOException {
+    public void onHomeClick() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));
         Stage stage = (Stage) homeButton.getScene().getWindow();
         Scene scene = new Scene(loader.load());
@@ -80,11 +79,11 @@ public class QuizEditorController implements Initializable {
         topicTitle.setText(topic);
     }
 
-    public void showPane(ActionEvent actionEvent) {
+    public void showPane() {
         confirmPane.setVisible(true);
     }
 
-    public void hidePane(ActionEvent actionEvent) {
+    public void hidePane() {
         confirmPane.setVisible(false);
     }
 

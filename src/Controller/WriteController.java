@@ -3,7 +3,6 @@ package Controller;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -48,7 +47,7 @@ public class WriteController implements Initializable {
         topicNameText.setText(topic);
     }
 
-    public void onHomeClick(ActionEvent actionEvent) throws IOException {
+    public void onHomeClick() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));
         Stage stage = (Stage) homeButton.getScene().getWindow();
         Scene scene = new Scene(loader.load());
@@ -57,7 +56,7 @@ public class WriteController implements Initializable {
         stage.show();
     }
 
-    public void onSubmitClick(ActionEvent actionEvent) {
+    public void onSubmitClick() {
         String topicName = topicNameText.getText();
         String text = infoText.getText();
         database.submitText(topicName, text);
@@ -65,11 +64,11 @@ public class WriteController implements Initializable {
         confirmPane.setVisible(false);
     }
 
-    public void showPane(ActionEvent actionEvent) {
+    public void showPane() {
         confirmPane.setVisible(true);
     }
 
-    public void hidePane(ActionEvent actionEvent) {
+    public void hidePane() {
         confirmPane.setVisible(false);
     }
 

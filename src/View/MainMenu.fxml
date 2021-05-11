@@ -81,15 +81,16 @@
             </font>
          </Text>
          <TextFlow fx:id="teacherInfo" accessibleText="dsdsd" prefHeight="171.0" prefWidth="354.0">
-            <children>
-               <Separator prefHeight="5.0" prefWidth="354.0" />
-               <Text fill="#da5858" strokeType="OUTSIDE" strokeWidth="0.0" text="&#10;Teacher features:&#10;&#10;Menu Bar:" wrappingWidth="318.052734375">
-                  <font>
-                     <Font size="14.0" />
-                  </font>
-               </Text>
-               <Text fill="#da5858" strokeType="OUTSIDE" strokeWidth="0.0" text="&#10;&#10;Edit &gt; Edit Selected Topic&#10;Must have selected a topic in &quot;Topics&quot; in order to edit the existing text.&#10;&#10;Help &gt; About&#10;Does nothing." wrappingWidth="318.052734375" />
-            </children>
+            <Separator prefHeight="5.0" prefWidth="354.0"/>
+            <Text fill="#da5858" strokeType="OUTSIDE" strokeWidth="0.0" text="&#10;Teacher features:&#10;&#10;Menu Bar:"
+                  wrappingWidth="318.052734375">
+               <font>
+                  <Font size="14.0"/>
+               </font>
+            </Text>
+            <Text fill="#da5858" strokeType="OUTSIDE" strokeWidth="0.0"
+                  text="&#10;&#10;Edit &gt; Edit Selected Topic&#10;Must have selected a topic in &quot;Topics&quot; in order to edit the existing text.&#10;&#10;Help &gt; About&#10;Does nothing."
+                  wrappingWidth="318.052734375"/>
          </TextFlow>
       </TextFlow>
    </VBox>
@@ -128,24 +129,20 @@
       </fill>
    </Text>
    <MenuBar fx:id="editBar" layoutY="2.0">
-     <menus>
-       <Menu mnemonicParsing="false" text="Edit">
-         <items>
-           <MenuItem fx:id="editItem" mnemonicParsing="false" onAction="#onEditClick" text="Edit Selected Topic" />
-               <MenuItem fx:id="editItem1" mnemonicParsing="false" onAction="#onEditQuestion" text="Add Question" />
-         </items>
-       </Menu>
-       <Menu mnemonicParsing="false" text="Help">
-         <items>
-           <MenuItem mnemonicParsing="false" text="About" />
-         </items>
-       </Menu>
-     </menus>
+      <Menu mnemonicParsing="false" text="Edit">
+         <MenuItem mnemonicParsing="false" onAction="#onEditClick" text="Edit Selected Topic"/>
+         <MenuItem mnemonicParsing="false" onAction="#onEditQuestion" text="Add Question"/>
+      </Menu>
+      <Menu mnemonicParsing="false" text="Help">
+         <MenuItem mnemonicParsing="false" text="About"/>
+      </Menu>
    </MenuBar>
-   <Pane fx:id="msgError" focusTraversable="true" layoutX="529.0" layoutY="571.0" prefHeight="59.0" prefWidth="248.0" visible="false">
-      <children>
-         <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#ffaeae" height="53.0" layoutX="-19.0" layoutY="-6.0" stroke="#ffffff00" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0" strokeWidth="4.0" width="294.0" />
-         <Text fx:id="errorText" fill="#ff3232" layoutX="15.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="226.693359375" />
-      </children>
+   <Pane fx:id="msgError" focusTraversable="true" layoutX="529.0" layoutY="571.0" prefHeight="59.0" prefWidth="248.0"
+         visible="false">
+      <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#ffaeae" height="53.0" layoutX="-19.0" layoutY="-6.0"
+                 stroke="#ffffff00" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL"
+                 strokeMiterLimit="100.0" strokeWidth="4.0" width="294.0"/>
+      <Text fx:id="errorText" fill="#ff3232" layoutX="15.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0"
+            wrappingWidth="226.693359375"/>
    </Pane>
 </AnchorPane>

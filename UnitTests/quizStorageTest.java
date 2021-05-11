@@ -1,17 +1,16 @@
-import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.QuizStorage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class quizStorageTest {
     DBConnection database;
@@ -34,7 +33,7 @@ public class quizStorageTest {
 
     @Test
     public void getQuestionIDsTest(){
-        ArrayList questionIDs = QuizStorage.getInstance().get_questionIDs();
+        ArrayList<String> questionIDs = QuizStorage.getInstance().get_questionIDs();
         assertThat(questionIDs, instanceOf(ArrayList.class));
     }
 
@@ -78,7 +77,7 @@ public class quizStorageTest {
     }
 
     @After
-    public void closeConnection() throws SQLException {
+    public void closeConnection(){
         database.disconnect();
     }
 }

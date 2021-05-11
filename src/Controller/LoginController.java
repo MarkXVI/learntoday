@@ -1,11 +1,9 @@
 package Controller;
 
-import Functionality.User;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.UserStorage;
 import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -34,12 +32,10 @@ public class LoginController {
     @FXML
     Pane msgError;
 
-    User user;
-
     public LoginController() throws SQLException {
     }
 
-    public void onLoginClick(ActionEvent actionEvent) throws IOException {
+    public void onLoginClick() throws IOException {
         String username = userInput.getText();
         String password = passwordInput.getText();
         boolean check = database.checkLogin(username, password);
@@ -72,7 +68,7 @@ public class LoginController {
         }
     }
 
-    public void onRegisterClick(ActionEvent actionEvent) throws IOException {
+    public void onRegisterClick() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/RegisterScreen.fxml"));
         Stage stage = (Stage) registerButton.getScene().getWindow();
         Scene scene = new Scene(loader.load());

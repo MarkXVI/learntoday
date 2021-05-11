@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.QuizStorage;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -34,7 +33,7 @@ public class ResultsController implements Initializable {
         totalScore.setText(points + "/" + questions);
     }
 
-    public void onFinishClick(ActionEvent event) throws IOException {
+    public void onFinishClick() throws IOException {
         QuizStorage.getInstance().resetPoints();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));
@@ -45,7 +44,7 @@ public class ResultsController implements Initializable {
         stage.show();
     }
 
-    public void onUploadClick(ActionEvent event) {
+    public void onUploadClick() {
 
     }
 }

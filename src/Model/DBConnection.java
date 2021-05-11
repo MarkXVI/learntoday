@@ -4,13 +4,13 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DBConnection {
-    private Connection connection;
-    private String url = "jdbc:mysql://35.228.58.113:3306/learn2day?user=learn2dayApplication&password=ApplicationPassword";
+    private final Connection connection;
     private Statement statement;
     private ResultSet resultSet;
     private PreparedStatement preparedStatement;
 
     public DBConnection() throws SQLException {
+        String url = "jdbc:mysql://35.228.58.113:3306/learn2day?user=learn2dayApplication&password=ApplicationPassword";
         connection = DriverManager.getConnection(url);
     }
 
@@ -109,9 +109,8 @@ public class DBConnection {
         preparedStatement.setString(1, questionID);
         resultSet = preparedStatement.executeQuery();
         resultSet.next();
-        String question = resultSet.getString(1);
 
-        return question;
+        return resultSet.getString(1);
     }
 
     public String getQuestionType(String questionID) throws SQLException {
@@ -119,9 +118,8 @@ public class DBConnection {
         preparedStatement.setString(1, questionID);
         resultSet = preparedStatement.executeQuery();
         resultSet.next();
-        String question_type = resultSet.getString(1);
 
-        return question_type;
+        return resultSet.getString(1);
     }
 
     public ArrayList<String> getQuestionIDs(String topic) throws SQLException {
@@ -162,7 +160,7 @@ public class DBConnection {
             preparedStatement.setString(2, topic);
             preparedStatement.executeUpdate();
 
-        } catch (Exception ex) {}
+        } catch (Exception ignored) {}
     }
 
     public void addAlt(String choice, int correct, String question) throws SQLException {
@@ -178,9 +176,7 @@ public class DBConnection {
         preparedStatement.setInt(2, correct);
         preparedStatement.setInt(3, questionID);
         preparedStatement.executeUpdate();
-        }catch(SQLIntegrityConstraintViolationException ex){
-
-        }
+        }catch(SQLIntegrityConstraintViolationException ignored){}
     }
 
 
