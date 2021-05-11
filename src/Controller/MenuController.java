@@ -1,8 +1,12 @@
 package Controller;
 
 import Functionality.Logic;
+import Functionality.SceneLoader;
 import Functionality.User;
-import Model.*;
+import Model.ConnectionStorage;
+import Model.DBConnection;
+import Model.QuizStorage;
+import Model.UserStorage;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -107,7 +111,7 @@ public class MenuController implements Initializable {
                 addSubjects();
             }
             if(currentItemSelected.equals("Continents")){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/Geography.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/Continents.fxml"));
                 Stage stage = (Stage) quizButton.getScene().getWindow();
                 Scene scene = new Scene(loader.load());
                 scene.getStylesheets().add("View/WorldMap.css");
@@ -133,21 +137,7 @@ public class MenuController implements Initializable {
             String selectedTopic = TopicList.getSelectionModel().getSelectedItem().toString();
             if (topics.contains(selectedTopic)) {
                 if (Logic.checkSufficientQuestions(selectedTopic)){
-                    QuizStorage.getInstance().add_questions(selectedTopic);
-                    String URL;
-                    QuizStorage.getInstance().QuizShuffle();
-                    if(database.getQuestionType(QuizStorage.getInstance().get_questionIDs().get(0)).equals("MC")) { URL = "../View/QuizMultipleChoice.fxml";} else {URL = "../View/QuizTrueOrFalse.fxml";}
-                    System.out.println(URL);
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource(URL));
-                    Stage stage = (Stage) quizButton.getScene().getWindow();
-                    Scene scene = new Scene(loader.load());
-                    scene.getStylesheets().add("View/Style.css");
-                    QuizController quizController = loader.getController();
-                    quizController.setTitle(selectedTopic);
-
-                    stage.setScene(scene);
-                    stage.show();
-
+                    SceneLoader.getInstance().LoadQuizMCTF(selectedTopic, quizButton, 0);
                 }
             }
         }catch(Exception ex){
@@ -160,32 +150,16 @@ public class MenuController implements Initializable {
         try {
             QuizStorage.getInstance().setTopic(TopicList.getSelectionModel().getSelectedItem().toString());
             String selectedItem = QuizStorage.getInstance().getTopic();
-
             if (topics.contains(selectedItem)) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ReadScreen.fxml"));
-                Stage stage = (Stage) readButton.getScene().getWindow();
-                Scene scene = new Scene(loader.load());
-                scene.getStylesheets().add("View/Style.css");
-
-                ReadController readController = loader.getController();
-                String text = database.getText(selectedItem);
-                readController.setText(text, selectedItem);
-
-                stage.setScene(scene);
-                stage.show();
+                SceneLoader.getInstance().LoadReadScenes(selectedItem,readButton);
             }
         }catch(NullPointerException ex){
             errorChange("You must choose a topic to read about!");
         }
-        }
+    }
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginScreen.fxml")); // ↓↓↓↓ Switches scene to login screen.
-        Stage stage = (Stage) logoutButton.getScene().getWindow();
-        Scene scene = new Scene(loader.load());
-        scene.getStylesheets().add("View/Style.css");
-        stage.setScene(scene);
-        stage.show();
+        SceneLoader.getInstance().LoadLogScene(logoutButton);
     }
 
     public void onEditClick(ActionEvent actionEvent) throws IOException, SQLException {

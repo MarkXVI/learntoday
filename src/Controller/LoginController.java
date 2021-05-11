@@ -1,6 +1,6 @@
 package Controller;
 
-import Functionality.User;
+import Functionality.SceneLoader;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.UserStorage;
@@ -8,7 +8,6 @@ import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -34,8 +33,6 @@ public class LoginController {
     @FXML
     Pane msgError;
 
-    User user;
-
     public LoginController() throws SQLException {
     }
 
@@ -53,15 +50,7 @@ public class LoginController {
             UserStorage userStorage = UserStorage.getInstance();
             userStorage.createUser(Username, FirstName, LastName, AccountType);
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml")); // ↓↓↓↓ Switches scene to Main Menu Screen.
-            Parent root = loader.load();
-
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add("View/Style.css");
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
+            SceneLoader.getInstance().LoadMainMenu(loginButton);
         } else {
             msgError.setVisible(true);
             FadeTransition ft = new FadeTransition(Duration.seconds(6), msgError);

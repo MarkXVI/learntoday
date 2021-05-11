@@ -1,5 +1,6 @@
 package Controller;
 
+import Functionality.SceneLoader;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.QuizStorage;
@@ -71,7 +72,6 @@ public class QuizController implements Initializable {
             }
             questionText.setText(question);
             questionNumber.setText((count + "/" + numberOfQuestions));
-
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -114,29 +114,13 @@ public class QuizController implements Initializable {
 
     public void onHomeClick(ActionEvent actionEvent) throws IOException {
         count = 1;
-        QuizStorage.getInstance().resetPoints();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));
-        Stage stage = (Stage) homeButton.getScene().getWindow();
-        Scene scene = new Scene(loader.load());
-        scene.getStylesheets().add("View/Style.css");
-        stage.setScene(scene);
-        stage.show();
+        SceneLoader.getInstance().LoadMainMenu(homeButton);
     }
 
     public void nextQuestion(ActionEvent event) throws IOException, SQLException {
         count ++;
         if(count <= numberOfQuestions){
-            String URL;
-            if(database.getQuestionType(quizQue.get(count-1).toString()).equals("MC")) { URL = "../View/QuizMultipleChoice.fxml";} else {URL = "../View/QuizTrueOrFalse.fxml";}
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(URL));
-            Stage stage = (Stage) nextButton.getScene().getWindow();
-            Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add("View/Style.css");
-            QuizController quizController = loader.getController();
-            quizController.setTitle(topicTitle.getText());
-
-            stage.setScene(scene);
-            stage.show();
+            SceneLoader.getInstance().LoadQuizMCTF(topicTitle.getText(), nextButton, count-1);
         }else{
             count = 1;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizResults.fxml"));

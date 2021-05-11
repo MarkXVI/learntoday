@@ -1,19 +1,17 @@
 package Controller;
 
 import Functionality.Logic;
+import Functionality.SceneLoader;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -42,12 +40,7 @@ public class RegisterController {
     public RegisterController() throws SQLException {}
 
     public void onGoBackClick(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginScreen.fxml"));
-        Stage stage = (Stage) GoBackButton.getScene().getWindow();
-        Scene scene = new Scene(loader.load());
-        scene.getStylesheets().add("View/Style.css");
-        stage.setScene(scene);
-        stage.show();
+        SceneLoader.getInstance().LoadLogScene(GoBackButton);
     }
 
     public void onRegisterClick(ActionEvent actionEvent) throws IOException, SQLException {

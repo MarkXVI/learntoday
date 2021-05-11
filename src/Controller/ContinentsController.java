@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class GeographyController {
+public class ContinentsController {
 
     @FXML
     Button btn = new Button();

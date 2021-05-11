@@ -1,18 +1,16 @@
 package Controller;
 
+import Functionality.SceneLoader;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -42,6 +40,7 @@ public class QuizEditorController implements Initializable {
     @FXML
     Pane msgError;
 
+
     public QuizEditorController() throws SQLException {
     }
 
@@ -68,12 +67,7 @@ public class QuizEditorController implements Initializable {
     }
 
     public void onHomeClick(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));
-        Stage stage = (Stage) homeButton.getScene().getWindow();
-        Scene scene = new Scene(loader.load());
-        scene.getStylesheets().add("View/Style.css");
-        stage.setScene(scene);
-        stage.show();
+        SceneLoader.getInstance().LoadMainMenu(homeButton);
     }
 
     public void setText(String topic){
