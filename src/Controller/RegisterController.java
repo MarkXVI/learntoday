@@ -43,7 +43,7 @@ public class RegisterController {
         SceneLoader.getInstance().LoadLogScene(GoBackButton);
     }
 
-    public void onRegisterClick(ActionEvent actionEvent) throws IOException, SQLException {
+    public void onRegisterClick(ActionEvent actionEvent) throws IOException {
         String FirstName = FirstNameInput.getText();
         String LastName = LastNameInput.getText();
         String Username = UsernameInput.getText();

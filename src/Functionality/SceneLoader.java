@@ -39,9 +39,7 @@ public class SceneLoader {
     }
 
     public void LoadQuizMCTF(String selectedTopic, Button btn, int count) throws SQLException, IOException {
-        QuizStorage.getInstance().add_questions(selectedTopic);
         String URL;
-        QuizStorage.getInstance().QuizShuffle();
         if(database.getQuestionType(QuizStorage.getInstance().get_questionIDs().get(count)).equals("MC")) { URL = "../View/QuizMultipleChoice.fxml";} else {URL = "../View/QuizTrueOrFalse.fxml";}
         FXMLLoader loader = new FXMLLoader(getClass().getResource(URL));
         Stage stage = (Stage) btn.getScene().getWindow();

@@ -3,7 +3,6 @@ package Controller;
 import Functionality.Logic;
 import Functionality.SceneLoader;
 import Model.QuizStorage;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -27,7 +26,7 @@ public class ReadController implements Initializable {
     @FXML
     private Text topicText;
 
-    public ReadController() throws SQLException {
+    public ReadController() {
     }
 
     @Override
@@ -39,15 +38,17 @@ public class ReadController implements Initializable {
         topicText.setText(topic);
     }
 
-    public void onHomeClick(ActionEvent actionEvent) throws IOException {
+    public void onHomeClick() throws IOException {
         SceneLoader.getInstance().LoadMainMenu(homeButton);
     }
 
-    public void onQuizClick(ActionEvent actionEvent) throws IOException {
+    public void onQuizClick() throws IOException {
         try {
             String selectedTopic = QuizStorage.getInstance().getTopic();
 
             if (Logic.checkSufficientQuestions(selectedTopic)){
+                QuizStorage.getInstance().add_questions(selectedTopic);
+                QuizStorage.getInstance().QuizShuffle();
                 SceneLoader.getInstance().LoadQuizMCTF(selectedTopic, quizButton, 0);
             }
         } catch (SQLException exception) {

@@ -1,12 +1,13 @@
 package Controller;
 
-import Functionality.*;
+import Functionality.Logic;
+import Functionality.SceneLoader;
+import Functionality.User;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.QuizStorage;
 import Model.UserStorage;
 import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -41,8 +42,6 @@ public class MenuController implements Initializable {
     Button quizButton;
     @FXML
     Button readButton;
-    @FXML
-    Button addCourseButton;
     @FXML
     MenuBar editBar;
     @FXML
@@ -136,6 +135,8 @@ public class MenuController implements Initializable {
             String selectedTopic = TopicList.getSelectionModel().getSelectedItem();
             if (topics.contains(selectedTopic)) {
                 if (Logic.checkSufficientQuestions(selectedTopic)){
+                    QuizStorage.getInstance().add_questions(selectedTopic);
+                    QuizStorage.getInstance().QuizShuffle();
                     SceneLoader.getInstance().LoadQuizMCTF(selectedTopic, quizButton, 0);
                 }
             }
@@ -194,24 +195,11 @@ public class MenuController implements Initializable {
 
                 stage.setScene(scene);
                 stage.show();
-        } } catch (IOException e) {
+        } } catch (Exception e) {
             errorChange("Something went wrong when trying to load edit scene!");
         }
     }
 
-    public void onAddCourse(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/AddCourse.fxml"));
-            Stage stage = (Stage) addCourseButton.getScene().getWindow();
-            Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add("View/Style.css");
-            AddCourseController addCourseController = loader.getController();
-            addCourseController.showElements(false);
-
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ignored) {}
-    }
 
     public void onAboutOpen(){
         paneAbout.setVisible(true);
