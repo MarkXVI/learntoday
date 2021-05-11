@@ -1,7 +1,6 @@
 package Controller;
 
 import Functionality.Logic;
-import Functionality.SceneLoader;
 import Functionality.User;
 import Model.ConnectionStorage;
 import Model.DBConnection;
@@ -31,21 +30,20 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
+    public MenuItem editItem1;
     @FXML
     Button logoutButton;
     @FXML
     Text SignedInText;
     DBConnection database = ConnectionStorage.getInstance().getConnection();
     @FXML
-    ListView TopicList;
+    ListView<String> TopicList;
     @FXML
     Button quizButton;
     @FXML
     Button readButton;
     @FXML
     MenuBar editBar;
-    @FXML
-    MenuItem editItem;
     @FXML
     TextFlow teacherInfo;
     @FXML
@@ -97,7 +95,7 @@ public class MenuController implements Initializable {
     public void onMouseClick(MouseEvent click) throws SQLException {
         try{
         if (click.getClickCount() == 2){
-            String currentItemSelected = TopicList.getSelectionModel().getSelectedItem().toString();
+            String currentItemSelected = TopicList.getSelectionModel().getSelectedItem();
             if(subjects.contains(currentItemSelected)){
                 topics = database.getTopics(currentItemSelected);
                 TopicList.getItems().clear();
@@ -120,7 +118,7 @@ public class MenuController implements Initializable {
                 stage.show();
             }
         }
-        }catch(NullPointerException | IOException ex){}
+        }catch(NullPointerException | IOException ignored){}
     }
 
     public void errorChange(String text){
@@ -132,9 +130,9 @@ public class MenuController implements Initializable {
         ft.play();
     }
 
-    public void onQuizClick(ActionEvent actionEvent){
+    public void onQuizClick(){
         try{
-            String selectedTopic = TopicList.getSelectionModel().getSelectedItem().toString();
+            String selectedTopic = TopicList.getSelectionModel().getSelectedItem();
             if (topics.contains(selectedTopic)) {
                 if (Logic.checkSufficientQuestions(selectedTopic)){
                     SceneLoader.getInstance().LoadQuizMCTF(selectedTopic, quizButton, 0);
@@ -146,9 +144,9 @@ public class MenuController implements Initializable {
         }
     }
 
-    public void onReadClick(ActionEvent actionEvent) throws IOException, SQLException {
+    public void onReadClick() throws IOException, SQLException {
         try {
-            QuizStorage.getInstance().setTopic(TopicList.getSelectionModel().getSelectedItem().toString());
+            QuizStorage.getInstance().setTopic(TopicList.getSelectionModel().getSelectedItem());
             String selectedItem = QuizStorage.getInstance().getTopic();
             if (topics.contains(selectedItem)) {
                 SceneLoader.getInstance().LoadReadScenes(selectedItem,readButton);
@@ -158,13 +156,13 @@ public class MenuController implements Initializable {
         }
     }
 
-    public void onLogoutClick(ActionEvent actionEvent) throws IOException {
+    public void onLogoutClick() throws IOException {
         SceneLoader.getInstance().LoadLogScene(logoutButton);
     }
 
-    public void onEditClick(ActionEvent actionEvent) throws IOException, SQLException {
+    public void onEditClick() throws IOException, SQLException {
         try {
-            String selectedItem = TopicList.getSelectionModel().getSelectedItem().toString();
+            String selectedItem = TopicList.getSelectionModel().getSelectedItem();
             if (topics.contains(selectedItem)) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/WriteScreen.fxml"));
                 Stage stage = (Stage) logoutButton.getScene().getWindow();
@@ -184,7 +182,7 @@ public class MenuController implements Initializable {
 
     public void onEditQuestion(){
         try{
-            String selectedItem = TopicList.getSelectionModel().getSelectedItem().toString();
+            String selectedItem = TopicList.getSelectionModel().getSelectedItem();
             if (topics.contains(selectedItem)) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizEditor.fxml"));
                 Stage stage = (Stage) logoutButton.getScene().getWindow();

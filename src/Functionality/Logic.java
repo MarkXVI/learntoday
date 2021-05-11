@@ -1,9 +1,6 @@
 package Functionality;
 
 import Model.DBConnection;
-import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
 
 import java.sql.SQLException;
 
