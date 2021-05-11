@@ -195,7 +195,7 @@ public class MenuController implements Initializable {
 
                 stage.setScene(scene);
                 stage.show();
-        } } catch (IOException e) {
+        } } catch (Exception e) {
             errorChange("Something went wrong when trying to load edit scene!");
         }
     }

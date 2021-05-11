@@ -5,7 +5,6 @@ import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.UserStorage;
 import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

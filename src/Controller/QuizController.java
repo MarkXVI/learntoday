@@ -77,8 +77,6 @@ public class QuizController implements Initializable {
     }
 
     public void onAlternativeClick(ActionEvent event) throws SQLException {
-        System.out.println(quizQue);
-        System.out.println(count);
         ArrayList<Button> altButtons = new ArrayList<>() {
             {
                 add(alternative1);
