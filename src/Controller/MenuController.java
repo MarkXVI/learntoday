@@ -83,9 +83,11 @@ public class MenuController implements Initializable {
         if (user.getTeacher() == 1) {
             editBar.setVisible(true);
             teacherInfo.setVisible(true);
+            addCourseButton.setVisible(true);
         } else {
             editBar.setVisible(false);
             teacherInfo.setVisible(false);
+            addCourseButton.setVisible(false);
         }
     }
 
