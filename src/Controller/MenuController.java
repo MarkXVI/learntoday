@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
+    public MenuItem editItem1;
     @FXML
     Button logoutButton;
     @FXML

@@ -48,7 +48,7 @@ public class QuizController implements Initializable {
     ArrayList<String> alternatives = new ArrayList<>();
     ArrayList<String> questionIDs = QuizStorage.getInstance().get_questionIDs();
     int numberOfQuestions = QuizStorage.getInstance().getQuestions();
-    ArrayList<String> quizQue = questionIDs;
+    ArrayList quizQue = questionIDs;
     String question;
     String questionType;
 
@@ -59,10 +59,10 @@ public class QuizController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            question = database.getQuestion(quizQue.get(count - 1));
-            questionType = database.getQuestionType(quizQue.get(count - 1));
+            question = database.getQuestion(quizQue.get(count - 1).toString());
+            questionType = database.getQuestionType(quizQue.get(count - 1).toString());
             if(questionType.equals("MC")) {
-                alternatives = database.getAlternatives(quizQue.get(count - 1));
+                alternatives = database.getAlternatives(quizQue.get(count - 1).toString());
                 Collections.shuffle(alternatives);
                 alternative1.setText(alternatives.get(0));
                 alternative2.setText(alternatives.get(1));
@@ -85,7 +85,7 @@ public class QuizController implements Initializable {
             }
         };
 
-        if(database.getQuestionType(quizQue.get(count - 1)).equals("MC")) {
+        if(database.getQuestionType(quizQue.get(count - 1).toString()).equals("MC")) {
             altButtons.add(alternative3);
             altButtons.add(alternative4);
         }
@@ -93,7 +93,7 @@ public class QuizController implements Initializable {
             nextButton.setText("Finish Quiz!");
         }
         Button clicked = (Button) event.getTarget();
-        if (database.checkAnswer(clicked.getText(), quizQue.get(count-1))) {
+        if (database.checkAnswer(clicked.getText(), quizQue.get(count-1).toString())) {
             clicked.setStyle("-fx-background-color: #50C878");
             QuizStorage.getInstance().addPoint();
             for (Button button : altButtons) {
@@ -101,7 +101,7 @@ public class QuizController implements Initializable {
             }
         } else {
             for (Button button : altButtons) {
-                if (database.checkAnswer(button.getText(), quizQue.get(count-1))) {
+                if (database.checkAnswer(button.getText(), quizQue.get(count-1).toString())) {
                     button.setStyle("-fx-background-color: #50C878");
                 }
                 button.setDisable(true);
@@ -112,7 +112,7 @@ public class QuizController implements Initializable {
         nextButton.setDisable(false);
     }
 
-    public void onHomeClick() throws IOException {
+    public void onHomeClick(ActionEvent actionEvent) throws IOException {
         count = 1;
         QuizStorage.getInstance().resetPoints();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));
@@ -123,11 +123,11 @@ public class QuizController implements Initializable {
         stage.show();
     }
 
-    public void nextQuestion() throws IOException, SQLException {
+    public void nextQuestion(ActionEvent event) throws IOException, SQLException {
         count ++;
         if(count <= numberOfQuestions){
             String URL;
-            if(database.getQuestionType(quizQue.get(count-1)).equals("MC")) { URL = "../View/QuizMultipleChoice.fxml";} else {URL = "../View/QuizTrueOrFalse.fxml";}
+            if(database.getQuestionType(quizQue.get(count-1).toString()).equals("MC")) { URL = "../View/QuizMultipleChoice.fxml";} else {URL = "../View/QuizTrueOrFalse.fxml";}
             FXMLLoader loader = new FXMLLoader(getClass().getResource(URL));
             Stage stage = (Stage) nextButton.getScene().getWindow();
             Scene scene = new Scene(loader.load());

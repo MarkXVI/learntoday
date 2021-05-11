@@ -118,12 +118,10 @@
          </LinearGradient>
       </fill>
    </Text>
-   <Pane fx:id="msgError" focusTraversable="true" layoutX="334.0" layoutY="576.0" prefHeight="59.0" prefWidth="258.0"
-         visible="false">
-      <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#ffaeae" height="45.0" layoutX="-2.0" layoutY="-2.0"
-                 stroke="#ffffff00" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL"
-                 strokeMiterLimit="100.0" strokeWidth="4.0" width="259.0"/>
-      <Text fill="#ff3232" layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0"
-            text="You must enter something in every field!"/>
+   <Pane fx:id="msgError" focusTraversable="true" layoutX="334.0" layoutY="576.0" prefHeight="59.0" prefWidth="258.0" visible="false">
+      <children>
+         <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#ffaeae" height="45.0" layoutX="-2.0" layoutY="-2.0" stroke="#ffffff00" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0" strokeWidth="4.0" width="259.0" />
+         <Text fill="#ff3232" layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You must enter something in every field!" />
+      </children>
    </Pane>
 </AnchorPane>

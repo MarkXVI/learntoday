@@ -41,7 +41,7 @@ public class RegisterController {
 
     public RegisterController() throws SQLException {}
 
-    public void onGoBackClick() throws IOException {
+    public void onGoBackClick(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginScreen.fxml"));
         Stage stage = (Stage) GoBackButton.getScene().getWindow();
         Scene scene = new Scene(loader.load());
@@ -50,7 +50,7 @@ public class RegisterController {
         stage.show();
     }
 
-    public void onRegisterClick() throws IOException{
+    public void onRegisterClick(ActionEvent actionEvent) throws IOException, SQLException {
         String FirstName = FirstNameInput.getText();
         String LastName = LastNameInput.getText();
         String Username = UsernameInput.getText();
@@ -65,7 +65,7 @@ public class RegisterController {
         boolean check = logic.checkValidRegister(FirstName, LastName, Username, Password, accountType.getText());
         if (check) {
             database.registerUser(FirstName, LastName, Username, Password, AccountType);
-            onGoBackClick();
+            onGoBackClick(actionEvent);
         } else {
             msgError.setVisible(true);
             FadeTransition ft = new FadeTransition(Duration.seconds(6), msgError);
