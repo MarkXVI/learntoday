@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane cacheShape="false" centerShape="false" prefHeight="720.0" prefWidth="900.0" scaleShape="false" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddCourseController">
+    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="DODGERBLUE" height="300.0" layoutX="214.0" layoutY="243.0" stroke="TRANSPARENT" strokeType="INSIDE" width="500.0">
+        <effect>
+            <Shadow height="85.13" radius="42.3425" width="86.24">
+                <color>
+                    <Color opacity="0.30000001192092896" />
+                </color>
+            </Shadow>
+        </effect>
+    </Rectangle>
+    <Rectangle arcHeight="50.0" arcWidth="50.0" height="300.0" layoutX="200.0" layoutY="227.0" stroke="WHITE" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0" strokeWidth="4.0" width="500.0">
+        <fill>
+            <LinearGradient endY="0.9857142857142857" startX="1.0" startY="0.02857142857142858">
+                <stops>
+                    <Stop>
+                        <color>
+                            <Color red="0.11764705926179886" green="0.5647059082984924" blue="1.0" />
+                        </color>
+                    </Stop>
+                    <Stop offset="1.0">
+                        <color>
+                            <Color red="0.29629629850387573" green="0.6716049313545227" blue="1.0" />
+                        </color>
+                    </Stop>
+                </stops>
+            </LinearGradient>
+        </fill>
+    </Rectangle>
+    <Text fill="WHITE" layoutX="287.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course name" />
+    <Text layoutX="358.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New course" textAlignment="CENTER" wrappingWidth="184.87890625" AnchorPane.leftAnchor="358.0" AnchorPane.rightAnchor="358.0">
+        <font>
+            <Font name="Comic Sans MS Bold" size="24.0" />
+        </font>
+        <fill>
+            <LinearGradient endY="0.00952380952380949" startX="1.0" startY="0.9761904761904762">
+                <stops>
+                    <Stop>
+                        <color>
+                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.769565224647522" />
+                        </color>
+                    </Stop>
+                    <Stop offset="1.0">
+                        <color>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </color>
+                    </Stop>
+                </stops>
+            </LinearGradient>
+        </fill>
+    </Text>
+    <Button fx:id="homeButton" layoutX="287.0" layoutY="409.0" mnemonicParsing="false" onAction="#onHomeClick" prefHeight="25.0" prefWidth="159.0" text="Home" />
+    <Button fx:id="addButton" layoutX="454.0" layoutY="409.0" mnemonicParsing="false" onAction="#onAddClick" prefHeight="25.0" prefWidth="159.0" text="Add course" />
+    <TextField fx:id="userInput" layoutX="287.0" layoutY="365.0" onAction="#onAddClick" prefHeight="25.0" prefWidth="326.0" promptText="Enter course name" />
+   <Rectangle fx:id="whiteRectangle" arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="62.0" layoutX="350.0" layoutY="446.0" stroke="WHITE" strokeType="INSIDE" width="200.0" />
+   <Text fx:id="confirmationText" fill="#32a852" layoutX="409.0" layoutY="467.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course created!" />
+   <Text fx:id="courseIDText" layoutX="383.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course ID: 11111">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+</AnchorPane>

@@ -183,6 +183,37 @@ public class DBConnection {
         }
     }
 
+    public ArrayList<Integer> getCourseIDs() throws SQLException {
+        ArrayList<Integer> courseIDs = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT courseID FROM course");
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            courseIDs.add(resultSet.getInt(1));
+        }
+        return courseIDs;
+    }
+
+    public void addCourse(int courseID, String courseName) throws SQLException{
+        try {
+            preparedStatement = connection.prepareStatement("INSERT INTO course VALUES (?,?)");
+            preparedStatement.setInt(1, courseID);
+            preparedStatement.setString(2, courseName);
+            preparedStatement.executeUpdate();
+        } catch (SQLIntegrityConstraintViolationException ex) {
+
+        }
+    }
+
+    public void addUserToCourse(int courseID, String username) throws SQLException {
+        try {
+            preparedStatement = connection.prepareStatement("INSERT INTO course_has_user VALUES (?,?)");
+            preparedStatement.setInt(1, courseID);
+            preparedStatement.setString(2, username);
+            preparedStatement.executeUpdate();
+        } catch (SQLIntegrityConstraintViolationException ex) {
+
+        }
+    }
 
     public void disconnect(){ // Disconnects from the database
         try {
