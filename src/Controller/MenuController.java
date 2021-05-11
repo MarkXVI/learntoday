@@ -47,6 +47,8 @@ public class MenuController implements Initializable {
     Text errorText;
     @FXML
     Pane msgError;
+    @FXML
+    Pane paneAbout;
 
     UserStorage userStorage = UserStorage.getInstance();
     User user = userStorage.currentUser();
@@ -103,8 +105,17 @@ public class MenuController implements Initializable {
                 TopicList.getItems().clear();
                 addSubjects();
             }
+            if(currentItemSelected.equals("Continents")){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/Geography.fxml"));
+                Stage stage = (Stage) quizButton.getScene().getWindow();
+                Scene scene = new Scene(loader.load());
+                scene.getStylesheets().add("View/WorldMap.css");
+
+                stage.setScene(scene);
+                stage.show();
+            }
         }
-        }catch(NullPointerException ignored){}
+        }catch(NullPointerException | IOException ignored){}
     }
 
     public void errorChange(String text){
@@ -125,6 +136,7 @@ public class MenuController implements Initializable {
                     String URL;
                     QuizStorage.getInstance().QuizShuffle();
                     if(database.getQuestionType(QuizStorage.getInstance().get_questionIDs().get(0)).equals("MC")) { URL = "../View/QuizMultipleChoice.fxml";} else {URL = "../View/QuizTrueOrFalse.fxml";}
+                    System.out.println(URL);
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(URL));
                     Stage stage = (Stage) quizButton.getScene().getWindow();
                     Scene scene = new Scene(loader.load());
@@ -212,4 +224,14 @@ public class MenuController implements Initializable {
             errorChange("Something went wrong when trying to load edit scene!");
         }
     }
+
+
+    public void onAboutOpen(){
+        paneAbout.setVisible(true);
+    }
+
+    public void onAboutClose(){
+        paneAbout.setVisible(false);
+    }
+
 }
