@@ -41,6 +41,7 @@
       </font>
    </Text>
    <Button fx:id="logoutButton" layoutX="724.0" layoutY="59.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="25.0" prefWidth="115.0" text="Sign out" />
+   <Button fx:id="addCourseButton" layoutX="196.0" layoutY="53.0" mnemonicParsing="false" onAction="#onAddCourse" text="Add new course" />
    <VBox layoutX="52.0" layoutY="114.0" prefHeight="550.0" prefWidth="379.0">
       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Topics" textAlignment="CENTER" wrappingWidth="58.0">
          <font>
@@ -147,5 +148,5 @@
          <Button mnemonicParsing="false" onAction="#onAboutClose" prefHeight="25.0" prefWidth="115.0" text="Close" />
       </VBox>
    </Pane>
-   <Button fx:id="addCourseButton" layoutX="196.0" layoutY="59.0" mnemonicParsing="false" onAction="#onAddCourse" text="Add new course" />
+   <Button fx:id="joinCourseButton" layoutX="197.0" layoutY="83.0" mnemonicParsing="false" onAction="#onJoinCourse" prefHeight="25.0" prefWidth="102.0" text="Join Course" />
 </AnchorPane>

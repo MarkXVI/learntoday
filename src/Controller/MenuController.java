@@ -44,6 +44,8 @@ public class MenuController implements Initializable {
     @FXML
     Button addCourseButton;
     @FXML
+    Button joinCourseButton;
+    @FXML
     MenuBar editBar;
     @FXML
     TextFlow teacherInfo;
@@ -212,6 +214,20 @@ public class MenuController implements Initializable {
             scene.getStylesheets().add("View/Style.css");
             AddCourseController addCourseController = loader.getController();
             addCourseController.showElements(false);
+
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ignored) {}
+    }
+
+    public void onJoinCourse(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/JoinCourse.fxml"));
+            Stage stage = (Stage) joinCourseButton.getScene().getWindow();
+            Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add("View/Style.css");
+            JoinCourseController joinCourseController = loader.getController();
+            joinCourseController.showElements(false);
 
             stage.setScene(scene);
             stage.show();

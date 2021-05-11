@@ -45,6 +45,7 @@ public class AddCourseController {
         } while (existingIDs.contains(randomID));
         database.addCourse(randomID, userInput.getText());
         database.addUserToCourse(randomID, UserStorage.getInstance().currentUser().getUsername());
+        courseIDText.setText("Course ID: " + randomID);
         showElements(true);
     }
 
