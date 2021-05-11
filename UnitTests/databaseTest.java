@@ -62,6 +62,12 @@ public class databaseTest {
         assertNotNull(connection.getQuestion("1"));
     }
 
+    @Test
+    public void getCourseIDsTest() throws SQLException{
+        ArrayList<Integer> courseIDs = connection.getCourseIDs();
+        assertNotNull(courseIDs);
+    }
+
     @After
     public void after(){
         connection.disconnect();
