@@ -106,8 +106,17 @@ public class MenuController implements Initializable {
                 TopicList.getItems().clear();
                 addSubjects();
             }
+            if(currentItemSelected.equals("Continents")){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/Geography.fxml"));
+                Stage stage = (Stage) quizButton.getScene().getWindow();
+                Scene scene = new Scene(loader.load());
+                scene.getStylesheets().add("View/WorldMap.css");
+
+                stage.setScene(scene);
+                stage.show();
+            }
         }
-        }catch(NullPointerException ex){}
+        }catch(NullPointerException | IOException ex){}
     }
 
     public void errorChange(String text){
@@ -128,6 +137,7 @@ public class MenuController implements Initializable {
                     String URL;
                     QuizStorage.getInstance().QuizShuffle();
                     if(database.getQuestionType(QuizStorage.getInstance().get_questionIDs().get(0)).equals("MC")) { URL = "../View/QuizMultipleChoice.fxml";} else {URL = "../View/QuizTrueOrFalse.fxml";}
+                    System.out.println(URL);
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(URL));
                     Stage stage = (Stage) quizButton.getScene().getWindow();
                     Scene scene = new Scene(loader.load());
