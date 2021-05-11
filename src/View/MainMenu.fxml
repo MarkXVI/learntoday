@@ -81,22 +81,18 @@
             </font>
          </Text>
          <TextFlow fx:id="teacherInfo" accessibleText="dsdsd" prefHeight="171.0" prefWidth="354.0">
-            <Separator prefHeight="5.0" prefWidth="354.0"/>
-            <Text fill="#da5858" strokeType="OUTSIDE" strokeWidth="0.0" text="Teacher features:&#10;"
-                  textAlignment="CENTER" wrappingWidth="318.052734375">
+            <Separator prefHeight="5.0" prefWidth="354.0" />
+            <Text fill="#da5858" strokeType="OUTSIDE" strokeWidth="0.0" text="Teacher features:&#10;" textAlignment="CENTER" wrappingWidth="318.052734375">
                <font>
-                  <Font size="14.0"/>
+                  <Font size="14.0" />
                </font>
             </Text>
-            <Text fill="#da5858" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu Bar:"
-                  wrappingWidth="318.052734375">
+            <Text fill="#da5858" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu Bar:" wrappingWidth="318.052734375">
                <font>
-                  <Font size="14.0"/>
+                  <Font size="14.0" />
                </font>
             </Text>
-            <Text fill="#da5858" strokeType="OUTSIDE" strokeWidth="0.0"
-                  text="&#10;&#10;Edit &gt; Edit Selected Topic&#10;Must have selected a topic in &quot;Topics&quot; in order to edit the existing text.&#10;&#10;Edit &gt; Add Question&#10;Must have selected a topic in &quot;Topics&quot; in order to edit the existing text."
-                  wrappingWidth="318.052734375"/>
+            <Text fill="#da5858" strokeType="OUTSIDE" strokeWidth="0.0" text="&#10;&#10;Edit &gt; Edit Selected Topic&#10;Must have selected a topic in &quot;Topics&quot; in order to edit the existing text.&#10;&#10;Edit &gt; Add Question&#10;Must have selected a topic in &quot;Topics&quot; in order to edit the existing text." wrappingWidth="318.052734375" />
          </TextFlow>
       </TextFlow>
    </VBox>
@@ -136,19 +132,29 @@
    </Text>
    <MenuBar fx:id="editBar" layoutY="2.0">
       <Menu mnemonicParsing="false" text="Edit">
-         <MenuItem fx:id="editItem" mnemonicParsing="false" onAction="#onEditClick" text="Edit Selected Topic"/>
-         <MenuItem fx:id="editItem1" mnemonicParsing="false" onAction="#onEditQuestion" text="Add Question"/>
+         <MenuItem fx:id="editItem" mnemonicParsing="false" onAction="#onEditClick" text="Edit Selected Topic" />
+         <MenuItem fx:id="editItem1" mnemonicParsing="false" onAction="#onEditQuestion" text="Add Question" />
       </Menu>
       <Menu mnemonicParsing="false" text="Help">
-         <MenuItem mnemonicParsing="false" text="About"/>
+         <MenuItem mnemonicParsing="false" onAction="#onAboutOpen" text="About" />
       </Menu>
    </MenuBar>
-   <Pane fx:id="msgError" focusTraversable="true" layoutX="529.0" layoutY="571.0" prefHeight="59.0" prefWidth="248.0"
-         visible="false">
-      <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#ffaeae" height="53.0" layoutX="-19.0" layoutY="-6.0"
-                 stroke="#ffffff00" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL"
-                 strokeMiterLimit="100.0" strokeWidth="4.0" width="294.0"/>
-      <Text fx:id="errorText" fill="#ff3232" layoutX="15.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0"
-            wrappingWidth="226.693359375"/>
+   <Pane fx:id="msgError" focusTraversable="true" layoutX="529.0" layoutY="571.0" prefHeight="59.0" prefWidth="248.0" visible="false">
+      <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#ffaeae" height="53.0" layoutX="-19.0" layoutY="-6.0" stroke="#ffffff00" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0" strokeWidth="4.0" width="294.0" />
+      <Text fx:id="errorText" fill="#ff3232" layoutX="15.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="226.693359375" />
+   </Pane>
+   <Pane fx:id="paneAbout" layoutX="255.0" layoutY="266.0" prefHeight="265.0" prefWidth="390.0" visible="false">
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="216.0" stroke="DODGERBLUE" strokeType="INSIDE" strokeWidth="4.0" width="390.0" />
+      <VBox alignment="CENTER" layoutX="27.0" layoutY="10.0" prefHeight="182.0" prefWidth="335.0">
+         <Text fill="#656565" strokeType="OUTSIDE" strokeWidth="0.0" text="Developed by:" textAlignment="CENTER" wrappingWidth="335.333984375">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Text>
+         <Separator prefHeight="2.0" prefWidth="319.0" />
+         <Text fill="#656565" strokeType="OUTSIDE" strokeWidth="0.0" text="Hampus Nilsson, Simon Wikström, Emil Hansson&#10;Mark Harvey, Max Dolmark, Kristian Åkerblom" textAlignment="JUSTIFY" wrappingWidth="259.052734375" />
+         <Text fill="#656565" strokeType="OUTSIDE" strokeWidth="0.0" text="&#10;&#10;&#10;&#10;&#10;Github: https://github.com/MarkXVI/learntoday&#10;" textAlignment="JUSTIFY" wrappingWidth="254.052734375" />
+         <Button mnemonicParsing="false" onAction="#onAboutClose" prefHeight="25.0" prefWidth="115.0" text="Close" />
+      </VBox>
    </Pane>
 </AnchorPane>
