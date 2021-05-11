@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
    <Rectangle arcHeight="50.0" arcWidth="50.0" height="645.0" layoutX="52.0" layoutY="54.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="826.0">
       <effect>
          <Shadow height="70.11" radius="34.1375" width="68.44">
@@ -120,16 +120,18 @@
    </Text>
    <MenuBar fx:id="editBar" layoutY="2.0">
       <Menu mnemonicParsing="false" text="Edit">
-         <MenuItem fx:id="editItem" mnemonicParsing="false" onAction="#onEditClick" text="Edit Selected Topic" />
-         <MenuItem fx:id="editItem1" mnemonicParsing="false" onAction="#onEditQuestion" text="Add Question" />
+         <MenuItem mnemonicParsing="false" onAction="#onEditText" text="Edit Selected Topic" />
+         <MenuItem mnemonicParsing="false" onAction="#onEditQuestion" text="Add Question" />
       </Menu>
       <Menu mnemonicParsing="false" text="Help">
          <MenuItem mnemonicParsing="false" onAction="#onAboutOpen" text="About" />
       </Menu>
    </MenuBar>
-   <Pane fx:id="msgError" focusTraversable="true" layoutX="529.0" layoutY="571.0" prefHeight="59.0" prefWidth="248.0" visible="false">
-      <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#ffaeae" height="53.0" layoutX="-19.0" layoutY="-6.0" stroke="#ffffff00" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0" strokeWidth="4.0" width="294.0" />
-      <Text fx:id="errorText" fill="#ff3232" layoutX="15.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="226.693359375" />
+   <Pane fx:id="msgError" focusTraversable="true" layoutX="511.0" layoutY="571.0" prefHeight="59.0" prefWidth="291.0" visible="false">
+      <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#ffaeae" height="57.0" layoutX="2.0" layoutY="1.0" stroke="#ffffff00" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0" strokeWidth="4.0" width="291.0" />
+      <VBox alignment="CENTER" layoutX="23.0" prefHeight="59.0" prefWidth="248.0">
+         <Text fx:id="errorText" fill="#ff3232" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="226.693359375"/>
+      </VBox>
    </Pane>
    <Pane fx:id="paneAbout" layoutX="255.0" layoutY="266.0" prefHeight="265.0" prefWidth="390.0" visible="false">
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="216.0" stroke="DODGERBLUE" strokeType="INSIDE" strokeWidth="4.0" width="390.0" />

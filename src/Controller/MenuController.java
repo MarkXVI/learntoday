@@ -16,7 +16,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -31,7 +30,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
-    public MenuItem editItem1;
     @FXML
     Button logoutButton;
     @FXML
@@ -167,7 +165,7 @@ public class MenuController implements Initializable {
         SceneLoader.getInstance().LoadLogScene(logoutButton);
     }
 
-    public void onEditClick() throws IOException, SQLException {
+    public void onEditText() throws IOException, SQLException {
         try {
             String selectedItem = TopicList.getSelectionModel().getSelectedItem();
             if (topics.contains(selectedItem)) {
@@ -200,7 +198,8 @@ public class MenuController implements Initializable {
 
                 stage.setScene(scene);
                 stage.show();
-        } } catch (Exception e) {
+            }
+        } catch (Exception e) {
             errorChange("Something went wrong when trying to load edit scene!");
         }
     }
@@ -216,7 +215,7 @@ public class MenuController implements Initializable {
 
             stage.setScene(scene);
             stage.show();
-        } catch (IOException exception) {}
+        } catch (IOException ignored) {}
     }
 
     public void onAboutOpen(){
