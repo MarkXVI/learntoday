@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.effect.Shadow?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QuizController">
    <Rectangle arcHeight="50.0" arcWidth="50.0" height="645.0" layoutX="191.0" layoutY="46.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="536.0">
@@ -26,18 +23,19 @@
             <stops>
                <Stop>
                   <color>
-                     <Color blue="1.0" green="0.5647059082984924" red="0.11764705926179886" />
+                     <Color red="0.11764705926179886" green="0.5647059082984924" blue="1.0" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color blue="1.0" green="0.6705882549285889" red="0.2980392277240753" />
+                     <Color red="0.2980392277240753" green="0.6705882549285889" blue="1.0" />
                   </color>
                </Stop>
             </stops>
          </LinearGradient>
       </fill></Rectangle>
    <Button fx:id="homeButton" layoutX="616.0" layoutY="46.0" mnemonicParsing="false" onAction="#onHomeClick" prefHeight="25.0" prefWidth="67.0" text="Home" />
+   <Button fx:id="ttsButton" layoutX="212.0" layoutY="270.0" mnemonicParsing="false" onAction="#OnTextToSpeech" style="-fx-background-color: white;" text="Text to speech" />
    <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="158.0" layoutX="214.0" layoutY="106.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="456.0" />
    <Text layoutX="191.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quiz" textAlignment="CENTER" wrappingWidth="67.0">
       <font>
@@ -48,12 +46,12 @@
             <stops>
                <Stop>
                   <color>
-                     <Color blue="1.0" green="1.0" opacity="0.769565224647522" red="1.0" />
+                     <Color red="1.0" green="1.0" blue="1.0" opacity="0.769565224647522" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color blue="1.0" green="1.0" red="1.0" />
+                     <Color red="1.0" green="1.0" blue="1.0" />
                   </color>
                </Stop>
             </stops>
@@ -94,12 +92,12 @@
             <stops>
                <Stop>
                   <color>
-                     <Color blue="1.0" green="1.0" opacity="0.769565224647522" red="1.0" />
+                     <Color red="1.0" green="1.0" blue="1.0" opacity="0.769565224647522" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color blue="1.0" green="1.0" red="1.0" />
+                     <Color red="1.0" green="1.0" blue="1.0" />
                   </color>
                </Stop>
             </stops>

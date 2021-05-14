@@ -8,7 +8,6 @@ import Model.DBConnection;
 import Model.QuizStorage;
 import Model.UserStorage;
 import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -205,7 +204,7 @@ public class MenuController implements Initializable {
         }
     }
 
-    public void onAddCourse(ActionEvent actionEvent) {
+    public void onAddCourse() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/AddCourse.fxml"));
             Stage stage = (Stage) addCourseButton.getScene().getWindow();
@@ -219,7 +218,7 @@ public class MenuController implements Initializable {
         } catch (IOException ignored) {}
     }
 
-    public void onJoinCourse(ActionEvent actionEvent) {
+    public void onJoinCourse() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/JoinCourse.fxml"));
             Stage stage = (Stage) joinCourseButton.getScene().getWindow();

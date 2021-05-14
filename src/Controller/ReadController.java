@@ -2,6 +2,7 @@ package Controller;
 
 import Functionality.Logic;
 import Functionality.SceneLoader;
+import Functionality.TextToSpeech;
 import Model.QuizStorage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,6 +28,7 @@ public class ReadController implements Initializable {
     private Text topicText;
 
     public ReadController() {
+
     }
 
     @Override
@@ -54,5 +56,9 @@ public class ReadController implements Initializable {
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
+    }
+
+    public void OnTextToSpeech() throws Exception {
+        new TextToSpeech(infoText.getText());
     }
 }

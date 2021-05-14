@@ -1,6 +1,7 @@
 package Controller;
 
 import Functionality.SceneLoader;
+import Functionality.TextToSpeech;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.QuizStorage;
@@ -13,6 +14,9 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import javax.speech.AudioException;
+import javax.speech.EngineException;
+import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -135,5 +139,17 @@ public class QuizController implements Initializable {
     public void setTitle(String topic){
         topicTitle.setText(topic);
         questionCount.setText("Question " + (count));
+    }
+
+    public void OnTextToSpeech() throws SQLException, PropertyVetoException, AudioException, EngineException, InterruptedException {
+        String text = "The question is " + questionText.getText();
+        String alternativeTexts;
+        questionType = database.getQuestionType(quizQue.get(count - 1));
+        if(questionType.equals("MC")) {
+            alternativeTexts = "Is it " + alternative1.getText() + ", or " + alternative2.getText() +  ", or " + alternative3.getText() +  ", or " + alternative4.getText() + "?";
+        } else {
+            alternativeTexts = "Is it true, or false?";
+        }
+        new TextToSpeech(text + ". " + alternativeTexts);
     }
 }

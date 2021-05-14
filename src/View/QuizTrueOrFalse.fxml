@@ -35,6 +35,7 @@
             </LinearGradient>
         </fill></Rectangle>
     <Button fx:id="homeButton" layoutX="619.0" layoutY="51.0" mnemonicParsing="false" onAction="#onHomeClick" prefHeight="25.0" prefWidth="67.0" text="Home" />
+    <Button fx:id="ttsButton" layoutX="212.0" layoutY="270.0" mnemonicParsing="false" onAction="#OnTextToSpeech" style="-fx-background-color: white;" text="Text to speech" />
     <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="158.0" layoutX="214.0" layoutY="106.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="456.0" />
     <Text layoutX="191.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quiz" textAlignment="CENTER" wrappingWidth="67.0">
         <font>
