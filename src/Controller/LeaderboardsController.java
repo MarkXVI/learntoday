@@ -1,11 +1,8 @@
 package Controller;
 
 import Functionality.SceneLoader;
-import Functionality.User;
 import Model.ConnectionStorage;
 import Model.DBConnection;
-import Model.UserStorage;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -23,8 +20,6 @@ public class LeaderboardsController {
     @FXML
     ListView<String> coursesList;
 
-    UserStorage userStorage = UserStorage.getInstance();
-    User user = userStorage.currentUser();
     ArrayList<Object> courses;
     ArrayList<Object> topics;
 
@@ -35,20 +30,12 @@ public class LeaderboardsController {
     }
 
     public void initialize() {
-        checkUserType();
-
         try {
             courses = database.getCourses();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
         addCourses();
-    }
-
-    public void checkUserType() {
-        if (user.getTeacher() == 1) {
-            coursesList.setVisible(true);
-        }
     }
 
     public void addCourses() {

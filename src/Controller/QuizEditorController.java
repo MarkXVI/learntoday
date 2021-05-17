@@ -5,7 +5,6 @@ import Functionality.SceneLoader;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

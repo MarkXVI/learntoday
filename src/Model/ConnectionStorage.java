@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class ConnectionStorage {
     private static ConnectionStorage storage;
-    private DBConnection connection;
+    private final DBConnection connection;
 
     public ConnectionStorage() throws SQLException {
         connection = new DBConnection();

@@ -4,13 +4,13 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DBConnection {
-    private Connection connection;
-    private String url = "jdbc:mysql://127.0.0.1:3306/Learn2day?serverTimezone=UTC&user=root&password=root";
+    private final Connection connection;
     private Statement statement;
     private ResultSet resultSet;
     private PreparedStatement preparedStatement;
 
     public DBConnection() throws SQLException {
+        String url = "jdbc:mysql://127.0.0.1:3306/Learn2day?serverTimezone=UTC&user=root&password=root";
         connection = DriverManager.getConnection(url);
     }
 

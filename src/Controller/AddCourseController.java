@@ -4,7 +4,6 @@ import Functionality.SceneLoader;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.UserStorage;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -33,11 +32,11 @@ public class AddCourseController {
 
     public AddCourseController() throws SQLException {}
 
-    public void onHomeClick(ActionEvent actionEvent) throws IOException {
+    public void onHomeClick() throws IOException {
         SceneLoader.getInstance().LoadMainMenu(homeButton);
     }
 
-    public void onAddClick(ActionEvent actionEvent) throws SQLException {
+    public void onAddClick() throws SQLException {
         ArrayList<Integer> existingIDs = database.getCourseIDs();
         int randomID;
         do {

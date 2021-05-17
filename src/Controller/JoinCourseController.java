@@ -4,7 +4,6 @@ import Functionality.SceneLoader;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.UserStorage;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -59,5 +58,4 @@ public class JoinCourseController {
             joinButton.setVisible(!bool);
         }
     }
-
 }
