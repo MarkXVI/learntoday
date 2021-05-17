@@ -32,8 +32,7 @@ public class LoginController {
     @FXML
     Pane msgError;
 
-    public LoginController() throws SQLException {
-    }
+    public LoginController() throws SQLException {}
 
     public void onLoginClick() throws IOException {
         String username = userInput.getText();

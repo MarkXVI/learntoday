@@ -4,15 +4,18 @@ import Functionality.SceneLoader;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class LeaderboardsController {
+public class LeaderboardsController implements Initializable {
 
     DBConnection database = ConnectionStorage.getInstance().getConnection();
     @FXML
@@ -29,7 +32,8 @@ public class LeaderboardsController {
         SceneLoader.getInstance().LoadMainMenu(homeButton);
     }
 
-    public void initialize() {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             courses = database.getCourses();
         } catch (SQLException exception) {
