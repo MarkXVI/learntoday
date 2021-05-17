@@ -40,7 +40,9 @@ public class DBConnection {
             statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO user VALUES ('" + username + "', '" + password + "', '" + FirstName + "', '" + LastName + "', '" + Teacher + "')"); // Puts the values into the user table in the database.
 
-        } catch (SQLException ex) {ex.printStackTrace();}
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void submitText(String topicName, String Text) {
@@ -63,7 +65,9 @@ public class DBConnection {
             user.add(resultSet.getString(3));
             user.add(resultSet.getString(4));
             user.add(resultSet.getInt(5));
-        } catch (SQLException ex) {ex.printStackTrace();}
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         return user;
     }
 
@@ -83,6 +87,7 @@ public class DBConnection {
         preparedStatement.setString(1, quiz_name);
         resultSet = preparedStatement.executeQuery();
         resultSet.next();
+
         return resultSet.getInt(1);
     }
 
@@ -101,6 +106,7 @@ public class DBConnection {
         preparedStatement.setString(1, topic);
         resultSet = preparedStatement.executeQuery();
         resultSet.next();
+
         return resultSet.getString(1);
     }
 
@@ -109,9 +115,8 @@ public class DBConnection {
         preparedStatement.setString(1, questionID);
         resultSet = preparedStatement.executeQuery();
         resultSet.next();
-        String question = resultSet.getString(1);
 
-        return question;
+        return resultSet.getString(1);
     }
 
     public String getQuestionType(String questionID) throws SQLException {
@@ -119,9 +124,8 @@ public class DBConnection {
         preparedStatement.setString(1, questionID);
         resultSet = preparedStatement.executeQuery();
         resultSet.next();
-        String question_type = resultSet.getString(1);
 
-        return question_type;
+        return resultSet.getString(1);
     }
 
     public ArrayList<String> getQuestionIDs(String topic) throws SQLException {
@@ -162,8 +166,7 @@ public class DBConnection {
             preparedStatement.setString(1, question);
             preparedStatement.setString(2, topic);
             preparedStatement.executeUpdate();
-
-        } catch (Exception ex) {}
+        } catch (Exception ignored) {}
     }
 
     public void addAlt(String choice, int correct, String question) throws SQLException {
@@ -172,15 +175,23 @@ public class DBConnection {
         resultSet = preparedStatement.executeQuery();
         resultSet.next();
         int questionID = resultSet.getInt(1);
-        try{
+        try {
         preparedStatement = connection.prepareStatement("INSERT INTO alternative VALUES (?,?,?)");
         preparedStatement.setString(1, choice);
         preparedStatement.setInt(2, correct);
         preparedStatement.setInt(3, questionID);
         preparedStatement.executeUpdate();
-        }catch(SQLIntegrityConstraintViolationException ex){
+        } catch (SQLIntegrityConstraintViolationException ignored) {}
+    }
 
+    public ArrayList<Object> getCourses() throws SQLException {
+        ArrayList<Object> courses = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT course_name FROM course");
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            courses.add(resultSet.getString(1));
         }
+        return courses;
     }
 
     public ArrayList<Integer> getCourseIDs() throws SQLException {
@@ -199,9 +210,7 @@ public class DBConnection {
             preparedStatement.setInt(1, courseID);
             preparedStatement.setString(2, courseName);
             preparedStatement.executeUpdate();
-        } catch (SQLIntegrityConstraintViolationException ex) {
-
-        }
+        } catch (SQLIntegrityConstraintViolationException ignored) {}
     }
 
     public void addUserToCourse(int courseID, String username) throws SQLException {
@@ -210,13 +219,11 @@ public class DBConnection {
             preparedStatement.setInt(1, courseID);
             preparedStatement.setString(2, username);
             preparedStatement.executeUpdate();
-        } catch (SQLIntegrityConstraintViolationException ignored) {
-
-        }
+        } catch (SQLIntegrityConstraintViolationException ignored) {}
     }
 
     public void updateUserScore(String username, String quiz, int score ){
-        try{
+        try {
             preparedStatement = connection.prepareStatement("INSERT INTO user_does_quiz VALUES(?, ?, ?)");
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, quiz);
@@ -253,7 +260,4 @@ public class DBConnection {
             System.out.println("failed to disconnect!");
         }
     }
-
-
-
 }

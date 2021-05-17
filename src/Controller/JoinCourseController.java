@@ -31,11 +31,11 @@ public class JoinCourseController {
 
     public JoinCourseController() throws SQLException {}
 
-    public void onHomeClick(ActionEvent actionEvent) throws IOException {
+    public void onHomeClick() throws IOException {
         SceneLoader.getInstance().LoadMainMenu(homeButton);
     }
 
-    public void onJoinClick(ActionEvent actionEvent) throws SQLException {
+    public void onJoinClick() throws SQLException {
         try {
             int courseID = Integer.parseInt(userInput.getText());
             ArrayList<Integer> existingIDs = database.getCourseIDs();
