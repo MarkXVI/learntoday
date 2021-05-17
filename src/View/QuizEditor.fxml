@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QuizEditorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QuizEditorController">
    <Rectangle arcHeight="50.0" arcWidth="50.0" height="645.0" layoutX="191.0" layoutY="46.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="536.0">
       <effect>
          <Shadow height="70.11" radius="34.1375" width="68.44">
@@ -28,12 +28,12 @@
             <stops>
                <Stop>
                   <color>
-                     <Color red="0.11764705926179886" green="0.5647059082984924" blue="1.0" />
+                     <Color blue="1.0" green="0.5647059082984924" red="0.11764705926179886" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color red="0.2980392277240753" green="0.6705882549285889" blue="1.0" />
+                     <Color blue="1.0" green="0.6705882549285889" red="0.2980392277240753" />
                   </color>
                </Stop>
             </stops>
@@ -50,12 +50,12 @@
             <stops>
                <Stop>
                   <color>
-                     <Color red="1.0" green="1.0" blue="1.0" opacity="0.769565224647522" />
+                     <Color blue="1.0" green="1.0" opacity="0.769565224647522" red="1.0" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color red="1.0" green="1.0" blue="1.0" />
+                     <Color blue="1.0" green="1.0" red="1.0" />
                   </color>
                </Stop>
             </stops>
@@ -91,12 +91,12 @@
             <stops>
                <Stop>
                   <color>
-                     <Color red="1.0" green="1.0" blue="1.0" opacity="0.769565224647522" />
+                     <Color blue="1.0" green="1.0" opacity="0.769565224647522" red="1.0" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color red="1.0" green="1.0" blue="1.0" />
+                     <Color blue="1.0" green="1.0" red="1.0" />
                   </color>
                </Stop>
             </stops>
@@ -109,14 +109,6 @@
    <TextField fx:id="inputAlt4" alignment="CENTER" layoutX="477.0" layoutY="492.0" prefHeight="102.0" prefWidth="169.0" promptText="Insert alternative here" />
    <TextField fx:id="inputQuestion" alignment="CENTER" layoutX="227.0" layoutY="117.0" prefHeight="136.0" prefWidth="430.0" promptText="Insert question here" />
    <Button layoutX="384.0" layoutY="635.0" mnemonicParsing="false" onAction="#showPane" prefHeight="25.0" prefWidth="116.0" text="Submit" />
-   <Pane fx:id="msgError" focusTraversable="true" layoutX="333.0" layoutY="660.0" prefHeight="59.0" prefWidth="248.0" visible="false">
-      <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#caffc4" height="39.0" layoutX="-4.0" stroke="#ffffff00" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0" strokeWidth="4.0" width="260.0" />
-      <Text fill="#3fe469" layoutX="36.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quiz submitted!" textAlignment="CENTER" wrappingWidth="184.31640625">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-   </Pane>
    <Pane fx:id="confirmPane" layoutX="315.0" layoutY="273.0" prefHeight="200.0" prefWidth="270.0" visible="false">
       <Rectangle arcHeight="50.0" arcWidth="50.0" height="151.0" layoutX="16.0" layoutY="14.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="270.0">
          <effect>
@@ -133,12 +125,12 @@
                <stops>
                   <Stop>
                      <color>
-                        <Color red="0.11764705926179886" green="0.5647059082984924" blue="1.0" />
+                        <Color blue="1.0" green="0.5647059082984924" red="0.11764705926179886" />
                      </color>
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="0.2980392277240753" green="0.6705882549285889" blue="1.0" />
+                        <Color blue="1.0" green="0.6705882549285889" red="0.2980392277240753" />
                      </color>
                   </Stop>
                </stops>
@@ -152,5 +144,13 @@
       </Text>
       <Button layoutX="16.0" layoutY="110.0" mnemonicParsing="false" onAction="#submitQuiz" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: white;" text="Yes" />
       <Button layoutX="151.0" layoutY="110.0" mnemonicParsing="false" onAction="#hidePane" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: white;" text="No" />
+   </Pane>
+   <Pane fx:id="msgError" focusTraversable="true" layoutX="326.0" layoutY="444.0" prefHeight="59.0" prefWidth="248.0" visible="false">
+      <Rectangle fx:id="errorRect" arcHeight="40.0" arcWidth="40.0" fill="#caffc4" height="59.0" layoutX="-6.0" layoutY="-2.0" stroke="#ffffff00" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0" strokeWidth="4.0" width="264.0" />
+      <Text fx:id="errorText" fill="#3fe469" layoutX="-8.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quiz submitted!" textAlignment="CENTER" wrappingWidth="268.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
    </Pane>
 </AnchorPane>

@@ -1,5 +1,6 @@
 package Controller;
 
+import Functionality.Logic;
 import Functionality.SceneLoader;
 import Model.ConnectionStorage;
 import Model.DBConnection;
@@ -10,12 +11,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -34,11 +38,15 @@ public class QuizEditorController implements Initializable {
     @FXML
     Text topicTitle;
     @FXML
+    Text errorText;
+    @FXML
     Button homeButton;
     @FXML
     Pane confirmPane;
     @FXML
     Pane msgError;
+    @FXML
+    Rectangle errorRect;
 
 
     public QuizEditorController() throws SQLException {
@@ -55,15 +63,27 @@ public class QuizEditorController implements Initializable {
         String answer3 = inputAlt3.getText();
         String answer4 = inputAlt4.getText();
 
-        database.addQuestion(question, topicTitle.getText());
+        if(Logic.checkValidQuiz(question, answer1, answer2, answer3, answer4)){
+            database.addQuestion(question, topicTitle.getText());
 
-        database.addAlt(answer1, 1, question); //correct answer
-        database.addAlt(answer2, 0, question);
-        database.addAlt(answer3, 0, question);
-        database.addAlt(answer4, 0, question);
+            database.addAlt(answer1, 1, question); //correct answer
+            database.addAlt(answer2, 0, question);
+            database.addAlt(answer3, 0, question);
+            database.addAlt(answer4, 0, question);
 
-        confirmPane.setVisible(false);
-        submitNotification();
+            confirmPane.setVisible(false);
+            submitNotification();
+        }else{
+            errorText.setText("Empty Alternative!");
+            errorText.setFill(Paint.valueOf("#ff3232"));
+            errorRect.setFill(Paint.valueOf("#ffaeae"));
+            msgError.setVisible(true);
+            FadeTransition ft = new FadeTransition(Duration.seconds(6), msgError);
+            ft.setFromValue(1);
+            ft.setToValue(0);
+            ft.play();
+        }
+
     }
 
     public void onHomeClick() throws IOException {
@@ -83,6 +103,9 @@ public class QuizEditorController implements Initializable {
     }
 
     public void submitNotification(){
+        errorText.setText("Quiz submitted!");
+        errorText.setFill(Paint.valueOf("#3fe469"));
+        errorRect.setFill(Paint.valueOf("#caffc4"));
         msgError.setVisible(true);
         FadeTransition ft = new FadeTransition(Duration.seconds(6), msgError);
         ft.setFromValue(1);
