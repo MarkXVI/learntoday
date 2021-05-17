@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class DBConnection {
     private Connection connection;
-    private String url = "jdbc:mysql://35.228.58.113:3306/learn2day?user=learn2dayApplication&password=ApplicationPassword";
+    private String url = "jdbc:mysql://127.0.0.1:3306/Learn2day?serverTimezone=UTC&user=root&password=root";
     private Statement statement;
     private ResultSet resultSet;
     private PreparedStatement preparedStatement;
@@ -157,6 +157,7 @@ public class DBConnection {
 
     public void addQuestion(String question, String topic) {
         try {
+            System.out.println(question);
             preparedStatement = connection.prepareStatement("INSERT INTO question (question, quiz_name) VALUES (?,?)");
             preparedStatement.setString(1, question);
             preparedStatement.setString(2, topic);
@@ -171,7 +172,6 @@ public class DBConnection {
         resultSet = preparedStatement.executeQuery();
         resultSet.next();
         int questionID = resultSet.getInt(1);
-
         try{
         preparedStatement = connection.prepareStatement("INSERT INTO alternative VALUES (?,?,?)");
         preparedStatement.setString(1, choice);
@@ -210,9 +210,32 @@ public class DBConnection {
             preparedStatement.setInt(1, courseID);
             preparedStatement.setString(2, username);
             preparedStatement.executeUpdate();
-        } catch (SQLIntegrityConstraintViolationException ex) {
+        } catch (SQLIntegrityConstraintViolationException ignored) {
 
         }
+    }
+
+    public void updateUserScore(String username, String quiz, int score ){
+        try{
+            preparedStatement = connection.prepareStatement("INSERT INTO user_does_quiz VALUES(?, ?, ?)");
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, quiz);
+            preparedStatement.setInt(3, score);
+            preparedStatement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public int getUserScore(String username, String quiz){
+        try {
+            preparedStatement = connection.prepareStatement("SELECT score FROM user_does_quiz WHERE username = ? AND quiz_name = ?");
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, quiz);
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            return resultSet.getInt(1);
+        } catch (SQLException ex) {return 0;}
     }
 
     public void disconnect(){ // Disconnects from the database

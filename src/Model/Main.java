@@ -12,14 +12,19 @@ import javafx.stage.Stage;
 import javax.speech.AudioException;
 import javax.speech.EngineException;
 import java.beans.PropertyVetoException;
+import java.io.IOException;
+import java.util.TimeZone;
 
 
 public class Main extends Application {
     ConnectionStorage connection;
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        connection = ConnectionStorage.getInstance();
-        Parent root = FXMLLoader.load(getClass().getResource("../View/LoginScreen.fxml"));
+    public void start(Stage primaryStage){
+        try {
+            System.out.println(TimeZone.getDefault());
+            connection = ConnectionStorage.getInstance();
+            Parent root = FXMLLoader.load(getClass().getResource("../View/LoginScreen.fxml"));
+
         primaryStage.setTitle("Learn2day");
         Scene scene = new Scene(root, 900, 720);
         scene.getStylesheets().add("View/Style.css");
@@ -29,6 +34,9 @@ public class Main extends Application {
         Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
         primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
         primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     @Override

@@ -50,6 +50,7 @@ public class SceneLoader {
 
         stage.setScene(scene);
         stage.show();
+        QuizStorage.getInstance().setTopic(selectedTopic);
     }
 
     public void LoadReadScenes(String selectedItem, Button readButton) throws SQLException, IOException {
