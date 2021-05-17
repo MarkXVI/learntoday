@@ -10,7 +10,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LeaderboardsController">
    <children>
       <Rectangle arcHeight="50.0" arcWidth="50.0" height="300.0" layoutX="200.0" layoutY="227.0" stroke="WHITE" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0" strokeWidth="4.0" width="500.0">
@@ -28,8 +27,8 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ListView fx:id="coursesList" layoutX="356.0" layoutY="282.0" onMouseClicked="#onMouseClick" prefHeight="194.0" prefWidth="191.0" />
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="200.0" layoutX="351.0" layoutY="279.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="200.0" />
+      <ListView fx:id="coursesList" layoutX="356.0" layoutY="282.0" onMouseClicked="#onMouseClick" prefHeight="194.0" prefWidth="191.0" />
       <Text fill="WHITE" layoutX="351.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Courses" textAlignment="CENTER" wrappingWidth="197.056640625">
          <font>
             <Font name="Comic Sans MS" size="17.0" />
