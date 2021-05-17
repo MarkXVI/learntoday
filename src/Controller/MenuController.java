@@ -45,6 +45,8 @@ public class MenuController implements Initializable {
     @FXML
     Button joinCourseButton;
     @FXML
+    Button leaderboardsButton;
+    @FXML
     MenuBar editBar;
     @FXML
     TextFlow teacherInfo;
@@ -226,6 +228,18 @@ public class MenuController implements Initializable {
             scene.getStylesheets().add("View/Style.css");
             JoinCourseController joinCourseController = loader.getController();
             joinCourseController.showElements(false);
+
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ignored) {}
+    }
+
+    public void onLeaderboardsClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/Leaderboards.fxml"));
+            Stage stage = (Stage) leaderboardsButton.getScene().getWindow();
+            Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add("View/Style.css");
 
             stage.setScene(scene);
             stage.show();
