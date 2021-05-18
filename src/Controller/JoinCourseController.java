@@ -31,7 +31,7 @@ public class JoinCourseController {
     public JoinCourseController() throws SQLException {}
 
     public void onHomeClick() throws IOException {
-        SceneLoader.getInstance().LoadMainMenu(homeButton);
+        SceneLoader.getInstance().loadMainMenu(homeButton);
     }
 
     public void onJoinClick() throws SQLException {

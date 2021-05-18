@@ -85,7 +85,7 @@ public class QuizEditorController implements Initializable {
     }
 
     public void onHomeClick() throws IOException {
-        SceneLoader.getInstance().LoadMainMenu(homeButton);
+        SceneLoader.getInstance().loadMainMenu(homeButton);
     }
 
     public void setText(String topic){

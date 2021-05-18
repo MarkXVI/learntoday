@@ -40,7 +40,7 @@ public class RegisterController {
     public RegisterController() throws SQLException {}
 
     public void onGoBackClick() throws IOException {
-        SceneLoader.getInstance().LoadLogScene(GoBackButton);
+        SceneLoader.getInstance().loadLogScene(GoBackButton);
     }
 
     public void onRegisterClick() throws IOException {

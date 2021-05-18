@@ -33,7 +33,7 @@ public class AddCourseController {
     public AddCourseController() throws SQLException {}
 
     public void onHomeClick() throws IOException {
-        SceneLoader.getInstance().LoadMainMenu(homeButton);
+        SceneLoader.getInstance().loadMainMenu(homeButton);
     }
 
     public void onAddClick() throws SQLException {

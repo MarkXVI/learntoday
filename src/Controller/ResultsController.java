@@ -43,7 +43,7 @@ public class ResultsController implements Initializable {
     }
 
     public void onFinishClick() throws IOException {
-        SceneLoader.getInstance().LoadMainMenu(finishButton);
+        SceneLoader.getInstance().loadMainMenu(finishButton);
 
     }
 

@@ -36,6 +36,10 @@ public class EditCourseController implements Initializable {
 
     }
 
+    public void setText(String course, String courseID) {
+        textField.setText(course + " #" + courseID);
+    }
+
     public void onAddNewTopic() {
 
     }
@@ -49,6 +53,6 @@ public class EditCourseController implements Initializable {
     }
 
     public void onHomeClick() throws IOException {
-        SceneLoader.getInstance().LoadMainMenu(homeButton);
+        SceneLoader.getInstance().loadMainMenu(homeButton);
     }
 }

@@ -41,7 +41,7 @@ public class ReadController implements Initializable {
     }
 
     public void onHomeClick() throws IOException {
-        SceneLoader.getInstance().LoadMainMenu(homeButton);
+        SceneLoader.getInstance().loadMainMenu(homeButton);
     }
 
     public void onQuizClick() throws IOException {
@@ -49,9 +49,9 @@ public class ReadController implements Initializable {
             String selectedTopic = QuizStorage.getInstance().getTopic();
 
             if (Logic.checkSufficientQuestions(selectedTopic)){
-                QuizStorage.getInstance().add_questions(selectedTopic);
+                QuizStorage.getInstance().addQuestions(selectedTopic);
                 QuizStorage.getInstance().QuizShuffle();
-                SceneLoader.getInstance().LoadQuizMCTF(selectedTopic, quizButton, 0);
+                SceneLoader.getInstance().loadQuizMCTF(selectedTopic, quizButton, 0);
             }
         } catch (SQLException exception) {
             exception.printStackTrace();

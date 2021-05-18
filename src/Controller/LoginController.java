@@ -48,7 +48,7 @@ public class LoginController {
             UserStorage userStorage = UserStorage.getInstance();
             userStorage.createUser(Username, FirstName, LastName, AccountType);
 
-            SceneLoader.getInstance().LoadMainMenu(loginButton);
+            SceneLoader.getInstance().loadMainMenu(loginButton);
         } else {
             msgError.setVisible(true);
             FadeTransition ft = new FadeTransition(Duration.seconds(6), msgError);

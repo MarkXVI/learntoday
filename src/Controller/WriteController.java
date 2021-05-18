@@ -46,7 +46,7 @@ public class WriteController implements Initializable {
     }
 
     public void onHomeClick() throws IOException {
-        SceneLoader.getInstance().LoadMainMenu(homeButton);
+        SceneLoader.getInstance().loadMainMenu(homeButton);
     }
 
     public void onSubmitClick() {

@@ -27,13 +27,13 @@ public class quizStorageTest {
 
     @Test
     public void addQuestionsTest() throws SQLException {
-        QuizStorage.getInstance().add_questions("World War 2");
-        assertEquals(QuizStorage.getInstance().get_questionIDs(), database.getQuestionIDs("World War 2"));
+        QuizStorage.getInstance().addQuestions("World War 2");
+        assertEquals(QuizStorage.getInstance().getQuestionIDs(), database.getQuestionIDs("World War 2"));
     }
 
     @Test
     public void getQuestionIDsTest(){
-        ArrayList<String> questionIDs = QuizStorage.getInstance().get_questionIDs();
+        ArrayList<String> questionIDs = QuizStorage.getInstance().getQuestionIDs();
         assertThat(questionIDs, instanceOf(ArrayList.class));
     }
 

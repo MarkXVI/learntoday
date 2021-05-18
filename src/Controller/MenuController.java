@@ -144,9 +144,9 @@ public class MenuController implements Initializable {
             String selectedTopic = topicList.getSelectionModel().getSelectedItem();
             if (topics.contains(selectedTopic)) {
                 if (Logic.checkSufficientQuestions(selectedTopic)){
-                    QuizStorage.getInstance().add_questions(selectedTopic);
+                    QuizStorage.getInstance().addQuestions(selectedTopic);
                     QuizStorage.getInstance().QuizShuffle();
-                    SceneLoader.getInstance().LoadQuizMCTF(selectedTopic, quizButton, 0);
+                    SceneLoader.getInstance().loadQuizMCTF(selectedTopic, quizButton, 0);
                 }
             }
         } catch(Exception ex) {
@@ -159,7 +159,7 @@ public class MenuController implements Initializable {
             QuizStorage.getInstance().setTopic(topicList.getSelectionModel().getSelectedItem());
             String selectedItem = QuizStorage.getInstance().getTopic();
             if (topics.contains(selectedItem)) {
-                SceneLoader.getInstance().LoadReadScenes(selectedItem,readButton);
+                SceneLoader.getInstance().loadReadScenes(selectedItem,readButton);
             }
         } catch(NullPointerException ex){
             errorChange("You must choose a topic to read about!");
@@ -167,7 +167,7 @@ public class MenuController implements Initializable {
     }
 
     public void onLogoutClick() throws IOException {
-        SceneLoader.getInstance().LoadLogScene(logoutButton);
+        SceneLoader.getInstance().loadLogScene(logoutButton);
     }
 
     public void onEditText() throws IOException, SQLException {

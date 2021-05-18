@@ -3,6 +3,7 @@ package Controller;
 import Functionality.SceneLoader;
 import Functionality.User;
 import Model.ConnectionStorage;
+import Model.CourseStorage;
 import Model.DBConnection;
 import Model.UserStorage;
 import javafx.fxml.FXML;
@@ -11,7 +12,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -58,19 +58,15 @@ public class ManageCoursesController implements Initializable {
     }
 
     public void onEditCourse() {
-        String currentItemSelected = courseList.getSelectionModel().getSelectedItem();
-        if (courses.contains(currentItemSelected)) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/EditCourse.fxml"));
-                Stage stage = (Stage) editCourseButton.getScene().getWindow();
-                Scene scene = new Scene(loader.load());
-                scene.getStylesheets().add("View/Style.css");
-
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ignored) {}
+        try {
+            String selectedItem = courseList.getSelectionModel().getSelectedItem();
+            CourseStorage.getInstance().setCourseName(selectedItem);
+            if (courses.contains(selectedItem)) {
+                SceneLoader.getInstance().loadEditScene(selectedItem, editCourseButton);
+            }
+        } catch (IOException | SQLException ex) {
+            System.out.println("Error");
         }
-
     }
 
     public void onAddNewCourse() {
@@ -88,6 +84,6 @@ public class ManageCoursesController implements Initializable {
     }
 
     public void onHomeClick() throws IOException {
-        SceneLoader.getInstance().LoadMainMenu(homeButton);
+        SceneLoader.getInstance().loadMainMenu(homeButton);
     }
 }

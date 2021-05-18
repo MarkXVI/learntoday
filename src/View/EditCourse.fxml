@@ -33,7 +33,7 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Text fx:id="textField" layoutX="311.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+      <Text fx:id="textField" layoutX="271.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="358.0">
          <font>
             <Font name="Comic Sans MS Bold" size="24.0" />
          </font>

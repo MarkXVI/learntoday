@@ -14,25 +14,25 @@ public class QuizStorage {
             exception.printStackTrace();
         }
     }
-    private ArrayList<String> questionIDs = new ArrayList<>();
+
     DBConnection database = new ConnectionStorage().getConnection();
+    private ArrayList<String> questionIDs = new ArrayList<>();
     private String topic;
     private int points = 0;
     private int questions = 0;
 
-    public QuizStorage() throws SQLException {
-    }
+    public QuizStorage() throws SQLException {}
 
     public static QuizStorage getInstance() {
         return quizStorage;
     }
 
-    public void add_questions(String topic) throws SQLException {
+    public void addQuestions(String topic) throws SQLException {
         questionIDs = database.getQuestionIDs(topic);
         questions = questionIDs.size();
     }
 
-    public ArrayList<String> get_questionIDs() {
+    public ArrayList<String> getQuestionIDs() {
         return questionIDs;
     }
 

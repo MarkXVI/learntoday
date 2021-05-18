@@ -1,5 +1,6 @@
 package Functionality;
 
+import Controller.EditCourseController;
 import Controller.QuizController;
 import Controller.ReadController;
 import Model.ConnectionStorage;
@@ -28,7 +29,7 @@ public class SceneLoader {
 
     public SceneLoader() throws SQLException {}
 
-    public void LoadMainMenu(Button btn) throws IOException {
+    public void loadMainMenu(Button btn) throws IOException {
         QuizStorage.getInstance().resetPoints();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));
         Stage stage = (Stage) btn.getScene().getWindow();
@@ -38,9 +39,9 @@ public class SceneLoader {
         stage.show();
     }
 
-    public void LoadQuizMCTF(String selectedTopic, Button btn, int count) throws SQLException, IOException {
+    public void loadQuizMCTF(String selectedTopic, Button btn, int count) throws SQLException, IOException {
         String URL;
-        if(database.getQuestionType(QuizStorage.getInstance().get_questionIDs().get(count)).equals("MC")) { URL = "../View/QuizMultipleChoice.fxml";} else {URL = "../View/QuizTrueOrFalse.fxml";}
+        if(database.getQuestionType(QuizStorage.getInstance().getQuestionIDs().get(count)).equals("MC")) { URL = "../View/QuizMultipleChoice.fxml";} else {URL = "../View/QuizTrueOrFalse.fxml";}
         FXMLLoader loader = new FXMLLoader(getClass().getResource(URL));
         Stage stage = (Stage) btn.getScene().getWindow();
         Scene scene = new Scene(loader.load());
@@ -53,25 +54,38 @@ public class SceneLoader {
         QuizStorage.getInstance().setTopic(selectedTopic);
     }
 
-    public void LoadReadScenes(String selectedItem, Button readButton) throws SQLException, IOException {
+    public void loadReadScenes(String selectedItem, Button readButton) throws SQLException, IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ReadScreen.fxml"));
         Stage stage = (Stage) readButton.getScene().getWindow();
         Scene scene = new Scene(loader.load());
         scene.getStylesheets().add("View/Style.css");
 
         ReadController readController = loader.getController();
-        String text = database.getText(selectedItem);
-        readController.setText(text, selectedItem);
+        readController.setText(database.getText(selectedItem), selectedItem);
 
         stage.setScene(scene);
         stage.show();
     }
 
-    public void LoadLogScene(Button logoutButton) throws IOException {
+    public void loadLogScene(Button logoutButton) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginScreen.fxml")); // ↓↓↓↓ Switches scene to login screen.
         Stage stage = (Stage) logoutButton.getScene().getWindow();
         Scene scene = new Scene(loader.load());
         scene.getStylesheets().add("View/Style.css");
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void loadEditScene(String selectedItem, Button editCourseButton) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/EditCourse.fxml"));
+        Stage stage = (Stage) editCourseButton.getScene().getWindow();
+        Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add("View/Style.css");
+
+        EditCourseController editCourseController = loader.getController();
+        editCourseController.setText(selectedItem, database.getCourseIDForSelectedCourse(selectedItem));
+
         stage.setScene(scene);
         stage.show();
     }

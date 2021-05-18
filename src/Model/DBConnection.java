@@ -161,7 +161,6 @@ public class DBConnection {
 
     public void addQuestion(String question, String topic) {
         try {
-            System.out.println(question);
             preparedStatement = connection.prepareStatement("INSERT INTO question (question, quiz_name) VALUES (?,?)");
             preparedStatement.setString(1, question);
             preparedStatement.setString(2, topic);
@@ -200,6 +199,14 @@ public class DBConnection {
             }
         }
         return currentUsersCourses;
+    }
+
+    public String getCourseIDForSelectedCourse(String course) throws SQLException {
+        preparedStatement = connection.prepareStatement("SELECT courseID FROM course WHERE course_name = '" + course + "';");
+        resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+
+        return resultSet.getString(1);
     }
 
     public ArrayList<Integer> getCourseIDs() throws SQLException {
@@ -267,7 +274,7 @@ public class DBConnection {
                 resultSet.close();
             }
         } catch (SQLException ex) {
-            System.out.println("failed to disconnect!");
+            System.out.println("Failed to disconnect!");
         }
     }
 }

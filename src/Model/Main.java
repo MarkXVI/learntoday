@@ -18,9 +18,8 @@ import java.util.TimeZone;
 public class Main extends Application {
     ConnectionStorage connection;
     @Override
-    public void start(Stage primaryStage){
+    public void start(Stage primaryStage) {
         try {
-            System.out.println(TimeZone.getDefault());
             connection = ConnectionStorage.getInstance();
             Parent root = FXMLLoader.load(getClass().getResource("../View/LoginScreen.fxml"));
 
@@ -33,7 +32,7 @@ public class Main extends Application {
         Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
         primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
         primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }

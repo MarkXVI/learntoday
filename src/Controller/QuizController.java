@@ -51,7 +51,7 @@ public class QuizController implements Initializable {
 
     static int count = 1;
     ArrayList<String> alternatives = new ArrayList<>();
-    ArrayList<String> quizQue = QuizStorage.getInstance().get_questionIDs();
+    ArrayList<String> quizQue = QuizStorage.getInstance().getQuestionIDs();
     int numberOfQuestions = QuizStorage.getInstance().getQuestions();
     String question;
     String questionType;
@@ -117,13 +117,13 @@ public class QuizController implements Initializable {
 
     public void onHomeClick() throws IOException {
         count = 1;
-        SceneLoader.getInstance().LoadMainMenu(homeButton);
+        SceneLoader.getInstance().loadMainMenu(homeButton);
     }
 
     public void nextQuestion() throws IOException, SQLException {
         count ++;
         if(count <= numberOfQuestions){
-            SceneLoader.getInstance().LoadQuizMCTF(topicTitle.getText(), nextButton, count-1);
+            SceneLoader.getInstance().loadQuizMCTF(topicTitle.getText(), nextButton, count-1);
         }else{
             count = 1;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizResults.fxml"));
