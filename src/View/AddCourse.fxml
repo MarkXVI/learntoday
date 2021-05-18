@@ -24,18 +24,10 @@
     </Rectangle>
     <Rectangle arcHeight="50.0" arcWidth="50.0" height="300.0" layoutX="200.0" layoutY="227.0" stroke="WHITE" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0" strokeWidth="4.0" width="500.0">
         <fill>
-            <LinearGradient endY="0.9857142857142857" startX="1.0" startY="0.02857142857142858">
+            <LinearGradient endX="1.0" endY="0.9857142857142857" startX="1.0" startY="0.02857142857142858">
                 <stops>
-                    <Stop>
-                        <color>
-                            <Color blue="1.0" green="0.5647059082984924" red="0.11764705926179886" />
-                        </color>
-                    </Stop>
-                    <Stop offset="1.0">
-                        <color>
-                            <Color blue="1.0" green="0.6716049313545227" red="0.29629629850387573" />
-                        </color>
-                    </Stop>
+                    <Stop color="DODGERBLUE" />
+                    <Stop color="#4babff" offset="1.0" />
                 </stops>
             </LinearGradient>
         </fill>

@@ -250,7 +250,9 @@ public class DBConnection {
             resultSet = preparedStatement.executeQuery();
             resultSet.next();
             return resultSet.getInt(1);
-        } catch (SQLException ex) {return 0;}
+        } catch (SQLException ex) {
+            return 0;
+        }
     }
 
     public void disconnect(){ // Disconnects from the database

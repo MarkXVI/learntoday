@@ -60,7 +60,7 @@
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></Button>
-   <Button fx:id="addCourseButton" layoutX="195.0" layoutY="83.0" mnemonicParsing="false" onAction="#onAddCourse" prefHeight="25.0" prefWidth="107.0" text="Add new course" textFill="#7c7c7c">
+   <Button fx:id="manageCoursesButton" layoutX="195.0" layoutY="83.0" mnemonicParsing="false" onAction="#onManageCourses" prefHeight="25.0" prefWidth="107.0" text="Manage courses" textFill="#7c7c7c">
       <font>
          <Font name="Comic Sans MS" size="12.0" />
       </font>

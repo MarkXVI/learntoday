@@ -42,7 +42,7 @@ public class MenuController implements Initializable {
     @FXML
     Button readButton;
     @FXML
-    Button addCourseButton;
+    Button manageCoursesButton;
     @FXML
     Button joinCourseButton;
     @FXML
@@ -85,12 +85,12 @@ public class MenuController implements Initializable {
         if (user.getTeacher() == 1) {
             editBar.setVisible(true);
             teacherInfo.setVisible(true);
-            addCourseButton.setVisible(true);
+            manageCoursesButton.setVisible(true);
             leaderboardsButton.setVisible(true);
         } else {
             editBar.setVisible(false);
             teacherInfo.setVisible(false);
-            addCourseButton.setVisible(false);
+            manageCoursesButton.setVisible(false);
             leaderboardsButton.setVisible(false);
         }
     }
@@ -209,14 +209,12 @@ public class MenuController implements Initializable {
         }
     }
 
-    public void onAddCourse() {
+    public void onManageCourses() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/AddCourse.fxml"));
-            Stage stage = (Stage) addCourseButton.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ManageCourses.fxml"));
+            Stage stage = (Stage) manageCoursesButton.getScene().getWindow();
             Scene scene = new Scene(loader.load());
             scene.getStylesheets().add("View/Style.css");
-            AddCourseController addCourseController = loader.getController();
-            addCourseController.showElements(false);
 
             stage.setScene(scene);
             stage.show();

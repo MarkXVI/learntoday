@@ -6,10 +6,13 @@ import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.UserStorage;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,21 +20,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class LeaderboardsController implements Initializable {
+public class ManageCoursesController implements Initializable {
 
     DBConnection database = ConnectionStorage.getInstance().getConnection();
     @FXML
+    Button editCourseButton;
+    @FXML
+    Button addNewCourseButton;
+    @FXML
     Button homeButton;
     @FXML
-    ListView<String> coursesList;
+    ListView<String> courseList;
 
     UserStorage userStorage = UserStorage.getInstance();
     User user = userStorage.currentUser();
 
-    ArrayList<String> courses;
     ArrayList<Object> topics;
+    ArrayList<String> courses;
 
-    public LeaderboardsController() throws SQLException {}
+    public ManageCoursesController() throws SQLException {}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -46,28 +53,46 @@ public class LeaderboardsController implements Initializable {
 
     public void addCourses() {
         for (String course : courses) {
-            coursesList.getItems().add(course);
+            courseList.getItems().add(course);
         }
     }
 
     public void onMouseClick(MouseEvent click) throws SQLException {
         try {
             if (click.getClickCount() == 2) {
-                String currentItemSelected = coursesList.getSelectionModel().getSelectedItem();
+                String currentItemSelected = courseList.getSelectionModel().getSelectedItem();
                 if (courses.contains(currentItemSelected)) {
                     topics = database.getTopics(currentItemSelected);
-                    coursesList.getItems().clear();
+                    courseList.getItems().clear();
                     for (Object topic : topics) {
-                        coursesList.getItems().add(topic.toString());
+                        courseList.getItems().add(topic.toString());
                     }
-                    coursesList.getItems().add("Go Back");
+                    courseList.getItems().add("Go Back");
                 }
                 if (currentItemSelected.equals("Go Back")) {
-                    coursesList.getItems().clear();
+                    courseList.getItems().clear();
                     addCourses();
                 }
             }
         } catch (NullPointerException ignored) {}
+    }
+
+    public void onEditCourse() {
+
+    }
+
+    public void onAddNewCourse() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/AddCourse.fxml"));
+            Stage stage = (Stage) addNewCourseButton.getScene().getWindow();
+            Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add("View/Style.css");
+            AddCourseController addCourseController = loader.getController();
+            addCourseController.showElements(false);
+
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ignored) {}
     }
 
     public void onHomeClick() throws IOException {
