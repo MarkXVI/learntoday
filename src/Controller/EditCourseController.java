@@ -2,8 +2,8 @@ package Controller;
 
 import Functionality.SceneLoader;
 import Model.ConnectionStorage;
+import Model.CourseStorage;
 import Model.DBConnection;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class EditCourseController implements Initializable {
@@ -29,11 +30,24 @@ public class EditCourseController implements Initializable {
     @FXML
     ListView<String> studentsList;
 
+    ArrayList<String> usernames;
+
     public EditCourseController() throws SQLException {}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            String courseName = CourseStorage.getInstance().getCourseName();
+            String courseID = database.getCourseIDForSelectedCourse(courseName);
+            usernames = database.getUsernamesForCourse(courseID);
+        } catch (SQLException ignored) {}
+        addUsernames();
+    }
 
+    public void addUsernames() {
+        for (String username : usernames) {
+            studentsList.getItems().add(username);
+        }
     }
 
     public void setText(String course, String courseID) {
@@ -44,7 +58,7 @@ public class EditCourseController implements Initializable {
 
     }
 
-    public void onMouseClick(ActionEvent actionEvent) {
+    public void onMouseClick() {
 
     }
 

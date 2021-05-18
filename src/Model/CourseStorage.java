@@ -28,11 +28,11 @@ public class CourseStorage {
         return userNames;
     }
 
-    public void setCourseName(String course) {
+    public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
 
-    public String getCourse() {
+    public String getCourseName() {
         return courseName;
     }
 }

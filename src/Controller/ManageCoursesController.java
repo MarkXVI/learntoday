@@ -35,7 +35,6 @@ public class ManageCoursesController implements Initializable {
     UserStorage userStorage = UserStorage.getInstance();
     User user = userStorage.currentUser();
 
-    ArrayList<Object> topics;
     ArrayList<String> courses;
 
     public ManageCoursesController() throws SQLException {}
@@ -64,8 +63,8 @@ public class ManageCoursesController implements Initializable {
             if (courses.contains(selectedItem)) {
                 SceneLoader.getInstance().loadEditScene(selectedItem, editCourseButton);
             }
-        } catch (IOException | SQLException ex) {
-            System.out.println("Error");
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
         }
     }
 

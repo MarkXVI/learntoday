@@ -71,6 +71,16 @@ public class DBConnection {
         return user;
     }
 
+    public ArrayList<String> getUsernamesForCourse(String courseID) throws SQLException {
+        ArrayList<String> usernames = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT user_username FROM course_has_user WHERE course_courseID = " + courseID + ";");
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            usernames.add(resultSet.getString(1));
+        }
+        return usernames;
+    }
+
     public ArrayList<Object> getTopics(String topic) throws SQLException {
         ArrayList<Object> subjects = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM quiz WHERE topic_name = ?");
