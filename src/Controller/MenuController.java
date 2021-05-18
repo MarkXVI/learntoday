@@ -70,9 +70,9 @@ public class MenuController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         checkUserType();
 
-        String FirstName = user.getFirstname();
-        String LastName = user.getLastname();
-        signedInText.setText("Signed in as: " + FirstName + " " + LastName);
+        String firstName = user.getFirstname();
+        String lastName = user.getLastname();
+        signedInText.setText("Signed in as: " + firstName + " " + lastName);
         try {
             subjects = database.getSubjects();
         } catch (SQLException exception) {

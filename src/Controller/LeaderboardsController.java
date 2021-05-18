@@ -1,8 +1,10 @@
 package Controller;
 
 import Functionality.SceneLoader;
+import Functionality.User;
 import Model.ConnectionStorage;
 import Model.DBConnection;
+import Model.UserStorage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -23,7 +25,10 @@ public class LeaderboardsController implements Initializable {
     @FXML
     ListView<String> coursesList;
 
-    ArrayList<Object> courses;
+    UserStorage userStorage = UserStorage.getInstance();
+    User user = userStorage.currentUser();
+
+    ArrayList<String> courses;
     ArrayList<Object> topics;
 
     public LeaderboardsController() throws SQLException {}
@@ -35,7 +40,8 @@ public class LeaderboardsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            courses = database.getCourses();
+            String username = user.getUsername();
+            courses = database.getCurrentUsersCourses(username);
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -43,8 +49,8 @@ public class LeaderboardsController implements Initializable {
     }
 
     public void addCourses() {
-        for (Object course : courses) {
-            coursesList.getItems().add(course.toString());
+        for (String course : courses) {
+            coursesList.getItems().add(course);
         }
     }
 
