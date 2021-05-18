@@ -71,7 +71,7 @@ public class DBConnection {
         return user;
     }
 
-    public ArrayList<String> getUsernamesForCourse(String courseID) throws SQLException {
+    public ArrayList<String> getUsernamesForCourse(int courseID) throws SQLException {
         ArrayList<String> usernames = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT user_username FROM course_has_user WHERE course_courseID = " + courseID + ";");
         resultSet = preparedStatement.executeQuery();
@@ -211,12 +211,12 @@ public class DBConnection {
         return currentUsersCourses;
     }
 
-    public String getCourseIDForSelectedCourse(String course) throws SQLException {
+    public int getCourseIDForSelectedCourse(String course) throws SQLException {
         preparedStatement = connection.prepareStatement("SELECT courseID FROM course WHERE course_name = '" + course + "';");
         resultSet = preparedStatement.executeQuery();
         resultSet.next();
 
-        return resultSet.getString(1);
+        return resultSet.getInt(1);
     }
 
     public ArrayList<Integer> getCourseIDs() throws SQLException {

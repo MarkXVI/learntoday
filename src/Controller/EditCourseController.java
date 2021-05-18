@@ -38,7 +38,7 @@ public class EditCourseController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             String courseName = CourseStorage.getInstance().getCourseName();
-            String courseID = database.getCourseIDForSelectedCourse(courseName);
+            int courseID = database.getCourseIDForSelectedCourse(courseName);
             usernames = database.getUsernamesForCourse(courseID);
         } catch (SQLException ignored) {}
         addUsernames();
@@ -50,7 +50,7 @@ public class EditCourseController implements Initializable {
         }
     }
 
-    public void setText(String course, String courseID) {
+    public void setText(String course, int courseID) {
         textField.setText(course + " #" + courseID);
     }
 
