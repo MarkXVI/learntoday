@@ -57,27 +57,19 @@ public class ManageCoursesController implements Initializable {
         }
     }
 
-    public void onMouseClick(MouseEvent click) throws SQLException {
-        try {
-            if (click.getClickCount() == 2) {
-                String currentItemSelected = courseList.getSelectionModel().getSelectedItem();
-                if (courses.contains(currentItemSelected)) {
-                    topics = database.getTopics(currentItemSelected);
-                    courseList.getItems().clear();
-                    for (Object topic : topics) {
-                        courseList.getItems().add(topic.toString());
-                    }
-                    courseList.getItems().add("Go Back");
-                }
-                if (currentItemSelected.equals("Go Back")) {
-                    courseList.getItems().clear();
-                    addCourses();
-                }
-            }
-        } catch (NullPointerException ignored) {}
-    }
-
     public void onEditCourse() {
+        String currentItemSelected = courseList.getSelectionModel().getSelectedItem();
+        if (courses.contains(currentItemSelected)) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/EditCourse.fxml"));
+                Stage stage = (Stage) editCourseButton.getScene().getWindow();
+                Scene scene = new Scene(loader.load());
+                scene.getStylesheets().add("View/Style.css");
+
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ignored) {}
+        }
 
     }
 
