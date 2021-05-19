@@ -39,10 +39,6 @@ public class LeaderboardsController implements Initializable {
     @FXML
     Button backButton;
 
-    ArrayList userList = new ArrayList();
-    @FXML
-    ObservableList users = FXCollections.observableList(userList);
-
     UserStorage userStorage = UserStorage.getInstance();
     User user = userStorage.currentUser();
     int course;
@@ -75,7 +71,7 @@ public class LeaderboardsController implements Initializable {
                 String currentItemSelected = coursesList.getSelectionModel().getSelectedItem();
                 if (courses.contains(currentItemSelected)) {
                     course = database.getIDForSelectedCourse(currentItemSelected, user.getUsername());
-                    topics = database.getTopics(currentItemSelected);
+                    topics = database.getTopicsFromCourse(course);
                     coursesList.getItems().clear();
                     for (Object topic : topics) {
                         coursesList.getItems().add(topic.toString());
@@ -86,7 +82,6 @@ public class LeaderboardsController implements Initializable {
                     studentColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
                     scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
                     ArrayList<Pairs> users = database.getCourseUsers(course, topic);
-                    System.out.println(users);
                     ObservableList<Pairs> userList = FXCollections.observableList(users);
                     studentTable.setItems(userList);
                     studentTable.setVisible(true);
