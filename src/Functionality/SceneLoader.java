@@ -39,6 +39,16 @@ public class SceneLoader {
         stage.show();
     }
 
+    public void loadLeaderboard(Button btn) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/Leaderboards.fxml"));
+        Stage stage = (Stage) btn.getScene().getWindow();
+        Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add("View/Style.css");
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void loadQuizMCTF(String selectedTopic, Button btn, int count) throws SQLException, IOException {
         String URL;
         if(database.getQuestionType(QuizStorage.getInstance().getQuestionIDs().get(count)).equals("MC")) { URL = "../View/QuizMultipleChoice.fxml";} else {URL = "../View/QuizTrueOrFalse.fxml";}

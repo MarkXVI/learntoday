@@ -3,6 +3,8 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
@@ -33,7 +35,7 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Button fx:id="homeButton" layoutX="427.0" layoutY="491.0" mnemonicParsing="false" onAction="#onHomeClick" text="Home">
+      <Button fx:id="homeButton" layoutX="356.0" layoutY="490.0" mnemonicParsing="false" onAction="#onHomeClick" text="Home">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -45,5 +47,16 @@
             <Font name="Comic Sans MS" size="17.0" />
          </font>
       </Text>
+      <TableView fx:id="studentTable" layoutX="346.0" layoutY="279.0" prefHeight="200.0" prefWidth="206.0" visible="false">
+        <columns>
+          <TableColumn fx:id="studentColumn" prefWidth="103.0" sortType="DESCENDING" text="Students" />
+          <TableColumn fx:id="scoreColumn" prefWidth="102.0" sortType="DESCENDING" text="Score" />
+        </columns>
+      </TableView>
+      <Button fx:id="backButton" layoutX="498.0" layoutY="490.0" mnemonicParsing="false" onAction="#onBackClick" text="Back">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

@@ -237,13 +237,7 @@ public class MenuController implements Initializable {
 
     public void onLeaderboardsClick() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/Leaderboards.fxml"));
-            Stage stage = (Stage) leaderboardsButton.getScene().getWindow();
-            Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add("View/Style.css");
-
-            stage.setScene(scene);
-            stage.show();
+            SceneLoader.getInstance().loadLeaderboard(leaderboardsButton);
 
         } catch (IOException ignored) {}
     }
