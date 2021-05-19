@@ -3,6 +3,7 @@ package Controller;
 import Functionality.SceneLoader;
 import Functionality.User;
 import Model.ConnectionStorage;
+import Model.CourseStorage;
 import Model.DBConnection;
 import Model.UserStorage;
 import javafx.fxml.FXML;
@@ -45,22 +46,14 @@ public class EditCourseController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            String username = user.getUsername();
-            int courseID = database.getIDForSelectedCourse(database.getCurrentUsersCourseIDs(username));
-            usernames = database.getUsernamesForCourse(courseID);
-        } catch (SQLException ignored) {}
-        addUsernames();
     }
 
-    public void addUsernames() {
+    public void setText(String course, int courseID) throws SQLException {
+        usernames = database.getUsernamesForCourse(courseID);
         for (String username : usernames) {
             listView.getItems().add(username);
         }
         listView.getItems().add("Go back");
-    }
-
-    public void setText(String course, int courseID) {
         if (courseID != 0) {
             textField.setText(course + " #" + courseID);
         } else {
@@ -97,7 +90,8 @@ public class EditCourseController implements Initializable {
         } else {
             for (String subject : database.getSubjects()) {
                 if (click.getClickCount() == 2 && database.getTopics(subject).contains(selectedItem)) {
-                    database.addTopicToCourse(database.getIDForSelectedCourse(database.getCurrentUsersCourseIDs(user.getUsername())), selectedItem);
+                    int courseID = database.getIDForSelectedCourse(CourseStorage.getInstance().getCourseName(), user.getUsername());
+                    database.addTopicToCourse(courseID, selectedItem);
                     listView.getItems().remove(selectedItem);
                 }
             }
@@ -106,8 +100,7 @@ public class EditCourseController implements Initializable {
 
     public void onRemoveStudent() throws SQLException {
         String selectedItem = listView.getSelectionModel().getSelectedItem();
-        String username = user.getUsername();
-        int courseID = database.getIDForSelectedCourse(database.getCurrentUsersCourseIDs(username));
+        int courseID = database.getIDForSelectedCourse(CourseStorage.getInstance().getCourseName(), user.getUsername());
         if (usernames.contains(selectedItem)) {
             database.removeUser(courseID, selectedItem);
             listView.getItems().remove(selectedItem);

@@ -98,7 +98,7 @@ public class SceneLoader {
         scene.getStylesheets().add("View/Style.css");
 
         EditCourseController editCourseController = loader.getController();
-        editCourseController.setText(selectedItem, database.getIDForSelectedCourse(database.getCurrentUsersCourseIDs(user.getUsername())));
+        editCourseController.setText(selectedItem, database.getIDForSelectedCourse(selectedItem, user.getUsername()));
 
         stage.setScene(scene);
         stage.show();

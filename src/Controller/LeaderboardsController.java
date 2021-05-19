@@ -45,7 +45,7 @@ public class LeaderboardsController implements Initializable {
 
     UserStorage userStorage = UserStorage.getInstance();
     User user = userStorage.currentUser();
-    String course;
+    int course;
     String topic;
 
     ArrayList<String> courses;
@@ -74,7 +74,7 @@ public class LeaderboardsController implements Initializable {
             if (click.getClickCount() == 2) {
                 String currentItemSelected = coursesList.getSelectionModel().getSelectedItem();
                 if (courses.contains(currentItemSelected)) {
-                    course = database.getCourseIDForSelectedCourse(currentItemSelected);
+                    course = database.getIDForSelectedCourse(currentItemSelected, user.getUsername());
                     topics = database.getTopics(currentItemSelected);
                     coursesList.getItems().clear();
                     for (Object topic : topics) {
@@ -86,6 +86,7 @@ public class LeaderboardsController implements Initializable {
                     studentColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
                     scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
                     ArrayList<Pairs> users = database.getCourseUsers(course, topic);
+                    System.out.println(users);
                     ObservableList<Pairs> userList = FXCollections.observableList(users);
                     studentTable.setItems(userList);
                     studentTable.setVisible(true);

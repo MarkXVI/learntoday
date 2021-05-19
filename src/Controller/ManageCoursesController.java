@@ -61,6 +61,7 @@ public class ManageCoursesController implements Initializable {
             String selectedItem = courseList.getSelectionModel().getSelectedItem();
             CourseStorage.getInstance().setCourseName(selectedItem);
             if (courses.contains(selectedItem)) {
+                CourseStorage.getInstance().setCourseName(selectedItem);
                 SceneLoader.getInstance().loadEditScene(selectedItem, editCourseButton);
             }
         } catch (IOException | SQLException e) {
