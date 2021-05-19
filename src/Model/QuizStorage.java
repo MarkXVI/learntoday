@@ -36,9 +36,8 @@ public class QuizStorage {
         return questionIDs;
     }
 
-    public ArrayList QuizShuffle() {
+    public void QuizShuffle() {
         Collections.shuffle(questionIDs);
-        return questionIDs;
     }
 
     public String getTopic() {

@@ -3,7 +3,6 @@ package Controller;
 import Functionality.SceneLoader;
 import Functionality.User;
 import Model.ConnectionStorage;
-import Model.CourseStorage;
 import Model.DBConnection;
 import Model.UserStorage;
 import javafx.fxml.FXML;

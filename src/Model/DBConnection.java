@@ -200,7 +200,6 @@ public class DBConnection {
         while (resultSet.next()) {
             currentUsersCourseIDs.add(resultSet.getInt(1));
         }
-        System.out.println(currentUsersCourseIDs);
         return currentUsersCourseIDs;
     }
 
@@ -212,7 +211,6 @@ public class DBConnection {
             resultSet.next();
             currentUsersCourseNames.add(resultSet.getString(1));
         }
-        System.out.println(currentUsersCourseNames);
         return currentUsersCourseNames;
     }
 
@@ -224,14 +222,12 @@ public class DBConnection {
         while (resultSet.next()) {
             coursesWithSameNames.add(resultSet.getInt(1));
         }
-        System.out.println(coursesWithSameNames);
         int courseIDForSelectedCourse = 0;
         for (Integer courseID : coursesWithSameNames) {
             if (currentUsersCourseIDs.contains(courseID)) {
                 courseIDForSelectedCourse = courseID;
             }
         }
-        System.out.println(courseIDForSelectedCourse);
         return courseIDForSelectedCourse;
     }
 
