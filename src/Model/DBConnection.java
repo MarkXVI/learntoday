@@ -71,16 +71,6 @@ public class DBConnection {
         return user;
     }
 
-    public ArrayList<String> getUsernamesForCourse(int courseID) throws SQLException {
-        ArrayList<String> usernames = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT user_username FROM course_has_user WHERE course_courseID = " + courseID + ";");
-        resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            usernames.add(resultSet.getString(1));
-        }
-        return usernames;
-    }
-
     public ArrayList<Object> getTopics(String topic) throws SQLException {
         ArrayList<Object> subjects = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM quiz WHERE topic_name = ?");
@@ -231,6 +221,16 @@ public class DBConnection {
         return courseIDForSelectedCourse;
     }
 
+    public ArrayList<String> getUsernamesForCourse(int courseIDForSelectedCourse) throws SQLException {
+        ArrayList<String> usernames = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT user_username FROM course_has_user WHERE course_courseID = " + courseIDForSelectedCourse + ";");
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            usernames.add(resultSet.getString(1));
+        }
+        return usernames;
+    }
+
     public ArrayList<Integer> getCourseIDs() throws SQLException {
         ArrayList<Integer> courseIDs = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT courseID FROM course");
@@ -281,6 +281,15 @@ public class DBConnection {
             return resultSet.getInt(1);
         } catch (SQLException ex) {
             return 0;
+        }
+    }
+
+    public void removeUser(int currentSelectedCourseID, String username) {
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM course_has_user WHERE course_courseID = " + currentSelectedCourseID + " AND user_username = '" + username + "';");
+            preparedStatement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
         }
     }
 

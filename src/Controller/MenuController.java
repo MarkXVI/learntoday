@@ -159,7 +159,7 @@ public class MenuController implements Initializable {
             QuizStorage.getInstance().setTopic(topicList.getSelectionModel().getSelectedItem());
             String selectedItem = QuizStorage.getInstance().getTopic();
             if (topics.contains(selectedItem)) {
-                SceneLoader.getInstance().loadReadScenes(selectedItem,readButton);
+                SceneLoader.getInstance().loadReadScenes(selectedItem, readButton);
             }
         } catch(NullPointerException ex){
             errorChange("You must choose a topic to read about!");

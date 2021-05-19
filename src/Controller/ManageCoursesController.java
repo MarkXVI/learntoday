@@ -42,7 +42,8 @@ public class ManageCoursesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            courses = database.getCurrentUsersCourseNames(database.getCurrentUsersCourseIDs(user.getUsername()));
+            String username = user.getUsername();
+            courses = database.getCurrentUsersCourseNames(database.getCurrentUsersCourseIDs(username));
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
