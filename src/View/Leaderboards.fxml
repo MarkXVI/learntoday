@@ -47,13 +47,13 @@
             <Font name="Comic Sans MS" size="17.0" />
          </font>
       </Text>
-      <TableView fx:id="studentTable" layoutX="346.0" layoutY="279.0" prefHeight="200.0" prefWidth="206.0" visible="false">
+      <TableView id="my-table" fx:id="studentTable" layoutX="346.0" layoutY="279.0" prefHeight="200.0" prefWidth="206.0" visible="false">
         <columns>
           <TableColumn fx:id="studentColumn" prefWidth="103.0" sortType="DESCENDING" text="Students" />
           <TableColumn fx:id="scoreColumn" prefWidth="102.0" sortType="DESCENDING" text="Score" />
         </columns>
       </TableView>
-      <Button fx:id="backButton" layoutX="498.0" layoutY="490.0" mnemonicParsing="false" onAction="#onBackClick" text="Back">
+      <Button fx:id="backButton" layoutX="498.0" layoutY="490.0" mnemonicParsing="false" onAction="#onBackClick" text="Back" visible="false">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

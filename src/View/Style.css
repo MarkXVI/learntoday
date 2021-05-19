@@ -48,3 +48,28 @@
 .menu-bar {
     -fx-background-color: #ffffff;
 }
+
+#my-table .table-cell {
+    -fx-alignment: CENTER;
+}
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-text-alignment: center;
+}
+.table-row-cell:odd{
+    -fx-background-color: #ffffff;
+    -fx-text-alignment: center;
+}
+.table-row-cell:even{
+    -fx-background-color: #ffffff;
+    -fx-text-alignment: center;
+}
+.table-row-cell:hover {
+    -fx-background-color: lightgrey;
+    -fx-text-alignment: center;
+}
+.table-row-cell:focused{
+    -fx-background-color: dodgerblue;
+    -fx-text-fill: white;
+    -fx-text-alignment: center;
+}

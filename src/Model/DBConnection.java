@@ -284,7 +284,6 @@ public class DBConnection {
             preparedStatement = connection.prepareStatement("Select username, score FROM course_has_user JOIN user JOIN user_does_quiz JOIN quiz WHERE user_does_quiz.user_username = username AND quiz_name = ? AND course_has_user.course_courseID = ? AND user_does_quiz.score = score group by username order by score;");
             preparedStatement.setString(1, topic);
             preparedStatement.setInt(2, courseID);
-            System.out.println(preparedStatement);
             resultSet = preparedStatement.executeQuery();
             ArrayList<Pairs> users = new ArrayList<>();
             while(resultSet.next()){
@@ -314,6 +313,17 @@ public class DBConnection {
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
+    }
+
+    public ArrayList<String> getTopicsFromCourse(int courseID) throws SQLException {
+        preparedStatement = connection.prepareStatement("SELECT quiz_name FROM course_has_quiz WHERE course_courseID = ?");
+        preparedStatement.setInt(1, courseID);
+        resultSet = preparedStatement.executeQuery();
+        ArrayList<String> courses = new ArrayList<>();
+        while(resultSet.next()){
+            courses.add(resultSet.getString(1));
+        }
+        return courses;
     }
 
     public void disconnect() { // Disconnects from the database
