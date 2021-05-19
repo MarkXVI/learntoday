@@ -34,7 +34,7 @@ public class EditCourseController implements Initializable {
     @FXML
     Text textField;
     @FXML
-    ListView<String> studentsList;
+    ListView<String> listView;
 
     ArrayList<String> usernames;
 
@@ -55,9 +55,9 @@ public class EditCourseController implements Initializable {
 
     public void addUsernames() {
         for (String username : usernames) {
-            studentsList.getItems().add(username);
-            studentsList.getItems().add("Go back");
+            listView.getItems().add(username);
         }
+        listView.getItems().add("Go back");
     }
 
     public void setText(String course, int courseID) {
@@ -68,31 +68,49 @@ public class EditCourseController implements Initializable {
         }
     }
 
-    public void onAddNewTopic() {
-
+    public void onAddNewTopic() throws SQLException {
+        listView.getItems().clear();
+        for (String subject : database.getSubjects()) {
+            listView.getItems().add(subject);
+        }
+        listView.getItems().add("Go back");
     }
 
-    public void onMouseClick(MouseEvent click) {
-        if (click.getClickCount() == 2 && studentsList.getSelectionModel().getSelectedItem().equals("Go back")) {
+    public void onMouseClick(MouseEvent click) throws SQLException {
+        String selectedItem = listView.getSelectionModel().getSelectedItem();
+        if (click.getClickCount() == 2 && selectedItem.equals("Go back")) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ManageCourses.fxml"));
-                Stage stage = (Stage) studentsList.getScene().getWindow();
+                Stage stage = (Stage) listView.getScene().getWindow();
                 Scene scene = new Scene(loader.load());
                 scene.getStylesheets().add("View/Style.css");
 
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException ignored) {}
+        } else if (click.getClickCount() == 2 && database.getSubjects().contains(selectedItem)) {
+            listView.getItems().clear();
+            for (String topic : database.getTopics(selectedItem)) {
+                listView.getItems().add(topic);
+            }
+            listView.getItems().add("Go back");
+        } else {
+            for (String subject : database.getSubjects()) {
+                if (click.getClickCount() == 2 && database.getTopics(subject).contains(selectedItem)) {
+                    database.addTopicToCourse(database.getIDForSelectedCourse(database.getCurrentUsersCourseIDs(user.getUsername())), selectedItem);
+                    listView.getItems().remove(selectedItem);
+                }
+            }
         }
     }
 
     public void onRemoveStudent() throws SQLException {
-        String selectedItem = studentsList.getSelectionModel().getSelectedItem();
+        String selectedItem = listView.getSelectionModel().getSelectedItem();
         String username = user.getUsername();
         int courseID = database.getIDForSelectedCourse(database.getCurrentUsersCourseIDs(username));
         if (usernames.contains(selectedItem)) {
             database.removeUser(courseID, selectedItem);
-            studentsList.getItems().remove(selectedItem);
+            listView.getItems().remove(selectedItem);
         }
     }
 

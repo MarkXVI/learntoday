@@ -29,7 +29,7 @@ public class LeaderboardsController implements Initializable {
     User user = userStorage.currentUser();
 
     ArrayList<String> courses;
-    ArrayList<Object> topics;
+    ArrayList<String> topics;
 
     public LeaderboardsController() throws SQLException {}
 

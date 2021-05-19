@@ -60,8 +60,8 @@ public class MenuController implements Initializable {
 
     UserStorage userStorage = UserStorage.getInstance();
     User user = userStorage.currentUser();
-    ArrayList<Object> subjects;
-    ArrayList<Object> topics;
+    ArrayList<String> subjects;
+    ArrayList<String> topics;
 
     public MenuController() throws SQLException {
     }
