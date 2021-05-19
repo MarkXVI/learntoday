@@ -26,14 +26,14 @@ public class databaseTest {
 
     @Test
     public void testGetTopics() throws SQLException {
-        ArrayList<Object> topics = connection.getTopics("test");
+        ArrayList<String> topics = connection.getTopics("test");
         assertNotNull(topics);
         assertEquals(topics.size(), 0);
     }
 
     @Test
     public void testGetSubjects() throws SQLException {
-        ArrayList<Object> subjects = connection.getSubjects();
+        ArrayList<String> subjects = connection.getSubjects();
         assertNotNull(subjects);
         assertEquals(subjects.size(), 3);
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Shadow?>
@@ -39,7 +40,10 @@
             </stops>
          </LinearGradient>
       </fill></Rectangle>
-   <Button fx:id="homeButton" layoutX="616.0" layoutY="46.0" mnemonicParsing="false" onAction="#onHomeClick" prefHeight="25.0" prefWidth="67.0" text="Home" />
+   <Button fx:id="homeButton" layoutX="616.0" layoutY="46.0" mnemonicParsing="false" onAction="#onHomeClick" prefHeight="25.0" prefWidth="67.0" text="Home">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></Button>
    <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="158.0" layoutX="214.0" layoutY="106.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="456.0" />
    <Text layoutX="191.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quiz" textAlignment="CENTER" wrappingWidth="67.0">
       <font>
@@ -108,7 +112,10 @@
    <TextField fx:id="inputAlt3" alignment="CENTER" layoutX="238.0" layoutY="492.0" prefHeight="102.0" prefWidth="169.0" promptText="Insert alternative here" />
    <TextField fx:id="inputAlt4" alignment="CENTER" layoutX="477.0" layoutY="492.0" prefHeight="102.0" prefWidth="169.0" promptText="Insert alternative here" />
    <TextField fx:id="inputQuestion" alignment="CENTER" layoutX="227.0" layoutY="117.0" prefHeight="136.0" prefWidth="430.0" promptText="Insert question here" />
-   <Button layoutX="384.0" layoutY="635.0" mnemonicParsing="false" onAction="#showPane" prefHeight="25.0" prefWidth="116.0" text="Submit" />
+   <Button layoutX="384.0" layoutY="635.0" mnemonicParsing="false" onAction="#showPane" prefHeight="25.0" prefWidth="116.0" text="Submit">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></Button>
    <Pane fx:id="confirmPane" layoutX="315.0" layoutY="273.0" prefHeight="200.0" prefWidth="270.0" visible="false">
       <Rectangle arcHeight="50.0" arcWidth="50.0" height="151.0" layoutX="16.0" layoutY="14.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="270.0">
          <effect>

@@ -33,7 +33,7 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Text layoutX="311.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a course to edit" textAlignment="CENTER">
+      <Text layoutX="311.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a course to edit" textAlignment="CENTER">
          <font>
             <Font name="Comic Sans MS Bold" size="24.0" />
          </font>

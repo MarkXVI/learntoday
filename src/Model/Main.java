@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import javax.speech.AudioException;
 import javax.speech.EngineException;
 import java.beans.PropertyVetoException;
-import java.util.TimeZone;
 
 
 public class Main extends Application {

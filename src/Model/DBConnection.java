@@ -73,8 +73,8 @@ public class DBConnection {
         return user;
     }
 
-    public ArrayList<Object> getTopics(String topic) throws SQLException {
-        ArrayList<Object> subjects = new ArrayList<>();
+    public ArrayList<String> getTopics(String topic) throws SQLException {
+        ArrayList<String> subjects = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM quiz WHERE topic_name = ?");
         preparedStatement.setString(1, topic);
         resultSet = preparedStatement.executeQuery();
@@ -93,8 +93,8 @@ public class DBConnection {
         return resultSet.getInt(1);
     }
 
-    public ArrayList<Object> getSubjects() throws SQLException {
-        ArrayList<Object> topics = new ArrayList<>();
+    public ArrayList<String> getSubjects() throws SQLException {
+        ArrayList<String> topics = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM topic");
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
@@ -185,7 +185,7 @@ public class DBConnection {
         } catch (SQLIntegrityConstraintViolationException ignored) {}
     }
 
-    public ArrayList<String> getCurrentUsersCourses(String username) throws SQLException {
+    public ArrayList<Integer> getCurrentUsersCourseIDs(String username) throws SQLException {
         ArrayList<Integer> currentUsersCourseIDs = new ArrayList<>();
         ArrayList<String> currentUsersCourses = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT course_courseID FROM course_has_user WHERE user_username = '" + username + "';");
@@ -193,22 +193,45 @@ public class DBConnection {
         while (resultSet.next()) {
             currentUsersCourseIDs.add(resultSet.getInt(1));
         }
+        return currentUsersCourseIDs;
+    }
+
+    public ArrayList<String> getCurrentUsersCourseNames(ArrayList<Integer> currentUsersCourseIDs) throws SQLException {
+        ArrayList<String> currentUsersCourseNames = new ArrayList<>();
         for (Integer courseID : currentUsersCourseIDs) {
             preparedStatement = connection.prepareStatement("SELECT course_name FROM course WHERE courseID = " + courseID + ";");
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                currentUsersCourses.add(resultSet.getString(1));
-            }
+            resultSet.next();
+            currentUsersCourseNames.add(resultSet.getString(1));
         }
-        return currentUsersCourses;
+        return currentUsersCourseNames;
     }
 
-    public String getCourseIDForSelectedCourse(String course) throws SQLException {
-        preparedStatement = connection.prepareStatement("SELECT courseID FROM course WHERE course_name = '" + course + "';");
+    public int getIDForSelectedCourse(ArrayList<Integer> currentUsersCourseIDs) throws SQLException {
+        ArrayList<Integer> coursesWithSameNames = new ArrayList<>();
+        String name = CourseStorage.getInstance().getCourseName();
+        preparedStatement = connection.prepareStatement("SELECT courseID FROM course WHERE course_name = '" + name + "';");
         resultSet = preparedStatement.executeQuery();
-        resultSet.next();
+        while (resultSet.next()) {
+            coursesWithSameNames.add(resultSet.getInt(1));
+        }
+        int courseIDForSelectedCourse = 0;
+        for (Integer courseID : coursesWithSameNames) {
+            if (currentUsersCourseIDs.contains(courseID)) {
+                courseIDForSelectedCourse = courseID;
+            }
+        }
+        return courseIDForSelectedCourse;
+    }
 
-        return resultSet.getString(1);
+    public ArrayList<String> getUsernamesForCourse(int courseIDForSelectedCourse) throws SQLException {
+        ArrayList<String> usernames = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT user_username FROM course_has_user WHERE course_courseID = " + courseIDForSelectedCourse + ";");
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            usernames.add(resultSet.getString(1));
+        }
+        return usernames;
     }
 
     public ArrayList<Integer> getCourseIDs() throws SQLException {
@@ -280,7 +303,27 @@ public class DBConnection {
         }
     }
 
-    public void disconnect(){ // Disconnects from the database
+    public void removeUser(int courseID, String username) {
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM course_has_user WHERE course_courseID = " + courseID + " AND user_username = '" + username + "';");
+            preparedStatement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void addTopicToCourse(int courseID, String name) {
+        try {
+            preparedStatement = connection.prepareStatement("INSERT INTO course_has_quiz VALUES(?, ?);");
+            preparedStatement.setInt(1, courseID);
+            preparedStatement.setString(2, name);
+            preparedStatement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void disconnect() { // Disconnects from the database
         try {
             if (connection!=null) {
                 connection.close();

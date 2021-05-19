@@ -6,6 +6,7 @@ import Controller.ReadController;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.QuizStorage;
+import Model.UserStorage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,6 +27,9 @@ public class SceneLoader {
     public static SceneLoader getInstance() { return sceneLoader;}
 
     DBConnection database = ConnectionStorage.getInstance().getConnection();
+
+    UserStorage userStorage = UserStorage.getInstance();
+    User user = userStorage.currentUser();
 
     public SceneLoader() throws SQLException {}
 
@@ -94,7 +98,7 @@ public class SceneLoader {
         scene.getStylesheets().add("View/Style.css");
 
         EditCourseController editCourseController = loader.getController();
-        editCourseController.setText(selectedItem, database.getCourseIDForSelectedCourse(selectedItem));
+        editCourseController.setText(selectedItem, database.getIDForSelectedCourse(database.getCurrentUsersCourseIDs(user.getUsername())));
 
         stage.setScene(scene);
         stage.show();

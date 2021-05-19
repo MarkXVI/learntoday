@@ -49,15 +49,14 @@ public class LeaderboardsController implements Initializable {
     String topic;
 
     ArrayList<String> courses;
-    ArrayList<Object> topics;
+    ArrayList<String> topics;
 
     public LeaderboardsController() throws SQLException {}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            String username = user.getUsername();
-            courses = database.getCurrentUsersCourses(username);
+            courses = database.getCurrentUsersCourseNames(database.getCurrentUsersCourseIDs(user.getUsername()));
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
