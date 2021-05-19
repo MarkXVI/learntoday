@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditCourseController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ManageTopicsController">
    <children>
       <Rectangle arcHeight="50.0" arcWidth="50.0" fill="DODGERBLUE" height="300.0" layoutX="224.0" layoutY="253.0" stroke="TRANSPARENT" strokeType="INSIDE" width="500.0">
          <effect>
@@ -33,7 +33,7 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Text fx:id="textField" layoutX="271.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="358.0">
+      <Text fx:id="textField" layoutX="246.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="412.0">
          <font>
             <Font name="Comic Sans MS Bold" size="24.0" />
          </font>
@@ -47,19 +47,19 @@
             </LinearGradient>
          </fill>
       </Text>
-      <Button fx:id="addNewTopic" layoutX="458.0" layoutY="496.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAddNewTopic" text="Add new topic" AnchorPane.bottomAnchor="199.0" AnchorPane.leftAnchor="458.0" AnchorPane.rightAnchor="356.0" AnchorPane.topAnchor="496.0">
+      <Button fx:id="rightButton" layoutX="458.0" layoutY="496.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRightButton" prefHeight="28.0" prefWidth="121.0" AnchorPane.bottomAnchor="199.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="329.0" AnchorPane.topAnchor="493.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="200.0" layoutX="350.0" layoutY="283.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="200.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0" />
       <ListView fx:id="listView" layoutX="355.0" layoutY="288.0" onMouseClicked="#onMouseClick" prefHeight="191.0" prefWidth="190.0" />
-      <Button fx:id="removeStudentButton" layoutX="348.0" layoutY="496.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRemoveStudent" text="Remove student" AnchorPane.bottomAnchor="199.0" AnchorPane.leftAnchor="348.0" AnchorPane.rightAnchor="466.0" AnchorPane.topAnchor="496.0">
+      <Button fx:id="showButton" layoutX="333.0" layoutY="496.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onShow" prefHeight="25.0" prefWidth="119.0" AnchorPane.bottomAnchor="199.0" AnchorPane.leftAnchor="326.0" AnchorPane.rightAnchor="453.0" AnchorPane.topAnchor="493.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="homeButton" layoutX="635.0" layoutY="496.0" mnemonicParsing="false" onAction="#onHomeClick" text="Home">
+      <Button fx:id="homeButton" layoutX="571.0" layoutY="493.0" mnemonicParsing="false" onAction="#onHomeClick" text="Home" AnchorPane.bottomAnchor="199.0" AnchorPane.leftAnchor="631.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="493.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

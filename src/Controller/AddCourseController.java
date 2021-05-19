@@ -1,6 +1,7 @@
 package Controller;
 
 import Functionality.SceneLoader;
+import Functionality.User;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.UserStorage;
@@ -30,6 +31,11 @@ public class AddCourseController {
     @FXML
     Text courseIDText;
 
+    UserStorage userStorage = UserStorage.getInstance();
+    User user = userStorage.currentUser();
+
+    ArrayList<String> courses;
+
     public AddCourseController() throws SQLException {}
 
     public void onHomeClick() throws IOException {
@@ -38,20 +44,24 @@ public class AddCourseController {
 
     public void onAddClick() throws SQLException {
         ArrayList<Integer> existingIDs = database.getCourseIDs();
+        courses = database.getCurrentUsersCourseNames(database.getCurrentUsersCourseIDs(user.getUsername()));
         int randomID;
-        do {
-            randomID = (int) (Math.random() * (99999 - 10000) + 10000);
-        } while (existingIDs.contains(randomID));
-        database.addCourse(randomID, userInput.getText());
-        database.addUserToCourse(randomID, UserStorage.getInstance().currentUser().getUsername());
-        courseIDText.setText("Course ID: " + randomID);
-        showElements(true);
+        if (!courses.contains(userInput.toString())) {
+            do {
+                randomID = (int) (Math.random() * (99999 - 10000) + 10000);
+            } while (existingIDs.contains(randomID));
+            database.addCourse(randomID, userInput.getText());
+            database.addUserToCourse(randomID, UserStorage.getInstance().currentUser().getUsername());
+            courseIDText.setText("Course ID: " + randomID);
+            showElements(true);
+        } else if (courses.contains(userInput.toString())) {
+            courseIDText.setText("A course with the same name already exists!");
+        }
     }
 
     public void showElements(boolean bool) {
         whiteRectangle.setVisible(bool);
         confirmationText.setVisible(bool);
         courseIDText.setVisible(bool);
-        addButton.setVisible(!bool);
     }
 }

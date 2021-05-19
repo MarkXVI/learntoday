@@ -1,6 +1,6 @@
 package Functionality;
 
-import Controller.EditCourseController;
+import Controller.ManageTopicsController;
 import Controller.QuizController;
 import Controller.ReadController;
 import Model.ConnectionStorage;
@@ -86,19 +86,6 @@ public class SceneLoader {
         Stage stage = (Stage) logoutButton.getScene().getWindow();
         Scene scene = new Scene(loader.load());
         scene.getStylesheets().add("View/Style.css");
-
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void loadEditScene(String selectedItem, Button editCourseButton) throws IOException, SQLException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/EditCourse.fxml"));
-        Stage stage = (Stage) editCourseButton.getScene().getWindow();
-        Scene scene = new Scene(loader.load());
-        scene.getStylesheets().add("View/Style.css");
-
-        EditCourseController editCourseController = loader.getController();
-        editCourseController.setText(selectedItem, database.getIDForSelectedCourse(selectedItem, user.getUsername()));
 
         stage.setScene(scene);
         stage.show();

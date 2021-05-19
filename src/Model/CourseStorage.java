@@ -17,6 +17,7 @@ public class CourseStorage {
     DBConnection database = new ConnectionStorage().getConnection();
     private ArrayList<String> userNames = new ArrayList<>();
     private String courseName;
+    private String subjectName;
 
     public CourseStorage() throws SQLException {}
 
@@ -30,6 +31,14 @@ public class CourseStorage {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
+
+    public String getSubjectName() {
+        return subjectName;
     }
 
     public String getCourseName() {

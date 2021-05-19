@@ -84,6 +84,17 @@ public class DBConnection {
         return subjects;
     }
 
+    public ArrayList<String> getTopicsForSelectedSubject(String subjectName) throws SQLException {
+        ArrayList<String> topicsForSelectedSubject = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT name FROM quiz WHERE topic_name = ?;");
+        preparedStatement.setString(1, subjectName);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            topicsForSelectedSubject.add(resultSet.getString(1));
+        }
+        return topicsForSelectedSubject;
+    }
+
     public int checkQuestionAmount(String quiz_name) throws SQLException {
         preparedStatement = connection.prepareStatement("SELECT COUNT(question) FROM question WHERE quiz_name = ?");
         preparedStatement.setString(1, quiz_name);
@@ -207,10 +218,10 @@ public class DBConnection {
     }
 
 
-    public int getIDForSelectedCourse(String course,String name) throws SQLException {
-        preparedStatement = connection.prepareStatement("SELECT course_courseID FROM course_has_user JOIN course WHERE course_name = ? AND user_username = ? GROUP BY user_username;;");
-        preparedStatement.setString(1, course);
-        preparedStatement.setString(2, name);
+    public int getIDForSelectedCourse(String courseName, String username) throws SQLException {
+        preparedStatement = connection.prepareStatement("SELECT course_courseID FROM course_has_user JOIN course WHERE course_name = ? AND user_username = ? GROUP BY user_username;");
+        preparedStatement.setString(1, courseName);
+        preparedStatement.setString(2, username);
         resultSet = preparedStatement.executeQuery();
         resultSet.next();
         return resultSet.getInt(1);
@@ -284,7 +295,6 @@ public class DBConnection {
             preparedStatement = connection.prepareStatement("Select username, score FROM course_has_user JOIN user JOIN user_does_quiz JOIN quiz WHERE user_does_quiz.user_username = username AND quiz_name = ? AND course_has_user.course_courseID = ? AND user_does_quiz.score = score group by username order by score;");
             preparedStatement.setString(1, topic);
             preparedStatement.setInt(2, courseID);
-            System.out.println(preparedStatement);
             resultSet = preparedStatement.executeQuery();
             ArrayList<Pairs> users = new ArrayList<>();
             while(resultSet.next()){
@@ -298,22 +308,53 @@ public class DBConnection {
 
     public void removeUser(int courseID, String username) {
         try {
-            preparedStatement = connection.prepareStatement("DELETE FROM course_has_user WHERE course_courseID = " + courseID + " AND user_username = '" + username + "';");
+            preparedStatement = connection.prepareStatement("DELETE FROM course_has_user WHERE course_courseID = ? AND user_username = ?;");
+            preparedStatement.setInt(1, courseID);
+            preparedStatement.setString(2, username);
             preparedStatement.executeUpdate();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
     }
 
-    public void addTopicToCourse(int courseID, String name) {
+    public void removeCourse(int courseID) {
         try {
-            preparedStatement = connection.prepareStatement("INSERT INTO course_has_quiz VALUES(?, ?);");
+            preparedStatement = connection.prepareStatement("DELETE FROM course_has_user WHERE course_courseID = ?;");
             preparedStatement.setInt(1, courseID);
-            preparedStatement.setString(2, name);
+            preparedStatement.executeUpdate();
+
+            preparedStatement = connection.prepareStatement("DELETE FROM course WHERE courseID = ?;");
+            preparedStatement.setInt(1, courseID);
             preparedStatement.executeUpdate();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
+    }
+
+    public void addTopicToCourse(int courseID, String topicName) {
+        try {
+            preparedStatement = connection.prepareStatement("INSERT INTO course_has_quiz VALUES(?, ?);");
+            preparedStatement.setInt(1, courseID);
+            preparedStatement.setString(2, topicName);
+            preparedStatement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public ArrayList<String> getTopicsForSelectedCourse(int courseID) {
+        ArrayList<String> topicsInSelectedCourse = new ArrayList<>();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT quiz_name FROM course_has_quiz WHERE course_courseID = ?");
+            preparedStatement.setInt(1, courseID);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                topicsInSelectedCourse.add(resultSet.getString(1));
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return topicsInSelectedCourse;
     }
 
     public void disconnect() { // Disconnects from the database
