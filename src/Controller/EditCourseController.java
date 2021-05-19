@@ -1,9 +1,11 @@
 package Controller;
 
 import Functionality.SceneLoader;
+import Functionality.User;
 import Model.ConnectionStorage;
 import Model.CourseStorage;
 import Model.DBConnection;
+import Model.UserStorage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -32,13 +34,15 @@ public class EditCourseController implements Initializable {
 
     ArrayList<String> usernames;
 
+    UserStorage userStorage = UserStorage.getInstance();
+    User user = userStorage.currentUser();
+
     public EditCourseController() throws SQLException {}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            String courseName = CourseStorage.getInstance().getCourseName();
-            int courseID = database.getCourseIDForSelectedCourse(courseName);
+            int courseID = database.getIDForSelectedCourse(database.getCurrentUsersCourseIDs(user.getUsername()));
             usernames = database.getUsernamesForCourse(courseID);
         } catch (SQLException ignored) {}
         addUsernames();
@@ -51,7 +55,11 @@ public class EditCourseController implements Initializable {
     }
 
     public void setText(String course, int courseID) {
-        textField.setText(course + " #" + courseID);
+        if (courseID != 0) {
+            textField.setText(course + " #" + courseID);
+        } else {
+            textField.setText((course));
+        }
     }
 
     public void onAddNewTopic() {

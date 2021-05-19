@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
@@ -47,8 +48,14 @@
          </LinearGradient>
       </fill>
    </Rectangle>
-   <Button fx:id="GoBackButton" layoutX="605.0" layoutY="520.0" mnemonicParsing="false" onAction="#onGoBackClick" prefHeight="25.0" prefWidth="115.0" text="Go Back" />
-   <Button fx:id="registerButton" layoutX="405.0" layoutY="481.0" mnemonicParsing="false" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="115.0" text="Register" />
+   <Button fx:id="GoBackButton" layoutX="605.0" layoutY="520.0" mnemonicParsing="false" onAction="#onGoBackClick" prefHeight="25.0" prefWidth="115.0" text="Go Back">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></Button>
+   <Button fx:id="registerButton" layoutX="405.0" layoutY="481.0" mnemonicParsing="false" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="115.0" text="Register">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></Button>
    <GridPane layoutX="327.0" layoutY="259.0" prefHeight="202.0" prefWidth="247.0">
       <columnConstraints>
          <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="0.0" prefWidth="78.0" />

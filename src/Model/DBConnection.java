@@ -193,30 +193,46 @@ public class DBConnection {
         } catch (SQLIntegrityConstraintViolationException ignored) {}
     }
 
-    public ArrayList<String> getCurrentUsersCourses(String username) throws SQLException {
+    public ArrayList<Integer> getCurrentUsersCourseIDs(String username) throws SQLException {
         ArrayList<Integer> currentUsersCourseIDs = new ArrayList<>();
-        ArrayList<String> currentUsersCourses = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT course_courseID FROM course_has_user WHERE user_username = '" + username + "';");
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             currentUsersCourseIDs.add(resultSet.getInt(1));
         }
+        System.out.println(currentUsersCourseIDs);
+        return currentUsersCourseIDs;
+    }
+
+    public ArrayList<String> getCurrentUsersCourseNames(ArrayList<Integer> currentUsersCourseIDs) throws SQLException {
+        ArrayList<String> currentUsersCourseNames = new ArrayList<>();
         for (Integer courseID : currentUsersCourseIDs) {
             preparedStatement = connection.prepareStatement("SELECT course_name FROM course WHERE courseID = " + courseID + ";");
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                currentUsersCourses.add(resultSet.getString(1));
-            }
+            resultSet.next();
+            currentUsersCourseNames.add(resultSet.getString(1));
         }
-        return currentUsersCourses;
+        System.out.println(currentUsersCourseNames);
+        return currentUsersCourseNames;
     }
 
-    public int getCourseIDForSelectedCourse(String course) throws SQLException {
-        preparedStatement = connection.prepareStatement("SELECT courseID FROM course WHERE course_name = '" + course + "';");
+    public int getIDForSelectedCourse(ArrayList<Integer> currentUsersCourseIDs) throws SQLException {
+        ArrayList<Integer> coursesWithSameNames = new ArrayList<>();
+        String name = CourseStorage.getInstance().getCourseName();
+        preparedStatement = connection.prepareStatement("SELECT courseID FROM course WHERE course_name = '" + name + "';");
         resultSet = preparedStatement.executeQuery();
-        resultSet.next();
-
-        return resultSet.getInt(1);
+        while (resultSet.next()) {
+            coursesWithSameNames.add(resultSet.getInt(1));
+        }
+        System.out.println(coursesWithSameNames);
+        int courseIDForSelectedCourse = 0;
+        for (Integer courseID : coursesWithSameNames) {
+            if (currentUsersCourseIDs.contains(courseID)) {
+                courseIDForSelectedCourse = courseID;
+            }
+        }
+        System.out.println(courseIDForSelectedCourse);
+        return courseIDForSelectedCourse;
     }
 
     public ArrayList<Integer> getCourseIDs() throws SQLException {
