@@ -42,7 +42,7 @@
       </Button>
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="200.0" layoutX="351.0" layoutY="279.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="200.0" />
       <ListView fx:id="coursesList" layoutX="356.0" layoutY="282.0" onMouseClicked="#onMouseClick" prefHeight="194.0" prefWidth="191.0" />
-      <Text fill="WHITE" layoutX="351.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Courses" textAlignment="CENTER" wrappingWidth="197.056640625">
+      <Text fx:id="title" fill="WHITE" layoutX="351.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Courses" textAlignment="CENTER" wrappingWidth="197.056640625">
          <font>
             <Font name="Comic Sans MS" size="17.0" />
          </font>

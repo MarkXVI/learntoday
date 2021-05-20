@@ -37,9 +37,10 @@ public class ManageTopicsController implements Initializable {
     User user = userStorage.currentUser();
 
     ArrayList<String> usernames;
-    ArrayList<String> topicsInSelectedCourse;
     ArrayList<String> subjects;
-    ArrayList<String> topics;
+    ArrayList<String> topicsInSelectedCourse;
+    ArrayList<String> topicsInSelectedSubject;
+    ArrayList<String> allTopics;
 
     int courseID;
     String courseName;
@@ -49,15 +50,10 @@ public class ManageTopicsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            allTopics = database.getAllTopics();
             courseName = CourseStorage.getInstance().getCourseName();
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-        }
-        try {
             courseID = database.getIDForSelectedCourse(courseName, user.getUsername());
             subjects = database.getSubjects();
-            topicsInSelectedCourse = database.getTopicsForSelectedCourse(courseID);
-
             usernames = database.getUsernamesForCourse(courseID);
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -67,12 +63,13 @@ public class ManageTopicsController implements Initializable {
 
     public void onRightButton() {
         String selectedItem = listView.getSelectionModel().getSelectedItem();
+        topicsInSelectedCourse = database.getTopicsForSelectedCourse(courseID);
         if (rightButton.getText().equals("Remove selected topic") && topicsInSelectedCourse.contains(selectedItem)) {
             topicsInSelectedCourse.remove(selectedItem);
             listView.getItems().remove(selectedItem);
             database.removeTopic(courseID, selectedItem);
         }
-        else if (rightButton.getText().equals("Add selected topic") && !topicsInSelectedCourse.contains(selectedItem)) {
+        else if (rightButton.getText().equals("Add selected topic") && allTopics.contains(selectedItem)) {
             topicsInSelectedCourse.add(selectedItem);
             listView.getItems().remove(selectedItem);
             database.addTopicToCourse(courseID, selectedItem);
@@ -81,7 +78,7 @@ public class ManageTopicsController implements Initializable {
 
     public void onMouseClick(MouseEvent click) throws SQLException {
         String selectedItem = listView.getSelectionModel().getSelectedItem();
-        topics = database.getTopicsForSelectedSubject(selectedItem);
+        topicsInSelectedSubject = database.getTopicsForSelectedSubject(selectedItem);
         try {
             if (click.getClickCount() == 2 && subjects.contains(selectedItem)) {
                 textField.setText("Choose a topic");
@@ -96,7 +93,7 @@ public class ManageTopicsController implements Initializable {
 
     public void showTopics() {
         listView.getItems().clear();
-        for (String topic : topics) {
+        for (String topic : topicsInSelectedSubject) {
             if (!topicsInSelectedCourse.contains(topic)) {
                 listView.getItems().add(topic);
             }
@@ -115,6 +112,7 @@ public class ManageTopicsController implements Initializable {
 
     public void onShow() {
         listView.getItems().clear();
+        topicsInSelectedCourse = database.getTopicsForSelectedCourse(courseID);
         switch (showButton.getText()) {
             case "", "Show your topics" -> {
                 textField.setText("Current topics in " + courseName + " #" + courseID);

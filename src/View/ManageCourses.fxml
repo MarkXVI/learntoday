@@ -47,14 +47,14 @@
             </LinearGradient>
          </fill>
       </Text>
-      <Button fx:id="addButton" layoutX="450.0" layoutY="496.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAdd" prefHeight="25.0" prefWidth="109.0" AnchorPane.bottomAnchor="199.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="329.0" AnchorPane.topAnchor="493.0">
+      <Button fx:id="addButton" layoutX="450.0" layoutY="496.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAdd" prefHeight="28.0" prefWidth="146.0" AnchorPane.bottomAnchor="199.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="304.0" AnchorPane.topAnchor="493.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="200.0" layoutX="350.0" layoutY="283.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="200.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0" />
       <ListView fx:id="listView" layoutX="355.0" layoutY="288.0" onMouseClicked="#onMouseClick" prefHeight="191.0" prefWidth="190.0" />
-      <Button fx:id="removeButton" layoutX="338.0" layoutY="496.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRemove" prefHeight="28.0" prefWidth="109.0" AnchorPane.bottomAnchor="199.0" AnchorPane.leftAnchor="326.0" AnchorPane.rightAnchor="453.0" AnchorPane.topAnchor="493.0">
+      <Button fx:id="removeButton" layoutX="338.0" layoutY="496.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRemove" prefHeight="28.0" prefWidth="109.0" AnchorPane.bottomAnchor="199.0" AnchorPane.leftAnchor="301.0" AnchorPane.rightAnchor="453.0" AnchorPane.topAnchor="493.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

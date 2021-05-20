@@ -16,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +30,8 @@ public class LeaderboardsController implements Initializable {
     DBConnection database = ConnectionStorage.getInstance().getConnection();
     @FXML
     Button homeButton;
+    @FXML
+    Text title;
     @FXML
     ListView<String> coursesList;
     @FXML
@@ -63,6 +66,7 @@ public class LeaderboardsController implements Initializable {
     }
 
     public void addCourses() {
+        title.setText("Courses");
         for (String course : courses) {
             coursesList.getItems().add(course);
         }
@@ -73,6 +77,7 @@ public class LeaderboardsController implements Initializable {
             if (click.getClickCount() == 2) {
                 String currentItemSelected = coursesList.getSelectionModel().getSelectedItem();
                 if (courses.contains(currentItemSelected)) {
+                    title.setText("Topics");
                     courseID = database.getIDForSelectedCourse(currentItemSelected, user.getUsername());
                     topics = database.getTopicsForSelectedCourse(courseID);
                     coursesList.getItems().clear();
@@ -80,7 +85,8 @@ public class LeaderboardsController implements Initializable {
                         coursesList.getItems().add(topic.toString());
                     }
                     coursesList.getItems().add("Go Back");
-                }else if (topics.contains(currentItemSelected)){
+                } else if (topics.contains(currentItemSelected)) {
+                    title.setText(currentItemSelected);
                     topic = currentItemSelected;
                     studentColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
                     scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
@@ -89,17 +95,16 @@ public class LeaderboardsController implements Initializable {
                     studentTable.setItems(userList);
                     studentTable.setVisible(true);
                     backButton.setVisible(true);
-                }else if (currentItemSelected.equals("Go Back")) {
+                } else if (currentItemSelected.equals("Go Back")) {
                     coursesList.getItems().clear();
                     addCourses();
                 }
             }
-        } catch (NullPointerException ex) {
-            ex.printStackTrace();
-        }
+        } catch (NullPointerException ignored) {}
     }
 
-    public void onBackClick(){
+    public void onBackClick() {
+        title.setText("Topics");
         studentTable.setVisible(false);
         backButton.setVisible(false);
     }

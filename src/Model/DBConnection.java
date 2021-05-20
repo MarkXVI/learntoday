@@ -361,15 +361,31 @@ public class DBConnection {
         return topicsInSelectedCourse;
     }
 
+    public ArrayList<String> getAllTopics() {
+        ArrayList<String> allTopics = new ArrayList<>();
+        try {
+            for (String subject : getSubjects()) {
+                preparedStatement = connection.prepareStatement("SELECT name FROM quiz WHERE topic_name = '" + subject + "';");
+                resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    allTopics.add(resultSet.getString(1));
+                }
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return allTopics;
+    }
+
     public void disconnect() { // Disconnects from the database
         try {
-            if (connection!=null) {
+            if (connection != null) {
                 connection.close();
             }
-            if (statement!=null) {
+            if (statement != null) {
                 statement.close();
             }
-            if (resultSet!=null) {
+            if (resultSet != null) {
                 resultSet.close();
             }
         } catch (SQLException ex) {
