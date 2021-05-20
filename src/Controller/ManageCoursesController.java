@@ -118,8 +118,6 @@ public class ManageCoursesController implements Initializable {
                 Stage stage = (Stage) addButton.getScene().getWindow();
                 Scene scene = new Scene(loader.load());
                 scene.getStylesheets().add("View/Style.css");
-                AddCourseController addCourseController = loader.getController();
-                addCourseController.showElements(false);
 
                 stage.setScene(scene);
                 stage.show();

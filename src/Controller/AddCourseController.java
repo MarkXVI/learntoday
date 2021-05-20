@@ -6,16 +6,19 @@ import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.UserStorage;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class AddCourseController {
+public class AddCourseController implements Initializable {
 
     DBConnection database = ConnectionStorage.getInstance().getConnection();
     @FXML
@@ -38,6 +41,12 @@ public class AddCourseController {
 
     public AddCourseController() throws SQLException {}
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        confirmationText.setVisible(false);
+        showElements(false);
+    }
+
     public void onHomeClick() throws IOException {
         SceneLoader.getInstance().loadMainMenu(homeButton);
     }
@@ -46,22 +55,27 @@ public class AddCourseController {
         ArrayList<Integer> existingIDs = database.getCourseIDs();
         courses = database.getCurrentUsersCourseNames(database.getCurrentUsersCourseIDs(user.getUsername()));
         int randomID;
-        if (!courses.contains(userInput.toString())) {
+        if (!courses.contains(userInput.getText()) && !userInput.getText().equals("")) {
             do {
                 randomID = (int) (Math.random() * (99999 - 10000) + 10000);
             } while (existingIDs.contains(randomID));
             database.addCourse(randomID, userInput.getText());
-            database.addUserToCourse(randomID, UserStorage.getInstance().currentUser().getUsername());
+            database.addUserToCourse(randomID, user.getUsername());
+            courses.add(userInput.toString());
             courseIDText.setText("Course ID: " + randomID);
+            confirmationText.setVisible(true);
             showElements(true);
-        } else if (courses.contains(userInput.toString())) {
+        } else if (courses.contains(userInput.getText())) {
             courseIDText.setText("A course with the same name already exists!");
         }
+        confirmationText.setVisible(false);
+        showElements(true);
     }
 
     public void showElements(boolean bool) {
         whiteRectangle.setVisible(bool);
-        confirmationText.setVisible(bool);
         courseIDText.setVisible(bool);
     }
+
+
 }

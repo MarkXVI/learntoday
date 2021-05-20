@@ -64,8 +64,8 @@
       </cursor></Button>
     <TextField fx:id="userInput" layoutX="287.0" layoutY="365.0" onAction="#onAddClick" prefHeight="25.0" prefWidth="326.0" promptText="Enter course name" />
    <Rectangle fx:id="whiteRectangle" arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="62.0" layoutX="350.0" layoutY="446.0" stroke="WHITE" strokeType="INSIDE" width="200.0" />
-   <Text fx:id="confirmationText" fill="#32a852" layoutX="409.0" layoutY="467.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course created!" />
-   <Text fx:id="courseIDText" layoutX="383.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course ID: 11111">
+   <Text fx:id="confirmationText" fill="#32a852" layoutX="409.0" layoutY="467.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course added!" />
+   <Text fx:id="courseIDText" layoutX="383.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0">
       <font>
          <Font size="18.0" />
       </font>

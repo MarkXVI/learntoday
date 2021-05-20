@@ -113,7 +113,7 @@ public class ManageTopicsController implements Initializable {
         listView.getItems().clear();
         switch (showButton.getText()) {
             case "", "Show your topics" -> {
-                textField.setText("Current topics in " + courseID + " #" + courseID);
+                textField.setText("Current topics in " + courseName + " #" + courseID);
                 showButton.setText("Show topics to add");
                 rightButton.setText("Remove selected topic");
                 for (String topic : topicsInSelectedCourse) {

@@ -319,6 +319,10 @@ public class DBConnection {
 
     public void removeCourse(int courseID) {
         try {
+            preparedStatement = connection.prepareStatement("DELETE FROM course_has_quiz WHERE course_courseID = ?;");
+            preparedStatement.setInt(1, courseID);
+            preparedStatement.executeUpdate();
+
             preparedStatement = connection.prepareStatement("DELETE FROM course_has_user WHERE course_courseID = ?;");
             preparedStatement.setInt(1, courseID);
             preparedStatement.executeUpdate();
