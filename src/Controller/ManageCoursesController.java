@@ -113,7 +113,7 @@ public class ManageCoursesController implements Initializable {
         listView.getItems().add("Go back");
     }
 
-    public void onAdd() throws IOException, SQLException {
+    public void onAdd() throws IOException {
         if (addButton.getText().equals("Add new course")) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/AddCourse.fxml"));

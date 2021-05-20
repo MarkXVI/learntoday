@@ -66,8 +66,8 @@ public class AddCourseController implements Initializable {
             showElements(true);
         } else if (courses.contains(userInput.getText())) {
             courseIDText.setText("A course with the same name already exists!");
+            confirmationText.setVisible(false);
         }
-        confirmationText.setVisible(false);
         showElements(true);
     }
 

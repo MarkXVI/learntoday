@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class LeaderboardsController implements Initializable {
@@ -53,6 +54,8 @@ public class LeaderboardsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             courses = database.getCurrentUsersCourseNames(user.getUsername());
+            Collections.sort(courses);
+
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
