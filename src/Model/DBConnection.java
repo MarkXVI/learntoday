@@ -209,7 +209,8 @@ public class DBConnection {
     public ArrayList<String> getCurrentUsersCourseNames(ArrayList<Integer> currentUsersCourseIDs) throws SQLException {
         ArrayList<String> currentUsersCourseNames = new ArrayList<>();
         for (Integer courseID : currentUsersCourseIDs) {
-            preparedStatement = connection.prepareStatement("SELECT course_name FROM course WHERE courseID = " + courseID + ";");
+            preparedStatement = connection.prepareStatement("SELECT course_name FROM course WHERE courseID = ?;");
+            preparedStatement.setInt(1, courseID);
             resultSet = preparedStatement.executeQuery();
             resultSet.next();
             currentUsersCourseNames.add(resultSet.getString(1));

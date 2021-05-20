@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class ManageCoursesController implements Initializable {
@@ -49,14 +50,15 @@ public class ManageCoursesController implements Initializable {
         try {
             String username = user.getUsername();
             courses = database.getCurrentUsersCourseNames(database.getCurrentUsersCourseIDs(username));
+            Collections.sort(courses);
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-        addCourses();
+        showCourses();
         text.setText("Choose a course to edit");
     }
 
-    public void addCourses() {
+    public void showCourses() {
         listView.getItems().clear();
         addButton.setText("Add new course");
         removeButton.setText("Remove selected course");
@@ -89,7 +91,7 @@ public class ManageCoursesController implements Initializable {
             } else if (click.getClickCount() == 2 && selectedItem.equals("Go back")) {
                 String courseName = CourseStorage.getInstance().getCourseName();
                 setText(courseName, database.getIDForSelectedCourse(courseName, user.getUsername()), 1);
-                addCourses();
+                showCourses();
             }
         } catch (NullPointerException ignored) {}
     }

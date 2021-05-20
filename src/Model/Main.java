@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javax.speech.AudioException;
 import javax.speech.EngineException;
 import java.beans.PropertyVetoException;
+import java.util.Objects;
 
 
 public class Main extends Application {
@@ -20,7 +21,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
             connection = ConnectionStorage.getInstance();
-            Parent root = FXMLLoader.load(getClass().getResource("../View/LoginScreen.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../View/LoginScreen.fxml")));
 
         primaryStage.setTitle("Learn2day");
         Scene scene = new Scene(root, 900, 720);

@@ -61,7 +61,6 @@ public class AddCourseController implements Initializable {
             } while (existingIDs.contains(randomID));
             database.addCourse(randomID, userInput.getText());
             database.addUserToCourse(randomID, user.getUsername());
-            courses.add(userInput.toString());
             courseIDText.setText("Course ID: " + randomID);
             confirmationText.setVisible(true);
             showElements(true);
@@ -76,6 +75,4 @@ public class AddCourseController implements Initializable {
         whiteRectangle.setVisible(bool);
         courseIDText.setVisible(bool);
     }
-
-
 }
