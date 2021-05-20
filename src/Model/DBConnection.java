@@ -291,18 +291,18 @@ public class DBConnection {
         }
     }
 
-    public ArrayList<Pairs> getCourseUsers(int courseID, String topic){
-        try{
+    public ArrayList<Pairs> getCourseUsers(int courseID, String topic) {
+        try {
             preparedStatement = connection.prepareStatement("Select username, score FROM course_has_user JOIN user JOIN user_does_quiz JOIN quiz WHERE user_does_quiz.user_username = username AND quiz_name = ? AND course_has_user.course_courseID = ? AND user_does_quiz.score = score group by username order by score;");
             preparedStatement.setString(1, topic);
             preparedStatement.setInt(2, courseID);
             resultSet = preparedStatement.executeQuery();
             ArrayList<Pairs> users = new ArrayList<>();
-            while(resultSet.next()){
+            while(resultSet.next()) {
                 users.add(new Pairs(resultSet.getString(1), resultSet.getInt(2)));
             }
             return users;
-        }catch(SQLException ex){
+        } catch(SQLException ex){
             return null;
         }
     }

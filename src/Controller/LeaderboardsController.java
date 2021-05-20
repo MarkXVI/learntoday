@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class LeaderboardsController implements Initializable {
@@ -53,6 +54,7 @@ public class LeaderboardsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             courses = database.getCurrentUsersCourseNames(database.getCurrentUsersCourseIDs(user.getUsername()));
+            Collections.sort(courses);
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -77,7 +79,7 @@ public class LeaderboardsController implements Initializable {
                         coursesList.getItems().add(topic.toString());
                     }
                     coursesList.getItems().add("Go Back");
-                }else if (topics.contains(currentItemSelected)){
+                } else if (topics.contains(currentItemSelected)) {
                     topic = currentItemSelected;
                     studentColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
                     scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
@@ -86,7 +88,7 @@ public class LeaderboardsController implements Initializable {
                     studentTable.setItems(userList);
                     studentTable.setVisible(true);
                     backButton.setVisible(true);
-                }else if (currentItemSelected.equals("Go Back")) {
+                } else if (currentItemSelected.equals("Go Back")) {
                     coursesList.getItems().clear();
                     addCourses();
                 }
