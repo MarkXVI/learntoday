@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `learn2day` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `learn2day`;
+-- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
--- Host: 35.228.58.113    Database: learn2day
+-- Host: localhost    Database: learn2day
 -- ------------------------------------------------------
--- Server version	8.0.18-google
+-- Server version	8.0.22
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,12 +16,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-SET @MYSQLDUMP_TEMP_LOG_BIN = @@SESSION.SQL_LOG_BIN;
-SET @@SESSION.SQL_LOG_BIN= 0;
 
---
--- GTID state at the beginning of the backup 
---
 --
 -- Table structure for table `alternative`
 --
@@ -30,7 +27,7 @@ DROP TABLE IF EXISTS `alternative`;
 CREATE TABLE `alternative` (
   `choice` varchar(45) NOT NULL,
   `correct` tinyint(1) DEFAULT NULL,
-  `question_questionID` int(11) NOT NULL,
+  `question_questionID` int NOT NULL,
   PRIMARY KEY (`choice`,`question_questionID`),
   KEY `fk_alternative_question1_idx` (`question_questionID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -54,9 +51,10 @@ DROP TABLE IF EXISTS `course`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `course` (
-  `courseID` int(11) NOT NULL,
+  `courseID` int NOT NULL,
   `course_name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`courseID`)
+  PRIMARY KEY (`courseID`),
+  UNIQUE KEY `course_name_UNIQUE` (`course_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -66,8 +64,35 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (1,'test'),(11540,'Religion'),(15876,''),(16046,'test4'),(31162,'History'),(36758,''),(37037,'1'),(53679,'testing'),(76441,'test3'),(77902,'text2'),(87065,'test'),(99628,'');
+INSERT INTO `course` VALUES (63497,'Geography'),(53060,'History'),(11540,'Religion');
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `course_has_quiz`
+--
+
+DROP TABLE IF EXISTS `course_has_quiz`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `course_has_quiz` (
+  `course_courseID` int NOT NULL,
+  `quiz_name` varchar(45) NOT NULL,
+  PRIMARY KEY (`course_courseID`,`quiz_name`),
+  KEY `fk_course_has_quiz_quiz1_idx` (`quiz_name`),
+  KEY `fk_course_has_quiz_course1_idx` (`course_courseID`),
+  CONSTRAINT `fk_course_has_quiz_course1` FOREIGN KEY (`course_courseID`) REFERENCES `course` (`courseID`),
+  CONSTRAINT `fk_course_has_quiz_quiz1` FOREIGN KEY (`quiz_name`) REFERENCES `quiz` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `course_has_quiz`
+--
+
+LOCK TABLES `course_has_quiz` WRITE;
+/*!40000 ALTER TABLE `course_has_quiz` DISABLE KEYS */;
+/*!40000 ALTER TABLE `course_has_quiz` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -78,7 +103,7 @@ DROP TABLE IF EXISTS `course_has_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `course_has_user` (
-  `course_courseID` int(11) NOT NULL,
+  `course_courseID` int NOT NULL,
   `user_username` varchar(45) NOT NULL,
   PRIMARY KEY (`course_courseID`,`user_username`),
   KEY `fk_course_has_user_user1_idx` (`user_username`),
@@ -94,7 +119,7 @@ CREATE TABLE `course_has_user` (
 
 LOCK TABLES `course_has_user` WRITE;
 /*!40000 ALTER TABLE `course_has_user` DISABLE KEYS */;
-INSERT INTO `course_has_user` VALUES (1,'Simon'),(1,'yay'),(11540,'Hpmanen'),(15876,'Hpmanen'),(16046,'Simon'),(31162,'Hpmanen'),(31162,'lol'),(36758,'Hpmanen'),(53679,'Simon'),(76441,'Simon'),(77902,'Simon'),(99628,'Hpmanen');
+INSERT INTO `course_has_user` VALUES (53060,'Hpmanen'),(53060,'Simon');
 /*!40000 ALTER TABLE `course_has_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,13 +133,13 @@ DROP TABLE IF EXISTS `question`;
 CREATE TABLE `question` (
   `question` varchar(255) NOT NULL,
   `quiz_name` varchar(45) NOT NULL,
-  `questionID` int(11) NOT NULL AUTO_INCREMENT,
+  `questionID` int NOT NULL AUTO_INCREMENT,
   `question_type` enum('TF','MC') DEFAULT NULL,
   PRIMARY KEY (`questionID`),
   UNIQUE KEY `question_UNIQUE` (`question`),
   KEY `fk_question_quiz1_idx` (`quiz_name`),
   CONSTRAINT `fk_question_quiz1` FOREIGN KEY (`quiz_name`) REFERENCES `quiz` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,7 +239,7 @@ DROP TABLE IF EXISTS `user_does_quiz`;
 CREATE TABLE `user_does_quiz` (
   `user_username` varchar(45) NOT NULL,
   `quiz_name` varchar(45) NOT NULL,
-  `score` int(11) DEFAULT NULL,
+  `score` int DEFAULT NULL,
   PRIMARY KEY (`user_username`,`quiz_name`),
   KEY `fk_user_has_quiz_quiz1_idx` (`quiz_name`),
   KEY `fk_user_has_quiz_user1_idx` (`user_username`),
@@ -229,10 +254,9 @@ CREATE TABLE `user_does_quiz` (
 
 LOCK TABLES `user_does_quiz` WRITE;
 /*!40000 ALTER TABLE `user_does_quiz` DISABLE KEYS */;
-INSERT INTO `user_does_quiz` VALUES ('Hpmanen','World War 2',3);
+INSERT INTO `user_does_quiz` VALUES ('Hpmanen','World War 2',3),('Simon','World War 2',1);
 /*!40000 ALTER TABLE `user_does_quiz` ENABLE KEYS */;
 UNLOCK TABLES;
-SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -243,4 +267,4 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-15 22:41:24
+-- Dump completed on 2021-05-19 16:09:41
