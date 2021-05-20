@@ -50,6 +50,7 @@ public class ResultsController implements Initializable {
     public void onUploadClick() {
         String topic = QuizStorage.getInstance().getTopic();
         int oldScore = database.getUserScore(user.getUsername(), topic);
+        System.out.println(oldScore);
         if(oldScore < points){
             database.updateUserScore(user.getUsername(), topic, points );
         }

@@ -52,7 +52,7 @@ public class LeaderboardsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            courses = database.getCurrentUsersCourseNames(database.getCurrentUsersCourseIDs(user.getUsername()));
+            courses = database.getCurrentUsersCourseNames(user.getUsername());
         } catch (SQLException exception) {
             exception.printStackTrace();
         }

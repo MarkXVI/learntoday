@@ -196,31 +196,19 @@ public class DBConnection {
         } catch (SQLIntegrityConstraintViolationException ignored) {}
     }
 
-    public ArrayList<Integer> getCurrentUsersCourseIDs(String username) throws SQLException {
-        ArrayList<Integer> currentUsersCourseIDs = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT course_courseID FROM course_has_user WHERE user_username = '" + username + "';");
-        resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            currentUsersCourseIDs.add(resultSet.getInt(1));
-        }
-        return currentUsersCourseIDs;
-    }
-
-    public ArrayList<String> getCurrentUsersCourseNames(ArrayList<Integer> currentUsersCourseIDs) throws SQLException {
+    public ArrayList<String> getCurrentUsersCourseNames(String username) throws SQLException {
         ArrayList<String> currentUsersCourseNames = new ArrayList<>();
-        for (Integer courseID : currentUsersCourseIDs) {
-            preparedStatement = connection.prepareStatement("SELECT course_name FROM course WHERE courseID = ?;");
-            preparedStatement.setInt(1, courseID);
-            resultSet = preparedStatement.executeQuery();
-            resultSet.next();
+        preparedStatement = connection.prepareStatement("SELECT course_name FROM course JOIN course_has_user WHERE user_username = ? AND course_courseID = courseID;");
+        preparedStatement.setString(1, username);
+        resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
             currentUsersCourseNames.add(resultSet.getString(1));
         }
         return currentUsersCourseNames;
     }
 
-
     public int getIDForSelectedCourse(String courseName, String username) throws SQLException {
-        preparedStatement = connection.prepareStatement("SELECT course_courseID FROM course_has_user JOIN course WHERE course_name = ? AND user_username = ? GROUP BY user_username;");
+        preparedStatement = connection.prepareStatement("SELECT course_courseID FROM course_has_user JOIN course WHERE course_has_user.course_courseID = courseID AND course_name = ? AND user_username = ? GROUP BY user_username;");
         preparedStatement.setString(1, courseName);
         preparedStatement.setString(2, username);
         resultSet = preparedStatement.executeQuery();
@@ -293,7 +281,7 @@ public class DBConnection {
 
     public ArrayList<Pairs> getCourseUsers(int courseID, String topic){
         try{
-            preparedStatement = connection.prepareStatement("Select username, score FROM course_has_user JOIN user JOIN user_does_quiz JOIN quiz WHERE user_does_quiz.user_username = username AND quiz_name = ? AND course_has_user.course_courseID = ? AND user_does_quiz.score = score group by username order by score;");
+            preparedStatement = connection.prepareStatement("Select username, score FROM user_does_quiz JOIN user JOIN course_has_user JOIN quiz WHERE course_has_user.user_username = username AND quiz_name = ? AND course_has_user.course_courseID = ? AND user_does_quiz.user_username = username group by username order by score DESC;");
             preparedStatement.setString(1, topic);
             preparedStatement.setInt(2, courseID);
             resultSet = preparedStatement.executeQuery();

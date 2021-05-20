@@ -6,22 +6,17 @@ import java.util.ArrayList;
 public class CourseStorage {
     private static CourseStorage courseStorage;
 
-    static {
-        try {
-            courseStorage = new CourseStorage();
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-        }
-    }
-
     DBConnection database = new ConnectionStorage().getConnection();
     private ArrayList<String> userNames = new ArrayList<>();
     private String courseName;
     private String subjectName;
 
-    public CourseStorage() throws SQLException {}
+    private CourseStorage() throws SQLException {}
 
-    public static CourseStorage getInstance() {
+    public static CourseStorage getInstance() throws SQLException {
+        if (courseStorage == null){
+            courseStorage = new CourseStorage();
+        }
         return courseStorage;
     }
 

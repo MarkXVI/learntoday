@@ -48,7 +48,11 @@ public class ManageTopicsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        courseName = CourseStorage.getInstance().getCourseName();
+        try {
+            courseName = CourseStorage.getInstance().getCourseName();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         try {
             courseID = database.getIDForSelectedCourse(courseName, user.getUsername());
             subjects = database.getSubjects();

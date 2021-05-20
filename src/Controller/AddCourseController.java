@@ -53,7 +53,7 @@ public class AddCourseController implements Initializable {
 
     public void onAddClick() throws SQLException {
         ArrayList<Integer> existingIDs = database.getCourseIDs();
-        courses = database.getCurrentUsersCourseNames(database.getCurrentUsersCourseIDs(user.getUsername()));
+        courses = database.getCurrentUsersCourseNames(user.getUsername());
         int randomID;
         if (!courses.contains(userInput.getText()) && !userInput.getText().equals("")) {
             do {

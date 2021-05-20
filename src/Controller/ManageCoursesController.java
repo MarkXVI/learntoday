@@ -49,7 +49,7 @@ public class ManageCoursesController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             String username = user.getUsername();
-            courses = database.getCurrentUsersCourseNames(database.getCurrentUsersCourseIDs(username));
+            courses = database.getCurrentUsersCourseNames(username);
             Collections.sort(courses);
         } catch (SQLException exception) {
             exception.printStackTrace();
