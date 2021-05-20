@@ -37,7 +37,7 @@ public class ManageTopicsController implements Initializable {
     User user = userStorage.currentUser();
 
     ArrayList<String> usernames;
-    ArrayList<String> existingTopics;
+    ArrayList<String> topicsInSelectedCourse;
     ArrayList<String> subjects;
     ArrayList<String> topics;
 
@@ -52,7 +52,8 @@ public class ManageTopicsController implements Initializable {
         try {
             courseID = database.getIDForSelectedCourse(courseName, user.getUsername());
             subjects = database.getSubjects();
-            existingTopics = database.getTopicsForSelectedCourse(courseID);
+            topicsInSelectedCourse = database.getTopicsForSelectedCourse(courseID);
+
             usernames = database.getUsernamesForCourse(courseID);
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -60,13 +61,17 @@ public class ManageTopicsController implements Initializable {
         onShow();
     }
 
-    public void onRightButton() throws SQLException {
+    public void onRightButton() {
         String selectedItem = listView.getSelectionModel().getSelectedItem();
-        topics = database.getTopicsForSelectedSubject(CourseStorage.getInstance().getSubjectName());
-        if (topics.contains(selectedItem)) {
-            database.addTopicToCourse(database.getIDForSelectedCourse(CourseStorage.getInstance().getCourseName(), user.getUsername()), selectedItem);
-            existingTopics.add(selectedItem);
+        if (rightButton.getText().equals("Remove selected topic") && topicsInSelectedCourse.contains(selectedItem)) {
+            topicsInSelectedCourse.remove(selectedItem);
             listView.getItems().remove(selectedItem);
+            database.removeTopic(courseID, selectedItem);
+        }
+        else if (rightButton.getText().equals("Add selected topic") && !topicsInSelectedCourse.contains(selectedItem)) {
+            topicsInSelectedCourse.add(selectedItem);
+            listView.getItems().remove(selectedItem);
+            database.addTopicToCourse(courseID, selectedItem);
         }
     }
 
@@ -75,9 +80,11 @@ public class ManageTopicsController implements Initializable {
         topics = database.getTopicsForSelectedSubject(selectedItem);
         try {
             if (click.getClickCount() == 2 && subjects.contains(selectedItem)) {
+                textField.setText("Choose a topic");
                 CourseStorage.getInstance().setSubjectName(selectedItem);
                 showTopics();
             } else if (click.getClickCount() == 2 && selectedItem.equals("Go back")) {
+                textField.setText("Choose a subject");
                 showSubjects();
             }
         } catch (NullPointerException ignored) {}
@@ -86,11 +93,12 @@ public class ManageTopicsController implements Initializable {
     public void showTopics() {
         listView.getItems().clear();
         for (String topic : topics) {
-            if (!existingTopics.contains(topic)) {
+            if (!topicsInSelectedCourse.contains(topic)) {
                 listView.getItems().add(topic);
             }
         }
         listView.getItems().add("Go back");
+        textField.setText("Choose a topic");
     }
 
     public void showSubjects() {
@@ -98,6 +106,7 @@ public class ManageTopicsController implements Initializable {
         for (String subject : subjects) {
             listView.getItems().add(subject);
         }
+        textField.setText("Choose a subject");
     }
 
     public void onShow() {
@@ -107,7 +116,7 @@ public class ManageTopicsController implements Initializable {
                 textField.setText("Current topics in " + courseID + " #" + courseID);
                 showButton.setText("Show topics to add");
                 rightButton.setText("Remove selected topic");
-                for (String topic : existingTopics) {
+                for (String topic : topicsInSelectedCourse) {
                     listView.getItems().add(topic);
                 }
             }
@@ -116,7 +125,7 @@ public class ManageTopicsController implements Initializable {
                 showButton.setText("Show your topics");
                 rightButton.setText("Add selected topic");
                 for (String subject : subjects) {
-                    if (!existingTopics.contains(subject))
+                    if (!topicsInSelectedCourse.contains(subject))
                         listView.getItems().add(subject);
                 }
             }

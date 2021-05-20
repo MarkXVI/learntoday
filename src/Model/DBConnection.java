@@ -342,6 +342,17 @@ public class DBConnection {
         }
     }
 
+    public void removeTopic(int courseID, String topicName) {
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM course_has_quiz WHERE course_courseID = ? AND quiz_name = ?;");
+            preparedStatement.setInt(1, courseID);
+            preparedStatement.setString(2, topicName);
+            preparedStatement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
     public ArrayList<String> getTopicsForSelectedCourse(int courseID) {
         ArrayList<String> topicsInSelectedCourse = new ArrayList<>();
         try {
