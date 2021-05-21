@@ -196,16 +196,6 @@ public class DBConnection {
         } catch (SQLIntegrityConstraintViolationException ignored) {}
     }
 
-    public ArrayList<Integer> getCurrentUsersCourseIDs(String username) throws SQLException {
-        ArrayList<Integer> currentUsersCourseIDs = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT course_courseID FROM course_has_user WHERE user_username = '" + username + "';");
-        resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            currentUsersCourseIDs.add(resultSet.getInt(1));
-        }
-        return currentUsersCourseIDs;
-    }
-
     public ArrayList<String> getCurrentUsersCourseNames(String username) throws SQLException {
         ArrayList<String> currentUsersCourseNames = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT course_name FROM course JOIN course_has_user WHERE user_username = ? AND course_courseID = courseID;");
