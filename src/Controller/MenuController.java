@@ -54,6 +54,8 @@ public class MenuController implements Initializable {
     @FXML
     Text errorText;
     @FXML
+    Text topicText;
+    @FXML
     Pane msgError;
     @FXML
     Pane paneAbout;
@@ -96,6 +98,7 @@ public class MenuController implements Initializable {
     }
 
     public void addSubjects() {
+        topicText.setText("Subjects");
         for (Object subject: subjects) {
             topicList.getItems().add(subject.toString());
         }
@@ -106,6 +109,7 @@ public class MenuController implements Initializable {
         if (click.getClickCount() == 2) {
             String currentItemSelected = topicList.getSelectionModel().getSelectedItem();
             if (subjects.contains(currentItemSelected)) {
+                topicText.setText("Topics");
                 topics = database.getTopics(currentItemSelected);
                 topicList.getItems().clear();
                 for (Object topic: topics) {

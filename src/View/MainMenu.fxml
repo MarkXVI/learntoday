@@ -69,7 +69,7 @@
       </cursor>
    </Button>
    <VBox layoutX="52.0" layoutY="114.0" prefHeight="550.0" prefWidth="379.0">
-      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Topics" wrappingWidth="90.0">
+      <Text fx:id="topicText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Topics" wrappingWidth="90.0">
          <font>
             <Font name="Comic Sans MS" size="17.0" />
          </font>

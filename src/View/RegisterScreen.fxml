@@ -48,7 +48,7 @@
          </LinearGradient>
       </fill>
    </Rectangle>
-   <Button fx:id="GoBackButton" layoutX="605.0" layoutY="520.0" mnemonicParsing="false" onAction="#onGoBackClick" prefHeight="25.0" prefWidth="115.0" text="Go Back">
+   <Button fx:id="goBackButton" layoutX="605.0" layoutY="520.0" mnemonicParsing="false" onAction="#onGoBackClick" prefHeight="25.0" prefWidth="115.0" text="Go Back">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></Button>
@@ -99,10 +99,10 @@
             <MenuItem mnemonicParsing="false" onAction="#onTypeChoice" text="Teacher" />
          </items>
       </MenuButton>
-      <PasswordField fx:id="PasswordInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="291.0" promptText="Enter Password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <TextField fx:id="UsernameInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="183.0" promptText="Enter Username" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField fx:id="LastNameInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="194.0" promptText="Enter Last Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <TextField fx:id="FirstNameInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="223.0" promptText="Enter First Name" GridPane.columnIndex="1" />
+      <PasswordField fx:id="passwordInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="291.0" promptText="Enter Password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TextField fx:id="usernameInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="183.0" promptText="Enter Username" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="lastNameInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="194.0" promptText="Enter Last Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="firstNameInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="223.0" promptText="Enter First Name" GridPane.columnIndex="1" />
    </GridPane>
    <Text layoutX="370.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register" textAlignment="CENTER" wrappingWidth="184.87890625">
       <font>
@@ -128,7 +128,7 @@
    <Pane fx:id="msgError" focusTraversable="true" layoutX="334.0" layoutY="576.0" prefHeight="59.0" prefWidth="258.0" visible="false">
       <children>
          <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#ffaeae" height="45.0" layoutX="-2.0" layoutY="-2.0" stroke="#ffffff00" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0" strokeWidth="4.0" width="259.0" />
-         <Text fill="#ff3232" layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You must enter something in every field!" />
+         <Text fx:id="errorText" fill="#ff3232" layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You must enter something in every field!" />
       </children>
    </Pane>
 </AnchorPane>

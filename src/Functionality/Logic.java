@@ -7,13 +7,13 @@ import java.util.ArrayList;
 
 public class Logic {
 
-    public boolean checkValidRegister(String FirstName, String LastName, String Username, String Password, String AccountType) {
-        String[] user = {FirstName, LastName, Username, Password};
+    public boolean checkValidRegister(String firstName, String lastName, String username, String password, String accountType) {
+        String[] user = {firstName, lastName, username, password};
 
-        if (AccountType.equals("Choose Account Type")) { // Checks if the user choose an Account Type.
+        if (accountType.equals("Choose Account Type")) { // Checks if the user choose an Account Type.
             return false;
         }
-        for (String validCheck: user) {
+        for (String validCheck : user) {
             if (validCheck.length() < 3) {
                 return false;
             }

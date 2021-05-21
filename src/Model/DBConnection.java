@@ -20,7 +20,7 @@ public class DBConnection {
         return connection;
     }
 
-    public boolean checkLogin(String username, String password){
+    public boolean checkLogin(String username, String password) {
         try {
             statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM user");
@@ -41,7 +41,6 @@ public class DBConnection {
         try {
             statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO user VALUES ('" + username + "', '" + password + "', '" + FirstName + "', '" + LastName + "', '" + Teacher + "')"); // Puts the values into the user table in the database.
-
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -201,7 +200,7 @@ public class DBConnection {
         preparedStatement = connection.prepareStatement("SELECT course_name FROM course JOIN course_has_user WHERE user_username = ? AND course_courseID = courseID;");
         preparedStatement.setString(1, username);
         resultSet = preparedStatement.executeQuery();
-        while(resultSet.next()){
+        while (resultSet.next()) {
             currentUsersCourseNames.add(resultSet.getString(1));
         }
         return currentUsersCourseNames;
@@ -238,7 +237,7 @@ public class DBConnection {
         return courseIDs;
     }
 
-    public void addCourse(int courseID, String courseName) throws SQLException{
+    public void addCourse(int courseID, String courseName) throws SQLException {
         try {
             preparedStatement = connection.prepareStatement("INSERT INTO course VALUES (?,?)");
             preparedStatement.setInt(1, courseID);
@@ -256,7 +255,7 @@ public class DBConnection {
         } catch (SQLIntegrityConstraintViolationException ignored) {}
     }
 
-    public void updateUserScore(String username, String quiz, int score ){
+    public void updateUserScore(String username, String quiz, int score ) {
         try {
             preparedStatement = connection.prepareStatement("INSERT INTO user_does_quiz VALUES(?, ?, ?)");
             preparedStatement.setString(1, username);
@@ -268,7 +267,7 @@ public class DBConnection {
         }
     }
 
-    public int getUserScore(String username, String quiz){
+    public int getUserScore(String username, String quiz) {
         try {
             preparedStatement = connection.prepareStatement("SELECT score FROM user_does_quiz WHERE username = ? AND quiz_name = ?");
             preparedStatement.setString(1, username);
@@ -281,18 +280,18 @@ public class DBConnection {
         }
     }
 
-    public ArrayList<Pairs> getCourseUsers(int courseID, String topic){
-        try{
+    public ArrayList<Pairs> getCourseUsers(int courseID, String topic) {
+        try {
             preparedStatement = connection.prepareStatement("Select username, score FROM user_does_quiz JOIN user JOIN course_has_user JOIN quiz WHERE course_has_user.user_username = username AND quiz_name = ? AND course_has_user.course_courseID = ? AND user_does_quiz.user_username = username group by username order by score DESC;");
             preparedStatement.setString(1, topic);
             preparedStatement.setInt(2, courseID);
             resultSet = preparedStatement.executeQuery();
             ArrayList<Pairs> users = new ArrayList<>();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 users.add(new Pairs(resultSet.getString(1), resultSet.getInt(2)));
             }
             return users;
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             return null;
         }
     }
@@ -378,6 +377,20 @@ public class DBConnection {
             exception.printStackTrace();
         }
         return allTopics;
+    }
+
+    public ArrayList<String> getAllUsernames() {
+        ArrayList<String> allUsernames = new ArrayList<>();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT username FROM user;");
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                allUsernames.add(resultSet.getString(1));
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return allUsernames;
     }
 
     public void disconnect() { // Disconnects from the database

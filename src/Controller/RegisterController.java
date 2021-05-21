@@ -12,6 +12,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -19,17 +20,19 @@ import java.sql.SQLException;
 
 public class RegisterController {
     @FXML
-    Button GoBackButton;
+    Button goBackButton;
     @FXML
     Button registerButton;
     @FXML
-    TextField FirstNameInput;
+    TextField firstNameInput;
     @FXML
-    TextField LastNameInput;
+    TextField lastNameInput;
     @FXML
-    TextField UsernameInput;
+    TextField usernameInput;
     @FXML
-    TextField PasswordInput;
+    TextField passwordInput;
+    @FXML
+    Text errorText;
     @FXML
     MenuButton accountType;
     @FXML
@@ -40,14 +43,14 @@ public class RegisterController {
     public RegisterController() throws SQLException {}
 
     public void onGoBackClick() throws IOException {
-        SceneLoader.getInstance().loadLogScene(GoBackButton);
+        SceneLoader.getInstance().loadLogScene(goBackButton);
     }
 
     public void onRegisterClick() throws IOException {
-        String FirstName = FirstNameInput.getText();
-        String LastName = LastNameInput.getText();
-        String Username = UsernameInput.getText();
-        String Password = PasswordInput.getText();
+        String firstName = firstNameInput.getText();
+        String lastName = lastNameInput.getText();
+        String username = usernameInput.getText();
+        String password = passwordInput.getText();
         int AccountType;
         if (accountType.getText().equals("Teacher")) {
             AccountType = 1;
@@ -55,22 +58,32 @@ public class RegisterController {
             AccountType = 0;
         }
         Logic logic = new Logic();
-        boolean check = logic.checkValidRegister(FirstName, LastName, Username, Password, accountType.getText());
-        if (check) {
-            database.registerUser(FirstName, LastName, Username, Password, AccountType);
-            onGoBackClick();
-        } else {
-            msgError.setVisible(true);
-            FadeTransition ft = new FadeTransition(Duration.seconds(6), msgError);
-            ft.setFromValue(1);
-            ft.setToValue(0);
-            ft.play();
+        boolean check = logic.checkValidRegister(firstName, lastName, username, password, accountType.getText());
+
+        if (database.getAllUsernames().contains(username)) {
+            errorText.setText("That username is not available!");
+            setErrorText();
         }
+        else if (check) {
+            database.registerUser(firstName, lastName, username, password, AccountType);
+            onGoBackClick();
+        }
+        else {
+            errorText.setText("You must enter something in every field!");
+            setErrorText();
+        }
+    }
+
+    public void setErrorText() {
+        msgError.setVisible(true);
+        FadeTransition ft = new FadeTransition(Duration.seconds(6), msgError);
+        ft.setFromValue(1);
+        ft.setToValue(0);
+        ft.play();
     }
 
     public void onTypeChoice(ActionEvent actionEvent) {
         MenuItem menuItem = (MenuItem) actionEvent.getSource();
         accountType.setText(menuItem.getText());
     }
-
 }
