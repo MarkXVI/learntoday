@@ -9,7 +9,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -33,13 +35,17 @@ public class AddCourseController implements Initializable {
     Text confirmationText;
     @FXML
     Text courseIDText;
+    @FXML
+    Text courseIDText2;
+
 
     UserStorage userStorage = UserStorage.getInstance();
     User user = userStorage.currentUser();
 
     ArrayList<String> courses;
 
-    public AddCourseController() throws SQLException {}
+    public AddCourseController() throws SQLException {
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,6 +56,7 @@ public class AddCourseController implements Initializable {
     public void onHomeClick() throws IOException {
         SceneLoader.getInstance().loadMainMenu(homeButton);
     }
+
 
     public void onAddClick() throws SQLException {
         ArrayList<Integer> existingIDs = database.getCourseIDs();
@@ -65,11 +72,23 @@ public class AddCourseController implements Initializable {
             confirmationText.setVisible(true);
             showElements(true);
         } else if (courses.contains(userInput.getText())) {
-            courseIDText.setText("A course with the same name already exists!");
+            courseIDText.setText("A course with the same");
+            courseIDText.setLayoutX(373);
+            courseIDText.setLayoutY(473);
+            courseIDText.setFont(Font.font(15));
+            courseIDText.setFill(Color.RED);
+
+            courseIDText2.setFont(Font.font(15));
+            courseIDText2.setLayoutX(383);
+            courseIDText2.setLayoutY(493);
+            courseIDText2.setText("name already exists!");
+            courseIDText2.setFill(Color.RED);
             confirmationText.setVisible(false);
         }
         showElements(true);
     }
+
+
 
     public void showElements(boolean bool) {
         whiteRectangle.setVisible(bool);

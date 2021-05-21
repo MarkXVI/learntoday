@@ -70,4 +70,5 @@
          <Font size="18.0" />
       </font>
    </Text>
+   <Text fx:id="courseIDText2" layoutX="367.0" layoutY="499.0" strokeType="OUTSIDE" strokeWidth="0.0" />
 </AnchorPane>

@@ -196,6 +196,16 @@ public class DBConnection {
         } catch (SQLIntegrityConstraintViolationException ignored) {}
     }
 
+    public ArrayList<Integer> getCurrentUsersCourseIDs(String username) throws SQLException {
+        ArrayList<Integer> currentUsersCourseIDs = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT course_courseID FROM course_has_user WHERE user_username = '" + username + "';");
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            currentUsersCourseIDs.add(resultSet.getInt(1));
+        }
+        return currentUsersCourseIDs;
+    }
+
     public ArrayList<String> getCurrentUsersCourseNames(String username) throws SQLException {
         ArrayList<String> currentUsersCourseNames = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT course_name FROM course JOIN course_has_user WHERE user_username = ? AND course_courseID = courseID;");
@@ -206,6 +216,8 @@ public class DBConnection {
         }
         return currentUsersCourseNames;
     }
+
+
 
     public int getIDForSelectedCourse(String courseName, String username) throws SQLException {
         preparedStatement = connection.prepareStatement("SELECT course_courseID FROM course_has_user JOIN course WHERE course_has_user.course_courseID = courseID AND course_name = ? AND user_username = ? GROUP BY user_username;");
@@ -294,6 +306,7 @@ public class DBConnection {
             return null;
         }
     }
+
 
     public void removeUser(int courseID, String username) {
         try {
@@ -392,4 +405,6 @@ public class DBConnection {
             System.out.println("Failed to disconnect!");
         }
     }
+
+
 }
