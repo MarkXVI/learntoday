@@ -281,7 +281,7 @@ public class DBConnection {
 
     public Object getUserScore(String username, String quiz) {
         try {
-            preparedStatement = connection.prepareStatement("SELECT score FROM user_does_quiz WHERE username = ? AND quiz_name = ?");
+            preparedStatement = connection.prepareStatement("SELECT score FROM user_does_quiz WHERE user_username = ? AND quiz_name = ?");
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, quiz);
             resultSet = preparedStatement.executeQuery();

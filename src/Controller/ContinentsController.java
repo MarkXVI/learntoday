@@ -52,14 +52,14 @@ public class ContinentsController implements Initializable {
         }else{
         if(btn.getId().equals(continents.get(0))) {
             QuizStorage.getInstance().addPoint();
-            continents.remove(0);
-            if (continents.size() > 0) {
+        }
+        continents.remove(0);
+        if (continents.size() > 0) {
                 nextCountry();
             }else{
                 continentText.setText("All continents completed!");
                 resultsButton.setVisible(true);
             }
-        }
         }
     }
 
