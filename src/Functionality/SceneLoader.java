@@ -33,6 +33,16 @@ public class SceneLoader {
 
     public SceneLoader() throws SQLException {}
 
+    public void loadManage(Button btn) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ManageCourses.fxml"));
+        Stage stage = (Stage) btn.getScene().getWindow();
+        Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add("View/Style.css");
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void loadMainMenu(Button btn) throws IOException {
         QuizStorage.getInstance().resetPoints();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/MainMenu.fxml"));

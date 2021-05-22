@@ -5,14 +5,16 @@ import Functionality.User;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.UserStorage;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,8 +38,9 @@ public class AddCourseController implements Initializable {
     @FXML
     Text courseIDText;
     @FXML
-    Text courseIDText2;
-
+    Pane confirmationWindow;
+    @FXML
+    Button backButton;
 
     UserStorage userStorage = UserStorage.getInstance();
     User user = userStorage.currentUser();
@@ -49,8 +52,6 @@ public class AddCourseController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        confirmationText.setVisible(false);
-        showElements(false);
     }
 
     public void onHomeClick() throws IOException {
@@ -59,39 +60,37 @@ public class AddCourseController implements Initializable {
 
 
     public void onAddClick() throws SQLException {
+        courseIDText.setText("");
         ArrayList<Integer> existingIDs = database.getCourseIDs();
         courses = database.getCurrentUsersCourseNames(user.getUsername());
         int randomID;
         if (!courses.contains(userInput.getText()) && !userInput.getText().equals("")) {
-            do {
+            do{
                 randomID = (int) (Math.random() * (99999 - 10000) + 10000);
-            } while (existingIDs.contains(randomID));
+            }while (existingIDs.contains(randomID));
             database.addCourse(randomID, userInput.getText());
             database.addUserToCourse(randomID, user.getUsername());
             courseIDText.setText("Course ID: " + randomID);
-            confirmationText.setVisible(true);
-            showElements(true);
-        } else if (courses.contains(userInput.getText())) {
-            courseIDText.setText("A course with the same");
-            courseIDText.setLayoutX(373);
-            courseIDText.setLayoutY(473);
-            courseIDText.setFont(Font.font(15));
-            courseIDText.setFill(Color.RED);
-
-            courseIDText2.setFont(Font.font(15));
-            courseIDText2.setLayoutX(383);
-            courseIDText2.setLayoutY(493);
-            courseIDText2.setText("name already exists!");
-            courseIDText2.setFill(Color.RED);
-            confirmationText.setVisible(false);
+            confirmationText.setText("Course added!");
+            confirmationText.setFill(Paint.valueOf("#32a852"));
+            whiteRectangle.setFill(Paint.valueOf("#ffffff"));
+        }else if (courses.contains(userInput.getText())) {
+            confirmationText.setText("A course with the same\nname already exists");
+            confirmationText.setFill(Paint.valueOf("#ff3232"));
+            whiteRectangle.setFill(Paint.valueOf("#ffaeae"));
         }
-        showElements(true);
+        showElements();
     }
 
+    public void onBackClick() throws IOException {
+        SceneLoader.getInstance().loadManage(backButton);
+    }
 
-
-    public void showElements(boolean bool) {
-        whiteRectangle.setVisible(bool);
-        courseIDText.setVisible(bool);
+    public void showElements(){
+        confirmationWindow.setVisible(true);
+        FadeTransition ft = new FadeTransition(Duration.seconds(6), confirmationWindow);
+        ft.setFromValue(1);
+        ft.setToValue(0);
+        ft.play();
     }
 }

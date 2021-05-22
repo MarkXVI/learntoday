@@ -48,17 +48,16 @@ public class ManageCoursesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            String username = user.getUsername();
-            courses = database.getCurrentUsersCourseNames(username);
-            Collections.sort(courses);
+            showCourses();
+            text.setText("Choose a course to edit");
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-        showCourses();
-        text.setText("Choose a course to edit");
     }
 
-    public void showCourses() {
+    public void showCourses() throws SQLException {
+        courses = database.getCurrentUsersCourseNames(user.getUsername());
+        Collections.sort(courses);
         listView.getItems().clear();
         addButton.setText("Add new course");
         removeButton.setText("Remove selected course");

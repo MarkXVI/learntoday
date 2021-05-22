@@ -215,13 +215,7 @@ public class MenuController implements Initializable {
 
     public void onManageCourses() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ManageCourses.fxml"));
-            Stage stage = (Stage) manageCoursesButton.getScene().getWindow();
-            Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add("View/Style.css");
-
-            stage.setScene(scene);
-            stage.show();
+            SceneLoader.getInstance().loadManage(manageCoursesButton);
         } catch (IOException ignored) {}
     }
 
