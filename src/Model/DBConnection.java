@@ -255,7 +255,7 @@ public class DBConnection {
         } catch (SQLIntegrityConstraintViolationException ignored) {}
     }
 
-    public void updateUserScore(String username, String quiz, int score ) {
+    public void addUserScore(String username, String quiz, int score ) {
         try {
             preparedStatement = connection.prepareStatement("INSERT INTO user_does_quiz VALUES(?, ?, ?)");
             preparedStatement.setString(1, username);
@@ -267,7 +267,19 @@ public class DBConnection {
         }
     }
 
-    public int getUserScore(String username, String quiz) {
+    public void updateUserScore(String username, String quiz, int score) throws SQLException {
+        try{
+            preparedStatement = connection.prepareStatement("UPDATE user_does_quiz SET score = ? WHERE user_username = ? AND quiz_name = ?");
+            preparedStatement.setInt(1, score);
+            preparedStatement.setString(2, username);
+            preparedStatement.setString(3, quiz);
+            preparedStatement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public Object getUserScore(String username, String quiz) {
         try {
             preparedStatement = connection.prepareStatement("SELECT score FROM user_does_quiz WHERE username = ? AND quiz_name = ?");
             preparedStatement.setString(1, username);
@@ -276,7 +288,7 @@ public class DBConnection {
             resultSet.next();
             return resultSet.getInt(1);
         } catch (SQLException ex) {
-            return 0;
+            return null;
         }
     }
 

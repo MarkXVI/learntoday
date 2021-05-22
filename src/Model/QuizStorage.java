@@ -63,4 +63,9 @@ public class QuizStorage {
     public int getQuestions() {
         return questions;
     }
+
+    public void addQuestions(ArrayList<String> list){
+        questionIDs = list;
+        questions = questionIDs.size();
+    }
 }

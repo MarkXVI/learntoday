@@ -100,4 +100,14 @@ public class SceneLoader {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void loadScoreScreen(Button btn) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizResults.fxml"));
+        Stage stage = (Stage) btn.getScene().getWindow();
+        Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add("View/Style.css");
+
+        stage.setScene(scene);
+        stage.show();
+    }
 }

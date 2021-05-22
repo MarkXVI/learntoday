@@ -126,13 +126,7 @@ public class QuizController implements Initializable {
             SceneLoader.getInstance().loadQuizMCTF(topicTitle.getText(), nextButton, count-1);
         }else{
             count = 1;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/QuizResults.fxml"));
-            Stage stage = (Stage) nextButton.getScene().getWindow();
-            Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add("View/Style.css");
-
-            stage.setScene(scene);
-            stage.show();
+            SceneLoader.getInstance().loadScoreScreen(nextButton);
         }
     }
 
