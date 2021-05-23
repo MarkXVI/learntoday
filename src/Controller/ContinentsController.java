@@ -51,7 +51,10 @@ public class ContinentsController implements Initializable {
             continentText.setText(btn.getId());
         }else{
         if(btn.getId().equals(continents.get(0))) {
+            btn.setStyle(btn.getStyle() + "-fx-background-color: Green;");
             QuizStorage.getInstance().addPoint();
+        }else{
+            btn.setStyle(btn.getStyle() + "-fx-background-color: Red;");
         }
         continents.remove(0);
         if (continents.size() > 0) {
