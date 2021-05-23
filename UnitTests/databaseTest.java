@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import Functionality.Pairs;
 import Model.DBConnection;
 
 import org.junit.After;
@@ -18,7 +19,7 @@ public class databaseTest {
     }
 
     @Test
-    public void testGetUserInfo(){
+    public void testGetUserInfo() {
         ArrayList<Object> user = connection.getUserinfo("test");
         assertNotNull(user);
         assertEquals(user.size(), 4);
@@ -27,6 +28,13 @@ public class databaseTest {
     @Test
     public void testGetTopics() throws SQLException {
         ArrayList<String> topics = connection.getTopics("test");
+        assertNotNull(topics);
+        assertEquals(topics.size(), 0);
+    }
+
+    @Test
+    public void testGetTopicsForSelectedSubject() throws SQLException {
+        ArrayList<String> topics = connection.getTopicsForSelectedSubject("test");
         assertNotNull(topics);
         assertEquals(topics.size(), 0);
     }
@@ -63,9 +71,65 @@ public class databaseTest {
     }
 
     @Test
-    public void getCourseIDsTest() throws SQLException{
+    public void testGetQuestionType() throws SQLException {
+        assertNotNull(connection.getQuestionType("1"));
+    }
+
+    @Test
+    public void testGetCourseIDs() throws SQLException{
         ArrayList<Integer> courseIDs = connection.getCourseIDs();
         assertNotNull(courseIDs);
+    }
+
+    @Test
+    public void testGetIDForSelectedCourse() throws SQLException {
+        int courseID = connection.getIDForSelectedCourse("test", "Simon");
+        assertEquals(courseID, 1);
+    }
+
+    @Test
+    public void testGetUsernamesForCourse() throws SQLException {
+        ArrayList<String> usernames = connection.getUsernamesForCourse(1);
+        assertNotNull(usernames);
+        assertEquals(usernames.size(), 2);
+    }
+
+    @Test
+    public void testGetTopicsForSelectedCourse() {
+        ArrayList<String> topics = connection.getTopicsForSelectedCourse(1);
+        assertNotNull(topics);
+        assertEquals(topics.size(), 0);
+    }
+
+    @Test
+    public void testGetCurrentUsersCourseNames() throws SQLException {
+        ArrayList<String> courseNames = connection.getCurrentUsersCourseNames("testing");
+        assertNotNull(courseNames);
+        assertEquals(courseNames.size(), 0);
+    }
+
+    @Test
+    public void testGetUserScore() {
+        assertNull(connection.getUserScore("test", "test"));
+    }
+
+    @Test
+    public void testGetCourseUsers() {
+        ArrayList<Pairs> users = connection.getCourseUsers(1, "test");
+        assertNotNull(users);
+        assertEquals(users.size(), 0);
+    }
+
+    @Test
+    public void testGetAllTopics() {
+        ArrayList<String> allTopics = connection.getAllTopics();
+        assertNotNull(allTopics);
+    }
+
+    @Test
+    public void testGetAllUsernames() {
+        ArrayList<String> usernames = connection.getAllUsernames();
+        assertNotNull(usernames);
     }
 
     @After
