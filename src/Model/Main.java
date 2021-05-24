@@ -18,7 +18,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            System.out.println(TimeZone.getDefault());
             connection = ConnectionStorage.getInstance();
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../View/LoginScreen.fxml")));
 
