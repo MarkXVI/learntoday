@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Point3D?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.effect.Shadow?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Ellipse?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ContinentsController">
-    <Rectangle arcHeight="50.0" arcWidth="50.0" height="767.0" layoutX="34.0" layoutY="-22.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="827.0">
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.WorldMapController">
+    <Rectangle arcHeight="50.0" arcWidth="50.0" height="645.0" layoutX="35.0" layoutY="46.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="827.0">
         <effect>
             <Shadow height="70.11" radius="34.1375" width="68.44">
                 <color>
@@ -113,7 +111,7 @@
         </fill>
     </Text>
    <Button fx:id="homeButton" layoutX="27.0" layoutY="699.0" mnemonicParsing="false" onAction="#onHomeClick" prefHeight="25.0" prefWidth="74.0" text="Home" />
-   <Text fx:id="continentText" layoutX="114.0" layoutY="708.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click on: Europe" textAlignment="CENTER" wrappingWidth="677.0">
+   <Text fx:id="Text" layoutX="114.0" layoutY="708.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click on: Europe" textAlignment="CENTER" wrappingWidth="677.0">
       <font>
          <Font size="24.0" />
       </font>

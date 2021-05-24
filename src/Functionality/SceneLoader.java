@@ -1,6 +1,5 @@
 package Functionality;
 
-import Controller.ManageTopicsController;
 import Controller.QuizController;
 import Controller.ReadController;
 import Model.ConnectionStorage;
@@ -110,4 +109,15 @@ public class SceneLoader {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void WorldMapLoader(String sceneName, Button btn) throws  IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/" + sceneName + ".fxml"));
+        Stage stage = (Stage) btn.getScene().getWindow();
+        Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add("View/WorldMap.css");
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }

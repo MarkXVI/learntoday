@@ -121,17 +121,8 @@ public class MenuController implements Initializable {
                 topicList.getItems().clear();
                 addSubjects();
             }
-            if (currentItemSelected.equals("Continents")) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/Continents.fxml"));
-                Stage stage = (Stage) quizButton.getScene().getWindow();
-                Scene scene = new Scene(loader.load());
-                scene.getStylesheets().add("View/WorldMap.css");
-
-                stage.setScene(scene);
-                stage.show();
-            }
         }
-        } catch (NullPointerException | IOException ignored) {}
+        } catch (NullPointerException ignored) {}
     }
 
     public void errorChange(String text) {
@@ -146,6 +137,9 @@ public class MenuController implements Initializable {
     public void onQuizClick() {
         try {
             String selectedTopic = topicList.getSelectionModel().getSelectedItem();
+            if (selectedTopic.equals("Continents") || selectedTopic.equals("Oceans")) {
+                SceneLoader.getInstance().WorldMapLoader(selectedTopic, quizButton);
+            }
             if (topics.contains(selectedTopic)) {
                 if (Logic.checkSufficientQuestions(selectedTopic)){
                     QuizStorage.getInstance().addQuestions(selectedTopic);

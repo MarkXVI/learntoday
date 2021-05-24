@@ -27,6 +27,8 @@ public class ReadController implements Initializable {
     @FXML
     private Text topicText;
 
+    TextToSpeech tts = new TextToSpeech();
+
     public ReadController() {
 
     }
@@ -47,7 +49,9 @@ public class ReadController implements Initializable {
     public void onQuizClick() throws IOException {
         try {
             String selectedTopic = QuizStorage.getInstance().getTopic();
-
+            if (selectedTopic.equals("Continents") || selectedTopic.equals("Oceans")) {
+                SceneLoader.getInstance().WorldMapLoader(selectedTopic, quizButton);
+            }
             if (Logic.checkSufficientQuestions(selectedTopic)){
                 QuizStorage.getInstance().addQuestions(selectedTopic);
                 QuizStorage.getInstance().QuizShuffle();
@@ -56,9 +60,14 @@ public class ReadController implements Initializable {
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
+        }
+
+        public void OnTextToSpeech() throws Exception {
+        tts.setText(infoText.getText());
+        tts.run();
     }
 
-    public void OnTextToSpeech() throws Exception {
-        new TextToSpeech(infoText.getText());
+    public void OnTextToSpeechPause() throws InterruptedException {
+        tts.pause();
     }
 }
