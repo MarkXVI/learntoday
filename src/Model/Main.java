@@ -9,9 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-import javax.speech.AudioException;
-import javax.speech.EngineException;
-import java.beans.PropertyVetoException;
+import java.util.TimeZone;
 import java.util.Objects;
 
 
@@ -20,6 +18,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
+            System.out.println(TimeZone.getDefault());
             connection = ConnectionStorage.getInstance();
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../View/LoginScreen.fxml")));
 
@@ -38,9 +37,11 @@ public class Main extends Application {
     }
 
     @Override
-    public void stop() throws PropertyVetoException, AudioException, EngineException, InterruptedException {
+    public void stop() throws Exception {
         connection.close_Connection();
-        TextToSpeech tts = new TextToSpeech("Hope you learned today");
+        TextToSpeech tts = new TextToSpeech();
+        tts.setText("Hope you learned today");
+        tts.run();
         tts.Terminate();
     }
 

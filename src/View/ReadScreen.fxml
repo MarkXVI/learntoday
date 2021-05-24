@@ -66,4 +66,9 @@
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></Button>
+   <Button fx:id="ttsPauseButton" layoutX="152.0" layoutY="667.0" mnemonicParsing="false" onAction="#OnTextToSpeechPause" prefHeight="25.0" prefWidth="31.0" style="-fx-background-color: white;" text="||">
+      <font>
+         <Font name="Arial Black" size="12.0" />
+      </font>
+   </Button>
 </AnchorPane>

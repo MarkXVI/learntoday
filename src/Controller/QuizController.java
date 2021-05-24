@@ -7,16 +7,10 @@ import Model.DBConnection;
 import Model.QuizStorage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
-import javax.speech.AudioException;
-import javax.speech.EngineException;
-import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -48,6 +42,8 @@ public class QuizController implements Initializable {
     Text questionCount;
     @FXML
     Text questionNumber;
+
+    TextToSpeech tts = new TextToSpeech();
 
     static int count = 1;
     ArrayList<String> alternatives = new ArrayList<>();
@@ -135,7 +131,7 @@ public class QuizController implements Initializable {
         questionCount.setText("Question " + (count));
     }
 
-    public void OnTextToSpeech() throws SQLException, PropertyVetoException, AudioException, EngineException, InterruptedException {
+    public void OnTextToSpeech() throws Exception {
         String text = "The question is " + questionText.getText();
         String alternativeTexts;
         questionType = database.getQuestionType(quizQue.get(count - 1));
@@ -144,6 +140,11 @@ public class QuizController implements Initializable {
         } else {
             alternativeTexts = "Is it true, or false?";
         }
-        new TextToSpeech(text + ". " + alternativeTexts);
+        tts.setText(text + ". " + alternativeTexts);
+        tts.run();
+    }
+
+    public void OnTextToSpeechPause() throws InterruptedException {
+        tts.pause();
     }
 }
