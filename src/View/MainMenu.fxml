@@ -36,12 +36,12 @@
             <stops>
                <Stop>
                   <color>
-                     <Color blue="1.0" green="0.5647059082984924" red="0.11764705926179886" />
+                     <Color red="0.11764705926179886" green="0.5647059082984924" blue="1.0" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color blue="1.0" green="0.6705882549285889" red="0.2980392277240753" />
+                     <Color red="0.2980392277240753" green="0.6705882549285889" blue="1.0" />
                   </color>
                </Stop>
             </stops>
@@ -53,21 +53,46 @@
          <Font name="Comic Sans MS Bold" size="11.0" />
       </font>
    </Text>
-   <Button fx:id="logoutButton" layoutX="724.0" layoutY="53.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="25.0" prefWidth="115.0" text="Sign out" textFill="#7c7c7c">
-      <font>
-         <Font name="Comic Sans MS" size="12.0" />
-      </font>
-      <cursor>
-         <Cursor fx:constant="HAND" />
-      </cursor></Button>
-   <Button fx:id="manageCoursesButton" layoutX="195.0" layoutY="83.0" mnemonicParsing="false" onAction="#onManageCourses" prefHeight="25.0" prefWidth="107.0" text="Manage courses" textFill="#7c7c7c">
-      <font>
-         <Font name="Comic Sans MS" size="12.0" />
-      </font>
-      <cursor>
-         <Cursor fx:constant="HAND" />
-      </cursor>
-   </Button>
+   <VBox alignment="TOP_CENTER" layoutX="725.0" layoutY="52.0" prefHeight="61.0" prefWidth="107.0" spacing="5.0">
+      <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="25.0" prefWidth="107.0"
+              text="Sign out" textFill="#7c7c7c">
+         <font>
+            <Font name="Comic Sans MS" size="12.0"/>
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND"/>
+         </cursor>
+      </Button>
+      <Button fx:id="leaderboardsButton" mnemonicParsing="false" onAction="#onLeaderboardsClick" prefHeight="25.0"
+              prefWidth="107.0" text="Leaderboards" textFill="#7c7c7c">
+         <font>
+            <Font name="Comic Sans MS" size="12.0"/>
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND"/>
+         </cursor>
+      </Button>
+   </VBox>
+   <VBox alignment="TOP_CENTER" layoutX="177.0" layoutY="52.0" prefHeight="61.0" prefWidth="115.0" spacing="5.0">
+      <Button fx:id="joinCourseButton" mnemonicParsing="false" onAction="#onJoinCourse" prefHeight="25.0"
+              prefWidth="107.0" text="Join course" textFill="#7c7c7c">
+         <font>
+            <Font name="Comic Sans MS" size="12.0"/>
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND"/>
+         </cursor>
+      </Button>
+      <Button fx:id="manageCoursesButton" mnemonicParsing="false" onAction="#onManageCourses" prefHeight="25.0"
+              prefWidth="107.0" text="Manage courses" textFill="#7c7c7c">
+         <font>
+            <Font name="Comic Sans MS" size="12.0"/>
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND"/>
+         </cursor>
+      </Button>
+   </VBox>
    <VBox layoutX="52.0" layoutY="114.0" prefHeight="550.0" prefWidth="379.0">
       <Text fx:id="topicText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Topics" wrappingWidth="90.0">
          <font>
@@ -84,7 +109,7 @@
       </Text>
       <Separator prefHeight="5.0" prefWidth="354.0" />
       <TextFlow accessibleText="dsdsd" prefHeight="463.0" prefWidth="354.0">
-         <Text fill="#656565" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose any topic that you want in the &quot;Topics&quot; window.&#10;&#10;Press on [read] to read more about your selected topic! &#10;&#10;Press on [start quiz] to start a quiz about the selected topic!&#10;&#10;Other users scores can be submitted and displayed on the &quot;Leaderboard&quot; window!&#10;" wrappingWidth="318.052734375">
+         <Text fill="#656565" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose any topic that you want in the &quot;Topics&quot; window.&#10;&#10;Press on [read] to read more about your selected topic! &#10;&#10;Press on [start quiz] to start a quiz about the selected topic!" wrappingWidth="318.052734375">
             <font>
                <Font size="14.0" />
             </font>
@@ -105,8 +130,8 @@
          </TextFlow>
       </TextFlow>
    </VBox>
-   <HBox alignment="CENTER" layoutX="310.0" layoutY="48.0" prefHeight="47.0" prefWidth="291.0" spacing="10.0">
-      <Button fx:id="readButton" mnemonicParsing="false" onAction="#onReadClick" prefHeight="40.0" prefWidth="135.0" text="READ" textFill="#7c7c7c">
+   <HBox alignment="CENTER" layoutX="292.0" layoutY="48.0" prefHeight="44.0" prefWidth="316.0" spacing="10.0">
+      <Button fx:id="readButton" mnemonicParsing="false" onAction="#onReadClick" prefHeight="40.0" prefWidth="150.0" text="READ" textFill="#7c7c7c">
          <font>
             <Font name="Comic Sans MS" size="17.0" />
          </font>
@@ -114,7 +139,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="quizButton" mnemonicParsing="false" onAction="#onQuizClick" prefHeight="40.0" prefWidth="147.0" text="START QUIZ" textFill="#7c7c7c">
+      <Button fx:id="quizButton" mnemonicParsing="false" onAction="#onQuizClick" prefHeight="40.0" prefWidth="150.0" text="START QUIZ" textFill="#7c7c7c">
          <font>
             <Font name="Comic Sans MS" size="17.0" />
          </font>
@@ -124,7 +149,7 @@
       </Button>
    </HBox>
    <ListView fx:id="topicList" editable="true" layoutX="56.0" layoutY="144.0" onMouseClicked="#onMouseClick" prefHeight="507.0" prefWidth="382.0" />
-   <Text layoutX="52.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Main menu" textAlignment="CENTER" wrappingWidth="136.0">
+   <Text layoutX="48.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Learn2day" textAlignment="CENTER" wrappingWidth="136.0">
       <font>
          <Font name="Comic Sans MS Bold" size="24.0" />
       </font>
@@ -133,12 +158,12 @@
             <stops>
                <Stop>
                   <color>
-                     <Color blue="1.0" green="1.0" opacity="0.769565224647522" red="1.0" />
+                     <Color red="1.0" green="1.0" blue="1.0" opacity="0.769565224647522" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color blue="1.0" green="1.0" red="1.0" />
+                     <Color red="1.0" green="1.0" blue="1.0" />
                   </color>
                </Stop>
             </stops>
@@ -174,20 +199,4 @@
          <Button mnemonicParsing="false" onAction="#onAboutClose" prefHeight="25.0" prefWidth="115.0" text="Close" />
       </VBox>
    </Pane>
-   <Button fx:id="joinCourseButton" layoutX="195.0" layoutY="53.0" mnemonicParsing="false" onAction="#onJoinCourse" prefHeight="25.0" prefWidth="107.0" text="Join course" textFill="#7c7c7c">
-      <font>
-         <Font name="Comic Sans MS" size="12.0" />
-      </font>
-      <cursor>
-         <Cursor fx:constant="HAND" />
-      </cursor>
-   </Button>
-   <Button fx:id="leaderboardsButton" layoutX="724.0" layoutY="83.0" mnemonicParsing="false" onAction="#onLeaderboardsClick" prefHeight="25.0" prefWidth="115.0" text="Leaderboards" textFill="#7c7c7c">
-      <font>
-         <Font name="Comic Sans MS" size="12.0" />
-      </font>
-      <cursor>
-         <Cursor fx:constant="HAND" />
-      </cursor>
-   </Button>
 </AnchorPane>
