@@ -1,7 +1,6 @@
 package Controller;
 
 import Functionality.SceneLoader;
-import Functionality.TextToSpeech;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.QuizStorage;
@@ -43,7 +42,6 @@ public class QuizController implements Initializable {
     @FXML
     Text questionNumber;
 
-    TextToSpeech tts = new TextToSpeech();
 
     static int count = 1;
     ArrayList<String> alternatives = new ArrayList<>();
@@ -129,22 +127,5 @@ public class QuizController implements Initializable {
     public void setTitle(String topic){
         topicTitle.setText(topic);
         questionCount.setText("Question " + (count));
-    }
-
-    public void OnTextToSpeech() throws Exception {
-        String text = "The question is " + questionText.getText();
-        String alternativeTexts;
-        questionType = database.getQuestionType(quizQue.get(count - 1));
-        if(questionType.equals("MC")) {
-            alternativeTexts = "Is it " + alternative1.getText() + ", or " + alternative2.getText() +  ", or " + alternative3.getText() +  ", or " + alternative4.getText() + "?";
-        } else {
-            alternativeTexts = "Is it true, or false?";
-        }
-        tts.setText(text + ". " + alternativeTexts);
-        tts.run();
-    }
-
-    public void OnTextToSpeechPause() throws InterruptedException {
-        tts.pause();
     }
 }

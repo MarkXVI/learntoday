@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QuizController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QuizController">
     <Rectangle arcHeight="50.0" arcWidth="50.0" height="645.0" layoutX="191.0" layoutY="46.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="536.0">
         <effect>
             <Shadow height="70.11" radius="34.1375" width="68.44">
@@ -27,7 +27,7 @@
                 <stops>
                     <Stop>
                         <color>
-                            <Color blue="1.0" green="0.5647059082984924" red="0.11764705926179886" />
+                            <Color red="0.11764705926179886" green="0.5647059082984924" blue="1.0" />
                         </color>
                     </Stop>
                     <Stop offset="1.0">
@@ -42,15 +42,6 @@
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></Button>
-    <Button fx:id="ttsButton" layoutX="212.0" layoutY="270.0" mnemonicParsing="false" onAction="#OnTextToSpeech" style="-fx-background-color: white;" text="Text to speech">
-      <cursor>
-         <Cursor fx:constant="HAND" />
-      </cursor></Button>
-    <Button fx:id="ttsPauseButton" layoutX="313.0" layoutY="270.0" mnemonicParsing="false" onAction="#OnTextToSpeechPause" prefHeight="25.0" prefWidth="31.0" style="-fx-background-color: white;" text="||">
-        <font>
-            <Font name="Arial Black" size="12.0" />
-        </font>
-    </Button>
     <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="158.0" layoutX="214.0" layoutY="106.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="456.0" />
     <Text layoutX="191.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quiz" textAlignment="CENTER" wrappingWidth="67.0">
         <font>
@@ -61,12 +52,12 @@
                 <stops>
                     <Stop>
                         <color>
-                            <Color blue="1.0" green="1.0" opacity="0.769565224647522" red="1.0" />
+                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.769565224647522" />
                         </color>
                     </Stop>
                     <Stop offset="1.0">
                         <color>
-                            <Color blue="1.0" green="1.0" red="1.0" />
+                            <Color red="1.0" green="1.0" blue="1.0" />
                         </color>
                     </Stop>
                 </stops>
@@ -103,12 +94,12 @@
                 <stops>
                     <Stop>
                         <color>
-                            <Color blue="1.0" green="1.0" opacity="0.769565224647522" red="1.0" />
+                            <Color red="1.0" green="1.0" blue="1.0" opacity="0.769565224647522" />
                         </color>
                     </Stop>
                     <Stop offset="1.0">
                         <color>
-                            <Color blue="1.0" green="1.0" red="1.0" />
+                            <Color red="1.0" green="1.0" blue="1.0" />
                         </color>
                     </Stop>
                 </stops>

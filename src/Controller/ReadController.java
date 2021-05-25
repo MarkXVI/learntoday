@@ -2,7 +2,6 @@ package Controller;
 
 import Functionality.Logic;
 import Functionality.SceneLoader;
-import Functionality.TextToSpeech;
 import Model.QuizStorage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,8 +25,6 @@ public class ReadController implements Initializable {
     private TextArea infoText;
     @FXML
     private Text topicText;
-
-    TextToSpeech tts = new TextToSpeech();
 
     public ReadController() {
 
@@ -61,13 +58,4 @@ public class ReadController implements Initializable {
             exception.printStackTrace();
         }
         }
-
-        public void OnTextToSpeech() throws Exception {
-        tts.setText(infoText.getText());
-        tts.run();
-    }
-
-    public void OnTextToSpeechPause() throws InterruptedException {
-        tts.pause();
-    }
 }

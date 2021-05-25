@@ -1,6 +1,5 @@
 package Model;
 
-import Functionality.TextToSpeech;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -33,16 +32,6 @@ public class Main extends Application {
             ex.printStackTrace();
         }
     }
-
-    @Override
-    public void stop() throws Exception {
-        connection.close_Connection();
-        TextToSpeech tts = new TextToSpeech();
-        tts.setText("Hope you learned today");
-        tts.run();
-        tts.Terminate();
-    }
-
     public static void main(String[] args) {
         launch(args);
     }
