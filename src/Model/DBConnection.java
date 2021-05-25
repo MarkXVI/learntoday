@@ -292,9 +292,9 @@ public class DBConnection {
         }
     }
 
-    public ArrayList<Pairs> getCourseUsers(int courseID, String topic) {
+    public ArrayList<Pairs> getCourseStudents(int courseID, String topic) {
         try {
-            preparedStatement = connection.prepareStatement("Select username, score FROM user_does_quiz JOIN user JOIN course_has_user JOIN quiz WHERE course_has_user.user_username = username AND quiz_name = ? AND course_has_user.course_courseID = ? AND user_does_quiz.user_username = username group by username order by score DESC;");
+            preparedStatement = connection.prepareStatement("Select username, score FROM user_does_quiz JOIN user JOIN course_has_user JOIN quiz WHERE course_has_user.user_username = username AND quiz_name = ? AND course_has_user.course_courseID = ? AND user_does_quiz.user_username = username AND user.Teacher = 0 group by username order by score DESC;");
             preparedStatement.setString(1, topic);
             preparedStatement.setInt(2, courseID);
             resultSet = preparedStatement.executeQuery();

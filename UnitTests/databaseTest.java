@@ -115,7 +115,7 @@ public class databaseTest {
 
     @Test
     public void testGetCourseUsers() {
-        ArrayList<Pairs> users = connection.getCourseUsers(1, "test");
+        ArrayList<Pairs> users = connection.getCourseStudents(1, "test");
         assertNotNull(users);
         assertEquals(users.size(), 0);
     }

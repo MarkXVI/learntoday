@@ -90,7 +90,7 @@ public class LeaderboardsController implements Initializable {
                     topic = currentItemSelected;
                     studentColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
                     scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
-                    ArrayList<Pairs> users = database.getCourseUsers(courseID, topic);
+                    ArrayList<Pairs> users = database.getCourseStudents(courseID, topic);
                     ObservableList<Pairs> userList = FXCollections.observableList(users);
                     studentTable.setItems(userList);
                     studentTable.setVisible(true);
