@@ -73,3 +73,7 @@
     -fx-text-fill: white;
     -fx-text-alignment: center;
 }
+.list-cell {
+    -fx-text-fill: #616161 ;
+    -fx-font-size: 14px ;
+}
