@@ -1,7 +1,6 @@
 # Learn2day
 
 ## Required Libraries
-  - FreeTTS (Which can be downloaded here: https://sourceforge.net/projects/freetts/)
   - JavaFX SDK (Can be downloaded here: https://gluonhq.com/products/javafx/)
   - MySQL Connector J (Can be downloaded here: https://dev.mysql.com/downloads/connector/j/)
   - JUnit4 (Which should be possible to import directly from the IDE)
