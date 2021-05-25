@@ -6,10 +6,13 @@ import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.QuizStorage;
 import Model.UserStorage;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +29,8 @@ public class ResultsController implements Initializable {
     Button uploadButton;
     @FXML
     Button finishButton;
+    @FXML
+    Pane msgError;
 
     DBConnection database = ConnectionStorage.getInstance().getConnection();
 
@@ -48,6 +53,8 @@ public class ResultsController implements Initializable {
     }
 
     public void onUploadClick() throws SQLException {
+        uploadButton.setVisible(false);
+        submitNotification();
         String topic = QuizStorage.getInstance().getTopic();
         Object oldScore = database.getUserScore(user.getUsername(), topic);
         if(oldScore == null){
@@ -55,6 +62,13 @@ public class ResultsController implements Initializable {
         }else if((int) oldScore < points){
             database.updateUserScore(user.getUsername(), topic, points );
         }
+    }
 
+    public void submitNotification(){
+        msgError.setVisible(true);
+        FadeTransition ft = new FadeTransition(Duration.seconds(6), msgError);
+        ft.setFromValue(1);
+        ft.setToValue(0);
+        ft.play();
     }
 }
