@@ -171,11 +171,12 @@ public class DBConnection {
         return resultSet.getInt(1) == 1;
     }
 
-    public void addQuestion(String question, String topic) {
+    public void addQuestion(String question, String topic, String questionType) {
         try {
-            preparedStatement = connection.prepareStatement("INSERT INTO question (question, quiz_name) VALUES (?,?)");
+            preparedStatement = connection.prepareStatement("INSERT INTO question (question, quiz_name, question_type) VALUES (?,?,?)");
             preparedStatement.setString(1, question);
             preparedStatement.setString(2, topic);
+            preparedStatement.setString(3, questionType);
             preparedStatement.executeUpdate();
         } catch (Exception ignored) {}
     }

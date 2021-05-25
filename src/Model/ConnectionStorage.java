@@ -7,7 +7,7 @@ public class ConnectionStorage {
     private static ConnectionStorage storage;
     private final DBConnection connection;
 
-    public ConnectionStorage() throws SQLException {
+    private ConnectionStorage() throws SQLException {
         connection = new DBConnection();
     }
 

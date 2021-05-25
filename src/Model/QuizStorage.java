@@ -15,7 +15,7 @@ public class QuizStorage {
         }
     }
 
-    DBConnection database = new ConnectionStorage().getConnection();
+    DBConnection database = new DBConnection();
     private ArrayList<String> questionIDs = new ArrayList<>();
     private String topic;
     private int points = 0;

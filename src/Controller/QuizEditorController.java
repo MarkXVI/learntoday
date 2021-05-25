@@ -62,7 +62,7 @@ public class QuizEditorController implements Initializable {
         String answer4 = inputAlt4.getText();
 
         if(Logic.checkValidQuiz(question, answer1, answer2, answer3, answer4)){
-            database.addQuestion(question, topicTitle.getText());
+            database.addQuestion(question, topicTitle.getText(), "MC");
 
             database.addAlt(answer1, 1, question); //correct answer
             database.addAlt(answer2, 0, question);
