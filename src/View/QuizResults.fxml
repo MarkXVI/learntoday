@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ResultsController">
-    <Rectangle arcHeight="50.0" arcWidth="50.0" height="292.0" layoutX="218.0" layoutY="157.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="536.0">
+    <Rectangle arcHeight="50.0" arcWidth="50.0" height="292.0" layoutX="203.0" layoutY="240.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="536.0">
         <effect>
             <Shadow height="70.11" radius="34.1375" width="68.44">
                 <color>
@@ -22,7 +22,7 @@
             </Shadow>
         </effect>
     </Rectangle>
-    <Rectangle arcHeight="50.0" arcWidth="50.0" height="292.0" layoutX="166.0" layoutY="148.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="536.0" AnchorPane.bottomAnchor="280.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="148.0">
+    <Rectangle arcHeight="50.0" arcWidth="50.0" height="292.0" layoutX="182.0" layoutY="214.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="536.0" AnchorPane.bottomAnchor="214.0" AnchorPane.leftAnchor="182.0" AnchorPane.rightAnchor="182.0" AnchorPane.topAnchor="214.0">
         <fill>
             <LinearGradient endY="0.9857142857142859" startX="1.0" startY="0.033333333333333326">
                 <stops>
@@ -39,16 +39,16 @@
                 </stops>
             </LinearGradient>
         </fill></Rectangle>
-   <Button fx:id="uploadButton" layoutX="350.0" layoutY="373.0" mnemonicParsing="false" onAction="#onUploadClick" text="Upload score">
+   <Button fx:id="uploadButton" layoutX="325.0" layoutY="428.0" mnemonicParsing="false" onAction="#onUploadClick" text="Upload score">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></Button>
-    <Button fx:id="finishButton" layoutX="504.0" layoutY="373.0" mnemonicParsing="false" onAction="#onFinishClick" prefHeight="25.0" prefWidth="96.0" text="Finish quiz" AnchorPane.leftAnchor="504.0" AnchorPane.rightAnchor="300.0">
+    <Button fx:id="finishButton" layoutX="489.0" layoutY="428.0" mnemonicParsing="false" onAction="#onFinishClick" prefHeight="25.0" prefWidth="86.0" text="Finish quiz" AnchorPane.leftAnchor="489.0" AnchorPane.rightAnchor="325.0">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></Button>
-    <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="74.0" layoutX="303.0" layoutY="266.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="250.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0" />
-    <Text layoutX="224.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quiz" textAlignment="CENTER" wrappingWidth="67.0">
+    <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="74.0" layoutX="325.0" layoutY="323.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="250.0" AnchorPane.bottomAnchor="323.0" AnchorPane.leftAnchor="325.0" AnchorPane.rightAnchor="325.0" AnchorPane.topAnchor="323.0" />
+    <Text layoutX="203.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quiz Result" textAlignment="CENTER" wrappingWidth="146.0">
         <font>
             <Font name="Comic Sans MS Bold" size="24.0" />
         </font>
@@ -69,7 +69,7 @@
             </LinearGradient>
         </fill>
     </Text>
-    <Text layoutX="350.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score" textAlignment="CENTER" wrappingWidth="250.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="300.0">
+    <Text layoutX="414.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score" textAlignment="CENTER" wrappingWidth="71.619140625" AnchorPane.leftAnchor="414.0" AnchorPane.rightAnchor="414.380859375">
         <font>
             <Font name="Comic Sans MS Bold" size="24.0" />
         </font>
@@ -90,21 +90,17 @@
             </LinearGradient>
         </fill>
     </Text>
-    <Text fx:id="totalScore" layoutX="413.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1/10" wrappingWidth="42.13671875" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="450.0">
+    <Text fx:id="totalScore" layoutX="429.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1/10" wrappingWidth="42.13671875" AnchorPane.leftAnchor="429.0" AnchorPane.rightAnchor="428.86328125">
         <font>
             <Font size="20.0" />
         </font>
     </Text>
-   <Text fx:id="perfectScore" fill="#32a852" layoutX="439.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Perfect score!" AnchorPane.leftAnchor="439.0" AnchorPane.rightAnchor="389.380859375" />
-    <Pane fx:id="msgError" focusTraversable="true" layoutX="351.0" layoutY="449.0" prefHeight="59.0" prefWidth="248.0"
-          visible="false" AnchorPane.leftAnchor="351.0" AnchorPane.rightAnchor="301.0">
-        <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#caffc4" height="39.0" layoutX="-4.0" stroke="#ffffff00"
-                   strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0"
-                   strokeWidth="4.0" width="260.0"/>
-        <Text fill="#3fe469" layoutX="36.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score uploaded!"
-              textAlignment="CENTER" wrappingWidth="184.31640625">
+   <Text fx:id="perfectScore" fill="#32a852" layoutX="414.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Perfect score!" AnchorPane.leftAnchor="414.0" AnchorPane.rightAnchor="414.380859375" />
+    <Pane fx:id="msgError" focusTraversable="true" layoutX="326.0" layoutY="459.0" prefHeight="59.0" prefWidth="248.0" visible="false" AnchorPane.leftAnchor="326.0" AnchorPane.rightAnchor="326.0">
+        <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#caffc4" height="39.0" layoutX="-4.0" stroke="#ffffff00" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0" strokeWidth="4.0" width="260.0" />
+        <Text fill="#3fe469" layoutX="36.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score uploaded!" textAlignment="CENTER" wrappingWidth="184.31640625">
            <font>
-               <Font size="18.0"/>
+               <Font size="18.0" />
            </font>
         </Text>
     </Pane>
