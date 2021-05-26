@@ -47,7 +47,7 @@ public class JoinCourseController {
 
             if (existingIDs.contains(courseID)) {
                 database.addUserToCourse(courseID, UserStorage.getInstance().currentUser().getUsername());
-                showMessage("Course joined!", "#3fe469", "#caffc4");
+                showMessage("Course joined!", "#caffc4", "#3fe469");
             } else {
                 showMessage("Course doesn't exist!", "#ffaeae", "#ff3232");
             }
