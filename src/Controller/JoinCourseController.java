@@ -4,11 +4,15 @@ import Functionality.SceneLoader;
 import Model.ConnectionStorage;
 import Model.DBConnection;
 import Model.UserStorage;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -27,6 +31,8 @@ public class JoinCourseController {
     Text confirmationText;
     @FXML
     Rectangle whiteRectangle;
+    @FXML
+    Pane errorPane;
 
     public JoinCourseController() throws SQLException {}
 
@@ -41,21 +47,26 @@ public class JoinCourseController {
 
             if (existingIDs.contains(courseID)) {
                 database.addUserToCourse(courseID, UserStorage.getInstance().currentUser().getUsername());
-                confirmationText.setText("Course joined!");
+                showMessage("Course joined!", "#3fe469", "#caffc4");
             } else {
-                confirmationText.setText("Course doesn't exist");
+                showMessage("Course doesn't exist!", "#ffaeae", "#ff3232");
             }
-            showElements(true);
         } catch (NumberFormatException exception) {
-            //Error message
+            showMessage("Course doesn't exist!", "#ffaeae", "#ff3232");
         }
     }
 
-    public void showElements(boolean bool) {
-        whiteRectangle.setVisible(bool);
-        confirmationText.setVisible(bool);
+    public void showMessage(String message, String rectColor, String textColor) {
+        confirmationText.setText(message);
+        confirmationText.setFill(Paint.valueOf(textColor));
+        whiteRectangle.setFill(Paint.valueOf(rectColor));
+        errorPane.setVisible(true);
+        FadeTransition ft = new FadeTransition(Duration.seconds(6), errorPane);
+        ft.setFromValue(1);
+        ft.setToValue(0);
+        ft.play();
         if (confirmationText.getText().equals("Course joined!")) {
-            joinButton.setVisible(!bool);
+            joinButton.setVisible(false);
         }
     }
 }

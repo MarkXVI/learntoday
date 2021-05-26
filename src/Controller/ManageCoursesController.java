@@ -69,11 +69,17 @@ public class ManageCoursesController implements Initializable {
     public void onRemove() throws SQLException {
         String selectedItem = listView.getSelectionModel().getSelectedItem();
         if (courses.contains(selectedItem)) {
-            database.removeCourse(database.getIDForSelectedCourse(selectedItem, user.getUsername()));
+            int courseID = database.getIDForSelectedCourse(selectedItem, user.getUsername());
+            database.removeCourse(courseID);
             listView.getItems().remove(selectedItem);
         } else if (usernames.contains(selectedItem)) {
-            database.removeUser(database.getIDForSelectedCourse(CourseStorage.getInstance().getCourseName(), user.getUsername()), user.getUsername());
+            int courseID = database.getIDForSelectedCourse(CourseStorage.getInstance().getCourseName(), user.getUsername());
+            database.removeUser(courseID, selectedItem);
             listView.getItems().remove(selectedItem);
+            if (selectedItem.equals(user.getUsername())){
+                onGoBack();
+                showCourses();
+            }
         }
     }
 
@@ -85,22 +91,21 @@ public class ManageCoursesController implements Initializable {
                 CourseStorage.getInstance().setCourseName(selectedItem);
                 int courseID = database.getIDForSelectedCourse(selectedItem, user.getUsername());
                 usernames = database.getUsernamesForCourse(courseID);
-                setText(selectedItem, courseID, 2);
+                setText(selectedItem, courseID);
                 addUsernames();
             } else if (click.getClickCount() == 2 && selectedItem.equals("Go back")) {
-                String courseName = CourseStorage.getInstance().getCourseName();
-                setText(courseName, database.getIDForSelectedCourse(courseName, user.getUsername()), 1);
+                onGoBack();
                 showCourses();
             }
         } catch (NullPointerException ignored) {}
     }
 
-    public void setText(String courseName, int courseID, int i) {
-        if (i == 1) {
-            text.setText("Choose a course to edit");
-        } else if (i == 2) {
-            text.setText("Users in " + courseName + " #" + courseID);
-        }
+    public void onGoBack(){
+        text.setText("Choose a course to edit");
+    }
+
+    public void setText(String courseName, int courseID) {
+        text.setText("Users in " + courseName + " #" + courseID);
     }
 
     public void addUsernames() {

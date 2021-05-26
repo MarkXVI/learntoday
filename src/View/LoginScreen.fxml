@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane cacheShape="false" centerShape="false" prefHeight="720.0" prefWidth="900.0" scaleShape="false" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+<AnchorPane cacheShape="false" centerShape="false" prefHeight="720.0" prefWidth="900.0" scaleShape="false" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
    <Rectangle arcHeight="50.0" arcWidth="50.0" fill="DODGERBLUE" height="300.0" layoutX="214.0" layoutY="243.0" stroke="TRANSPARENT" strokeType="INSIDE" width="500.0">
       <effect>
          <Shadow height="85.13" radius="42.3425" width="86.24">
@@ -30,12 +30,12 @@
             <stops>
                <Stop>
                   <color>
-                     <Color blue="1.0" green="0.5647059082984924" red="0.11764705926179886" />
+                     <Color red="0.11764705926179886" green="0.5647059082984924" blue="1.0" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color blue="1.0" green="0.6716049313545227" red="0.29629629850387573" />
+                     <Color red="0.29629629850387573" green="0.6716049313545227" blue="1.0" />
                   </color>
                </Stop>
             </stops>
@@ -53,12 +53,12 @@
             <stops>
                <Stop>
                   <color>
-                     <Color blue="1.0" green="1.0" opacity="0.769565224647522" red="1.0" />
+                     <Color red="1.0" green="1.0" blue="1.0" opacity="0.769565224647522" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color blue="1.0" green="1.0" red="1.0" />
+                     <Color red="1.0" green="1.0" blue="1.0" />
                   </color>
                </Stop>
             </stops>
@@ -75,8 +75,8 @@
       </cursor></Button>
       <TextField fx:id="userInput" layoutX="287.0" layoutY="327.0" onAction="#onLoginClick" prefHeight="25.0" prefWidth="326.0" promptText="Enter username" />
       <PasswordField fx:id="passwordInput" layoutX="287.0" layoutY="380.0" onAction="#onLoginClick" prefHeight="25.0" prefWidth="326.0" promptText="Enter password" />
-   <Pane fx:id="msgError" focusTraversable="true" layoutX="376.0" layoutY="536.0" prefHeight="52.0" prefWidth="176.0" visible="false" AnchorPane.bottomAnchor="142.0" AnchorPane.leftAnchor="376.0" AnchorPane.rightAnchor="349.0" AnchorPane.topAnchor="536.0">
-      <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#ffaeae" height="37.0" layoutX="2.0" layoutY="2.0" stroke="#ffffff00" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0" strokeWidth="4.0" width="174.0" />
-      <Text fill="#ff3232" layoutX="28.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error: Wrong password!" />
+   <Pane fx:id="msgError" focusTraversable="true" layoutX="339.0" layoutY="537.0" prefHeight="42.0" prefWidth="215.0" visible="false" AnchorPane.bottomAnchor="141.0" AnchorPane.leftAnchor="339.0" AnchorPane.rightAnchor="347.0" AnchorPane.topAnchor="537.0">
+      <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#ffaeae" height="45.0" layoutX="-2.0" stroke="#ffffff00" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0" strokeWidth="4.0" width="215.0" />
+      <Text fill="#ff3232" layoutX="26.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid username or password!" />
    </Pane>
 </AnchorPane>

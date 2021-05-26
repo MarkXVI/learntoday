@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RegisterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RegisterController">
    <Rectangle arcHeight="50.0" arcWidth="50.0" height="379.0" layoutX="174.0" layoutY="191.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="576.0">
       <effect>
          <Shadow height="69.28" radius="33.93" width="68.44">
@@ -36,12 +36,12 @@
             <stops>
                <Stop>
                   <color>
-                     <Color blue="1.0" green="0.5647059082984924" red="0.11764705926179886" />
+                     <Color red="0.11764705926179886" green="0.5647059082984924" blue="1.0" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color blue="1.0" green="0.6705882549285889" red="0.2980392277240753" />
+                     <Color red="0.2980392277240753" green="0.6705882549285889" blue="1.0" />
                   </color>
                </Stop>
             </stops>
@@ -99,10 +99,10 @@
             <MenuItem mnemonicParsing="false" onAction="#onTypeChoice" text="Teacher" />
          </items>
       </MenuButton>
-      <PasswordField fx:id="passwordInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="291.0" promptText="Enter Password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <TextField fx:id="usernameInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="183.0" promptText="Enter Username" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField fx:id="lastNameInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="194.0" promptText="Enter Last Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <TextField fx:id="firstNameInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="223.0" promptText="Enter First Name" GridPane.columnIndex="1" />
+      <TextField fx:id="lastNameInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="194.0" promptText="Enter Last Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="usernameInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="183.0" promptText="Enter Username" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <PasswordField fx:id="passwordInput" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="291.0" promptText="Enter Password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    </GridPane>
    <Text layoutX="370.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register" textAlignment="CENTER" wrappingWidth="184.87890625">
       <font>
@@ -113,12 +113,12 @@
             <stops>
                <Stop>
                   <color>
-                     <Color blue="1.0" green="1.0" opacity="0.769565224647522" red="1.0" />
+                     <Color red="1.0" green="1.0" blue="1.0" opacity="0.769565224647522" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color blue="1.0" green="1.0" red="1.0" />
+                     <Color red="1.0" green="1.0" blue="1.0" />
                   </color>
                </Stop>
             </stops>

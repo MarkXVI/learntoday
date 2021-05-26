@@ -148,7 +148,7 @@ public class MenuController implements Initializable {
                 }
             }
         } catch(Exception ex) {
-            errorChange("There are currently no questions for this quiz!");
+            errorChange("Must choose a valid topic!");
         }
     }
 
@@ -184,7 +184,7 @@ public class MenuController implements Initializable {
                 stage.show();
             }
         } catch (NullPointerException npe) {
-            errorChange("Something went wrong when trying to load edit scene!");
+            errorChange("You must choose a topic to edit!");
         }
     }
 
@@ -203,7 +203,7 @@ public class MenuController implements Initializable {
                 stage.show();
             }
         } catch (Exception e) {
-            errorChange("Something went wrong when trying to load edit scene!");
+            errorChange("You must choose a topic to add questions!");
         }
     }
 
@@ -219,8 +219,6 @@ public class MenuController implements Initializable {
             Stage stage = (Stage) joinCourseButton.getScene().getWindow();
             Scene scene = new Scene(loader.load());
             scene.getStylesheets().add("View/Style.css");
-            JoinCourseController joinCourseController = loader.getController();
-            joinCourseController.showElements(false);
 
             stage.setScene(scene);
             stage.show();

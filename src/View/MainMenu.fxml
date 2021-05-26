@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
    <Rectangle arcHeight="50.0" arcWidth="50.0" height="645.0" layoutX="52.0" layoutY="54.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="826.0">
       <effect>
          <Shadow height="70.11" radius="34.1375" width="68.44">
@@ -54,42 +54,38 @@
       </font>
    </Text>
    <VBox alignment="TOP_CENTER" layoutX="725.0" layoutY="52.0" prefHeight="61.0" prefWidth="107.0" spacing="5.0">
-      <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="25.0" prefWidth="107.0"
-              text="Sign out" textFill="#7c7c7c">
+      <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="25.0" prefWidth="107.0" text="Sign out" textFill="#7c7c7c">
          <font>
-            <Font name="Comic Sans MS" size="12.0"/>
+            <Font name="Comic Sans MS" size="12.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="leaderboardsButton" mnemonicParsing="false" onAction="#onLeaderboardsClick" prefHeight="25.0"
-              prefWidth="107.0" text="Leaderboards" textFill="#7c7c7c">
+      <Button fx:id="leaderboardsButton" mnemonicParsing="false" onAction="#onLeaderboardsClick" prefHeight="25.0" prefWidth="107.0" text="Leaderboards" textFill="#7c7c7c">
          <font>
-            <Font name="Comic Sans MS" size="12.0"/>
+            <Font name="Comic Sans MS" size="12.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
    </VBox>
    <VBox alignment="TOP_CENTER" layoutX="177.0" layoutY="52.0" prefHeight="61.0" prefWidth="115.0" spacing="5.0">
-      <Button fx:id="joinCourseButton" mnemonicParsing="false" onAction="#onJoinCourse" prefHeight="25.0"
-              prefWidth="107.0" text="Join course" textFill="#7c7c7c">
+      <Button fx:id="joinCourseButton" mnemonicParsing="false" onAction="#onJoinCourse" prefHeight="25.0" prefWidth="107.0" text="Join course" textFill="#7c7c7c">
          <font>
-            <Font name="Comic Sans MS" size="12.0"/>
+            <Font name="Comic Sans MS" size="12.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="manageCoursesButton" mnemonicParsing="false" onAction="#onManageCourses" prefHeight="25.0"
-              prefWidth="107.0" text="Manage courses" textFill="#7c7c7c">
+      <Button fx:id="manageCoursesButton" mnemonicParsing="false" onAction="#onManageCourses" prefHeight="25.0" prefWidth="107.0" text="Manage courses" textFill="#7c7c7c">
          <font>
-            <Font name="Comic Sans MS" size="12.0"/>
+            <Font name="Comic Sans MS" size="12.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
    </VBox>
@@ -182,7 +178,7 @@
    <Pane fx:id="msgError" focusTraversable="true" layoutX="511.0" layoutY="571.0" prefHeight="59.0" prefWidth="291.0" visible="false">
       <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#ffaeae" height="57.0" layoutX="2.0" layoutY="1.0" stroke="#ffffff00" strokeDashOffset="200.0" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeMiterLimit="100.0" strokeWidth="4.0" width="291.0" />
       <VBox alignment="CENTER" layoutX="23.0" prefHeight="59.0" prefWidth="248.0">
-         <Text fx:id="errorText" fill="#ff3232" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="226.693359375" />
+         <Text fx:id="errorText" fill="#ff3232" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="226.693359375" />
       </VBox>
    </Pane>
    <Pane fx:id="paneAbout" layoutX="255.0" layoutY="266.0" prefHeight="265.0" prefWidth="390.0" visible="false">
