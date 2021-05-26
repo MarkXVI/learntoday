@@ -54,7 +54,7 @@ public class QuizEditorController implements Initializable {
 
     }
 
-    public void submitQuiz() throws SQLException {
+    public void submitQuiz(){
         String question = inputQuestion.getText();
         String answer1 = inputAlt1.getText(); //correct answer
         String answer2 = inputAlt2.getText();
@@ -63,15 +63,6 @@ public class QuizEditorController implements Initializable {
 
         if(Logic.checkValidQuiz(question, answer1, answer2, answer3, answer4)){
             database.addQuestion(question, topicTitle.getText(), "MC");
-
-            database.addAlt(answer1, 1, question); //correct answer
-            System.out.println(answer1);
-            database.addAlt(answer2, 0, question);
-            System.out.println(answer2);
-            database.addAlt(answer3, 0, question);
-            System.out.println(answer3);
-            database.addAlt(answer4, 0, question);
-            System.out.println(answer4);
 
             confirmPane.setVisible(false);
             submitNotification();
