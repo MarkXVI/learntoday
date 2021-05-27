@@ -71,15 +71,19 @@ public class AddCourseController implements Initializable {
             database.addCourse(randomID, userInput.getText());
             database.addUserToCourse(randomID, user.getUsername());
             courseIDText.setText("Course ID: " + randomID);
-            confirmationText.setText("Course added!");
-            confirmationText.setFill(Paint.valueOf("#32a852"));
-            whiteRectangle.setFill(Paint.valueOf("#ffffff"));
-        }else if (courses.contains(userInput.getText())) {
-            confirmationText.setText("A course with the same\nname already exists");
-            confirmationText.setFill(Paint.valueOf("#ff3232"));
-            whiteRectangle.setFill(Paint.valueOf("#ffaeae"));
+            editMessage("Course added!", "#32a852", "#ffffff");
+        }else if (courses.contains(userInput.getText())){
+            editMessage("A course with the same\nname already exists!", "#ff3232", "#ffaeae");
+        }else if (userInput.getText().equals("")){
+            editMessage("Course must have a name!", "#ff3232", "#ffaeae");
         }
         showElements();
+    }
+
+    public void editMessage(String text, String textPaint, String rectPaint){
+        confirmationText.setText(text);
+        confirmationText.setFill(Paint.valueOf(textPaint));
+        whiteRectangle.setFill(Paint.valueOf(rectPaint));
     }
 
     public void onBackClick() throws IOException {

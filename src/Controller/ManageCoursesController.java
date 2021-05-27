@@ -66,7 +66,8 @@ public class ManageCoursesController implements Initializable {
         }
     }
 
-    public void onRemove() throws SQLException {
+    public void onRemove(){
+        try{
         String selectedItem = listView.getSelectionModel().getSelectedItem();
         if (courses.contains(selectedItem)) {
             int courseID = database.getIDForSelectedCourse(selectedItem, user.getUsername());
@@ -80,7 +81,7 @@ public class ManageCoursesController implements Initializable {
                 onGoBack();
                 showCourses();
             }
-        }
+        }}catch(Exception ignored){}
     }
 
     public void onMouseClick(MouseEvent click) throws SQLException {

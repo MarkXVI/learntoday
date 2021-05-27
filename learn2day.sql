@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `learn2day` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `learn2day`;
--- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.24, for Win64 (x86_64)
 --
 -- Host: localhost    Database: learn2day
 -- ------------------------------------------------------
--- Server version	8.0.22
+-- Server version	8.0.24
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,7 +30,7 @@ CREATE TABLE `alternative` (
   `question_questionID` int NOT NULL,
   PRIMARY KEY (`choice`,`question_questionID`),
   KEY `fk_alternative_question1_idx` (`question_questionID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,7 +54,7 @@ CREATE TABLE `course` (
   `courseID` int NOT NULL,
   `course_name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`courseID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,6 +63,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
+INSERT INTO `course` VALUES (1,'Test');
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,7 +82,7 @@ CREATE TABLE `course_has_quiz` (
   KEY `fk_course_has_quiz_course1_idx` (`course_courseID`),
   CONSTRAINT `fk_course_has_quiz_course1` FOREIGN KEY (`course_courseID`) REFERENCES `course` (`courseID`),
   CONSTRAINT `fk_course_has_quiz_quiz1` FOREIGN KEY (`quiz_name`) REFERENCES `quiz` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,7 +109,7 @@ CREATE TABLE `course_has_user` (
   KEY `fk_course_has_user_course1_idx` (`course_courseID`),
   CONSTRAINT `fk_course_has_user_course1` FOREIGN KEY (`course_courseID`) REFERENCES `course` (`courseID`),
   CONSTRAINT `fk_course_has_user_user1` FOREIGN KEY (`user_username`) REFERENCES `user` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,6 +118,7 @@ CREATE TABLE `course_has_user` (
 
 LOCK TABLES `course_has_user` WRITE;
 /*!40000 ALTER TABLE `course_has_user` DISABLE KEYS */;
+INSERT INTO `course_has_user` VALUES (1,'Test');
 /*!40000 ALTER TABLE `course_has_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +138,7 @@ CREATE TABLE `question` (
   UNIQUE KEY `question_UNIQUE` (`question`),
   KEY `fk_question_quiz1_idx` (`quiz_name`),
   CONSTRAINT `fk_question_quiz1` FOREIGN KEY (`quiz_name`) REFERENCES `quiz` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,7 +165,7 @@ CREATE TABLE `quiz` (
   PRIMARY KEY (`name`),
   KEY `fk_quiz_topic1_idx` (`topic_name`),
   CONSTRAINT `fk_quiz_topic1` FOREIGN KEY (`topic_name`) REFERENCES `topic` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,7 +188,7 @@ DROP TABLE IF EXISTS `topic`;
 CREATE TABLE `topic` (
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,7 +215,7 @@ CREATE TABLE `user` (
   `Lastname` varchar(45) DEFAULT NULL,
   `Teacher` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -222,6 +224,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES ('Test','Test','Test','Test',0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,7 +244,7 @@ CREATE TABLE `user_does_quiz` (
   KEY `fk_user_has_quiz_user1_idx` (`user_username`),
   CONSTRAINT `fk_user_has_quiz_quiz1` FOREIGN KEY (`quiz_name`) REFERENCES `quiz` (`name`),
   CONSTRAINT `fk_user_has_quiz_user1` FOREIGN KEY (`user_username`) REFERENCES `user` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -262,4 +265,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-27 11:35:34
+-- Dump completed on 2021-05-27 15:59:16

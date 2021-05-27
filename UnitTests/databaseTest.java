@@ -83,15 +83,15 @@ public class databaseTest {
 
     @Test
     public void testGetIDForSelectedCourse() throws SQLException {
-        int courseID = connection.getIDForSelectedCourse("History", "Simon");
-        assertEquals(courseID, 53060);
+        int courseID = connection.getIDForSelectedCourse("Test", "Test");
+        assertEquals(courseID, 0001);
     }
 
     @Test
     public void testGetUsernamesForCourse() throws SQLException {
-        ArrayList<String> usernames = connection.getUsernamesForCourse(53060);
+        ArrayList<String> usernames = connection.getUsernamesForCourse(0001);
         assertNotNull(usernames);
-        assertEquals(usernames.size(), 2);
+        assertEquals(usernames.size(), 1);
     }
 
     @Test
