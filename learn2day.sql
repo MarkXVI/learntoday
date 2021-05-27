@@ -39,7 +39,7 @@ CREATE TABLE `alternative` (
 
 LOCK TABLES `alternative` WRITE;
 /*!40000 ALTER TABLE `alternative` DISABLE KEYS */;
-INSERT INTO `alternative` VALUES ('0',0,43),('1 billion',0,43),('1-2 million',0,3),('100-120 million',0,3),('15 million',0,26),('19 million',0,12),('1914-1918',1,10),('1915-1919',0,10),('1917-1918',0,25),('1917-1919',0,25),('1917-1921',0,10),('1918-1919',1,25),('1918-1920',0,25),('1920-1924',0,10),('1935-1939',0,1),('1935-1945',0,1),('1939-1945',1,1),('1940-1945',0,1),('1940s',0,47),('1950s',1,47),('1960s',0,47),('1990s',0,47),('2 billion',1,43),('20 million',0,26),('20-30 million',0,3),('21,5 million',1,12),('23,5 million',0,12),('25 million',0,12),('25 million',1,26),('28',0,37),('29',1,37),('30',0,37),('30 million',0,26),('40',0,37),('40-50 million',1,3),('Aquaman',0,51),('Atman',1,51),('Burnt',0,50),('China',0,44),('China and\nthe United States',0,29),('Completed',0,50),('Cricket players',0,49),('East India',0,35),('erased',1,50),('False',0,24),('False',0,27),('False',1,28),('False',0,32),('False',1,38),('False',0,39),('False',0,42),('False',0,48),('False',1,53),('France',1,2),('Germany',0,2),('Germany and\nthe Soviet Uniton',0,29),('Germany and \n      China      ',0,29),('God wants more power',0,41),('Italy',0,2),('Japan',0,2),('Jesus got split in half',0,41),('Karma',0,52),('Meat eaters',0,49),('Mission failed we get them next time',0,45),('Moped thieves ',0,49),('Mumbai',0,36),('Muscle cars',0,46),('Napoli',0,36),('New Delhi',0,36),('Nirvana',0,51),('North India',1,35),('North Korea',0,44),('Nuclear weapons',1,46),('one million',0,43),('Operation barbarossa',0,45),('Paulina',0,40),('Pelle',0,40),('Peter',0,40),('Petrus',1,40),('Sabata',0,52),('Samsara',1,52),('Samsung',0,52),('Soul',0,51),('South India',0,35),('Southern Nepal',1,36),('Soviet',0,44),('Space ships',0,46),('Stamped on',0,50),('The 30s',0,30),('The 40s',0,30),('The 50s',1,30),('The 60s',0,30),('The Atlantic Ocean',0,15),('The east didn\'t\naccept the pope',1,41),('The Egyptians',0,31),('The germans started a world war',0,41),('The Greeks',0,31),('The Hebrews',1,31),('The Indian Ocean',0,15),('The Marshall plan',1,45),('The Muslims',0,31),('The Pacific Ocean',1,15),('The rebuildning plan',0,45),('The Southern Ocean',0,15),('The United States and \n    the Soviet Union  ',1,29),('True',1,24),('True',1,27),('True',0,28),('True',1,32),('True',0,38),('True',1,39),('True',1,42),('True',1,48),('True',0,53),('United States of America',1,44),('Vegeterian',1,49),('Water pistols',0,46),('West India',0,35);
+INSERT INTO `alternative` VALUES ('0',0,43),('1 Billion',0,43),('1 Million',0,43),('1-2 Million',0,3),('100-120 Million',0,3),('15 Million',0,26),('19 Million',0,12),('1914-1918',1,10),('1915-1919',0,10),('1917-1918',0,25),('1917-1919',0,25),('1917-1921',0,10),('1918-1919',1,25),('1918-1920',0,25),('1920-1924',0,10),('1935-1939',0,1),('1935-1945',0,1),('1939-1945',1,1),('1940-1945',0,1),('1940s',0,47),('1950s',1,47),('1960s',0,47),('1990s',0,47),('2 Billion',1,43),('20 Million',0,26),('20-30 Million',0,3),('21,5 Million',1,12),('23,5 Million',0,12),('25 Million',0,12),('25 Million',1,26),('28',0,37),('29',1,37),('30',0,37),('30 Million',0,26),('40',0,37),('40-50 Million',1,3),('Aquaman',0,51),('Atman',1,51),('Burnt',0,50),('China',0,44),('China and\nthe United States',0,29),('Completed',0,50),('Cricket players',0,49),('East India',0,35),('Erased',1,50),('False',0,24),('False',0,27),('False',1,28),('False',0,32),('False',1,38),('False',0,39),('False',0,42),('False',0,48),('False',1,53),('France',1,2),('Germany',0,2),('Germany and\nthe Soviet Uniton',0,29),('Germany and \nChina      ',0,29),('God wants more power',0,41),('Italy',0,2),('Japan',0,2),('Jesus got split in half',0,41),('Karma',0,52),('Meat eaters',0,49),('Mission failed we get them next time',0,45),('Moped thieves ',0,49),('Mumbai',0,36),('Muscle cars',0,46),('Napoli',0,36),('New Delhi',0,36),('Nirvana',0,51),('North India',1,35),('North Korea',0,44),('Nuclear weapons',1,46),('Operation barbarossa',0,45),('Paulina',0,40),('Pelle',0,40),('Peter',0,40),('Petrus',1,40),('Sabata',0,52),('Samsara',1,52),('Samsung',0,52),('Soul',0,51),('South India',0,35),('Southern Nepal',1,36),('Soviet',0,44),('Space ships',0,46),('Stamped on',0,50),('The 30s',0,30),('The 40s',0,30),('The 50s',1,30),('The 60s',0,30),('The Atlantic Ocean',0,15),('The east didn\'t\naccept the pope',1,41),('The Egyptians',0,31),('The germans started a world war',0,41),('The Greeks',0,31),('The Hebrews',1,31),('The Indian Ocean',0,15),('The Marshall plan',1,45),('The Muslims',0,31),('The Pacific Ocean',1,15),('The rebuildning plan',0,45),('The Southern Ocean',0,15),('The United States and \nthe Soviet Union  ',1,29),('True',1,24),('True',1,27),('True',0,28),('True',1,32),('True',0,38),('True',1,39),('True',1,42),('True',1,48),('True',0,53),('United States of America',1,44),('Vegeterian',1,49),('Water pistols',0,46),('West India',0,35);
 /*!40000 ALTER TABLE `alternative` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +63,6 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (1,'test'),(11540,'Religion'),(26917,'123'),(42414,'History'),(53060,'History'),(63497,'Geography');
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,7 +90,6 @@ CREATE TABLE `course_has_quiz` (
 
 LOCK TABLES `course_has_quiz` WRITE;
 /*!40000 ALTER TABLE `course_has_quiz` DISABLE KEYS */;
-INSERT INTO `course_has_quiz` VALUES (42414,'World War 2'),(53060,'Continents'),(53060,'World War 1'),(53060,'World War 2');
 /*!40000 ALTER TABLE `course_has_quiz` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,7 +117,6 @@ CREATE TABLE `course_has_user` (
 
 LOCK TABLES `course_has_user` WRITE;
 /*!40000 ALTER TABLE `course_has_user` DISABLE KEYS */;
-INSERT INTO `course_has_user` VALUES (1,'Simon'),(26917,'Hpmanen'),(53060,'Hpmanen'),(53060,'Simon');
 /*!40000 ALTER TABLE `course_has_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,7 +222,6 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('123','123','123','123',0),('Hampus','Nilsson','Hampus','Nilsson',1),('HimeTeacher','himehime','Hampus','Nilsson',1),('Hpmanen','himehime','Hampus','Nilsson',1),('Learn2day','lol','Hampus','Nilsson',1),('lol','lol','lol','lol',1),('Simon','simon','Simon','Wikström',1),('Student','test','Student','Student',0),('test','test','Hime','CEO',1),('yay','yay','testing','stuff',0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,7 +250,6 @@ CREATE TABLE `user_does_quiz` (
 
 LOCK TABLES `user_does_quiz` WRITE;
 /*!40000 ALTER TABLE `user_does_quiz` DISABLE KEYS */;
-INSERT INTO `user_does_quiz` VALUES ('Hpmanen','Buddhism',1),('Hpmanen','Continents',7),('Hpmanen','Spanish Flu',2),('Hpmanen','World War 1',1),('Hpmanen','World War 2',3),('Simon','World War 2',1);
 /*!40000 ALTER TABLE `user_does_quiz` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -267,4 +262,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-27 11:26:32
+-- Dump completed on 2021-05-27 11:35:34
