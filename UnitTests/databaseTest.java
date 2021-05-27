@@ -91,7 +91,7 @@ public class databaseTest {
     public void testGetUsernamesForCourse() throws SQLException {
         ArrayList<String> usernames = connection.getUsernamesForCourse(53060);
         assertNotNull(usernames);
-        assertEquals(usernames.size(), 1);
+        assertEquals(usernames.size(), 2);
     }
 
     @Test
