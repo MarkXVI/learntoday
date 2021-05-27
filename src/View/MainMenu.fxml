@@ -112,7 +112,7 @@
          </Text>
          <TextFlow fx:id="teacherInfo" accessibleText="dsdsd" prefHeight="278.0" prefWidth="354.0">
             <Separator prefHeight="5.0" prefWidth="354.0" />
-            <Text fill="#656565" strokeType="OUTSIDE" strokeWidth="0.0" text="Teacher features:&#10;" textAlignment="CENTER" wrappingWidth="318.052734375">
+            <Text fill="#656565" strokeType="OUTSIDE" strokeWidth="0.0" text="Teacher features:&#10;" textAlignment="CENTER" wrappingWidth="180.849609375">
                <font>
                   <Font size="14.0" />
                </font>
