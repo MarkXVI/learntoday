@@ -54,7 +54,7 @@ public class QuizEditorController implements Initializable {
 
     }
 
-    public void submitQuiz(){
+    public void submitQuiz() throws SQLException {
         String question = inputQuestion.getText();
         String answer1 = inputAlt1.getText(); //correct answer
         String answer2 = inputAlt2.getText();
