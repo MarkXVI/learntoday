@@ -72,7 +72,7 @@ public class QuizEditorController implements Initializable {
             confirmPane.setVisible(false);
             submitNotification();
         }else{
-            errorText.setText("Empty Alternative!");
+            errorText.setText("Invalid Question!");
             errorText.setFill(Paint.valueOf("#ff3232"));
             errorRect.setFill(Paint.valueOf("#ffaeae"));
             msgError.setVisible(true);
