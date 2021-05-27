@@ -1,20 +1,18 @@
 package Model;
 
-import java.sql.SQLException;
-
 public class CourseStorage {
-    private static CourseStorage courseStorage;
+    private static CourseStorage instance;
 
     private String courseName;
     private String subjectName;
 
     private CourseStorage(){}
 
-    public static CourseStorage getInstance() throws SQLException {
-        if (courseStorage == null){
-            courseStorage = new CourseStorage();
+    public static CourseStorage getInstance(){
+        if (instance == null){
+            instance = new CourseStorage();
         }
-        return courseStorage;
+        return instance;
     }
 
     public void setCourseName(String courseName) {

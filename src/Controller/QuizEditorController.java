@@ -54,7 +54,7 @@ public class QuizEditorController implements Initializable {
 
     }
 
-    public void submitQuiz() throws SQLException {
+    public void submitQuiz(){
         String question = inputQuestion.getText();
         String answer1 = inputAlt1.getText(); //correct answer
         String answer2 = inputAlt2.getText();
@@ -72,7 +72,7 @@ public class QuizEditorController implements Initializable {
             confirmPane.setVisible(false);
             submitNotification();
         }else{
-            errorText.setText("Invalid Question!");
+            errorText.setText("Empty Alternative!");
             errorText.setFill(Paint.valueOf("#ff3232"));
             errorRect.setFill(Paint.valueOf("#ffaeae"));
             msgError.setVisible(true);

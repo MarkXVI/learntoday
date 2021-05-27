@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class QuizStorage {
-    private static QuizStorage quizStorage;
+    private static QuizStorage instance;
 
     static {
         try {
-            quizStorage = new QuizStorage();
+            instance = new QuizStorage();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -24,7 +24,7 @@ public class QuizStorage {
     public QuizStorage() throws SQLException {}
 
     public static QuizStorage getInstance() {
-        return quizStorage;
+        return instance;
     }
 
     public void addQuestions(String topic) throws SQLException {

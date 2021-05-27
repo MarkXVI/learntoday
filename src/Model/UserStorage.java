@@ -3,10 +3,13 @@ package Model;
 import Functionality.User;
 
 public class UserStorage {
-    private final static UserStorage instance = new UserStorage(); // This will make sure the UserStorage only can have 1 instance.
+    private static UserStorage instance;
     private User user;
 
     public static UserStorage getInstance() {
+        if (instance == null){
+            instance = new UserStorage();
+        }
         return instance;
     }
 
