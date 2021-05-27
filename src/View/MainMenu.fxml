@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
    <Rectangle arcHeight="50.0" arcWidth="50.0" height="645.0" layoutX="52.0" layoutY="54.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="826.0">
       <effect>
          <Shadow height="70.11" radius="34.1375" width="68.44">
@@ -112,17 +112,17 @@
          </Text>
          <TextFlow fx:id="teacherInfo" accessibleText="dsdsd" prefHeight="278.0" prefWidth="354.0">
             <Separator prefHeight="5.0" prefWidth="354.0" />
-            <Text fill="#da5858" strokeType="OUTSIDE" strokeWidth="0.0" text="Teacher features:&#10;" textAlignment="CENTER" wrappingWidth="318.052734375">
+            <Text fill="#656565" strokeType="OUTSIDE" strokeWidth="0.0" text="Teacher features:&#10;" textAlignment="CENTER" wrappingWidth="318.052734375">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text fill="#da5858" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu Bar:" wrappingWidth="318.052734375">
+            <Text fill="#656565" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu Bar:" wrappingWidth="318.052734375">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text fill="#da5858" strokeType="OUTSIDE" strokeWidth="0.0" text="&#10;&#10;Edit &gt; Edit Selected Topic&#10;Must have selected a topic in &quot;Topics&quot; in order to edit the existing text.&#10;&#10;Edit &gt; Add Question&#10;Must have selected a topic in &quot;Topics&quot; in order to edit the existing text." wrappingWidth="351.17578125" />
+            <Text fill="#656565" strokeType="OUTSIDE" strokeWidth="0.0" text="&#10;&#10;Edit &gt; Edit Selected Topic&#10;Must have selected a topic in &quot;Topics&quot; in order to edit the existing text.&#10;&#10;Edit &gt; Add Question&#10;Must have selected a topic in &quot;Topics&quot; in order to edit the existing text." wrappingWidth="351.17578125" />
          </TextFlow>
       </TextFlow>
    </VBox>
