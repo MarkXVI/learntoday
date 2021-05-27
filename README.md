@@ -20,5 +20,6 @@ Make sure these libraries are imported into your project.
   Make sure it gets imported to a new schema called "Learn2day" -> Press Start Import
   
   
+ Clone the project by going into (IntelliJ): VCS -> Clone... -> enter URL: https://www.github.com/MarkXVI/learntoday/
  Now if everything is imported correctly and VM-options are configured you should be able to run the program.
  
