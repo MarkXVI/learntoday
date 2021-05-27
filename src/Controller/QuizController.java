@@ -86,7 +86,7 @@ public class QuizController implements Initializable {
             altButtons.add(alternative3);
             altButtons.add(alternative4);
         }
-        if (count > numberOfQuestions){
+        if (count >= numberOfQuestions){
             nextButton.setText("Finish Quiz!");
         }
         Button clicked = (Button) event.getTarget();

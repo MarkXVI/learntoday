@@ -65,18 +65,14 @@ public class QuizEditorController implements Initializable {
             database.addQuestion(question, topicTitle.getText(), "MC");
 
             database.addAlt(answer1, 1, question); //correct answer
-            System.out.println(answer1);
             database.addAlt(answer2, 0, question);
-            System.out.println(answer2);
             database.addAlt(answer3, 0, question);
-            System.out.println(answer3);
             database.addAlt(answer4, 0, question);
-            System.out.println(answer4);
 
             confirmPane.setVisible(false);
             submitNotification();
         }else{
-            errorText.setText("Empty Alternative!");
+            errorText.setText("Invalid Question!");
             errorText.setFill(Paint.valueOf("#ff3232"));
             errorRect.setFill(Paint.valueOf("#ffaeae"));
             msgError.setVisible(true);

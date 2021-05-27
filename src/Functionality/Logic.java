@@ -33,10 +33,16 @@ public class Logic {
         alternatives.add(alt3);
         alternatives.add(alt4);
 
+        ArrayList<String> checkValid = new ArrayList<>();
+
         for(String alt: alternatives){
             if(alt.isEmpty()){
                 return false;
             }
+            if(checkValid.contains(alt)){
+                return false;
+            }
+            checkValid.add(alt);
         }
         return true;
     }
