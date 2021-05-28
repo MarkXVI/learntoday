@@ -21,6 +21,7 @@ Make sure these libraries are imported into your project.
   
   
  Clone the project by going into (IntelliJ): VCS -> Clone... -> enter URL: https://www.github.com/MarkXVI/learntoday/
+ or you can clone it from the command line (terminal) by doing: git clone https://www.github.com/MarkXVI/learntoday/
  
  Now if everything is imported correctly and VM-options are configured you should be able to run the program.
  
